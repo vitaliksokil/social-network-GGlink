@@ -1,8 +1,112 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Changa&display=swap');
+
+//font awesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+html,body{
+    height: 100%;
+}
+body{
+    background: $bg;
+    font-family: 'Changa', sans-serif;
+    color: rgba(255,255,255,0.9);
+}
+th,td{
+    color: rgba(255,255,255,0.9);
+}
+header{
+    background: $header;
+}
+a{
+    color: rgba(255,255,255,0.9);
+    font-size: 18px;
+    &:hover{
+        color:$green;
+        text-decoration: none;
+    }
+}
+.logo{
+    font-family: 'Permanent Marker', cursive;
+    font-size: 42px;
+    color: #e51f1c;
+    &:hover{
+        color: #e51f1c ;
+    }
+    span{
+        font-family: 'Gloria Hallelujah', cursive;
+        color: #f2e54a;
+    }
+}
+
+.profile-li{
+    border: 1px solid black;
+    border-radius: 5px;
+
+    a{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        span{
+            margin-right: 10px;
+        }
+        span:last-child{
+            margin-right: 0;
+        }
+    }
+    .name{
+
+    }
+    .img{
+        img{
+            max-width: 50px;
+        }
+    }
+}
+.container-fluid{
+    height: 100%;
+    .row{
+        height: 100%;
+        .sidebar{
+            height: 100%;
+        }
+    }
+}
+.sidebar{
+    background: $sidebar;
+    a{
+        font-size: 22px;
+    }
+}
+.card{
+    background: $sidebar;
+}
+.active{
+    a{
+        color:$green !important;
+    }
+}
+.profile-page{
+    .profile-img{
+        img{
+            max-width: 300px;
+        }
+    }
+}
+.buttons{
+    > *{
+        text-align: left;
+        margin-bottom: 5px;
+    }
+}
