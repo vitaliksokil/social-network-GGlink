@@ -8,6 +8,6 @@ use Illuminate\Support\Facades\Auth;
 class PageController extends Controller
 {
     public function index(){
-        return redirect('/profile');
+        return redirect()->route('profile',['id'=>Auth::user()->id]);
     }
 }

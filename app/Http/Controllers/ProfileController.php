@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\Traits\UploadTrait;
+use App\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +20,11 @@ class ProfileController extends Controller
         $this->middleware('verified');
     }
 
-    public function profile()
+    public function profile($id)
     {
-        return view('pages.profile.profile');
+        $user = User::findOrFail($id);
+        $posts = $user->wall;
+        return view('pages.profile.profile',['user'=>$user,'posts'=>$posts]);
     }
 
     public function edit()
@@ -54,6 +58,7 @@ class ProfileController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'nickname' => ['required', 'string', 'max:255'],
+            'about' => ['required', 'string',],
             'password' => ['required', 'string', 'min:8'],
         ]);
     }
@@ -96,5 +101,12 @@ class ProfileController extends Controller
         }else{
             return redirect()->back()->withErrors(['password' => 'Incorrect password']);
         }
+    }
+
+    public function settings(){
+        return view('pages.profile.settings');
+    }
+    public function updateSettings(){
+
     }
 }

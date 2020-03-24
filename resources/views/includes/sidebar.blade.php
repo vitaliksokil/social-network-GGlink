@@ -1,11 +1,12 @@
 @auth
 <div class="container-fluid">
     <div class="row">
-            <nav class="col-md-2 d-none d-md-block sidebar">
+
+            <nav class="col-md-2 d-none d-md-block sidebar mt-4 card">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item {{ (request()->is('profile')) ? 'active' : '' }}" >
-                            <a class="nav-link" href="{{url('/profile')}}">
+                            <a class="nav-link" href="{{route('profile',['id'=>Auth::user()->id])}}">
                                 <i class="fas fa-home"></i>
                                 My profile <span class="sr-only">(current)</span>
                             </a>
@@ -144,6 +145,7 @@
                     </ul>
                 </div>
             </nav>
+
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 pt-4">
             @yield('content')
         </main>

@@ -12,17 +12,34 @@
 */
 
 Route::group(['middleware' => 'verified'], function () {
+    // PageController ///////////////////////////////////////////////////////////////
     Route::get('/', 'PageController@index');
 
-    Route::get('/profile', 'ProfileController@profile');
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    // ProfileController ///////////////////////////////////////////////////////////////
+    Route::get('/profile/id/{id}', 'ProfileController@profile')->name('profile');
     Route::get('/edit', 'ProfileController@edit')->name('edit');
-    Route::get('/edit-email', 'ProfileController@editEmail')->name('editEmail');
-    Route::get('/edit-password', 'ProfileController@editPassword')->name('editPassword');
+    Route::put('/edit', 'ProfileController@update')->name('update');
 
-    Route::put('/update', 'ProfileController@update')->name('update');
-    Route::put('/update-email', 'ProfileController@updateEmail')->name('updateEmail');
-    Route::put('/update-password', 'ProfileController@updatePassword')->name('updatePassword');
+    Route::prefix('settings')->group(function (){
+        Route::get('/', 'ProfileController@settings')->name('settings');
+        Route::put('/', 'ProfileController@updateSettings')->name('settings');
+    });
 
+    Route::prefix('email')->group(function (){
+        Route::get('/edit', 'ProfileController@editEmail')->name('editEmail');
+        Route::put('/edit', 'ProfileController@updateEmail')->name('updateEmail');
+    });
+    Route::prefix('password')->group(function (){
+        Route::get('/edit', 'ProfileController@editPassword')->name('editPassword');
+        Route::put('/edit', 'ProfileController@updatePassword')->name('updatePassword');
+    });
     Route::post('/update-photo', 'ProfileController@updatePhoto')->name('updatePhoto');
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    Route::resource('post','PostController');
+
+
 });
 Auth::routes(['verify' => true]);

@@ -85,6 +85,10 @@
                     <th scope="col">Email</th>
                     <td>{{$user->email}}</td>
                 </tr>
+                <tr>
+                    <th scope="col">About</th>
+                    <td>{{$user->about}}</td>
+                </tr>
                 </tbody>
             </table>
             <div class="buttons d-flex flex-column">
@@ -161,6 +165,22 @@
                                                autocomplete="surname" autofocus>
 
                                         @error('surname')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="about"
+                                           class="col-md-4 col-form-label text-md-right">{{ __('About you') }}</label>
+
+                                    <div class="col-md-6">
+                                        <textarea name="about" id="about"
+                                                  class="form-control @error('about') is-invalid @enderror"
+                                                  required
+                                                  autocomplete="about" autofocus>{{ $user->about }}</textarea>
+                                        @error('about')
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
