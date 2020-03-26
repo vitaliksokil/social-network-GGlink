@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Traits\RecipientIdTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    use RecipientIdTrait;
     /**
      * Display a listing of the resource.
      *
@@ -36,8 +38,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        preg_match('~id\/(\d+)~',$request->server('HTTP_REFERER'),$matches);
-        $recipient_id = $matches[1];
+        $recipient_id = $this->getRecipientId($request);
         $writer_id = Auth::user()->id;
         if(Post::create([
             'post' => $request->post,
