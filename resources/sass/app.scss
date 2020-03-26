@@ -137,5 +137,23 @@ a{
 .profile-btn{
     background: $blocks;
     color: $white;
-
+}
+.btn-grey,.btn-pink{
+    background: #636d7e;
+    margin-top: 10px;
+    color: $white !important;
+}
+.btn-grey{
+    &:hover{
+        background: #b6c8e7;
+    }
+}
+.btn-pink{
+    background: $blocks;
+    &:hover{
+        background: #cb5758;
+    }
+}
+.btn{
+    margin-top: 10px;
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\FriendShip;
 use App\Post;
 use App\Traits\UploadTrait;
 use App\User;
@@ -23,8 +24,28 @@ class ProfileController extends Controller
     public function profile($id)
     {
         $user = User::findOrFail($id);
+
+        $friends = $user->friends()->shuffle();
+        $countFriends = count($friends);
+        if($countFriends < 5){
+            $friends = $friends->random($countFriends);
+        }else{
+            $friends = $friends->random(5);
+        }
+
+
         $posts = $user->wall;
-        return view('pages.profile.profile',['user'=>$user,'posts'=>$posts]);
+        $isFriend = Auth::user()->isFriend($user->id);
+        $authUser = Auth::user();
+        $isSentRequest = FriendShip::findFriendShip($user->id,$authUser->id)->where([['status',0]])->first();
+        return view('pages.profile.profile',[
+            'user'=>$user,
+            'posts'=>$posts,
+            'isFriend'=>$isFriend,
+            'authUser'=>$authUser,
+            'isSentRequest'=>$isSentRequest,
+            'friends' => $friends
+        ]);
     }
 
     public function edit()

@@ -17022,3 +17022,26 @@ a:hover {
   color: rgba(255, 255, 255, 0.9);
 }
 
+.btn-grey,
+.btn-pink {
+  background: #636d7e;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.btn-grey:hover {
+  background: #b6c8e7;
+}
+
+.btn-pink {
+  background: #ff6768;
+}
+
+.btn-pink:hover {
+  background: #cb5758;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
