@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', Auth::user())
+@section('title', $user)
 @section('content')
     <div class="row">
         <div class="col-lg-12">
@@ -8,6 +8,35 @@
                     <div class="col-md-2">
                         <img src="{{$user->photo?asset($user->photo):asset('img/no_photo.png')}}" class="card-img"
                              alt="...">
+                        @if($authUser->id == $user->id)
+                            <a href="{{route('edit')}}" class="btn btn-grey w-100">Edit</a>
+                            <!-- checking if that user send offer to u -->
+                        @elseif(array_search($user->id,array_column($authUser->new_friends->toArray(),'sender_id')) !== false)
+                            <form action="{{route('friendAccept',['sender_id'=>$user->id,'receiver_id'=>$authUser->id])}}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-pink w-100">Accept friendship</button>
+                            </form>
+                        @elseif($isSentRequest)
+                            <a class="btn btn-info w-100 disabled">Request was sent</a>
+                            <form action="{{route('deleteFriend',['id' => $user->id])}}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger w-100">Cancel request</button>
+                            </form>
+                        @elseif($isFriend)
+                            <a class="btn btn-grey w-100 disabled">You are friends</a>
+                            <form action="{{route('deleteFriend',['id' => $user->id])}}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger w-100">Delete from friends</button>
+                            </form>
+                        @else
+                            <form action="{{route('addFriend')}}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success w-100 mt-2">Add friend</button>
+                            </form>
+                        @endif
                     </div>
                     <div class="col-md-7">
                         <div class="card-body">
@@ -57,10 +86,52 @@
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-header">
-                    <span class="green"><i class="fas fa-circle"></i> Online</span> <!-- todo ONLINE/OFFLINE-->
+                    @if($user->isOnline())
+                        <h2 class="green"><i class="fas fa-circle"></i> Online</h2>
+                    @else
+                        <h2 class="blocks"><i class="fas fa-circle"></i> Offline</h2>
+                    @endif
                 </div>
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row ">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <a class="card-header" href="{{$user->id == Auth::user()->id ? route('friendsAll') : route('friendsById',['id'=>$user->id])}}">
+                                    <h3>Friends <span class="blocks">{{count($friends)}}</span></h3>
+                                </a>
+                                <div class="card-body">
+                                    @forelse($friends as $friend)
+                                        <div class="subscribe-item">
+                                            <div class="row align-items-center">
+
+                                                <div class="col-lg-2 ">
+                                                    <div class="wall-post-img">
+                                                        <img src="{{asset($friend->photo)}}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10">
+                                                    <div class="wall-post-author">
+                                                        <h6><a href="{{route('profile',['id'=>$friend->id])}}">{{$friend}}</a> <br>
+                                                            @if($friend->isOnline())
+                                                                <span class="green"><i class="fas fa-circle"></i> Online</span>
+                                                            @else
+                                                                <span class="blocks"><i class="fas fa-circle"></i> Offline</span>
+                                                            @endif
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @empty
+                                        No friends yet
+                                    @endforelse
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-5">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
@@ -158,104 +229,6 @@
 
                     </div>
 
-                    <div class="row mt-5">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3>Friends <span class="blocks">20</span></h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="subscribe-item">
-                                        <div class="row align-items-center">
-
-                                            <div class="col-lg-2 ">
-                                                <div class="wall-post-img">
-                                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="wall-post-author">
-                                                    <h6><a href="#">Friend name</a> <br>
-                                                        <span class="green"><i class="fas fa-circle"></i> Online</span> <!-- todo ONLINE/OFFLINE-->
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="subscribe-item">
-                                        <div class="row align-items-center">
-
-                                            <div class="col-lg-2 ">
-                                                <div class="wall-post-img">
-                                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="wall-post-author">
-                                                    <h6><a href="#">Friend name</a> <br>
-                                                        <span class="green"><i class="fas fa-circle"></i> Online</span> <!-- todo ONLINE/OFFLINE-->
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="subscribe-item">
-                                        <div class="row align-items-center">
-
-                                            <div class="col-lg-2 ">
-                                                <div class="wall-post-img">
-                                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="wall-post-author">
-                                                    <h6><a href="#">Friend name</a> <br>
-                                                        <span class="green"><i class="fas fa-circle"></i> Online</span> <!-- todo ONLINE/OFFLINE-->
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="subscribe-item">
-                                        <div class="row align-items-center">
-
-                                            <div class="col-lg-2 ">
-                                                <div class="wall-post-img">
-                                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="wall-post-author">
-                                                    <h6><a href="#">Friend name</a> <br>
-                                                        <span class="green"><i class="fas fa-circle"></i> Online</span> <!-- todo ONLINE/OFFLINE-->
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="subscribe-item">
-                                        <div class="row align-items-center">
-
-                                            <div class="col-lg-2 ">
-                                                <div class="wall-post-img">
-                                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="wall-post-author">
-                                                    <h6><a href="#">Friend name</a> <br>
-                                                        <span class="green"><i class="fas fa-circle"></i> Online</span> <!-- todo ONLINE/OFFLINE-->
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
             </div>
 
@@ -304,7 +277,7 @@
                                         </div>
                                         <div class="col-lg-11">
                                             <div class="wall-post-author">
-                                                @if($user->id == Auth::user()->id || $post->writer->id == Auth::user()->id)
+                                                @if($user->id == $authUser->id || $post->writer->id == $authUser->id)
                                                     <i class="fas fa-times blocks" style="cursor: pointer;float: right" onclick="event.preventDefault(); document.getElementById('delete-post').submit();">
                                                         Delete post
                                                         <form id="delete-post" action="{{ route('post.destroy',['post'=>$post]) }}" method="POST" style="display: none;">

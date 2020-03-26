@@ -14,6 +14,8 @@
 Route::group(['middleware' => 'verified'], function () {
     // PageController ///////////////////////////////////////////////////////////////
     Route::get('/', 'PageController@index');
+    Route::get('/friends/all', 'PageController@friends')->name('friendsAll');
+    Route::get('/friends/all/id={id}', 'PageController@friendsById')->name('friendsById');
 
     ////////////////////////////////////////////////////////////////////////////////////
 
@@ -38,8 +40,22 @@ Route::group(['middleware' => 'verified'], function () {
     Route::post('/update-photo', 'ProfileController@updatePhoto')->name('updatePhoto');
     ////////////////////////////////////////////////////////////////////////////////////
 
+    // PostController //////////////////////////////////////////////////////////////////
     Route::resource('post','PostController');
+    ////////////////////////////////////////////////////////////////////////////////////
 
+    // FriendsController //////////////////////////////////////////////////////////////////
+    Route::prefix('friends')->group(function (){
+        Route::post('/add','FriendShipController@addFriend')->name('addFriend');
+        Route::get('/online', 'FriendShipController@friendsOnline')->name('friendsOnline');
+        Route::get('/online/id={id}', 'FriendShipController@friendsOnlineById')->name('friendsOnlineById');
+        Route::get('/new', 'FriendShipController@friendsNew')->name('friendsNew');
+        Route::get('/requested', 'FriendShipController@friendsRequestSent')->name('friendsRequestSent');
+        Route::get('/mutual/id={id}', 'FriendShipController@mutualFriends')->name('mutualFriends');
+        Route::put('/accept', 'FriendShipController@friendAccept')->name('friendAccept');
+        Route::delete('/delete/{id}', 'FriendShipController@deleteFriend')->name('deleteFriend');
+    });
+    ////////////////////////////////////////////////////////////////////////////////////
 
 });
 Auth::routes(['verify' => true]);

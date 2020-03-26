@@ -5,21 +5,19 @@
             <nav class="col-md-2 d-none d-md-block sidebar mt-4 card">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                        <li class="nav-item {{ (request()->is('profile')) ? 'active' : '' }}" >
+                        <li class="nav-item {{ (request()->is('profile/id/'.Auth::user()->id)) ? 'active' : '' }}" >
                             <a class="nav-link" href="{{route('profile',['id'=>Auth::user()->id])}}">
                                 <i class="fas fa-home"></i>
-                                My profile <span class="sr-only">(current)</span>
+                                My profile
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-file">
-                                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-                                    <polyline points="13 2 13 9 20 9"></polyline>
-                                </svg>
-                                Orders
+                        <li class="nav-item {{ (request()->is('friends/*')) ? 'active' : '' }}" >
+                            <a class="nav-link" href="{{route('friendsAll')}}">
+                                <i class="fas fa-users"></i>
+                                My friends
+                                @if(count(Auth::user()->new_friends))
+                                    <span class="blocks float-right">+{{count(Auth::user()->new_friends)}}</span>
+                                @endif
                             </a>
                         </li>
                         <li class="nav-item">
