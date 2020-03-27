@@ -19,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name','surname','nickname','photo','about', 'email', 'password',
+        'name','surname','nickname','photo','about','email','show_email','wall_can_edit', 'password',
     ];
 
     /**
@@ -41,7 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public function wall(){
-        return $this->hasMany(Post::class,'recipient_id')->with('writer');
+        return $this->hasMany(Post::class,'recipient_id')->with('writer')->latest();
     }
     public function new_friends(){
         return $this->hasMany(FriendShip::class,'receiver_id')->select('sender_id')->where('status',0)->with('sender');
@@ -83,15 +83,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $mutualFriends;
     }
     public function isFriend($id){
-        $user_id = Auth::user()->id;
+        $user_id = $this->id;
         $friend_id = $id;
-        return FriendShip::where([
-            ['receiver_id',$user_id],
-            ['sender_id',$friend_id],
+        return FriendShip::where(function ($query) use($user_id,$friend_id){
+            $query->where([
+                ['receiver_id',$user_id],
+                ['sender_id',$friend_id],
         ])->orWhere([
-            ['receiver_id',$friend_id],
-            ['sender_id',$user_id],
-        ])->where('status',1)->first() ? true : false;
+                ['receiver_id',$friend_id],
+                ['sender_id',$user_id]
+            ]);
+        })->where('status',1)->first() ? true : false;
     }
     public function isOnline(){
         return Cache::has('user-is-online-' . $this->id);

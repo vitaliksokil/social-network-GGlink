@@ -41,6 +41,9 @@
                     <div class="col-md-7">
                         <div class="card-body">
                             <h1 class="card-title">{{$user}}</h1>
+                            @if($user->show_email)
+                                <p class="card-text">Email: {{$user->email}}</p>
+                            @endif
                             <p class="card-text">{{$user->about}}</p>
                         </div>
                     </div>
@@ -247,27 +250,30 @@
             <div class="wall">
                 <div class="card">
                     <div class="card-header">
-                        New post
-                    </div>
-                    <div class="card-body">
-                        <form class="text-right" action="{{route('post.store')}}" method="POST">
-                            @csrf
-                            <textarea class="form-control" name="post" id="" ></textarea>
-                            <button type="submit" class="btn profile-btn mt-2">Post</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="wall mt-3">
-                <div class="card">
-                    <div class="card-header">
                         Wall
+                        @cannot('postToWall',[App\Post::class,$user])
+                            <i class="fas fa-lock"></i>
+                        @endcannot
                     </div>
                     <div class="card-body">
-
+                        @can('postToWall',[App\Post::class,$user])
+                            <div class="wall">
+                                <div class="card">
+                                    <div class="card-header">
+                                        New post
+                                    </div>
+                                    <div class="card-body">
+                                        <form class="text-right" action="{{route('post.store')}}" method="POST">
+                                            @csrf
+                                            <textarea class="form-control" name="post" id="" ></textarea>
+                                            <button type="submit" class="btn profile-btn mt-2">Post</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @endcan
                             @forelse ($posts as $post)
-                            <div class="card mb-3 p-3">
+                            <div class="card mt-3 p-3">
                                 <div class="wall-post">
                                     <div class="row align-items-center">
                                         <div class="col-lg-1">

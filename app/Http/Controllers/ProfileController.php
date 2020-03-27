@@ -27,9 +27,9 @@ class ProfileController extends Controller
 
         $friends = $user->friends()->shuffle();
         $countFriends = count($friends);
-        if($countFriends < 5){
+        if ($countFriends < 5) {
             $friends = $friends->random($countFriends);
-        }else{
+        } else {
             $friends = $friends->random(5);
         }
 
@@ -37,13 +37,13 @@ class ProfileController extends Controller
         $posts = $user->wall;
         $isFriend = Auth::user()->isFriend($user->id);
         $authUser = Auth::user();
-        $isSentRequest = FriendShip::findFriendShip($user->id,$authUser->id)->where([['status',0]])->first();
-        return view('pages.profile.profile',[
-            'user'=>$user,
-            'posts'=>$posts,
-            'isFriend'=>$isFriend,
-            'authUser'=>$authUser,
-            'isSentRequest'=>$isSentRequest,
+        $isSentRequest = FriendShip::findFriendShip($user->id, $authUser->id)->where([['status', 0]])->first();
+        return view('pages.profile.profile', [
+            'user' => $user,
+            'posts' => $posts,
+            'isFriend' => $isFriend,
+            'authUser' => $authUser,
+            'isSentRequest' => $isSentRequest,
             'friends' => $friends
         ]);
     }
@@ -64,11 +64,11 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $this->validator($request->all())->validate();
-        if(Hash::check($request->password,Auth::user()->password)){
+        if (Hash::check($request->password, Auth::user()->password)) {
             $user = Auth::user();
             $user->update($request->except('password'));
-            return redirect()->route('edit')->with('success','Successfully updated!!!');
-        }else{
+            return redirect()->route('edit')->with('success', 'Successfully updated!!!');
+        } else {
             return redirect()->back()->withErrors(['password' => 'Incorrect password']);
         }
     }
@@ -96,38 +96,59 @@ class ProfileController extends Controller
             'password' => ['required', 'string', 'min:8'],
         ]);
 
-        if(Hash::check($request->password,Auth::user()->password)) {
+        if (Hash::check($request->password, Auth::user()->password)) {
             $user = Auth::user();
             $user->email = $request->email;
             $user->email_verified_at = Null;
             $user->save();
             return redirect()->route('verification.resend');
-        }else{
+        } else {
             return redirect()->back()->withErrors(['password' => 'Incorrect password']);
         }
     }
 
-    public function editPassword(){
+    public function editPassword()
+    {
         return view('pages.profile.editPassword');
     }
-    public function updatePassword(Request $request){
+
+    public function updatePassword(Request $request)
+    {
         $request->validate([
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-        if(Hash::check($request->currentPassword,Auth::user()->password)) {
+        if (Hash::check($request->currentPassword, Auth::user()->password)) {
             $user = Auth::user();
             $user->password = Hash::make($request->password);
             $user->save();
-            return redirect()->route('editPassword')->with('success','Successfully changed!!!');
-        }else{
+            return redirect()->route('editPassword')->with('success', 'Successfully changed!!!');
+        } else {
             return redirect()->back()->withErrors(['password' => 'Incorrect password']);
         }
     }
 
-    public function settings(){
-        return view('pages.profile.settings');
+    public function settings()
+    {
+
+        return view('pages.profile.settings', [
+            'user' => Auth::user()
+        ]);
     }
-    public function updateSettings(){
+
+    public function updateSettings(Request $request)
+    {
+        $request->validate([
+           'wall_can_edit' => ['sometimes','min:0','max:2','integer'],
+           'show_email' => ['sometimes','min:0','max:1','integer'],
+        ]);
+        $user = Auth::user();
+        if ($user->update($request->all())) {
+            return redirect()->back()->with('success', 'Successfully changed!!!');
+        } else {
+            return redirect()->back()->withErrors(['error' => 'Something went wrong']);
+
+        }
+
 
     }
 }
