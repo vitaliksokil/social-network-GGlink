@@ -9,6 +9,9 @@
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
+//summernote editor
+@import '~summernote/dist/summernote-bs4.css';
+
 // Variables
 @import 'variables';
 
@@ -19,7 +22,13 @@ html,body{
     height: 100%;
 }
 body{
-    background: $bg;
+    background: rgb(8,130,180);
+    background: linear-gradient(130deg, rgba(8,130,180,1) 0%, rgba(59,5,164,1) 35%, rgba(161,31,200,1) 100%)  no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
     font-family: 'Changa', sans-serif;
     color: rgba(255,255,255,0.9);
 }
@@ -27,14 +36,20 @@ th,td,small{
     color: rgba(255,255,255,0.9);
 }
 header{
-    background: $header;
+    background: $bg;
 }
 a{
-    color: rgba(255,255,255,0.9);
+    color: $white;
     font-size: 18px;
+    cursor: pointer;
     &:hover{
         color:$green;
         text-decoration: none;
+    }
+    &:not([href]){
+        &:hover{
+            color: $green;
+        }
     }
 }
 .logo{
@@ -83,14 +98,33 @@ a{
     }
 }
 .sidebar{
-    background: $sidebar;
+    .col-lg-1{
+        padding: 0;
+    }
+
+    .icon{
+        width: 25px;
+    }
+    i{
+        width: 25px;
+    }
+
     a{
         font-size: 22px;
     }
 }
-.card{
-    background: $sidebar;
+.main-wrap{
+    position: absolute;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
 }
+.card{
+    background: $bg;
+}
+
 .active{
     a{
         color:$green !important;
@@ -115,7 +149,7 @@ a{
     flex-wrap: wrap;
     .game-img{
         margin-bottom: 10px;
-        flex: 0 0 33.333333%;
+        flex: 0 0 33.3333%;
 
         img{
             max-width: 100px;
@@ -131,7 +165,7 @@ a{
     padding: 5px;
     border-radius: 5px;
     &:hover{
-        background: #818ea4;
+        background: rgba(150,150,150,0.3);
     }
 }
 .profile-btn{
@@ -156,4 +190,23 @@ a{
 }
 .btn{
     margin-top: 10px;
+}
+#logout{
+    color: $white;
+    &:hover{
+        color: $green;
+    }
+}
+
+.modal-content{
+    background: $bgDarken;
+}
+.card-modal{
+    background: $bgDarken;
+}
+pre{
+    color: $white;
+}
+.poster{
+    height: 300px;
 }

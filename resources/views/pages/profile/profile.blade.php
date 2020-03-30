@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <div class="card mb-3 p-3">
+            <div class="card p-3">
                 <div class="row no-gutters">
                     <div class="col-md-2">
                         <img src="{{$user->photo?asset($user->photo):asset('img/no_photo.png')}}" class="card-img"
@@ -38,19 +38,29 @@
                             </form>
                         @endif
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-5">
                         <div class="card-body">
                             <h1 class="card-title">{{$user}}</h1>
                             @if($user->show_email)
                                 <p class="card-text">Email: {{$user->email}}</p>
+                                <hr>
                             @endif
-                            <p class="card-text">{{$user->about}}</p>
+                                <p class="card-text">{!! $user->about !!}</p>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <div class="card-body">
-                            <h5 class="card-title">Favourites games</h5>
+                            <h5 class="card-title">Games subscriptions</h5>
                             <div class="favourite-games">
+                                <div class="game-img">
+                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
+                                </div>
+                                <div class="game-img">
+                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
+                                </div>
+                                <div class="game-img">
+                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
+                                </div>
                                 <div class="game-img">
                                     <img src="{{asset('img/dota2.jpg')}}" alt="">
                                 </div>
@@ -85,7 +95,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-header">
@@ -107,12 +117,12 @@
                                         <div class="subscribe-item">
                                             <div class="row align-items-center">
 
-                                                <div class="col-lg-2 ">
+                                                <div class="col-lg-4">
                                                     <div class="wall-post-img">
                                                         <img src="{{asset($friend->photo)}}" alt="">
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-8">
                                                     <div class="wall-post-author">
                                                         <h6><a href="{{route('profile',['id'=>$friend->id])}}">{{$friend}}</a> <br>
                                                             @if($friend->isOnline())
@@ -283,15 +293,15 @@
                                         </div>
                                         <div class="col-lg-11">
                                             <div class="wall-post-author">
-                                                @if($user->id == $authUser->id || $post->writer->id == $authUser->id)
-                                                    <i class="fas fa-times blocks" style="cursor: pointer;float: right" onclick="event.preventDefault(); document.getElementById('delete-post').submit();">
+                                                @can('delete',$post)
+                                                    <i class="fas fa-times blocks postDelete" data-delete-id="{{$post->id}}" style="cursor: pointer;float: right">
                                                         Delete post
-                                                        <form id="delete-post" action="{{ route('post.destroy',['post'=>$post]) }}" method="POST" style="display: none;">
+                                                        <form id="delete-post-{{$post->id}}" action="{{ route('post.destroy',['post'=>$post]) }}" method="POST" style="display: none;">
                                                             @csrf
                                                             @method('DELETE')
                                                         </form>
                                                     </i>
-                                                @endif
+                                                @endcan
                                                 <h6>
                                                     <a href="{{route('profile',['id'=>$post->writer->id])}}">{{$post->writer}}</a> <br><small class="header">{{$post->created_at}}</small>
                                                 </h6>

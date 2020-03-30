@@ -16,6 +16,8 @@ Route::group(['middleware' => 'verified'], function () {
     Route::get('/', 'PageController@index');
     Route::get('/friends/all', 'PageController@friends')->name('friendsAll');
     Route::get('/friends/all/id={id}', 'PageController@friendsById')->name('friendsById');
+    Route::get('/games/subscriptions', 'PageController@gamesSubscriptions')->name('gamesSubscriptions');
+    Route::get('/games/all', 'PageController@gamesAll')->name('gamesAll');
 
     ////////////////////////////////////////////////////////////////////////////////////
 
@@ -55,6 +57,26 @@ Route::group(['middleware' => 'verified'], function () {
         Route::put('/accept', 'FriendShipController@friendAccept')->name('friendAccept');
         Route::delete('/delete/{id}', 'FriendShipController@deleteFriend')->name('deleteFriend');
     });
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    // GamesController //////////////////////////////////////////////////////////////////
+    Route::prefix('game')->group(function (){
+        Route::middleware('can:create,App\Game')->group(function (){
+            Route::get('/create','GameController@create')->name('game.create');
+            Route::post('/','GameController@store')->name('game.store');
+        });
+        Route::get('/{game}','GameController@show')->name('game.show');
+        Route::middleware('can:update,game')->group(function (){
+            Route::get('/{game}/edit','GameController@edit')->name('game.edit');
+            Route::put('/{game}','GameController@update')->name('game.update');
+            Route::delete('/{game}','GameController@destroy')->name('game.destroy');
+        });
+
+    });
+//    Route::resource('game','GameController',['only'=>['update','destroy']]);
+
     ////////////////////////////////////////////////////////////////////////////////////
 
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Game;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,20 @@ class PageController extends Controller
         return view('pages.friends.friendsAll', [
             'user'=>$user,
             'friends' => $user->friends(),
+        ]);
+    }
+
+    public function gamesAll(){
+
+        return view('pages.games.gamesAll',[
+            'games'=>Game::all()
+        ]);
+    }
+    public function gamesSubscriptions(){
+
+
+        return view('pages.games.gamesSubscriptions',[
+            'games'=>[]
         ]);
     }
 }

@@ -1,8 +1,9 @@
 @extends('layouts.main')
+@section('title',$user->id != Auth::user()->id ? $user.'\'s friends':'Friends')
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3>{{$user->id != Auth::user()->id ? $user.'\'s ':''}}Friends</h3>
+            <h3>{{$user->id != Auth::user()->id ? $user.'\'s friends':'Friends'}}</h3>
             <ul class="nav">
                 @if($user->id == Auth::user()->id)
                     <li class="nav-item {{ (request()->is('friends/all*')) ? 'active' : '' }}">

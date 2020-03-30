@@ -68,13 +68,13 @@ class PostPolicy
     /**
      * Determine whether the user can delete the post.
      *
-     * @param  \App\User  $user
-     * @param  \App\Post  $post
+     * @param User $user
+     * @param \App\Post $post
      * @return mixed
      */
     public function delete(User $user, Post $post)
     {
-        //
+        return $post->recipient->id == $user->id || $post->writer->id == $user->id ? true : false;
     }
 
     /**

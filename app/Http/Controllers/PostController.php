@@ -46,6 +46,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('delete',$post);
         if($post->delete()){
             return redirect()->back()->with('success','Successfully deleted!!!');
         }else{

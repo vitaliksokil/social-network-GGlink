@@ -16,7 +16,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <div class="profile-page">
                                 <div class="profile-img">
                                     <img
@@ -34,7 +34,7 @@
                                 <!-- Modal -->
                                 <div class="modal fade" id="uploadPhoto" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content card">
+                                        <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title text-center">
                                                     Please upload a photo so your friends can recognize you.
@@ -78,7 +78,7 @@
 
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <table class="table">
                                 <tbody>
                                 <tr>
@@ -103,7 +103,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="col">About</th>
-                                    <td>{{$user->about}}</td>
+                                    <td>{!! $user->about !!}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -124,13 +124,13 @@
                             <!-- Modal -->
                             <div class="modal fade" id="changeProfileInfo" tabindex="-1" role="dialog"
                                  aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content card">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content ">
                                         <div class="modal-header">
                                             <h5 class="modal-title text-center">
                                                 Change your profile info
                                             </h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <button type="button" class="close" data-id='changeProfileInfo' aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -191,14 +191,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="about"
+                                                    <label for="editor"
                                                            class="col-md-4 col-form-label text-md-right">{{ __('About you') }}</label>
 
                                                     <div class="col-md-6">
-                                        <textarea name="about" id="about"
+                                        <textarea name="about" id="editor"
                                                   class="form-control @error('about') is-invalid @enderror"
                                                   required
-                                                  autocomplete="about" autofocus>{{ $user->about }}</textarea>
+                                                  autocomplete="about" autofocus>{!! $user->about !!}</textarea>
                                                         @error('about')
                                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -224,7 +224,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                                    <button type="button" class="btn btn-danger" data-id='changeProfileInfo'>
                                                         Close
                                                     </button>
                                                     <button type="submit" class="btn btn-success">Submit</button>

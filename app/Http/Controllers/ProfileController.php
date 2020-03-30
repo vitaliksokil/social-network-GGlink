@@ -57,7 +57,7 @@ class ProfileController extends Controller
     public function updatePhoto(Request $request)
     {
         $user = Auth::user();
-        $this->uploadPhoto($request, $user, 'img/profiles');
+        $this->uploadPhoto($request, $user, 'photo','img/profiles');
         return redirect()->route('edit');
     }
 
