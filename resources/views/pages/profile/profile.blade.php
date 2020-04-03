@@ -6,13 +6,15 @@
             <div class="card p-3">
                 <div class="row no-gutters">
                     <div class="col-md-2">
-                        <img src="{{$user->photo?asset($user->photo):asset('img/no_photo.png')}}" class="card-img"
+                        <img src="{{asset($user->photo)}}" class="card-img"
                              alt="...">
                         @if($authUser->id == $user->id)
                             <a href="{{route('edit')}}" class="btn btn-grey w-100">Edit</a>
                             <!-- checking if that user send offer to u -->
                         @elseif(array_search($user->id,array_column($authUser->new_friends->toArray(),'sender_id')) !== false)
-                            <form action="{{route('friendAccept',['sender_id'=>$user->id,'receiver_id'=>$authUser->id])}}" method="POST">
+                            <form
+                                action="{{route('friendAccept',['sender_id'=>$user->id,'receiver_id'=>$authUser->id])}}"
+                                method="POST">
                                 @csrf
                                 @method('PUT')
                                 <button type="submit" class="btn btn-pink w-100">Accept friendship</button>
@@ -45,49 +47,28 @@
                                 <p class="card-text">Email: {{$user->email}}</p>
                                 <hr>
                             @endif
-                                <p class="card-text">{!! $user->about !!}</p>
+                            <p class="card-text">{!! $user->about !!}</p>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="card-body">
-                            <h5 class="card-title">Games subscriptions</h5>
+                            <h5 class="card-title">
+                                <a href="{{route('gamesSubscriptionsById',['id'=>$user->id])}}">
+                                    Games subscriptions
+                                </a>
+                            </h5>
                             <div class="favourite-games">
-                                <div class="game-img">
-                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                </div>
-                                <div class="game-img">
-                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                </div>
-                                <div class="game-img">
-                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                </div>
-                                <div class="game-img">
-                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                </div>
-                                <div class="game-img">
-                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                </div>
-                                <div class="game-img">
-                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                </div>
-                                <div class="game-img">
-                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                </div>
-                                <div class="game-img">
-                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                </div>
-                                <div class="game-img">
-                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                </div>
-                                <div class="game-img">
-                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                </div>
-                                <div class="game-img">
-                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                </div>
-                                <div class="game-img">
-                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                </div>
+                                @forelse($gamesSubscriptions as $game)
+                                    <div class="game-img">
+                                        <a href="{{route('game.show',['game'=>$game->game->short_address])}}">
+                                            <img src="{{asset($game->game->logo)}}" alt="">
+                                        </a>
+                                    </div>
+                                @empty
+                                    No game subscriptions
+                                @endforelse
+
+
                             </div>
                         </div>
                     </div>
@@ -109,7 +90,8 @@
                     <div class="row ">
                         <div class="col-lg-12">
                             <div class="card">
-                                <a class="card-header" href="{{$user->id == Auth::user()->id ? route('friendsAll') : route('friendsById',['id'=>$user->id])}}">
+                                <a class="card-header"
+                                   href="{{$user->id == Auth::user()->id ? route('friendsAll') : route('friendsById',['id'=>$user->id])}}">
                                     <h3>Friends <span class="blocks">{{count($friends)}}</span></h3>
                                 </a>
                                 <div class="card-body">
@@ -124,7 +106,9 @@
                                                 </div>
                                                 <div class="col-lg-8">
                                                     <div class="wall-post-author">
-                                                        <h6><a href="{{route('profile',['id'=>$friend->id])}}">{{$friend}}</a> <br>
+                                                        <h6>
+                                                            <a href="{{route('profile',['id'=>$friend->id])}}">{{$friend}}</a>
+                                                            <br>
                                                             @if($friend->isOnline())
                                                                 <span class="green"><i class="fas fa-circle"></i> Online</span>
                                                             @else
@@ -252,58 +236,63 @@
                     {{ session('success') }}
                 </div>
             @endif
-                @if (session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                @endif
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <div class="wall">
                 <div class="card">
                     <div class="card-header">
                         Wall
-                        @cannot('postToWall',[App\Post::class,$user])
+                        @cannot('postToWall',[App\ProfileComment::class,$user])
                             <i class="fas fa-lock"></i>
                         @endcannot
                     </div>
                     <div class="card-body">
-                        @can('postToWall',[App\Post::class,$user])
+                        @can('postToWall',[App\ProfileComment::class,$user])
                             <div class="wall">
                                 <div class="card">
                                     <div class="card-header">
-                                        New post
+                                        New comment
                                     </div>
                                     <div class="card-body">
-                                        <form class="text-right" action="{{route('post.store')}}" method="POST">
+                                        <form class="text-right" action="{{route('comment.store')}}" method="POST">
                                             @csrf
-                                            <textarea class="form-control" name="post" id="" ></textarea>
+                                            <textarea class="form-control" name="comment" id=""></textarea>
                                             <button type="submit" class="btn profile-btn mt-2">Post</button>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         @endcan
-                            @forelse ($posts as $post)
+                        @forelse ($comments as $comment)
                             <div class="card mt-3 p-3">
                                 <div class="wall-post">
                                     <div class="row align-items-center">
                                         <div class="col-lg-1">
                                             <div class="wall-post-img">
-                                                <img src="{{asset($post->writer->photo)}}" alt="">
+                                                <img src="{{asset($comment->writer->photo)}}" alt="">
                                             </div>
                                         </div>
                                         <div class="col-lg-11">
                                             <div class="wall-post-author">
-                                                @can('delete',$post)
-                                                    <i class="fas fa-times blocks postDelete" data-delete-id="{{$post->id}}" style="cursor: pointer;float: right">
+                                                @can('delete',$comment)
+                                                    <i class="fas fa-times blocks postDelete"
+                                                       data-delete-id="{{$comment->id}}"
+                                                       style="cursor: pointer;float: right">
                                                         Delete post
-                                                        <form id="delete-post-{{$post->id}}" action="{{ route('post.destroy',['post'=>$post]) }}" method="POST" style="display: none;">
+                                                        <form id="delete-post-{{$comment->id}}"
+                                                              action="{{ route('comment.destroy',['comment'=>$comment]) }}"
+                                                              method="POST" style="display: none;">
                                                             @csrf
                                                             @method('DELETE')
                                                         </form>
                                                     </i>
                                                 @endcan
                                                 <h6>
-                                                    <a href="{{route('profile',['id'=>$post->writer->id])}}">{{$post->writer}}</a> <br><small class="header">{{$post->created_at}}</small>
+                                                    <a href="{{route('profile',['id'=>$comment->writer->id])}}">{{$comment->writer}}</a>
+                                                    <br><small class="header">{{$comment->created_at}}</small>
                                                 </h6>
                                             </div>
                                         </div>
@@ -311,14 +300,14 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            {{$post->post}}
+                                            {{$comment->comment}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            @empty
-                                <p>No posts yet</p>
-                            @endforelse
+                        @empty
+                            <p>No comments yet</p>
+                        @endforelse
                     </div>
                 </div>
             </div>

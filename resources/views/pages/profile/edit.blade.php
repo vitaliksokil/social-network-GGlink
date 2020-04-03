@@ -20,7 +20,7 @@
                             <div class="profile-page">
                                 <div class="profile-img">
                                     <img
-                                        src="{{Auth::user()->photo ? asset(Auth::user()->photo) : asset('img/no_photo.png')}}"
+                                        src="{{asset($user->photo)}}"
                                         alt="">
                                 </div>
                                 <button class="btn btn-success" style="

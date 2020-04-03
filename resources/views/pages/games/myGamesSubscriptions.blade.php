@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-header">
             @isset($user)
-                <h3>{{$user->id != Auth::user()->id ? $user.'\'s ':''}} favourite games</h3>
+                <h3>{{$user.'\'s '}} favourite games</h3>
             @else
                 <h3>My games subscriptions</h3>
             @endisset
@@ -17,24 +17,36 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-12">
+                    @include('includes.message')
                     @forelse($games as $game)
                         <div class="subscribe-item">
                             <div class="row align-items-center">
-                                <div class="col-lg-1 ">
+                                <div class="col-lg-2">
                                     <div class="wall-post-img">
-                                        <a href="#">
-
+                                        <a href="{{route('game.show',['game'=>$game->game->short_address])}}">
+                                            <img src="{{asset($game->game->logo)}}" alt="">
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-lg-11">
+                                <div class="col-lg-8">
                                     <div class="wall-post-author">
                                         <h6>
-                                            <a href="#">
+                                            <a href="{{route('game.show',['game'=>$game->game->short_address])}}">
+                                                <h1>{{$game->game->title}}</h1>
+                                            </a>
 
+                                            <a href="{{route('allGameSubscribers',['game'=>$game->game->short_address])}}">
+                                                Subscribers:<span class="blocks"> {{count($game->game->subscribers)}}</span>
                                             </a>
                                         </h6>
                                     </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <form action="{{route('subscriber.destroy',['game'=>$game->game])}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger w-100 mt-2">Unsubscribed</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

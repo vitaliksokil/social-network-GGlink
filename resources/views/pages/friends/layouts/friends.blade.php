@@ -30,7 +30,7 @@
                         <a class="nav-link" href="{{route('friendsRequestSent')}}">
                             Requested
                             @if($requestedPeopleCount = count(Auth::user()->requested_people))
-                                <span class="blocks">+{{$requestedPeopleCount}}</span>
+                                <span class="blocks">{{$requestedPeopleCount}}</span>
                             @endif
                         </a>
                     </li>

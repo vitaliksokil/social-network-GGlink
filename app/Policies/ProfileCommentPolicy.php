@@ -2,13 +2,11 @@
 
 namespace App\Policies;
 
-use App\Game;
-use App\GameSubscriber;
 use App\User;
-use App\Post;
+use App\ProfileComment;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PostPolicy
+class ProfileCommentPolicy
 {
     use HandlesAuthorization;
 
@@ -27,10 +25,10 @@ class PostPolicy
      * Determine whether the user can view the post.
      *
      * @param  \App\User  $user
-     * @param  \App\Post  $post
+     * @param  \App\ProfileComment  $post
      * @return mixed
      */
-    public function view(User $user, Post $post)
+    public function view(User $user, ProfileComment $post)
     {
         //
     }
@@ -39,27 +37,30 @@ class PostPolicy
      * Determine whether the user can create posts.
      *
      * @param \App\User $user
-     * @param Game $game
+     * @param User $ownerOfWall
      * @return mixed
      */
-    public function create(User $user,Game $game)
+    public function postToWall(User $user,User $ownerOfWall)
     {
-        $subscriber = GameSubscriber::where([
-            ['user_id',$user->id],
-            ['game_id',$game->id],
-            ['is_moderator',1],
-        ])->first();
-        return isset($subscriber) ? true : false;
+        if(($ownerOfWall->wall_can_edit == 0 || $ownerOfWall->wall_can_edit == 1) && $ownerOfWall->id == $user->id){
+            return true;
+        }elseif($ownerOfWall->wall_can_edit == 1 && $ownerOfWall->isFriend($user->id)){
+            return true;
+        }elseif($ownerOfWall->wall_can_edit == 2){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
      * Determine whether the user can update the post.
      *
      * @param  \App\User  $user
-     * @param  \App\Post  $post
+     * @param  \App\ProfileComment  $post
      * @return mixed
      */
-    public function update(User $user, Post $post)
+    public function update(User $user, ProfileComment $post)
     {
         //
     }
@@ -67,29 +68,23 @@ class PostPolicy
     /**
      * Determine whether the user can delete the post.
      *
-     * @param \App\User $user
-     * @param Game $game
-     * @param \App\Post $post
+     * @param User $user
+     * @param \App\ProfileComment $comment
      * @return mixed
      */
-    public function delete(User $user,Post $post,Game $game )
+    public function delete(User $user, ProfileComment $comment)
     {
-        $subscriber = GameSubscriber::where([
-            ['user_id',$user->id],
-            ['game_id',$game->id],
-            ['is_moderator',1],
-        ])->first();
-        return isset($subscriber) ? true : false;
+        return $comment->recipient->id == $user->id || $comment->writer->id == $user->id ? true : false;
     }
 
     /**
      * Determine whether the user can restore the post.
      *
      * @param  \App\User  $user
-     * @param  \App\Post  $post
+     * @param  \App\ProfileComment  $post
      * @return mixed
      */
-    public function restore(User $user, Post $post)
+    public function restore(User $user, ProfileComment $post)
     {
         //
     }
@@ -98,10 +93,10 @@ class PostPolicy
      * Determine whether the user can permanently delete the post.
      *
      * @param  \App\User  $user
-     * @param  \App\Post  $post
+     * @param  \App\ProfileComment  $post
      * @return mixed
      */
-    public function forceDelete(User $user, Post $post)
+    public function forceDelete(User $user, ProfileComment $post)
     {
         //
     }

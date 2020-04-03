@@ -15,11 +15,13 @@ class GameController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //
+        return view('pages.games.gamesAll',[
+            'games'=>Game::all()
+        ]);
     }
 
     /**
@@ -69,7 +71,14 @@ class GameController extends Controller
     public function show(string $gameShortAddress)
     {
         $game = Game::where('short_address', '=', $gameShortAddress)->firstOrFail();
-        return view('pages.games.game', ['game' => $game]);
+        $subscribers = $game->subscribers->shuffle();
+        $subscribers = count($subscribers) < 5 ? $subscribers->random(count($subscribers)):$subscribers->random(5);
+        $posts = $game->posts->sortByDesc('created_at');
+        return view('pages.games.game', [
+            'game' => $game,
+            'subscribers'=>$subscribers,
+            'posts'=>$posts,
+        ]);
     }
 
 

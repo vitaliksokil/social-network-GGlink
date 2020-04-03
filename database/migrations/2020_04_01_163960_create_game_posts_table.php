@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGameSubscribersTable extends Migration
+class CreateGamePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateGameSubscribersTable extends Migration
      */
     public function up()
     {
-        Schema::create('game_subscribers', function (Blueprint $table) {
+        Schema::create('game_posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('game_id');
+            $table->unsignedBigInteger('post_id');
             $table->timestamps();
 
-            $table->unique(['user_id', 'game_id']);
+            $table->unique(['game_id','post_id']);
         });
-        Schema::table('game_subscribers', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        Schema::table('game_posts', function (Blueprint $table) {
             $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 
@@ -34,10 +34,10 @@ class CreateGameSubscribersTable extends Migration
      */
     public function down()
     {
-        Schema::table('game_subscribers', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
+        Schema::table('game_posts', function (Blueprint $table) {
             $table->dropForeign(['game_id']);
+            $table->dropForeign(['post_id']);
         });
-        Schema::dropIfExists('game_subscribers');
+        Schema::dropIfExists('game_posts');
     }
 }

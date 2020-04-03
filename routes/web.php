@@ -13,15 +13,15 @@
 
 Route::group(['middleware' => 'verified'], function () {
     // PageController ///////////////////////////////////////////////////////////////
-    Route::get('/', 'PageController@index');
-    Route::get('/friends/all', 'PageController@friends')->name('friendsAll');
-    Route::get('/friends/all/id={id}', 'PageController@friendsById')->name('friendsById');
-    Route::get('/games/subscriptions', 'PageController@gamesSubscriptions')->name('gamesSubscriptions');
-    Route::get('/games/all', 'PageController@gamesAll')->name('gamesAll');
+
+
+
 
     ////////////////////////////////////////////////////////////////////////////////////
 
     // ProfileController ///////////////////////////////////////////////////////////////
+    Route::get('/', 'ProfileController@index');
+
     Route::get('/profile/id/{id}', 'ProfileController@profile')->name('profile');
     Route::get('/edit', 'ProfileController@edit')->name('edit');
     Route::put('/edit', 'ProfileController@update')->name('update');
@@ -42,12 +42,14 @@ Route::group(['middleware' => 'verified'], function () {
     Route::post('/update-photo', 'ProfileController@updatePhoto')->name('updatePhoto');
     ////////////////////////////////////////////////////////////////////////////////////
 
-    // PostController //////////////////////////////////////////////////////////////////
-    Route::resource('post','PostController',['only'=>['store','destroy']]);
+    // ProfileCommentController //////////////////////////////////////////////////////////////////
+    Route::resource('profile/comment','ProfileCommentController',['only'=>['store','destroy']]);
     ////////////////////////////////////////////////////////////////////////////////////
 
-    // FriendsController //////////////////////////////////////////////////////////////////
+    // FriendShipController //////////////////////////////////////////////////////////////////
     Route::prefix('friends')->group(function (){
+        Route::get('/all', 'FriendShipController@index')->name('friendsAll');
+        Route::get('/all/id={id}', 'FriendShipController@friendsById')->name('friendsById');
         Route::post('/add','FriendShipController@addFriend')->name('addFriend');
         Route::get('/online', 'FriendShipController@friendsOnline')->name('friendsOnline');
         Route::get('/online/id={id}', 'FriendShipController@friendsOnlineById')->name('friendsOnlineById');
@@ -61,13 +63,17 @@ Route::group(['middleware' => 'verified'], function () {
 
 
 
-    // GamesController //////////////////////////////////////////////////////////////////
+    // GameController //////////////////////////////////////////////////////////////////
+    Route::get('/games/all', 'GameController@index')->name('gamesAll');
+
     Route::prefix('game')->group(function (){
+
+        Route::get('/{game}','GameController@show')->name('game.show');
+
         Route::middleware('can:create,App\Game')->group(function (){
-            Route::get('/create','GameController@create')->name('game.create');
+            Route::get('/create/new','GameController@create')->name('game.create');
             Route::post('/','GameController@store')->name('game.store');
         });
-        Route::get('/{game}','GameController@show')->name('game.show');
         Route::middleware('can:update,game')->group(function (){
             Route::get('/{game}/edit','GameController@edit')->name('game.edit');
             Route::put('/{game}','GameController@update')->name('game.update');
@@ -76,6 +82,29 @@ Route::group(['middleware' => 'verified'], function () {
 
     });
 //    Route::resource('game','GameController',['only'=>['update','destroy']]);
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    // GameSubscriberController ////////////////////////////////////////////////////////
+    Route::namespace('manyToMany')->group(function (){
+        Route::get('/games/subscriptions', 'GameSubscriberController@index')->name('gamesSubscriptions');
+        Route::get('/games/subscriptions/id={id}', 'GameSubscriberController@gamesSubscriptionsById')->name('gamesSubscriptionsById');
+
+        Route::post('game/subscriber','GameSubscriberController@store')->name('subscriber.store');
+        Route::delete('game/subscriber/{game}','GameSubscriberController@destroy')->name('subscriber.destroy');
+
+        Route::get('game/subscribers/{game}','GameSubscriberController@allGameSubscribers')->name('allGameSubscribers');
+        Route::get('game/subscribers/{game}/online','GameSubscriberController@onlineSubscribers')->name('onlineSubscribers');
+        Route::get('game/subscribers/{game}/friends','GameSubscriberController@gameSubscribersFriends')->name('gameSubscribersFriends');
+
+        Route::put('/game/add/moderator/{gameSubscriber}', 'GameSubscriberController@addModerator')->name('game.addModerator')->middleware('can:isSuperAdmin');
+        Route::put('/game/remove/moderator/{gameSubscriber}', 'GameSubscriberController@removeModerator')->name('game.removeModerator')->middleware('can:isSuperAdmin');
+
+    });
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    // PostController ////////////////////////////////////////////////////////
+    Route::post('post','PostController@store')->name('post.store');
+    Route::delete('post/{post}/game/{game}','PostController@destroy')->name('post.destroy');
 
     ////////////////////////////////////////////////////////////////////////////////////
 

@@ -61,6 +61,9 @@
                                                 <a href="{{route('game.show',['game'=>$game->short_address])}}">
                                                     <h1>{{$game->title}}</h1>
                                                 </a>
+                                                <a href="{{route('allGameSubscribers',['game'=>$game->short_address])}}">
+                                                    Subscribers:<span class="blocks"> {{count($game->subscribers)}}</span>
+                                                </a>
                                             </h6>
                                         </div>
                                     </div>
@@ -83,6 +86,19 @@
                                                 </form>
                                             </a>
                                         @endcan
+                                            @can('subscribe',[\App\GameSubscriber::class,$game])
+                                                <form action="{{route('subscriber.store')}}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="game_id" value="{{$game->id}}">
+                                                    <button type="submit" class="btn btn-success w-100 mt-2">Subscribe to the game</button>
+                                                </form>
+                                            @else
+                                                <form action="{{route('subscriber.destroy',['game'=>$game])}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger w-100 mt-2">Unsubscribed</button>
+                                                </form>
+                                            @endcan
                                     </div>
                                 </div>
                             </div>
