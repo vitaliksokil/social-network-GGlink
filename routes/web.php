@@ -99,6 +99,26 @@ Route::group(['middleware' => 'verified'], function () {
         Route::put('/game/add/moderator/{gameSubscriber}', 'GameSubscriberController@addModerator')->name('game.addModerator')->middleware('can:isSuperAdmin');
         Route::put('/game/remove/moderator/{gameSubscriber}', 'GameSubscriberController@removeModerator')->name('game.removeModerator')->middleware('can:isSuperAdmin');
 
+
+        // community
+        Route::get('/communities/subscriptions', 'CommunitySubscriberController@index')->name('community.my.subscriptions');
+        Route::get('/communities/my', 'CommunitySubscriberController@myCommunities')->name('community.my');
+        Route::get('/communities/subscriptions/id={id}', 'CommunitySubscriberController@communitiesSubscriptionsById')->name('communitiesSubscriptionsById');
+
+        Route::post('community/subscriber','CommunitySubscriberController@store')->name('community.sub.store');
+        Route::delete('community/subscriber/{community}','CommunitySubscriberController@destroy')->name('community.sub.destroy');
+
+        Route::get('community/subscribers/{community}','CommunitySubscriberController@allCommunitySubscribers')->name('allCommunitySubscribers');
+        Route::get('community/subscribers/{community}/online','CommunitySubscriberController@communityOnlineSubscribers')->name('communityOnlineSubscribers');
+        Route::get('community/subscribers/{community}/friends','CommunitySubscriberController@communitySubscribersFriends')->name('communitySubscribersFriends');
+
+        Route::put('/community/add/moderator/{communitySubscriber}', 'CommunitySubscriberController@addModerator')->name('community.addModerator');
+        Route::put('/community/remove/moderator/{communitySubscriber}', 'CommunitySubscriberController@removeModerator')->name('community.removeModerator');
+
+        Route::put('/community/add/admin/{communitySubscriber}', 'CommunitySubscriberController@addAdmin')->name('community.addAdmin');
+        Route::put('/community/remove/admin/{communitySubscriber}', 'CommunitySubscriberController@removeAdmin')->name('community.removeAdmin');
+
+
     });
     ////////////////////////////////////////////////////////////////////////////////////
 
@@ -107,6 +127,19 @@ Route::group(['middleware' => 'verified'], function () {
     Route::delete('post/{post}/game/{game}','PostController@destroy')->name('post.destroy');
 
     ////////////////////////////////////////////////////////////////////////////////////
+
+    // CommunityController ////////////////////////////////////////////////////////
+    Route::get('communities/all','CommunityController@index')->name('community.all');
+    Route::get('community/{short_address}','CommunityController@show')->name('community.show');
+
+    Route::get('community/create/new','CommunityController@create')->name('community.create');
+    Route::post('community/store','CommunityController@store')->name('community.store');
+
+    Route::get('community/edit/{community}','CommunityController@edit')->name('community.edit');
+    Route::put('community/update/{community}','CommunityController@update')->name('community.update');
+
+    Route::delete('community/{community}','CommunityController@destroy')->name('community.destroy');
+
 
 });
 Auth::routes(['verify' => true]);

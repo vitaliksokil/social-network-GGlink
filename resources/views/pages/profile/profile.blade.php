@@ -132,94 +132,43 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3>Communities <span class="blocks">20</span></h3>
+                                    <a href="{{route('communitiesSubscriptionsById',['id'=>$user->id])}}">
+                                        <h3>
+                                            Communities
+                                            <span class="blocks">{{count($communities)}}</span>
+                                        </h3>
+                                    </a>
                                 </div>
                                 <div class="card-body">
-                                    <div class="subscribe-item">
-                                        <div class="row align-items-center">
+                                    @forelse($communities as $item)
+                                        <div class="subscribe-item">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-3 ">
+                                                    <div class="wall-post-img">
+                                                        <a href="{{route('community.show',['community'=>$item->community->short_address])}}">
+                                                            <img src="{{asset($item->community->logo)}}" alt="">
+                                                        </a>
 
-                                            <div class="col-lg-2 ">
-                                                <div class="wall-post-img">
-                                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="wall-post-author">
-                                                    <h6><a href="#">Community name</a> <br>
-                                                        <p class="header">members <span class="blocks">20</span></p>
-                                                    </h6>
+                                                <div class="col-lg-9">
+                                                    <div class="wall-post-author">
+                                                        <h6>
+                                                            <a href="{{route('community.show',['community'=>$item->community->short_address])}}">
+                                                                {{$item->community->title}}
+                                                            </a>
+                                                            <br>
+                                                            <p class="header">subscribers
+                                                                <span class="blocks">{{count($item->community->subscribers)}}</span>
+                                                            </p>
+                                                        </h6>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="subscribe-item">
-                                        <div class="row align-items-center">
-
-                                            <div class="col-lg-2 ">
-                                                <div class="wall-post-img">
-                                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="wall-post-author">
-                                                    <h6><a href="#">Community name</a> <br>
-                                                        <p class="header">members <span class="blocks">20</span></p>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="subscribe-item">
-                                        <div class="row align-items-center">
-
-                                            <div class="col-lg-2 ">
-                                                <div class="wall-post-img">
-                                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="wall-post-author">
-                                                    <h6><a href="#">Community name</a> <br>
-                                                        <p class="header">members <span class="blocks">20</span></p>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="subscribe-item">
-                                        <div class="row align-items-center">
-
-                                            <div class="col-lg-2 ">
-                                                <div class="wall-post-img">
-                                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="wall-post-author">
-                                                    <h6><a href="#">Community name</a> <br>
-                                                        <p class="header">members <span class="blocks">20</span></p>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="subscribe-item">
-                                        <div class="row align-items-center">
-
-                                            <div class="col-lg-2 ">
-                                                <div class="wall-post-img">
-                                                    <img src="{{asset('img/dota2.jpg')}}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="wall-post-author">
-                                                    <h6><a href="#">Community name</a> <br>
-                                                        <p class="header">members <span class="blocks">20</span></p>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @empty
+                                        No communities subscriptions yet
+                                        @endforelse
                                 </div>
                             </div>
                         </div>

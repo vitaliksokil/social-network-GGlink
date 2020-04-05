@@ -37,8 +37,6 @@ class ProfileController extends Controller
             $friends = $friends->random(5);
         }
 
-
-
         $comments = $user->wall;
         $isFriend = Auth::user()->isFriend($user->id);
         $authUser = Auth::user();
@@ -49,6 +47,10 @@ class ProfileController extends Controller
 
 
         $isSentRequest = FriendShip::findFriendShip($user->id, $authUser->id)->where([['status', 0]])->first();
+        $communities = $user->communities->shuffle();
+        $communities = count($communities) < 5 ? $communities->random(count($communities)) :
+            $communities->random(5);
+
         return view('pages.profile.profile', [
             'user' => $user,
             'comments' => $comments,
@@ -56,7 +58,8 @@ class ProfileController extends Controller
             'authUser' => $authUser,
             'isSentRequest' => $isSentRequest,
             'friends' => $friends,
-            'gamesSubscriptions'=>$gamesSubscriptions
+            'gamesSubscriptions'=>$gamesSubscriptions,
+            'communities'=>$communities
         ]);
     }
 

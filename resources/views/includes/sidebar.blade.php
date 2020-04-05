@@ -17,7 +17,7 @@
                         <li class="nav-item {{ (request()->routeIs('friendsAll')) ? 'active' : '' }}" >
                             <a class="nav-link" href="{{route('friendsAll')}}">
                                 <span class="col-lg-1">
-                                    <i class="fas fa-users"></i>
+                                    <i class="fas fa-user"></i>
                                 </span>
                                 <span class="col-lg-11">
                                     Friends
@@ -37,6 +37,16 @@
                                 </span>
                             </a>
                         </li>
+                        <li class="nav-item {{ (request()->routeIs('community.my.subscriptions')) ? 'active' : '' }}" >
+                            <a class="nav-link" href="{{route('community.my.subscriptions')}}">
+                                <span class="col-lg-1">
+                                    <i class="fas fa-user-friends"></i>
+                                </span>
+                                <span class="col-lg-11">
+                                    Communities
+                                </span>
+                            </a>
+                        </li>
                     </ul>
                     <hr>
                     <hr>
@@ -48,6 +58,16 @@
                                 </span>
                                 <span class="col-lg-11">
                                     All games
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ (request()->routeIs('community.all')) ? 'active' : '' }}" >
+                            <a class="nav-link" href="{{route('community.all')}}">
+                                <span class="col-lg-1">
+                                    <i class="fas fa-users"></i>
+                                </span>
+                                <span class="col-lg-11">
+                                    All communities
                                 </span>
                             </a>
                         </li>

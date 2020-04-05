@@ -52,6 +52,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function games(){
         return $this->hasMany(GameSubscriber::class,'user_id')->select('game_id')->with('game');
     }
+    public function communities(){
+        return $this->hasMany(CommunitySubscriber::class,'user_id')->select('community_id')->with('community');
+    }
     public function friends() : Collection{
         $user_id = $this->id;
         $friendShips = FriendShip::where(function($query) use ($user_id){
