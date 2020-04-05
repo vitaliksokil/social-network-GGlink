@@ -48,20 +48,20 @@
                                         <h3>News</h3>
                                     </div>
                                     <div class="card-body">
-                                        @can('create',[App\Post::class,$game])
+                                        @can('create',[App\oneHasManyModels\GamePosts::class,$game])
                                             <hr>
                                             <div class="card">
                                                 <div class="card-header">
                                                     New post
                                                 </div>
                                                 <div class="card-body">
-                                                    <form method="POST" action="{{ route('post.store') }}"
+                                                    <form method="POST" action="{{ route('game.post.store') }}"
                                                           enctype="multipart/form-data">
                                                         @csrf
                                                         <input type="hidden" name="game_id" value="{{$game->id}}">
                                                         <div class="form-group row">
                                                             <label for="title"
-                                                                   class="col-md-2 col-form-label ">{{ __('Post title') }}</label>
+                                                                   class="col-md-2 col-form-label ">{{ __('Post title *') }}</label>
                                                             <div class="col-md-10">
                                                                 <input id="title" type="text"
                                                                        class="form-control @error('title') is-invalid @enderror"
@@ -76,10 +76,10 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="post"
-                                                                   class="col-md-2 col-form-label ">{{ __('Game post') }}</label>
+                                                                   class="col-md-2 col-form-label ">{{ __('Game post *') }}</label>
                                                             <div class="col-md-10">
                                                                 <textarea class="@error('post') is-invalid @enderror"
-                                                                          name="post"
+                                                                          name="post" required
                                                                           id="editor">{{ old('post') }}</textarea>
                                                                 @error('post')
                                                                 <span class="red" role="alert">
@@ -122,7 +122,7 @@
                                             <div class="card my-5">
                                                 <div class="card-header text-center">
                                                     @can('delete',[$item->post,$game])
-                                                        <form action="{{route('post.destroy',['post'=>$item->post,'game'=>$game])}}" method="POST">
+                                                        <form action="{{route('game.post.destroy',['post'=>$item->post,'game'=>$game])}}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn mt-2 float-right red"><i class="fas fa-times"></i> Delete</button>

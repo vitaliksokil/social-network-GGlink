@@ -2,6 +2,8 @@
 
 namespace App\Policies;
 
+use App\Community;
+use App\CommunitySubscriber;
 use App\Game;
 use App\GameSubscriber;
 use App\User;
@@ -39,17 +41,11 @@ class PostPolicy
      * Determine whether the user can create posts.
      *
      * @param \App\User $user
-     * @param Game $game
      * @return mixed
      */
-    public function create(User $user,Game $game)
+    public function create(User $user)
     {
-        $subscriber = GameSubscriber::where([
-            ['user_id',$user->id],
-            ['game_id',$game->id],
-            ['is_moderator',1],
-        ])->first();
-        return isset($subscriber) ? true : false;
+
     }
 
     /**
@@ -68,18 +64,29 @@ class PostPolicy
      * Determine whether the user can delete the post.
      *
      * @param \App\User $user
-     * @param Game $game
      * @param \App\Post $post
      * @return mixed
      */
-    public function delete(User $user,Post $post,Game $game )
+    public function delete(User $user,Post $post,$gameOrCommunity)
     {
-        $subscriber = GameSubscriber::where([
-            ['user_id',$user->id],
-            ['game_id',$game->id],
-            ['is_moderator',1],
-        ])->first();
-        return isset($subscriber) ? true : false;
+        if($gameOrCommunity instanceof Game){
+            $game = $gameOrCommunity;
+            $subscriber = GameSubscriber::where([
+                ['user_id',$user->id],
+                ['game_id',$game->id],
+                ['is_moderator',1],
+            ])->first();
+            return isset($subscriber) ? true : false;
+        }elseif ($gameOrCommunity instanceof Community){
+            $community = $gameOrCommunity;
+            $subscriber = CommunitySubscriber::where([
+                ['user_id',$user->id],
+                ['community_id',$community->id],
+                ['is_moderator',1],
+            ])->first();
+            return isset($subscriber) ? true : false;
+        }
+
     }
 
     /**

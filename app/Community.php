@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\oneHasManyModels\CommunityPosts;
 use Illuminate\Database\Eloquent\Model;
 
 class Community extends Model
@@ -18,7 +19,7 @@ class Community extends Model
     public function subscribers(){
         return $this->hasMany(CommunitySubscriber::class,'community_id')->with('user');
     }
-//    public function posts(){
-//        return $this->hasMany(CommunityPosts::class,'game_id')->with('post');
-//    }
+    public function posts(){
+        return $this->hasMany(CommunityPosts::class,'community_id')->with('post');
+    }
 }

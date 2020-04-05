@@ -18,6 +18,8 @@ class AuthServiceProvider extends ServiceProvider
          'App\Game' => 'App\Policies\GamePolicy',
          'App\GameSubscriber' => 'App\Policies\GameSubscriberPolicy',
          'App\Post' => 'App\Policies\PostPolicy',
+         'App\oneHasManyModels\GamePosts' => 'App\Policies\GamePostsPolicy',
+         'App\oneHasManyModels\CommunityPosts' => 'App\Policies\CommunityPostsPolicy',
     ];
 
     /**

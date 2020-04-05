@@ -97,11 +97,11 @@ class CommunityController extends Controller
         $community = Community::where('short_address', '=', $gameShortAddress)->firstOrFail();
         $subscribers = $community->subscribers->shuffle();
         $subscribers = count($subscribers) < 5 ? $subscribers->random(count($subscribers)):$subscribers->random(5);
-//        $posts = $game->posts->sortByDesc('created_at');
+        $posts = $community->posts->sortByDesc('created_at');
         return view('pages.communities.community', [
             'community' => $community,
             'subscribers'=>$subscribers,
-//            'posts'=>$posts,
+            'posts'=>$posts,
         ]);
     }
 

@@ -123,8 +123,16 @@ Route::group(['middleware' => 'verified'], function () {
     ////////////////////////////////////////////////////////////////////////////////////
 
     // PostController ////////////////////////////////////////////////////////
-    Route::post('post','PostController@store')->name('post.store');
-    Route::delete('post/{post}/game/{game}','PostController@destroy')->name('post.destroy');
+
+
+    Route::namespace('oneHasMany')->group(function (){
+        // GamePost
+        Route::delete('post/game/{post}/{game}','GamePostController@destroy')->name('game.post.destroy');
+        Route::post('post/game','GamePostController@store')->name('game.post.store');
+        //CommunityPost
+        Route::delete('post/community/{post}/{community}','CommunityPostController@destroy')->name('community.post.destroy');
+        Route::post('post/community','CommunityPostController@store')->name('community.post.store');
+    });
 
     ////////////////////////////////////////////////////////////////////////////////////
 

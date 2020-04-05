@@ -67,99 +67,98 @@
                                         <h3>News</h3>
                                     </div>
                                     <div class="card-body">
-{{--                                        @can('create',[App\Post::class,$game])--}}
-{{--                                            <hr>--}}
-{{--                                            <div class="card">--}}
-{{--                                                <div class="card-header">--}}
-{{--                                                    New post--}}
-{{--                                                </div>--}}
-{{--                                                <div class="card-body">--}}
-{{--                                                    <form method="POST" action="{{ route('post.store') }}"--}}
-{{--                                                          enctype="multipart/form-data">--}}
-{{--                                                        @csrf--}}
-{{--                                                        <input type="hidden" name="game_id" value="{{$game->id}}">--}}
-{{--                                                        <div class="form-group row">--}}
-{{--                                                            <label for="title"--}}
-{{--                                                                   class="col-md-2 col-form-label ">{{ __('Post title') }}</label>--}}
-{{--                                                            <div class="col-md-10">--}}
-{{--                                                                <input id="title" type="text"--}}
-{{--                                                                       class="form-control @error('title') is-invalid @enderror"--}}
-{{--                                                                       name="title" value="{{ old('title') }}" required--}}
-{{--                                                                       autocomplete="title" autofocus>--}}
-{{--                                                                @error('title')--}}
-{{--                                                                <span class="red" role="alert">--}}
-{{--                                                            <strong>{{ $message }}</strong>--}}
-{{--                                                        </span>--}}
-{{--                                                                @enderror--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                        <div class="form-group row">--}}
-{{--                                                            <label for="post"--}}
-{{--                                                                   class="col-md-2 col-form-label ">{{ __('Game post') }}</label>--}}
-{{--                                                            <div class="col-md-10">--}}
-{{--                                                                <textarea class="@error('post') is-invalid @enderror"--}}
-{{--                                                                          name="post"--}}
-{{--                                                                          id="editor">{{ old('post') }}</textarea>--}}
-{{--                                                                @error('post')--}}
-{{--                                                                <span class="red" role="alert">--}}
-{{--                                                            <strong>{{ $message }}</strong>--}}
-{{--                                                        </span>--}}
-{{--                                                                @enderror--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                        <div class="form-group row">--}}
-{{--                                                            <label for="photo"--}}
-{{--                                                                   class="col-md-2 col-form-label ">--}}
-{{--                                                                {{ __('Upload photo') }}--}}
-{{--                                                                <i class="fas fa-info-circle orange"--}}
-{{--                                                                   title="The photo should be 640x360px otherwise it will be cropped to this resolution."></i>--}}
-{{--                                                            </label>--}}
-{{--                                                            <div class="col-md-10">--}}
-{{--                                                                <input id="photo" type="file"--}}
-{{--                                                                       class="form-control @error('photo') is-invalid @enderror"--}}
-{{--                                                                       name="photo" autofocus>--}}
-{{--                                                                @error('photo')--}}
-{{--                                                                <span class="invalid-feedback" role="alert">--}}
-{{--                                                                 <strong>{{ $message }}</strong>--}}
-{{--                                                        </span>--}}
-{{--                                                                @enderror--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                        <div class="form-group row mb-0">--}}
-{{--                                                            <div class="col-md-6 ">--}}
-{{--                                                                <button type="submit" class="btn btn-success">--}}
-{{--                                                                    {{ __('Create') }}--}}
-{{--                                                                </button>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                    </form>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        @endcan--}}
-
-{{--                                        @forelse($posts as $item)--}}
-{{--                                            <div class="card my-5">--}}
-{{--                                                <div class="card-header text-center">--}}
-{{--                                                    @can('delete',[$item->post,$game])--}}
-{{--                                                        <form action="{{route('post.destroy',['post'=>$item->post,'game'=>$game])}}" method="POST">--}}
-{{--                                                            @csrf--}}
-{{--                                                            @method('DELETE')--}}
-{{--                                                            <button type="submit" class="btn mt-2 float-right red"><i class="fas fa-times"></i> Delete</button>--}}
-{{--                                                        </form>--}}
-{{--                                                    @endcan--}}
-{{--                                                    @isset($item->post->photo)--}}
-{{--                                                        <img src="{{asset($item->post->photo)}}" alt="" class="mb-5">--}}
-{{--                                                    @endisset--}}
-{{--                                                    <h3>{{$item->post->title}}</h3>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="card-body">--}}
-{{--                                                    <p>{!! $item->post->post !!}</p>--}}
-{{--                                                    <small class="float-right">{{$item->post->created_at}}</small>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        @empty--}}
-{{--                                            No posts yet--}}
-{{--                                        @endforelse--}}
+                                        @can('create',[App\oneHasManyModels\CommunityPosts::class,$community])
+                                            <hr>
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    New post
+                                                </div>
+                                                <div class="card-body">
+                                                    <form method="POST" action="{{ route('community.post.store') }}"
+                                                          enctype="multipart/form-data">
+                                                        @csrf
+                                                        <input type="hidden" name="game_id" value="{{$community->id}}">
+                                                        <div class="form-group row">
+                                                            <label for="title"
+                                                                   class="col-md-2 col-form-label ">{{ __('Post title *') }}</label>
+                                                            <div class="col-md-10">
+                                                                <input id="title" type="text"
+                                                                       class="form-control @error('title') is-invalid @enderror"
+                                                                       name="title" value="{{ old('title') }}" required
+                                                                       autocomplete="title" autofocus>
+                                                                @error('title')
+                                                                <span class="red" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="post"
+                                                                   class="col-md-2 col-form-label ">{{ __('Game post *') }}</label>
+                                                            <div class="col-md-10">
+                                                                <textarea class="@error('post') is-invalid @enderror"
+                                                                          name="post" required
+                                                                          id="editor">{{ old('post') }}</textarea>
+                                                                @error('post')
+                                                                <span class="red" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="photo"
+                                                                   class="col-md-2 col-form-label ">
+                                                                {{ __('Upload photo') }}
+                                                                <i class="fas fa-info-circle orange"
+                                                                   title="The photo should be 640x360px otherwise it will be cropped to this resolution."></i>
+                                                            </label>
+                                                            <div class="col-md-10">
+                                                                <input id="photo" type="file"
+                                                                       class="form-control @error('photo') is-invalid @enderror"
+                                                                       name="photo" autofocus>
+                                                                @error('photo')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                 <strong>{{ $message }}</strong>
+                                                        </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row mb-0">
+                                                            <div class="col-md-6 ">
+                                                                <button type="submit" class="btn btn-success">
+                                                                    {{ __('Create') }}
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        @endcan
+                                        @forelse($posts as $item)
+                                            <div class="card my-5">
+                                                <div class="card-header text-center">
+                                                    @can('delete',[$item->post,$community])
+                                                        <form action="{{route('community.post.destroy',['post'=>$item->post,'community'=>$community])}}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn mt-2 float-right red"><i class="fas fa-times"></i> Delete</button>
+                                                        </form>
+                                                    @endcan
+                                                    @isset($item->post->photo)
+                                                        <img src="{{asset($item->post->photo)}}" alt="" class="mb-5">
+                                                    @endisset
+                                                    <h3>{{$item->post->title}}</h3>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>{!! $item->post->post !!}</p>
+                                                    <small class="float-right">{{$item->post->created_at}}</small>
+                                                </div>
+                                            </div>
+                                        @empty
+                                            No posts yet
+                                        @endforelse
                                     </div>
                                 </div>
                             </div>
