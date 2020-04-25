@@ -12,88 +12,6 @@ class CommunitySubscriberPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any community subscribers.
-     *
-     * @param \App\User $user
-     * @return mixed
-     */
-    public function viewAny(User $user)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can view the community subscriber.
-     *
-     * @param \App\User $user
-     * @param \App\CommunitySubscriber $communitySubscriber
-     * @return mixed
-     */
-    public function view(User $user, CommunitySubscriber $communitySubscriber)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can create community subscribers.
-     *
-     * @param \App\User $user
-     * @return mixed
-     */
-    public function create(User $user)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can update the community subscriber.
-     *
-     * @param \App\User $user
-     * @param \App\CommunitySubscriber $communitySubscriber
-     * @return mixed
-     */
-    public function update(User $user, CommunitySubscriber $communitySubscriber)
-    {
-
-    }
-
-    /**
-     * Determine whether the user can delete the community subscriber.
-     *
-     * @param \App\User $user
-     * @param \App\CommunitySubscriber $communitySubscriber
-     * @return mixed
-     */
-    public function delete(User $user, CommunitySubscriber $communitySubscriber)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the community subscriber.
-     *
-     * @param \App\User $user
-     * @param \App\CommunitySubscriber $communitySubscriber
-     * @return mixed
-     */
-    public function restore(User $user, CommunitySubscriber $communitySubscriber)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the community subscriber.
-     *
-     * @param \App\User $user
-     * @param \App\CommunitySubscriber $communitySubscriber
-     * @return mixed
-     */
-    public function forceDelete(User $user, CommunitySubscriber $communitySubscriber)
-    {
-        //
-    }
-
     public function subscribe(User $user, Community $community)
     {
         return CommunitySubscriber::where([['user_id', $user->id], ['community_id', $community->id]])->first() ? false : true;
@@ -118,5 +36,9 @@ class CommunitySubscriberPolicy
 
         ])->first();
         return isset($sub) ? true : false;
+    }
+    public function update(User $user,CommunitySubscriber $communitySubscriber)
+    {
+        return $communitySubscriber->is_creator != 1 ? true : false;
     }
 }

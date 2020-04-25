@@ -27,6 +27,19 @@
                                 </span>
                             </a>
                         </li>
+                        <li class="nav-item {{ (request()->routeIs('friendsAll')) ? 'active' : '' }}" >
+                            <a class="nav-link" href="{{route('friendsAll')}}">
+                                <span class="col-lg-1">
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                                <span class="col-lg-11">
+                                    Messages
+{{--                                @if(count(Auth::user()->new_messages))--}}
+{{--                                        <span class="blocks float-right">+{{count(Auth::user()->new_friends)}}</span>--}}
+{{--                                    @endif--}}
+                                </span>
+                            </a>
+                        </li>
                         <li class="nav-item {{ (request()->routeIs('gamesSubscriptions')) ? 'active' : '' }}" >
                             <a class="nav-link" href="{{route('gamesSubscriptions')}}">
                                 <span class="col-lg-1">

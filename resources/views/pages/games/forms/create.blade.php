@@ -1,4 +1,5 @@
 @extends('pages.games.gamesAll')
+@section('title','Add new game')
 @section('form')
     <div class="row justify-content-start">
         <div class="col-md-12">

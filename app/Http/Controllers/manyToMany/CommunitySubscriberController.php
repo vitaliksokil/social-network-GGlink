@@ -23,17 +23,6 @@ class CommunitySubscriberController extends Controller
         ]);
     }
     public function myCommunities(){
-//        where(function($query) use ($user_id){
-//            $query->where([
-//                ['receiver_id',$user_id]
-//            ])->orWhere([
-//                ['sender_id',$user_id]
-//            ]);
-//        })->where('status',1)->get();
-
-//        ['user_id',Auth::user()->id],
-//            ['is_creator',1]
-
         $user = Auth::user();
         $communities = CommunitySubscriber::with('community')->where(function ($query) use ($user){
             $query->where([
@@ -50,16 +39,6 @@ class CommunitySubscriberController extends Controller
         return view('pages.communities.myCommunitiesSubscriptions',[
             'communities'=>$communities
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -82,40 +61,6 @@ class CommunitySubscriberController extends Controller
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', 'It looks like you have been already subscribed to the community');
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\CommunitySubscriber $communitySubscriber
-     * @return \Illuminate\Http\Response
-     */
-    public function show(CommunitySubscriber $communitySubscriber)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\CommunitySubscriber $communitySubscriber
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CommunitySubscriber $communitySubscriber)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\CommunitySubscriber $communitySubscriber
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, CommunitySubscriber $communitySubscriber)
-    {
-        //
     }
 
     /**
@@ -183,6 +128,7 @@ class CommunitySubscriberController extends Controller
     }
     public function removeAdmin(CommunitySubscriber $communitySubscriber){
         $this->authorize('isCreator',[CommunitySubscriber::class,$communitySubscriber->community]);
+        $this->authorize('update',[CommunitySubscriber::class,$communitySubscriber]);
         if($communitySubscriber->update([
             'is_admin'=>0,
             'is_moderator'=>0,
@@ -202,6 +148,7 @@ class CommunitySubscriberController extends Controller
     }
     public function removeModerator(CommunitySubscriber $communitySubscriber){
         $this->authorize('isAdmin',[CommunitySubscriber::class,$communitySubscriber->community]);
+        $this->authorize('update',[CommunitySubscriber::class,$communitySubscriber]);
         if($communitySubscriber->update(['is_moderator'=>0])){
             return redirect()->back()->with('success', 'Moderator removed!');
         } else {

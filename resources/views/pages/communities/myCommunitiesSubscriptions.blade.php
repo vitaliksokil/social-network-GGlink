@@ -1,4 +1,6 @@
 @extends('layouts.main')
+@section('title',isset($user) ? $user.'\'s communities
+ subscriptions' : 'My Communities')
 @section('content')
     <div class="card">
         <div class="card-header">

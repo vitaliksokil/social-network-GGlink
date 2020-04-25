@@ -114,6 +114,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function __toString()
     {
-        return $this->name . ' "'.$this->nickname.'" ' . $this->surname;
+        return $this->name . ' <span class="pink">"'.$this->nickname.'"</span> ' . $this->surname;
     }
 }

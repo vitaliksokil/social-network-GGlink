@@ -1,4 +1,5 @@
 @extends('pages.communities.allCommunities')
+@section('title','Add new community')
 @section('form')
     <div class="row justify-content-start">
         <div class="col-md-12">

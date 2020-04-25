@@ -6,7 +6,6 @@ use App\FriendShip;
 use App\Traits\RecipientIdTrait;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class FriendShipController extends Controller

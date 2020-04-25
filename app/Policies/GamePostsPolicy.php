@@ -12,30 +12,6 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class GamePostsPolicy
 {
     use HandlesAuthorization;
-
-    /**
-     * Determine whether the user can view any game posts.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function viewAny(User $user)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can view the game posts.
-     *
-     * @param  \App\User  $user
-     * @param  \App\GamePosts  $gamePosts
-     * @return mixed
-     */
-    public function view(User $user, GamePosts $gamePosts)
-    {
-        //
-    }
-
     /**
      * Determine whether the user can create posts.
      *
@@ -53,50 +29,4 @@ class GamePostsPolicy
         return isset($subscriber) ? true : false;
     }
 
-    /**
-     * Determine whether the user can update the game posts.
-     *
-     * @param  \App\User  $user
-     * @param  \App\GamePosts  $gamePosts
-     * @return mixed
-     */
-    public function update(User $user, GamePosts $gamePosts)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can delete the post.
-     *
-     * @param \App\User $user
-     * @param Game $game
-
-     * @return mixed
-     */
-    public function delete(User $user,Game $game )
-    {
-    }
-    /**
-     * Determine whether the user can restore the game posts.
-     *
-     * @param  \App\User  $user
-     * @param  \App\GamePosts  $gamePosts
-     * @return mixed
-     */
-    public function restore(User $user, GamePosts $gamePosts)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the game posts.
-     *
-     * @param  \App\User  $user
-     * @param  \App\GamePosts  $gamePosts
-     * @return mixed
-     */
-    public function forceDelete(User $user, GamePosts $gamePosts)
-    {
-        //
-    }
 }

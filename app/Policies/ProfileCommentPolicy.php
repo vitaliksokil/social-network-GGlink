@@ -11,29 +11,6 @@ class ProfileCommentPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any posts.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function viewAny(User $user)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can view the post.
-     *
-     * @param  \App\User  $user
-     * @param  \App\ProfileComment  $post
-     * @return mixed
-     */
-    public function view(User $user, ProfileComment $post)
-    {
-        //
-    }
-
-    /**
      * Determine whether the user can create posts.
      *
      * @param \App\User $user
@@ -52,19 +29,6 @@ class ProfileCommentPolicy
             return false;
         }
     }
-
-    /**
-     * Determine whether the user can update the post.
-     *
-     * @param  \App\User  $user
-     * @param  \App\ProfileComment  $post
-     * @return mixed
-     */
-    public function update(User $user, ProfileComment $post)
-    {
-        //
-    }
-
     /**
      * Determine whether the user can delete the post.
      *
@@ -75,29 +39,5 @@ class ProfileCommentPolicy
     public function delete(User $user, ProfileComment $comment)
     {
         return $comment->recipient->id == $user->id || $comment->writer->id == $user->id ? true : false;
-    }
-
-    /**
-     * Determine whether the user can restore the post.
-     *
-     * @param  \App\User  $user
-     * @param  \App\ProfileComment  $post
-     * @return mixed
-     */
-    public function restore(User $user, ProfileComment $post)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the post.
-     *
-     * @param  \App\User  $user
-     * @param  \App\ProfileComment  $post
-     * @return mixed
-     */
-    public function forceDelete(User $user, ProfileComment $post)
-    {
-        //
     }
 }

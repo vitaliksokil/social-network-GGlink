@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\FriendShip;
-use App\ProfileComment;
 use App\Traits\UploadTrait;
 use App\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;

@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title',isset($user) ? $user.'\'s games subscriptions' : 'My Games' )
 @section('content')
     <div class="card">
         <div class="card-header">

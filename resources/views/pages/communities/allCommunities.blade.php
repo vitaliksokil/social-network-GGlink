@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title','All Communities')
 @section('content')
     <div class="card">
         <div class="card-header">
