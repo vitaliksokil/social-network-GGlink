@@ -147,5 +147,12 @@ Route::group(['middleware' => 'verified'], function () {
     Route::delete('community/{community}','CommunityController@destroy')->name('community.destroy');
 
 
+    // MessageController /////////////////////
+    Route::get('messages','MessageController@myMessagesPage')->name('messages.page');
+    // for api
+    Route::get('get/messages','MessageController@getMyMessages')->name('messages.my');
+
+
+
 });
 Auth::routes(['verify' => true]);

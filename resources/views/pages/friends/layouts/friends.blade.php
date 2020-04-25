@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title',$user->id != Auth::user()->id ? $user.'\'s friends':'My Friends')
+@section('title',$user->id != Auth::user()->id ? strip_tags($user).'\'s friends':'My Friends')
 @section('content')
     <div class="card">
         <div class="card-header">

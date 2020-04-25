@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', $user)
+@section('title', strip_tags($user))
 @section('content')
     <div class="row">
         <div class="col-lg-12">

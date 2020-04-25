@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,7 +10,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, Htmlable
 {
     use Notifiable;
 
@@ -114,6 +115,15 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function __toString()
     {
+        return $this->toHtml();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function toHtml()
+    {
         return $this->name . ' <span class="pink">"'.$this->nickname.'"</span> ' . $this->surname;
     }
+
 }

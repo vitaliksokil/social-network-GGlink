@@ -27,8 +27,8 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="nav-item {{ (request()->routeIs('friendsAll')) ? 'active' : '' }}" >
-                            <a class="nav-link" href="{{route('friendsAll')}}">
+                        <li class="nav-item {{ (request()->routeIs('messages.page')) ? 'active' : '' }}" >
+                            <a class="nav-link" href="{{route('messages.page')}}">
                                 <span class="col-lg-1">
                                     <i class="fa fa-envelope"></i>
                                 </span>

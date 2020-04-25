@@ -1,0 +1,76 @@
+<template>
+        <div class="card">
+            <div class="card-header">
+                <h3>Messages</h3>
+                <form class="form-inline my-2 my-lg-0 w-100">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                           aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
+                        class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+
+
+
+                        <div class="subscribe-item mb-4 p-3" style="border: 1px solid rgba(0,0,0,0.9)" v-for="conversationWithUser in conversationsWithUsers">
+                            <div class="row align-items-center">
+                                <div class="col-lg-1 ">
+                                    <div class="wall-post-img">
+                                        <a :href="'/profile/id/'+conversationWithUser.id">
+                                            <img :src="conversationWithUser.photo" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-11">
+                                    <div class="wall-post-author">
+                                        <h6>
+                                            <a :href="'/profile/id/'+conversationWithUser.id" v-html="fullName(conversationWithUser.name,conversationWithUser.nickname,conversationWithUser.surname)">
+                                            </a>
+
+                                            <span class="green" v-if="conversationWithUser.isOnline"><i class="fas fa-circle" ></i> Online</span>
+                                            <span class="blocks" v-else><i class="fas fa-circle" ></i> Offline</span>
+                                        </h6>
+                                        <div class="row align-items-center mt-3">
+                                            <div class="col-sm-1">
+                                                <img :src="authUser.photo" alt="" v-if="conversationWithUser.lastMessage.from == authUser.id" style="width: 60%">
+                                            </div>
+                                            <div class="col-sm-11 p-0">
+                                                <p class="m-0"> {{conversationWithUser.lastMessage.text}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</template>
+
+<script>
+    export default {
+        props:['authUser'],
+        data(){
+            return{
+                conversationsWithUsers:[]
+            }
+        },
+        mounted() {
+            axios.get('/get/messages').then((response)=>{
+                this.conversationsWithUsers = response.data;
+            }).catch();
+        },
+        methods:{
+            fullName:function(name,nickname,surname){
+                return name+"<span class='pink'> "+nickname+" </span>"+surname
+            }
+        }
+    }
+</script>

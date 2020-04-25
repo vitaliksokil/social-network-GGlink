@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="{{ URL::asset('css/app.css')}}">
 </head>
 <body>
+<div id="app">
 @include('includes.header')
 @include('includes.sidebar') {{--contains @yield('content')--}}
 @include('includes.footer')
-
+</div>
 <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>

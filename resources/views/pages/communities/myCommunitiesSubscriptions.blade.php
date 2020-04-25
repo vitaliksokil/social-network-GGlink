@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title',isset($user) ? $user.'\'s communities
+@section('title',isset($user) ? strip_tags($user).'\'s communities
  subscriptions' : 'My Communities')
 @section('content')
     <div class="card">

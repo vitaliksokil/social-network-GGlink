@@ -1,10 +1,10 @@
 @extends('layouts.main')
-@section('title',isset($user) ? $user.'\'s games subscriptions' : 'My Games' )
+@section('title',isset($user) ? strip_tags($user).'\'s games subscriptions' : 'My Games' )
 @section('content')
     <div class="card">
         <div class="card-header">
             @isset($user)
-                <h3>{{$user.'\'s '}} favourite games</h3>
+                <h3>{{$user}}'s favourite games</h3>
             @else
                 <h3>My games subscriptions</h3>
             @endisset
