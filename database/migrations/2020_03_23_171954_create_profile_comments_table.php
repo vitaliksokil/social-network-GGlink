@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration
+class CreateProfileCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('profile_comments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('post');
+            $table->text('comment');
 
             $table->unsignedBigInteger('recipient_id');
             $table->unsignedBigInteger('writer_id');
@@ -25,7 +25,7 @@ class CreatePostsTable extends Migration
             $table->index('recipient_id');
             $table->index('writer_id');
         });
-        Schema::table('posts',function (Blueprint $table){
+        Schema::table('profile_comments',function (Blueprint $table){
             $table->foreign('recipient_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('writer_id')->references('id')->on('users')->onDelete('cascade');
         });
@@ -38,10 +38,10 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('profile_comments', function (Blueprint $table) {
             $table->dropForeign(['recipient_id']);
             $table->dropForeign(['writer_id']);
         });
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('profile_comments');
     }
 }

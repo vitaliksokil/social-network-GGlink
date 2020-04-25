@@ -8,6 +8,7 @@ $line-height-base: 1.6;
 
 // Colors
 $white:rgba(255,255,255,0.9);
+$black:rgba(0,0,0,0.9);
 $blue: #3490dc;
 $indigo: #6574cd;
 $purple: #BB86FC;
@@ -19,66 +20,59 @@ $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
 
-$bg: #17223b;
-$header: #263859;
-$sidebar: #6b778d;
+$bg: rgba(70,70,70,0.3);
+$bgDarken: rgba(70,70,70,0.95);
 $blocks: #ff6768;
 
-
+.white{
+    color: $white !important;
+}
 .blue {
-    color: $blue;
+    color: $blue !important;
 }
 
 .indigo {
-    color: $indigo;
+    color: $indigo !important;
 }
 
 .purple {
-    color: $purple;
+    color: $purple !important;
 }
 
 .pink {
-    color: $pink;
+    color: $pink !important;
 }
 
 .red {
-    color: $red;
+    color: $red !important;
 }
 
 .orange {
-    color: $orange;
+    color: $orange !important;
 }
 
 .yellow {
-    color: $yellow;
+    color: $yellow !important;
 }
 
 .green {
-    color: $green;
+    color: $green !important;
 }
 
 .teal {
-    color: $teal;
+    color: $teal !important;
 }
 
 .cyan {
-    color: $cyan;
+    color: $cyan !important;
 }
 
 .bg {
-    color: $bg;
-}
-
-.header {
-    color: $header;
-}
-
-.sidebar {
-    color: $sidebar;
+    color: $bg !important;
 }
 
 .blocks {
-    color: $blocks;
+    color: $blocks !important;
 }
 .blocks-bg{
     background-color: $blocks !important;

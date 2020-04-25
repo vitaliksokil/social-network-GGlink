@@ -19,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name','surname','nickname','photo','about','email','show_email','wall_can_edit', 'password',
+        'name','surname','nickname','photo','about','email','show_email','wall_can_edit','is_super_admin', 'password',
     ];
 
     /**
@@ -41,13 +41,19 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public function wall(){
-        return $this->hasMany(Post::class,'recipient_id')->with('writer')->latest();
+        return $this->hasMany(ProfileComment::class,'recipient_id')->with('writer')->latest();
     }
     public function new_friends(){
         return $this->hasMany(FriendShip::class,'receiver_id')->select('sender_id')->where('status',0)->with('sender');
     }
     public function requested_people(){
         return $this->hasMany(FriendShip::class,'sender_id')->select('receiver_id')->where('status',0)->with('receiver');
+    }
+    public function games(){
+        return $this->hasMany(GameSubscriber::class,'user_id')->select('game_id')->with('game');
+    }
+    public function communities(){
+        return $this->hasMany(CommunitySubscriber::class,'user_id')->select('community_id')->with('community');
     }
     public function friends() : Collection{
         $user_id = $this->id;
@@ -108,6 +114,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function __toString()
     {
-        return $this->name . ' "'.$this->nickname.'" ' . $this->surname;
+        return $this->name . ' <span class="pink">"'.$this->nickname.'"</span> ' . $this->surname;
     }
 }

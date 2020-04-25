@@ -57,7 +57,7 @@
                                 @csrf
                                 <div class="form-group row">
                                     <label for="wall_can_edit"
-                                           class="col-lg-2 col-form-label">{{ __('Who can post to my wall') }}</label>
+                                           class="col-lg-2 col-form-label">{{ __('Who can write comment to my wall') }}</label>
                                     <div class="col-lg-6">
                                         <select name="wall_can_edit"
                                                 id="wall_can_edit"

@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\FriendShip;
-use App\Post;
 use App\Traits\UploadTrait;
 use App\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +19,10 @@ class ProfileController extends Controller
         $this->middleware('verified');
     }
 
+    public function index(){
+        return redirect()->route('profile',['id'=>Auth::user()->id]);
+    }
+
     public function profile($id)
     {
         $user = User::findOrFail($id);
@@ -33,18 +35,29 @@ class ProfileController extends Controller
             $friends = $friends->random(5);
         }
 
-
-        $posts = $user->wall;
+        $comments = $user->wall;
         $isFriend = Auth::user()->isFriend($user->id);
         $authUser = Auth::user();
+
+        $gamesSubscriptions = $user->games->shuffle();
+        $gamesSubscriptions = count($gamesSubscriptions) < 9 ? $gamesSubscriptions->random(count($gamesSubscriptions)) :
+            $gamesSubscriptions->random(9);
+
+
         $isSentRequest = FriendShip::findFriendShip($user->id, $authUser->id)->where([['status', 0]])->first();
+        $communities = $user->communities->shuffle();
+        $communities = count($communities) < 5 ? $communities->random(count($communities)) :
+            $communities->random(5);
+
         return view('pages.profile.profile', [
             'user' => $user,
-            'posts' => $posts,
+            'comments' => $comments,
             'isFriend' => $isFriend,
             'authUser' => $authUser,
             'isSentRequest' => $isSentRequest,
-            'friends' => $friends
+            'friends' => $friends,
+            'gamesSubscriptions'=>$gamesSubscriptions,
+            'communities'=>$communities
         ]);
     }
 
@@ -57,7 +70,7 @@ class ProfileController extends Controller
     public function updatePhoto(Request $request)
     {
         $user = Auth::user();
-        $this->uploadPhoto($request, $user, 'img/profiles');
+        $this->uploadPhoto($request, $user, 'photo','img/profiles');
         return redirect()->route('edit');
     }
 
