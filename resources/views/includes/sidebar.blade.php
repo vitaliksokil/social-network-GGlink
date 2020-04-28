@@ -34,9 +34,9 @@
                                 </span>
                                 <span class="col-lg-11">
                                     Messages
-{{--                                @if(count(Auth::user()->new_messages))--}}
-{{--                                        <span class="blocks float-right">+{{count(Auth::user()->new_friends)}}</span>--}}
-{{--                                    @endif--}}
+                                @if(count(Auth::user()->newMessages()))
+                                        <span class="blocks float-right">+{{count(Auth::user()->newMessages())}}</span>
+                                    @endif
                                 </span>
                             </a>
                         </li>

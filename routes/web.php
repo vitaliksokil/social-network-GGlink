@@ -151,6 +151,8 @@ Route::group(['middleware' => 'verified'], function () {
     Route::get('messages','MessageController@myMessagesPage')->name('messages.page');
     // for api
     Route::get('get/messages','MessageController@getMyMessages')->name('messages.my');
+    Route::get('/conversation/{userNickname}/{userId}','MessageController@getMessagesFor')->name('conversation');
+    Route::post('/conversation/send','MessageController@sendMessage');
 
 
 

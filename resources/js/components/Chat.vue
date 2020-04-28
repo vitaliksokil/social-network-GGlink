@@ -14,8 +14,11 @@
                     <div class="col-lg-12">
 
 
-
-                        <div class="subscribe-item mb-4 p-3" style="border: 1px solid rgba(0,0,0,0.9)" v-for="conversationWithUser in conversationsWithUsers">
+                        <a v-for="conversationWithUser in conversationsWithUsers"
+                           :href='`/conversation/${conversationWithUser.nickname}/${conversationWithUser.id}`'
+                           class="subscribe-item mb-4 p-3" :class="{'new-msg-bg': conversationWithUser.unreadMessagesCount > 0}"
+                           style="border: 1px solid rgba(0,0,0,0.9);display: block"
+                        >
                             <div class="row align-items-center">
                                 <div class="col-lg-1 ">
                                     <div class="wall-post-img">
@@ -32,19 +35,26 @@
 
                                             <span class="green" v-if="conversationWithUser.isOnline"><i class="fas fa-circle" ></i> Online</span>
                                             <span class="blocks" v-else><i class="fas fa-circle" ></i> Offline</span>
+
+                                            <span class="green float-right" style="font-size: 20px"
+                                            v-if="conversationWithUser.unreadMessagesCount > 0">+{{conversationWithUser.unreadMessagesCount}}</span>
+
                                         </h6>
                                         <div class="row align-items-center mt-3">
                                             <div class="col-sm-1">
                                                 <img :src="authUser.photo" alt="" v-if="conversationWithUser.lastMessage.from == authUser.id" style="width: 60%">
                                             </div>
                                             <div class="col-sm-11 p-0">
-                                                <p class="m-0"> {{conversationWithUser.lastMessage.text}}</p>
+                                                <p class="m-0">
+                                                    {{conversationWithUser.lastMessage.text}}
+                                                    <small class="float-right mr-3">{{conversationWithUser.lastMessage.created_at}}</small>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
 
 
 
@@ -55,7 +65,9 @@
 </template>
 
 <script>
+    import {userMixin} from '../mixins/userMixin'
     export default {
+        mixins:[userMixin],
         props:['authUser'],
         data(){
             return{
@@ -68,9 +80,7 @@
             }).catch();
         },
         methods:{
-            fullName:function(name,nickname,surname){
-                return name+"<span class='pink'> "+nickname+" </span>"+surname
-            }
+
         }
     }
 </script>

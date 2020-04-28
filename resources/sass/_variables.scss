@@ -22,6 +22,7 @@ $cyan: #6cb2eb;
 
 $bg: rgba(70,70,70,0.3);
 $bgDarken: rgba(70,70,70,0.95);
+$bgLight: rgba(255,255,255,0.1);
 $blocks: #ff6768;
 
 .white{
@@ -76,4 +77,7 @@ $blocks: #ff6768;
 }
 .blocks-bg{
     background-color: $blocks !important;
+}
+.new-msg-bg{
+    background: rgba(150,150,150,0.3);
 }

@@ -6408,6 +6408,10 @@ readers do not read off random characters that represent icons */
   background-color: #ff6768 !important;
 }
 
+.new-msg-bg {
+  background: rgba(150, 150, 150, 0.3);
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -17303,6 +17307,10 @@ body {
   color: rgba(255, 255, 255, 0.9);
 }
 
+img {
+  width: 100%;
+}
+
 th,
 td,
 small {
@@ -17311,6 +17319,10 @@ small {
 
 header {
   background: rgba(70, 70, 70, 0.3);
+}
+
+textarea {
+  resize: none;
 }
 
 a {
@@ -17506,5 +17518,28 @@ pre {
 
 .wall-post-author a {
   font-size: 14px;
+}
+
+.conversation-wrap {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 130px);
+}
+
+.conversation {
+  overflow: auto;
+}
+
+.conversation::-webkit-scrollbar {
+  width: 20px;
+}
+
+.conversation::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.conversation::-webkit-scrollbar-thumb {
+  background: #BB86FC;
+  border-radius: 10px;
 }
 
