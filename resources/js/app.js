@@ -24,6 +24,12 @@ window.Vue = require('vue');
 Vue.component('chat', require('./components/Chat.vue').default);
 Vue.component('conversation', require('./components/Conversation.vue').default);
 
+import Notifications from 'vue-notification'
+import Vuex from 'vuex';
+
+Vue.use(Notifications);
+Vue.use(Vuex);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -32,6 +38,34 @@ Vue.component('conversation', require('./components/Conversation.vue').default);
 
 const app = new Vue({
     el: '#app',
+    created(){
+        let authUserId = $('meta[name="auth-user-id"]').attr('content');
+        Echo.private(`new.message.notification.${authUserId}`)
+            .notification((newMessage) => {
+                this.newMessageNotification(newMessage);
+                this.$emit('changeMessagesCount',{'newMessage':newMessage})
+            });
+    },
+    mounted(){
+        this.$on('changeMessagesCount',(data)=>{
+            $('#messagesCount').text("+"+data.newMessage.newMessagesCount)
+        })
+    },
+    methods:{
+        // todo show it if user are not on the conversation page
+        newMessageNotification(newMessage){
+            this.$notify({
+                group: 'messages',
+                duration: 10000,
+                speed: 1000,
+                max:4,
+                data:{
+                    message: newMessage.message,
+                    from_user: newMessage.from_user,
+                }
+            });
+        }
+    }
 });
 
 

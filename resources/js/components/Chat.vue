@@ -78,6 +78,9 @@
             axios.get('/get/messages').then((response)=>{
                 this.conversationsWithUsers = response.data;
             }).catch();
+            this.$on('changeMessagesCount',(data)=>{
+                console.log(data)
+            })
         },
         methods:{
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\NewMessage;
 use App\Message;
+use App\Notifications\NewMessageNotification;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -142,8 +143,13 @@ class MessageController extends Controller
                 'to' => $request->to,
                 'text' => $request->text
             ]);
-
             broadcast(new NewMessage($newMessage));
+
+            $newMessage->to_user->notify(new NewMessageNotification([
+                'message'=>$newMessage,
+                'from_user'=>$newMessage->from_user,
+                'newMessagesCount'=>count($newMessage->to_user->newMessages())]));
+
             return response()->json($newMessage);
         }catch (\Exception $e){
 

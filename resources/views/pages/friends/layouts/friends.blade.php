@@ -3,7 +3,12 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3>{{$user->id != Auth::user()->id ? $user.'\'s friends':'Friends'}}</h3>
+            @if($user->id != Auth::user()->id)
+                <h3>{{$user}}'s friends</h3>
+                @else
+                <h3>Friends</h3>
+            @endif
+
             <ul class="nav">
                 @if($user->id == Auth::user()->id)
                     <li class="nav-item {{ (request()->is('friends/all*')) ? 'active' : '' }}">

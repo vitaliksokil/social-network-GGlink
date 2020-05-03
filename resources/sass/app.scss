@@ -239,3 +239,21 @@ pre{
     }
 }
 
+.new-message-notification {
+    // Style of the notification itself
+    display: block;
+    color: $black;
+    background: $white;
+    border-radius: 8px !important;
+    padding: 20px !important;
+
+    .notification-title {
+
+    }
+
+    .notification-content {
+        // Style for content
+        word-break: break-word;
+    }
+
+}

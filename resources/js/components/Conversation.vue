@@ -94,6 +94,7 @@
         mounted() {
             Echo.private(`messages.${this.authUser.id}`)
                 .listen('NewMessage', (data) => {
+                    console.log(data);
                     this.handleIncoming(data.message);
                 });
 

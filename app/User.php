@@ -52,7 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail, Htmlable
         return DB::table('messages')
             ->select(DB::raw('count(`from`) as message_count,`from` as sender_id'))
             ->where([
-            ['to',Auth::user()->id],
+            ['to',$this->id],
             ['is_read',false],])
             ->groupBy('from')->get();
     }
@@ -135,4 +135,9 @@ class User extends Authenticatable implements MustVerifyEmail, Htmlable
         return $this->name . ' <span class="pink">"'.$this->nickname.'"</span> ' . $this->surname;
     }
 
+
+    public function receivesBroadcastNotificationsOn()
+    {
+        return 'new.message.notification.'.$this->id;
+    }
 }

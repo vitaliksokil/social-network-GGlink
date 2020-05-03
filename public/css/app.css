@@ -17543,3 +17543,15 @@ pre {
   border-radius: 10px;
 }
 
+.new-message-notification {
+  display: block;
+  color: rgba(0, 0, 0, 0.9);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px !important;
+  padding: 20px !important;
+}
+
+.new-message-notification .notification-content {
+  word-break: break-word;
+}
+
