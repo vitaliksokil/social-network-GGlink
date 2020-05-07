@@ -26,9 +26,27 @@ Vue.component('conversation', require('./components/Conversation.vue').default);
 
 import Notifications from 'vue-notification'
 import Vuex from 'vuex';
+import { debounce } from "debounce";
 
 Vue.use(Notifications);
 Vue.use(Vuex);
+window.debounce = debounce;
+
+const store = new Vuex.Store({
+    state: {
+        isNewMessage: false,
+        isReadMessages:false,
+    },
+    mutations: {
+        SET_IS_NEW_MESSAGE(state, newMessage) {
+            state.isNewMessage = newMessage;
+        },
+        SET_IS_READ_MESSAGES(state, isRead) {
+            state.isReadMessages = isRead;
+        }
+    },
+    getters: {}
+});
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -38,28 +56,36 @@ Vue.use(Vuex);
 
 const app = new Vue({
     el: '#app',
-    created(){
+    store: store,
+    created() {
         let authUserId = $('meta[name="auth-user-id"]').attr('content');
-        Echo.private(`new.message.notification.${authUserId}`)
-            .notification((newMessage) => {
-                this.newMessageNotification(newMessage);
-                this.$emit('changeMessagesCount',{'newMessage':newMessage})
+        Echo.private(`App.User.${authUserId}`)
+            .notification((response) => {
+                if (location.href.match(/\/conversation\/.+\/\d+/)) {
+                    if(response.type === 'MessagesHaveBeenRead'){
+                        this.$store.commit('SET_IS_READ_MESSAGES', response);
+                    }
+                }else{
+                    if(response.type === 'NewMessageNotification'){
+                        this.newMessageNotification(response);
+                        this.$emit('changeMessagesCount', {'newMessage': response});
+                        this.$store.commit('SET_IS_NEW_MESSAGE', response);
+                    }
+                }
             });
     },
-    mounted(){
-        this.$on('changeMessagesCount',(data)=>{
-            $('#messagesCount').text("+"+data.newMessage.newMessagesCount)
+    mounted() {
+        this.$on('changeMessagesCount', (data) => {
+            $('#messagesCount').text("+" + data.newMessage.newMessagesCount)
         })
     },
-    methods:{
-        // todo show it if user are not on the conversation page
-        newMessageNotification(newMessage){
+    methods: {
+        newMessageNotification(newMessage) {
             this.$notify({
                 group: 'messages',
                 duration: 10000,
                 speed: 1000,
-                max:4,
-                data:{
+                data: {
                     message: newMessage.message,
                     from_user: newMessage.from_user,
                 }

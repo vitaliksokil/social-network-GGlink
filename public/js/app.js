@@ -1909,6 +1909,13 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_userMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/userMixin */ "./resources/js/mixins/userMixin.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -1975,6 +1982,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [_mixins_userMixin__WEBPACK_IMPORTED_MODULE_0__["userMixin"]],
@@ -1987,14 +1995,36 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/get/messages').then(function (response) {
+    axios.get('/api/get/messages').then(function (response) {
       _this.conversationsWithUsers = response.data;
     })["catch"]();
-    this.$on('changeMessagesCount', function (data) {
-      console.log(data);
-    });
   },
-  methods: {}
+  methods: {
+    addNewMessage: function addNewMessage(newMessage) {
+      for (var key in this.conversationsWithUsers) {
+        if (this.conversationsWithUsers[key].id == newMessage.from_user.id) {
+          this.conversationsWithUsers[key].unreadMessagesCount++;
+          this.conversationsWithUsers[key].lastMessage = {
+            'text': newMessage.message.text,
+            'created_at': newMessage.message.created_at
+          };
+          break;
+        }
+      }
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['isNewMessage']), {
+    sortedContacts: function sortedContacts() {
+      return _.sortBy(this.conversationsWithUsers, [function (user) {
+        return user.lastMessage.created_at;
+      }]).reverse();
+    }
+  }),
+  watch: {
+    isNewMessage: function isNewMessage(newValue, oldValue) {
+      this.addNewMessage(newValue);
+    }
+  }
 });
 
 /***/ }),
@@ -2010,6 +2040,13 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_userMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/userMixin */ "./resources/js/mixins/userMixin.js");
 /* harmony import */ var _MessageComposer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MessageComposer */ "./resources/js/components/MessageComposer.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2087,6 +2124,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2098,20 +2149,45 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       currentSender: '',
-      allMessages: JSON.parse(JSON.stringify(this.messages))
+      allMessages: JSON.parse(JSON.stringify(this.messages)),
+      isTyping: false
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     var _this = this;
 
+    this.sendTypingFalse = debounce(this.sendTypingFalse, 3000);
     Echo["private"]("messages.".concat(this.authUser.id)).listen('NewMessage', function (data) {
-      console.log(data);
-
       _this.handleIncoming(data.message);
+    });
+    Echo["private"]("typing").listenForWhisper('typing', function (response) {
+      _this.isTyping = response.isTyping;
+
+      _this.scrollToBottom();
     });
     this.scrollToBottom();
   },
   methods: {
+    typing: function typing() {
+      if ($("p.new-msg-bg[data-msg-from=\"".concat(this.userConversationWith.id, "\"]")).length) {
+        this.updateMessagesAsRead();
+        this.setMessagesAsRead(this.userConversationWith.id);
+      }
+
+      Echo["private"]("typing").whisper('typing', {
+        isTyping: true
+      });
+      this.sendTypingFalse(); // it will be send after 3 seconds ( used debounce)
+    },
+    updateMessagesAsRead: function updateMessagesAsRead() {
+      // set messages as read in db, we don't need any response!!! we will got notification!!!
+      axios.put("/conversation/set-messages-as-read/".concat(this.userConversationWith.id));
+    },
+    sendTypingFalse: function sendTypingFalse() {
+      Echo["private"]("typing").whisper('typing', {
+        isTyping: false
+      });
+    },
     handleIncoming: function handleIncoming(message) {
       if (message.from == this.userConversationWith.id) {
         this.addNewMessage(message);
@@ -2154,13 +2230,23 @@ __webpack_require__.r(__webpack_exports__);
 
       this.scrollToBottom();
     },
-    updateUnreadCount: function updateUnreadCount() {},
     scrollToBottom: function scrollToBottom() {
       var _this3 = this;
 
       setTimeout(function () {
         _this3.$refs.conversation.scrollTop = _this3.$refs.conversation.scrollHeight - _this3.$refs.conversation.clientHeight;
       }, 50);
+    },
+    setMessagesAsRead: function setMessagesAsRead(from) {
+      $("p.new-msg-bg[data-msg-from=\"".concat(from, "\"]")).removeClass('new-msg-bg');
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(['isReadMessages'])),
+  watch: {
+    isReadMessages: function isReadMessages(newValue, oldValue) {
+      if (newValue) {
+        this.setMessagesAsRead(newValue.from);
+      }
     }
   }
 });
@@ -2207,6 +2293,9 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$emit('send', this.message);
       this.message = "";
+    },
+    typing: function typing() {
+      this.$emit('typing');
     }
   }
 });
@@ -6740,6 +6829,87 @@ __webpack_require__.r(__webpack_exports__);
 
 })));
 //# sourceMappingURL=bootstrap.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/debounce/index.js":
+/*!****************************************!*\
+  !*** ./node_modules/debounce/index.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Returns a function, that, as long as it continues to be invoked, will not
+ * be triggered. The function will be called after it stops being called for
+ * N milliseconds. If `immediate` is passed, trigger the function on the
+ * leading edge, instead of the trailing. The function also has a property 'clear' 
+ * that is a function which will clear the timer to prevent previously scheduled executions. 
+ *
+ * @source underscore.js
+ * @see http://unscriptable.com/2009/03/20/debouncing-javascript-methods/
+ * @param {Function} function to wrap
+ * @param {Number} timeout in ms (`100`)
+ * @param {Boolean} whether to execute at the beginning (`false`)
+ * @api public
+ */
+function debounce(func, wait, immediate){
+  var timeout, args, context, timestamp, result;
+  if (null == wait) wait = 100;
+
+  function later() {
+    var last = Date.now() - timestamp;
+
+    if (last < wait && last >= 0) {
+      timeout = setTimeout(later, wait - last);
+    } else {
+      timeout = null;
+      if (!immediate) {
+        result = func.apply(context, args);
+        context = args = null;
+      }
+    }
+  };
+
+  var debounced = function(){
+    context = this;
+    args = arguments;
+    timestamp = Date.now();
+    var callNow = immediate && !timeout;
+    if (!timeout) timeout = setTimeout(later, wait);
+    if (callNow) {
+      result = func.apply(context, args);
+      context = args = null;
+    }
+
+    return result;
+  };
+
+  debounced.clear = function() {
+    if (timeout) {
+      clearTimeout(timeout);
+      timeout = null;
+    }
+  };
+  
+  debounced.flush = function() {
+    if (timeout) {
+      result = func.apply(context, args);
+      context = args = null;
+      
+      clearTimeout(timeout);
+      timeout = null;
+    }
+  };
+
+  return debounced;
+};
+
+// Adds compatibility for ES modules
+debounce.debounce = debounce;
+
+module.exports = debounce;
 
 
 /***/ }),
@@ -53141,10 +53311,11 @@ var render = function() {
         _c(
           "div",
           { staticClass: "col-lg-12" },
-          _vm._l(_vm.conversationsWithUsers, function(conversationWithUser) {
+          _vm._l(_vm.sortedContacts, function(conversationWithUser) {
             return _c(
               "a",
               {
+                key: conversationWithUser.id,
                 staticClass: "subscribe-item mb-4 p-3",
                 class: {
                   "new-msg-bg": conversationWithUser.unreadMessagesCount > 0
@@ -53446,12 +53617,23 @@ var render = function() {
                         ]),
                     _vm._v(" "),
                     _vm._l(message.messages, function(m) {
-                      return _c("p", { staticClass: "ml-4 mt-2" }, [
-                        _vm._v(" " + _vm._s(m.text)),
-                        _c("small", { staticClass: "float-right " }, [
-                          _vm._v(_vm._s(m.created_at))
-                        ])
-                      ])
+                      return _c(
+                        "p",
+                        {
+                          staticClass: "ml-4 mt-2",
+                          class: { "new-msg-bg": !m.is_read },
+                          attrs: { "data-msg-from": message.from }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                    " +
+                              _vm._s(m.text)
+                          ),
+                          _c("small", { staticClass: "float-right " }, [
+                            _vm._v(_vm._s(m.created_at))
+                          ])
+                        ]
+                      )
                     })
                   ],
                   2
@@ -53461,13 +53643,51 @@ var render = function() {
           }),
           0
         )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row pt-2 position-relative" }, [
+        _c("div", { staticClass: "col-lg-12 position-absolute" }, [
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.isTyping,
+                  expression: "isTyping"
+                }
+              ],
+              staticClass: "grey"
+            },
+            [
+              _c("span", {
+                domProps: {
+                  innerHTML: _vm._s(
+                    _vm.fullName(
+                      _vm.userConversationWith.name,
+                      _vm.userConversationWith.nickname,
+                      _vm.userConversationWith.surname
+                    )
+                  )
+                }
+              }),
+              _vm._v(" "),
+              _vm._m(2)
+            ]
+          )
+        ])
       ])
     ]),
     _vm._v(" "),
     _c(
       "div",
       { staticClass: "card-footer" },
-      [_c("message-composer", { on: { send: _vm.sendMessage } })],
+      [
+        _c("message-composer", {
+          on: { send: _vm.sendMessage, typing: _vm.typing }
+        })
+      ],
       1
     )
   ])
@@ -53524,6 +53744,15 @@ var staticRenderFns = [
         )
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _vm._v("typing... "),
+      _c("i", { staticClass: "fas fa-pencil-alt" })
+    ])
   }
 ]
 render._withStripped = true
@@ -53572,12 +53801,18 @@ var render = function() {
               }
               return _vm.send($event)
             },
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.message = $event.target.value
+              },
+              function($event) {
+                $event.preventDefault()
+                return _vm.typing($event)
               }
-              _vm.message = $event.target.value
-            }
+            ]
           }
         })
       ]),
@@ -68035,6 +68270,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_notification__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-notification */ "./node_modules/vue-notification/dist/index.js");
 /* harmony import */ var vue_notification__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_notification__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var debounce__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! debounce */ "./node_modules/debounce/index.js");
+/* harmony import */ var debounce__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(debounce__WEBPACK_IMPORTED_MODULE_2__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -68059,8 +68296,25 @@ Vue.component('chat', __webpack_require__(/*! ./components/Chat.vue */ "./resour
 Vue.component('conversation', __webpack_require__(/*! ./components/Conversation.vue */ "./resources/js/components/Conversation.vue")["default"]);
 
 
+
 Vue.use(vue_notification__WEBPACK_IMPORTED_MODULE_0___default.a);
 Vue.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+window.debounce = debounce__WEBPACK_IMPORTED_MODULE_2__["debounce"];
+var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
+  state: {
+    isNewMessage: false,
+    isReadMessages: false
+  },
+  mutations: {
+    SET_IS_NEW_MESSAGE: function SET_IS_NEW_MESSAGE(state, newMessage) {
+      state.isNewMessage = newMessage;
+    },
+    SET_IS_READ_MESSAGES: function SET_IS_READ_MESSAGES(state, isRead) {
+      state.isReadMessages = isRead;
+    }
+  },
+  getters: {}
+});
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -68069,16 +68323,27 @@ Vue.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 var app = new Vue({
   el: '#app',
+  store: store,
   created: function created() {
     var _this = this;
 
     var authUserId = $('meta[name="auth-user-id"]').attr('content');
-    Echo["private"]("new.message.notification.".concat(authUserId)).notification(function (newMessage) {
-      _this.newMessageNotification(newMessage);
+    Echo["private"]("App.User.".concat(authUserId)).notification(function (response) {
+      if (location.href.match(/\/conversation\/.+\/\d+/)) {
+        if (response.type === 'MessagesHaveBeenRead') {
+          _this.$store.commit('SET_IS_READ_MESSAGES', response);
+        }
+      } else {
+        if (response.type === 'NewMessageNotification') {
+          _this.newMessageNotification(response);
 
-      _this.$emit('changeMessagesCount', {
-        'newMessage': newMessage
-      });
+          _this.$emit('changeMessagesCount', {
+            'newMessage': response
+          });
+
+          _this.$store.commit('SET_IS_NEW_MESSAGE', response);
+        }
+      }
     });
   },
   mounted: function mounted() {
@@ -68087,13 +68352,11 @@ var app = new Vue({
     });
   },
   methods: {
-    // todo show it if user are not on the conversation page
     newMessageNotification: function newMessageNotification(newMessage) {
       this.$notify({
         group: 'messages',
         duration: 10000,
         speed: 1000,
-        max: 4,
         data: {
           message: newMessage.message,
           from_user: newMessage.from_user

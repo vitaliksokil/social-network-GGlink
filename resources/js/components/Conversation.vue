@@ -47,7 +47,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-lg-11" >
+                            <div class="col-lg-11">
                                 <div v-if="message.from == userConversationWith.id">
                                     <a :href="`/profile/id/${userConversationWith.id}`"
                                        v-html="fullName(userConversationWith.name,userConversationWith.nickname,userConversationWith.surname)">
@@ -59,18 +59,31 @@
                                        v-html="fullName(authUser.name,authUser.nickname,authUser.surname)">
                                     </a>
                                 </div>
-<!--                                :class='{"new-msg-bg" : !m.is_read}'-->
-                                <p class="ml-4 mt-2"  v-for="m in message.messages"> {{m.text}}<small
+
+                                <p class="ml-4 mt-2" :class='{"new-msg-bg" : !m.is_read}' :data-msg-from="message.from" v-for="m in message.messages">
+                                    {{m.text}}<small
                                     class="float-right ">{{m.created_at}}</small>
                                 </p>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row pt-2 position-relative" >
+                <div class="col-lg-12 position-absolute">
+<!--                    -->
+                    <div class="grey" v-show="isTyping">
+                        <span
+                            v-html="fullName(userConversationWith.name,userConversationWith.nickname,userConversationWith.surname)"></span>
+                        <span>typing... <i class="fas fa-pencil-alt"></i></span>
+                    </div>
+
+                </div>
+            </div>
         </div>
         <div class="card-footer">
-            <message-composer @send="sendMessage"></message-composer>
+            <message-composer @send="sendMessage" @typing="typing"></message-composer>
         </div>
     </div>
 </template>
@@ -78,6 +91,7 @@
 <script>
     import {userMixin} from '../mixins/userMixin'
     import MessageComposer from './MessageComposer'
+    import {mapState} from 'vuex'
 
     export default {
         components: {
@@ -88,51 +102,73 @@
         data() {
             return {
                 currentSender: '',
-                allMessages: JSON.parse(JSON.stringify(this.messages))
+                allMessages: JSON.parse(JSON.stringify(this.messages)),
+                isTyping: false,
             }
         },
-        mounted() {
+        created() {
+            this.sendTypingFalse = debounce(this.sendTypingFalse, 3000);
+
             Echo.private(`messages.${this.authUser.id}`)
                 .listen('NewMessage', (data) => {
-                    console.log(data);
                     this.handleIncoming(data.message);
                 });
-
+            Echo.private(`typing`)
+                .listenForWhisper('typing', (response) => {
+                    this.isTyping = response.isTyping;
+                    this.scrollToBottom();
+                });
             this.scrollToBottom();
         },
         methods: {
-            handleIncoming(message){
-                if(message.from == this.userConversationWith.id){
+            typing() {
+                if($(`p.new-msg-bg[data-msg-from="${this.userConversationWith.id}"]`).length){
+                    this.updateMessagesAsRead();
+                    this.setMessagesAsRead(this.userConversationWith.id);
+                }
+
+                Echo.private(`typing`).whisper('typing', {isTyping: true});
+                this.sendTypingFalse(); // it will be send after 3 seconds ( used debounce)
+            },
+            updateMessagesAsRead() {
+                // set messages as read in db, we don't need any response!!! we will got notification!!!
+                axios.put(`/conversation/set-messages-as-read/${this.userConversationWith.id}`);
+            },
+            sendTypingFalse() {
+                Echo.private(`typing`).whisper('typing', {isTyping: false});
+            },
+            handleIncoming(message) {
+                if (message.from == this.userConversationWith.id) {
                     this.addNewMessage(message);
                 }
             },
-            sendMessage(message){
-                axios.post('/conversation/send',{
-                    'to':this.userConversationWith.id,
+            sendMessage(message) {
+                axios.post('/conversation/send', {
+                    'to': this.userConversationWith.id,
                     'text': message
-                }).then((response) =>{
+                }).then((response) => {
                     this.addNewMessage(response.data);
                 });
             },
-            addNewMessage(newMessage){
+            addNewMessage(newMessage) {
                 //check who was the last sender
                 let lastMessage = this.allMessages.pop();
-                if(newMessage.from == lastMessage.from){
+                if (newMessage.from == lastMessage.from) {
                     // if it was me -> add to my stack of messages
                     lastMessage.messages.push({
-                        'text':newMessage.text,
-                        'created_at':newMessage.created_at,
+                        'text': newMessage.text,
+                        'created_at': newMessage.created_at,
                     });
                     this.allMessages.push(lastMessage);
-                }else{
+                } else {
                     // if not , create a new message
                     //firstly pushing back our last messages that we popped
                     this.allMessages.push(lastMessage);
                     this.allMessages.push({
-                        'from':newMessage.from,
-                        'to':newMessage.to,
-                        'messages':[{
-                            'text':newMessage.text,
+                        'from': newMessage.from,
+                        'to': newMessage.to,
+                        'messages': [{
+                            'text': newMessage.text,
                             'created_at': newMessage.created_at
                         }]
                     })
@@ -140,13 +176,23 @@
 
                 this.scrollToBottom();
             },
-            updateUnreadCount(){
-
-            },
-            scrollToBottom(){
-                setTimeout(()=>{
+            scrollToBottom() {
+                setTimeout(() => {
                     this.$refs.conversation.scrollTop = this.$refs.conversation.scrollHeight - this.$refs.conversation.clientHeight;
-                },50);
+                }, 50);
+            },
+            setMessagesAsRead(from) {
+                $(`p.new-msg-bg[data-msg-from="${from}"]`).removeClass('new-msg-bg')
+            }
+        },
+        computed: {
+            ...mapState(['isReadMessages']),
+        },
+        watch: {
+            isReadMessages(newValue, oldValue) {
+                if (newValue) {
+                    this.setMessagesAsRead(newValue.from);
+                }
             }
         }
     }

@@ -19,7 +19,7 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
-
+$grey:#c7c7c7;
 $bg: rgba(70,70,70,0.3);
 $bgDarken: rgba(70,70,70,0.95);
 $bgLight: rgba(255,255,255,0.1);
@@ -80,4 +80,7 @@ $blocks: #ff6768;
 }
 .new-msg-bg{
     background: rgba(150,150,150,0.3);
+}
+.grey{
+    color: $grey;
 }

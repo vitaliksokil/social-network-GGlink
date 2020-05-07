@@ -14,7 +14,7 @@
                     <div class="col-lg-12">
 
 
-                        <a v-for="conversationWithUser in conversationsWithUsers"
+                        <a v-for="conversationWithUser in sortedContacts" :key="conversationWithUser.id"
                            :href='`/conversation/${conversationWithUser.nickname}/${conversationWithUser.id}`'
                            class="subscribe-item mb-4 p-3" :class="{'new-msg-bg': conversationWithUser.unreadMessagesCount > 0}"
                            style="border: 1px solid rgba(0,0,0,0.9);display: block"
@@ -66,24 +66,46 @@
 
 <script>
     import {userMixin} from '../mixins/userMixin'
+    import {mapState} from 'vuex'
     export default {
         mixins:[userMixin],
         props:['authUser'],
         data(){
             return{
-                conversationsWithUsers:[]
+                conversationsWithUsers:[],
             }
         },
         mounted() {
-            axios.get('/get/messages').then((response)=>{
+            axios.get('/api/get/messages').then((response)=>{
                 this.conversationsWithUsers = response.data;
             }).catch();
-            this.$on('changeMessagesCount',(data)=>{
-                console.log(data)
-            })
         },
         methods:{
-
+            addNewMessage(newMessage){
+                for(let key in this.conversationsWithUsers){
+                    if(this.conversationsWithUsers[key].id == newMessage.from_user.id){
+                        this.conversationsWithUsers[key].unreadMessagesCount++;
+                        this.conversationsWithUsers[key].lastMessage = {
+                            'text':newMessage.message.text,
+                            'created_at':newMessage.message.created_at,
+                        };
+                        break;
+                    }
+                }
+            },
+        },
+        computed:{
+          ...mapState(['isNewMessage']),
+            sortedContacts(){
+                return _.sortBy(this.conversationsWithUsers,[(user)=>{
+                    return user.lastMessage.created_at;
+                }]).reverse();
+            }
+        },
+        watch:{
+            isNewMessage(newValue,oldValue){
+                this.addNewMessage(newValue);
+            }
         }
     }
 </script>

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Events\NewMessage;
 use App\Message;
+use App\Notifications\MessagesHaveBeenRead;
 use App\Notifications\NewMessageNotification;
 use App\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -61,14 +63,22 @@ class MessageController extends Controller
         return response()->json($usersWithWhomIgetConversation);
     }
     public function getMessagesFor($userNickname,$userId){
-        // todo check if user can get that conversation, check by userID
+        try {
+            $this->authorize('doesConversationExist', [Message::class, $userId]);
+        } catch (AuthorizationException $e) {
+            abort(404);
+        }
 
         // setting all messages as read
-        Message::where([
+        if(Message::where([
             ['from',$userId],
             ['to',Auth::user()->id],
             ['is_read',false]
-        ])->update(['is_read'=>true]);
+        ])->update(['is_read'=>true])){
+            // set notification that all messages have been read
+            User::find($userId)->notify(new MessagesHaveBeenRead(['isRead'=>true,'from'=>$userId]));
+        }
+
 
         $myId = Auth::user()->id;
         $messages = Message::where(function($q) use($myId,$userId){
@@ -130,6 +140,7 @@ class MessageController extends Controller
             ]);
         }
 
+
         return view('pages.messages.conversation',[
             'messages'=>$newMessagesCollection,
             'userConversationWith'=>User::findOrFail($userId)
@@ -154,6 +165,16 @@ class MessageController extends Controller
         }catch (\Exception $e){
 
             abort(500,$e->getMessage());
+        }
+    }
+    public function setMessagesAsRead($from){
+        if(Message::where([
+            ['from',$from],
+            ['to',Auth::user()->id],
+            ['is_read',false]
+        ])->update(['is_read'=>true])){
+            // set notification that all messages have been read
+            User::find($from)->notify(new MessagesHaveBeenRead(['isRead'=>true,'from'=>$from]));
         }
     }
 }

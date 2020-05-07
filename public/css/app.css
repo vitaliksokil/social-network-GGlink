@@ -6412,6 +6412,10 @@ readers do not read off random characters that represent icons */
   background: rgba(150, 150, 150, 0.3);
 }
 
+.grey {
+  color: #c7c7c7;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

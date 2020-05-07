@@ -6,7 +6,7 @@ use App\Message;
 use Faker\Generator as Faker;
 
 $factory->define(Message::class, function (Faker $faker) {
-    $arrayOfUsersIds=[1,3,4];
+    $arrayOfUsersIds=[5,6,7];
     do{
         $from = $arrayOfUsersIds[array_rand($arrayOfUsersIds)];
         $to = $arrayOfUsersIds[array_rand($arrayOfUsersIds)];

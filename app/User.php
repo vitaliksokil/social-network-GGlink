@@ -138,6 +138,6 @@ class User extends Authenticatable implements MustVerifyEmail, Htmlable
 
     public function receivesBroadcastNotificationsOn()
     {
-        return 'new.message.notification.'.$this->id;
+        return 'App.User.'.$this->id;
     }
 }

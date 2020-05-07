@@ -18,7 +18,7 @@
 @include('includes.sidebar') {{--contains @yield('content')--}}
 @include('includes.footer')
 
-    <notifications group="messages" position="bottom left" width="400">
+    <notifications group="messages" position="bottom left" width="400" :max="4">
         <template slot="body" slot-scope="props">
             <a :href="`/conversation/${props.item.data.from_user.nickname}/${props.item.data.from_user.id}`" class="new-message-notification ml-5 mb-3">
                 <div class="row">

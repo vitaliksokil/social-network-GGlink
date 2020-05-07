@@ -2,24 +2,21 @@
 
 namespace App\Notifications;
 
-use App\Message;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
 
-class NewMessageNotification extends Notification
+
+class MessagesHaveBeenRead extends Notification
 {
     use Queueable;
-
     public $data;
 
     /**
      * Create a new notification instance.
-     *
-     * @param $data
+     * @param array $data
      */
-
-    public function __construct($data) // data = ['message'=>[],'from_user'=>[]]
+    public function __construct(array $data)
     {
         $this->data = $data;
     }
@@ -52,10 +49,8 @@ class NewMessageNotification extends Notification
     {
         return new BroadcastMessage($this->data);
     }
-
     public function broadcastType()
     {
-        return 'NewMessageNotification';
+        return 'MessagesHaveBeenRead';
     }
-
 }
