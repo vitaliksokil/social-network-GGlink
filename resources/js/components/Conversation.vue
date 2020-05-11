@@ -83,7 +83,11 @@
             </div>
         </div>
         <div class="card-footer">
-            <message-composer @send="sendMessage" @typing="typing"></message-composer>
+            <message-composer @send="sendMessage" @typing="typing" v-if="canMessageSend"></message-composer>
+            <div v-else>
+                The user blocked his DM
+                <i class="fas fa-lock" ></i>
+            </div>
         </div>
     </div>
 </template>
@@ -104,6 +108,7 @@
                 currentSender: '',
                 allMessages: JSON.parse(JSON.stringify(this.messages)),
                 isTyping: false,
+                canMessageSend:false,
             }
         },
         created() {
@@ -113,12 +118,18 @@
                 .listen('NewMessage', (data) => {
                     this.handleIncoming(data.message);
                 });
-            Echo.private(`typing`)
+            // listening authUser channel with his id channel
+            Echo.private(`typing.${this.authUser.id}.${this.userConversationWith.id}`)
                 .listenForWhisper('typing', (response) => {
                     this.isTyping = response.isTyping;
                     this.scrollToBottom();
                 });
             this.scrollToBottom();
+            axios.post('/conversation/can-send-message',{
+                'userConversationWith':this.userConversationWith
+            }).then((response)=>{
+                this.canMessageSend = response.data;
+            });
         },
         methods: {
             typing() {
@@ -126,8 +137,8 @@
                     this.updateMessagesAsRead();
                     this.setMessagesAsRead(this.userConversationWith.id);
                 }
-
-                Echo.private(`typing`).whisper('typing', {isTyping: true});
+                // sending 'typing' to user with whom we get current conversation
+                Echo.private(`typing.${this.userConversationWith.id}.${this.authUser.id}`).whisper('typing', {isTyping: true});
                 this.sendTypingFalse(); // it will be send after 3 seconds ( used debounce)
             },
             updateMessagesAsRead() {
@@ -135,7 +146,7 @@
                 axios.put(`/conversation/set-messages-as-read/${this.userConversationWith.id}`);
             },
             sendTypingFalse() {
-                Echo.private(`typing`).whisper('typing', {isTyping: false});
+                Echo.private(`typing.${this.userConversationWith.id}.${this.authUser.id}`).whisper('typing', {isTyping: false});
             },
             handleIncoming(message) {
                 if (message.from == this.userConversationWith.id) {
@@ -148,6 +159,12 @@
                     'text': message
                 }).then((response) => {
                     this.addNewMessage(response.data);
+                }).catch(error=>{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: error.response.data.message,
+                    });
                 });
             },
             addNewMessage(newMessage) {

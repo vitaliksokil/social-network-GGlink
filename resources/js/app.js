@@ -27,10 +27,12 @@ Vue.component('conversation', require('./components/Conversation.vue').default);
 import Notifications from 'vue-notification'
 import Vuex from 'vuex';
 import { debounce } from "debounce";
+import Swal from 'sweetalert2'
 
 Vue.use(Notifications);
 Vue.use(Vuex);
 window.debounce = debounce;
+window.Swal = Swal;
 
 const store = new Vuex.Store({
     state: {

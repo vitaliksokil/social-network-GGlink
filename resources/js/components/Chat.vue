@@ -69,16 +69,14 @@
     import {mapState} from 'vuex'
     export default {
         mixins:[userMixin],
-        props:['authUser'],
+        props:['authUser','messages'],
         data(){
             return{
-                conversationsWithUsers:[],
+                conversationsWithUsers: JSON.parse(JSON.stringify(this.messages)),
             }
         },
         mounted() {
-            axios.get('/api/get/messages').then((response)=>{
-                this.conversationsWithUsers = response.data;
-            }).catch();
+
         },
         methods:{
             addNewMessage(newMessage){

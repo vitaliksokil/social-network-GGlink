@@ -83,14 +83,19 @@ class FriendShipController extends Controller
     {
         $receiver_id = $this->getRecipientId($request);
         $sender_id = Auth::user()->id;
-        if (FriendShip::create([
-            'sender_id' => $sender_id,
-            'receiver_id' => $receiver_id
-        ])) {
-            return back()->with('success', 'Friendship request was successfully sent');
-        } else {
-            return back()->with('error', 'Something went wrong');
+        if($receiver_id != $sender_id){
+            if (FriendShip::create([
+                'sender_id' => $sender_id,
+                'receiver_id' => $receiver_id
+            ])) {
+                return back()->with('success', 'Friendship request was successfully sent');
+            } else {
+                return back()->with('error', 'Something went wrong');
+            }
+        }else{
+            abort(500);
         }
+
     }
 
     public function friendAccept(Request $request)

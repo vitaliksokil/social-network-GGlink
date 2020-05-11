@@ -153,13 +153,13 @@ class ProfileController extends Controller
         $request->validate([
            'wall_can_edit' => ['sometimes','min:0','max:2','integer'],
            'show_email' => ['sometimes','min:0','max:1','integer'],
+           'message_can_send' => ['sometimes','min:0','max:2','integer'],
         ]);
         $user = Auth::user();
         if ($user->update($request->all())) {
             return redirect()->back()->with('success', 'Successfully changed!!!');
         } else {
             return redirect()->back()->withErrors(['error' => 'Something went wrong']);
-
         }
 
 

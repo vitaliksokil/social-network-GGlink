@@ -49,7 +49,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card mb-3">
                         <div class="card-header">Wall settings</div>
                         <div class="card-body">
                             <form action="{{route('settings')}}" method="POST">
@@ -68,6 +68,39 @@
                                             <option value="2" {{$user->wall_can_edit == 2 ? 'selected' : ''}}>All users</option>
                                         </select>
                                         @error('wall_can_edit')
+                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <button type="reset" class="btn btn-pink">Reset</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <div class="card">
+                        <div class="card-header">Messages settings</div>
+                        <div class="card-body">
+                            <form action="{{route('settings')}}" method="POST">
+                                @method('PUT')
+                                @csrf
+                                <div class="form-group row">
+                                    <label for="message_can_send"
+                                           class="col-lg-2 col-form-label">{{ __('Who can send message to me') }}</label>
+                                    <div class="col-lg-6">
+                                        <select name="message_can_send"
+                                                id="message_can_send"
+                                                class="form-control @error('message_can_send') is-invalid @enderror"
+                                        >
+                                            <option value="0" {{$user->message_can_send == 0 ? 'selected' : ''}}>Nobody</option>
+                                            <option value="1" {{$user->message_can_send == 1 ? 'selected' : ''}}>My friends</option>
+                                            <option value="2" {{$user->message_can_send == 2 ? 'selected' : ''}}>All users</option>
+                                        </select>
+                                        @error('message_can_send')
                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>

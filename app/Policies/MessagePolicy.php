@@ -23,4 +23,15 @@ class MessagePolicy
         })->orderBy('created_at','asc')->get();
         return $messages->isNotEmpty();
     }
+
+    public function sendTo(User $authUser,User $user){
+        if($user->message_can_send == 0){
+            return false;
+        }elseif($user->message_can_send == 1){
+            // check if it's a friend
+            return $user->isFriend($authUser->id);
+        }else{
+            return true;
+        }
+    }
 }

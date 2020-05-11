@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Message;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -33,6 +34,19 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('isSuperAdmin', function (User $user) {
             return $user->is_super_admin ? true : false;
+        });
+
+        Gate::define('isConversationExist', function ($authUser, $firstUserId, $secondUserId) {
+            $messages = Message::where(function($q) use($firstUserId,$secondUserId){
+                $q->where([
+                    ['from',$firstUserId],
+                    ['to',$secondUserId],
+                ])->orWhere([
+                    ['from',$secondUserId],
+                    ['to',$firstUserId],
+                ]);
+            })->orderBy('created_at','asc')->get();
+            return $messages->isNotEmpty();
         });
         //
     }

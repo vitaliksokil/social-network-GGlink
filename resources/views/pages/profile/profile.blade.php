@@ -24,14 +24,14 @@
                             <form action="{{route('deleteFriend',['id' => $user->id])}}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <button type="submit" class="btn btn-danger w-100">Cancel request</button>
+                                <button type="submit" class="btn btn-danger w-100">Cancel request <i class="fas fa-times"></i></button>
                             </form>
                         @elseif($isFriend)
                             <a class="btn btn-grey w-100 disabled">You are friends</a>
                             <form action="{{route('deleteFriend',['id' => $user->id])}}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <button type="submit" class="btn btn-danger w-100">Delete from friends</button>
+                                <button type="submit" class="btn btn-danger w-100">Delete from friends <i class="fas fa-user-minus"></i></button>
                             </form>
                         @else
                             <form action="{{route('addFriend')}}" method="POST">
@@ -39,6 +39,63 @@
                                 <button type="submit" class="btn btn-success w-100 mt-2">Add friend</button>
                             </form>
                         @endif
+                        @can('sendTo',[App\Message::class,$user])
+                            @can('isConversationExist',[Auth::user()->id,$user->id])
+                                <a href="{{route('conversation',[$user->nickname,$user->id])}}" class="btn btn-primary w-100 mt-2">
+                                    Send a message <i class="fas fa-envelope"></i>
+                                </a>
+                            @else
+                                @if(Auth::user()->id != $user->id)
+                                    <a class="btn btn-primary w-100 mt-2" data-toggle="modal" data-target="#firstMessage">
+                                        Send a message <i class="fas fa-envelope"></i>
+                                    </a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="firstMessage" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-center">
+                                                        Write your first message
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{route('send.message')}}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="to" value="{{$user->id}}">
+                                                        <div class="form-group row">
+                                                            <label for="text"
+                                                                   class="col-md-4 col-form-label text-md-right">{{ __('Your message') }}</label>
+                                                            <div class="col-md-6">
+                                                        <textarea name="text" id="text" class="form-control @error('text') is-invalid @enderror"
+                                                                  required autofocus
+                                                        ></textarea>
+                                                                @error('text')
+                                                                <span class="invalid-feedback" role="alert">
+                                                     <strong>{{ $message }}</strong>
+                                                </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                    data-dismiss="modal">
+                                                                Close
+                                                            </button>
+                                                            <button type="submit" class="btn btn-success">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endcan
+
+                        @endcan
                     </div>
                     <div class="col-md-5">
                         <div class="card-body">
