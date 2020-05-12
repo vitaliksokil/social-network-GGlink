@@ -2,14 +2,16 @@
 
 namespace App;
 
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, Htmlable
 {
     use Notifiable;
 
@@ -19,7 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name','surname','nickname','photo','about','email','show_email','wall_can_edit','is_super_admin', 'password',
+        'name','surname','nickname','photo','about','email','show_email','wall_can_edit','message_can_send','is_super_admin', 'password',
     ];
 
     /**
@@ -45,6 +47,14 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     public function new_friends(){
         return $this->hasMany(FriendShip::class,'receiver_id')->select('sender_id')->where('status',0)->with('sender');
+    }
+    public function newMessages(){
+        return DB::table('messages')
+            ->select(DB::raw('count(`from`) as message_count,`from` as sender_id'))
+            ->where([
+            ['to',$this->id],
+            ['is_read',false],])
+            ->groupBy('from')->get();
     }
     public function requested_people(){
         return $this->hasMany(FriendShip::class,'sender_id')->select('receiver_id')->where('status',0)->with('receiver');
@@ -114,6 +124,20 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function __toString()
     {
+        return $this->toHtml();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function toHtml()
+    {
         return $this->name . ' <span class="pink">"'.$this->nickname.'"</span> ' . $this->surname;
+    }
+
+
+    public function receivesBroadcastNotificationsOn()
+    {
+        return 'App.User.'.$this->id;
     }
 }

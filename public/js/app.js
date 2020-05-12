@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@babel/runtime/regenerator/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -1899,10 +1911,481 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Chat.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Chat.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixins_userMixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/userMixin */ "./resources/js/mixins/userMixin.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_userMixin__WEBPACK_IMPORTED_MODULE_0__["userMixin"]],
+  props: ['authUser', 'messages'],
+  data: function data() {
+    return {
+      conversationsWithUsers: JSON.parse(JSON.stringify(this.messages))
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    addNewMessage: function addNewMessage(newMessage) {
+      for (var key in this.conversationsWithUsers) {
+        if (this.conversationsWithUsers[key].id == newMessage.from_user.id) {
+          this.conversationsWithUsers[key].unreadMessagesCount++;
+          this.conversationsWithUsers[key].lastMessage = {
+            'text': newMessage.message.text,
+            'created_at': newMessage.message.created_at
+          };
+          break;
+        }
+      }
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['isNewMessage']), {
+    sortedContacts: function sortedContacts() {
+      return _.sortBy(this.conversationsWithUsers, [function (user) {
+        return user.lastMessage.created_at;
+      }]).reverse();
+    }
+  }),
+  watch: {
+    isNewMessage: function isNewMessage(newValue, oldValue) {
+      this.addNewMessage(newValue);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Conversation.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Conversation.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mixins_userMixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mixins/userMixin */ "./resources/js/mixins/userMixin.js");
+/* harmony import */ var _MessageComposer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MessageComposer */ "./resources/js/components/MessageComposer.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    'message-composer': _MessageComposer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  mixins: [_mixins_userMixin__WEBPACK_IMPORTED_MODULE_1__["userMixin"]],
+  props: ['messages', 'userConversationWith', 'authUser'],
+  data: function data() {
+    return {
+      currentSender: '',
+      allMessages: JSON.parse(JSON.stringify(this.messages)),
+      isTyping: false,
+      canMessageSend: false,
+      loading: false
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.sendTypingFalse = debounce(this.sendTypingFalse, 3000);
+    Echo["private"]("messages.".concat(this.authUser.id)).listen('NewMessage', function (data) {
+      _this.handleIncoming(data.message);
+    }); // listening authUser channel with his id channel
+
+    Echo["private"]("typing.".concat(this.authUser.id, ".").concat(this.userConversationWith.id)).listenForWhisper('typing', function (response) {
+      _this.isTyping = response.isTyping;
+
+      _this.scrollToBottom();
+    });
+    this.scrollToBottom();
+    this.canSendMessage();
+    $(document).ready(function () {
+      _this.scrollHandler = debounce(_this.scrollHandler, 400);
+      $('#conversation').scroll(_this.scrollHandler);
+    });
+  },
+  methods: {
+    scrollHandler: function scrollHandler(e) {
+      var scrollTopPoint = e.target.scrollHeight;
+
+      if (e.target.scrollTop == 0) {
+        this.loadMoreMessages();
+        setTimeout(function () {
+          e.target.scrollTop = e.target.scrollHeight - scrollTopPoint;
+        }, 100);
+      }
+    },
+    loadMoreMessages: function loadMoreMessages() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var skip;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                skip = _this2.countAllMessagesCount();
+                axios.get("/conversation/".concat(_this2.userConversationWith.nickname, "/").concat(_this2.userConversationWith.id), {
+                  params: {
+                    skip: skip
+                  }
+                }).then(function (response) {
+                  var _iteratorNormalCompletion = true;
+                  var _didIteratorError = false;
+                  var _iteratorError = undefined;
+
+                  try {
+                    for (var _iterator = response.data.messages[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                      var item = _step.value;
+
+                      _this2.allMessages.unshift(item);
+                    }
+                  } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                  } finally {
+                    try {
+                      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+                        _iterator["return"]();
+                      }
+                    } finally {
+                      if (_didIteratorError) {
+                        throw _iteratorError;
+                      }
+                    }
+                  }
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    countAllMessagesCount: function countAllMessagesCount() {
+      var count = 0;
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = this.allMessages[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var item = _step2.value;
+          count += item.messages.length;
+        }
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+            _iterator2["return"]();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+
+      return count;
+    },
+    canSendMessage: function canSendMessage() {
+      var _this3 = this;
+
+      axios.post('/conversation/can-send-message', {
+        'userConversationWith': this.userConversationWith
+      }).then(function (response) {
+        _this3.canMessageSend = response.data;
+      });
+    },
+    typing: function typing() {
+      if ($("p.new-msg-bg[data-msg-from=\"".concat(this.userConversationWith.id, "\"]")).length) {
+        this.updateMessagesAsRead();
+        this.setMessagesAsRead(this.userConversationWith.id);
+      } // sending 'typing' to user with whom we get current conversation
+
+
+      Echo["private"]("typing.".concat(this.userConversationWith.id, ".").concat(this.authUser.id)).whisper('typing', {
+        isTyping: true
+      });
+      this.sendTypingFalse(); // it will be send after 3 seconds ( used debounce)
+    },
+    updateMessagesAsRead: function updateMessagesAsRead() {
+      // set messages as read in db, we don't need any response!!! we will got notification!!!
+      axios.put("/conversation/set-messages-as-read/".concat(this.userConversationWith.id));
+    },
+    sendTypingFalse: function sendTypingFalse() {
+      Echo["private"]("typing.".concat(this.userConversationWith.id, ".").concat(this.authUser.id)).whisper('typing', {
+        isTyping: false
+      });
+    },
+    handleIncoming: function handleIncoming(message) {
+      if (message.from == this.userConversationWith.id) {
+        this.addNewMessage(message);
+      }
+    },
+    sendMessage: function sendMessage(message) {
+      var _this4 = this;
+
+      axios.post('/conversation/send', {
+        'to': this.userConversationWith.id,
+        'text': message
+      }).then(function (response) {
+        _this4.addNewMessage(response.data);
+      })["catch"](function (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error.response.data.message
+        });
+      });
+    },
+    addNewMessage: function addNewMessage(newMessage) {
+      //check who was the last sender
+      var lastMessage = this.allMessages.pop();
+
+      if (newMessage.from == lastMessage.from) {
+        // if it was me -> add to my stack of messages
+        lastMessage.messages.push({
+          'text': newMessage.text,
+          'created_at': newMessage.created_at
+        });
+        this.allMessages.push(lastMessage);
+      } else {
+        // if not , create a new message
+        //firstly pushing back our last messages that we popped
+        this.allMessages.push(lastMessage);
+        this.allMessages.push({
+          'from': newMessage.from,
+          'to': newMessage.to,
+          'messages': [{
+            'text': newMessage.text,
+            'created_at': newMessage.created_at
+          }]
+        });
+      }
+
+      this.scrollToBottom();
+    },
+    scrollToBottom: function scrollToBottom() {
+      var _this5 = this;
+
+      setTimeout(function () {
+        _this5.$refs.conversation.scrollTop = _this5.$refs.conversation.scrollHeight - _this5.$refs.conversation.clientHeight;
+      }, 50);
+    },
+    setMessagesAsRead: function setMessagesAsRead(from) {
+      $("p.new-msg-bg[data-msg-from=\"".concat(from, "\"]")).removeClass('new-msg-bg');
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])(['isReadMessages'])),
+  watch: {
+    isReadMessages: function isReadMessages(newValue, oldValue) {
+      if (newValue) {
+        this.setMessagesAsRead(newValue.from);
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MessageComposer.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MessageComposer.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1922,11 +2405,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  name: "messageComposer",
+  data: function data() {
+    return {
+      message: ''
+    };
+  },
+  methods: {
+    send: function send(e) {
+      e.preventDefault();
+
+      if (this.message == '') {
+        return;
+      }
+
+      this.$emit('send', this.message);
+      this.message = "";
+    },
+    typing: function typing() {
+      this.$emit('typing');
+    }
   }
 });
 
@@ -6459,6 +6958,87 @@ __webpack_require__.r(__webpack_exports__);
 
 })));
 //# sourceMappingURL=bootstrap.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/debounce/index.js":
+/*!****************************************!*\
+  !*** ./node_modules/debounce/index.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Returns a function, that, as long as it continues to be invoked, will not
+ * be triggered. The function will be called after it stops being called for
+ * N milliseconds. If `immediate` is passed, trigger the function on the
+ * leading edge, instead of the trailing. The function also has a property 'clear' 
+ * that is a function which will clear the timer to prevent previously scheduled executions. 
+ *
+ * @source underscore.js
+ * @see http://unscriptable.com/2009/03/20/debouncing-javascript-methods/
+ * @param {Function} function to wrap
+ * @param {Number} timeout in ms (`100`)
+ * @param {Boolean} whether to execute at the beginning (`false`)
+ * @api public
+ */
+function debounce(func, wait, immediate){
+  var timeout, args, context, timestamp, result;
+  if (null == wait) wait = 100;
+
+  function later() {
+    var last = Date.now() - timestamp;
+
+    if (last < wait && last >= 0) {
+      timeout = setTimeout(later, wait - last);
+    } else {
+      timeout = null;
+      if (!immediate) {
+        result = func.apply(context, args);
+        context = args = null;
+      }
+    }
+  };
+
+  var debounced = function(){
+    context = this;
+    args = arguments;
+    timestamp = Date.now();
+    var callNow = immediate && !timeout;
+    if (!timeout) timeout = setTimeout(later, wait);
+    if (callNow) {
+      result = func.apply(context, args);
+      context = args = null;
+    }
+
+    return result;
+  };
+
+  debounced.clear = function() {
+    if (timeout) {
+      clearTimeout(timeout);
+      timeout = null;
+    }
+  };
+  
+  debounced.flush = function() {
+    if (timeout) {
+      result = func.apply(context, args);
+      context = args = null;
+      
+      clearTimeout(timeout);
+      timeout = null;
+    }
+  };
+
+  return debounced;
+};
+
+// Adds compatibility for ES modules
+debounce.debounce = debounce;
+
+module.exports = debounce;
 
 
 /***/ }),
@@ -17069,6 +17649,858 @@ if ( !noGlobal ) {
 
 return jQuery;
 } );
+
+
+/***/ }),
+
+/***/ "./node_modules/laravel-echo/dist/echo.js":
+/*!************************************************!*\
+  !*** ./node_modules/laravel-echo/dist/echo.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class Connector {
+    /**
+     * Create a new class instance.
+     */
+    constructor(options) {
+        /**
+         * Default connector options.
+         */
+        this._defaultOptions = {
+            auth: {
+                headers: {},
+            },
+            authEndpoint: '/broadcasting/auth',
+            broadcaster: 'pusher',
+            csrfToken: null,
+            host: null,
+            key: null,
+            namespace: 'App.Events',
+        };
+        this.setOptions(options);
+        this.connect();
+    }
+    /**
+     * Merge the custom options with the defaults.
+     */
+    setOptions(options) {
+        this.options = Object.assign(this._defaultOptions, options);
+        if (this.csrfToken()) {
+            this.options.auth.headers['X-CSRF-TOKEN'] = this.csrfToken();
+        }
+        return options;
+    }
+    /**
+     * Extract the CSRF token from the page.
+     */
+    csrfToken() {
+        let selector;
+        if (typeof window !== 'undefined' && window['Laravel'] && window['Laravel'].csrfToken) {
+            return window['Laravel'].csrfToken;
+        }
+        else if (this.options.csrfToken) {
+            return this.options.csrfToken;
+        }
+        else if (typeof document !== 'undefined' &&
+            typeof document.querySelector === 'function' &&
+            (selector = document.querySelector('meta[name="csrf-token"]'))) {
+            return selector.getAttribute('content');
+        }
+        return null;
+    }
+}
+
+/**
+ * This class represents a basic channel.
+ */
+class Channel {
+    /**
+     * Listen for a whisper event on the channel instance.
+     */
+    listenForWhisper(event, callback) {
+        return this.listen('.client-' + event, callback);
+    }
+    /**
+     * Listen for an event on the channel instance.
+     */
+    notification(callback) {
+        return this.listen('.Illuminate\\Notifications\\Events\\BroadcastNotificationCreated', callback);
+    }
+    /**
+     * Stop listening for a whispser event on the channel instance.
+     */
+    stopListeningForWhisper(event) {
+        return this.stopListening('.client-' + event);
+    }
+}
+
+/**
+ * Event name formatter
+ */
+class EventFormatter {
+    /**
+     * Create a new class instance.
+     */
+    constructor(namespace) {
+        this.setNamespace(namespace);
+    }
+    /**
+     * Format the given event name.
+     */
+    format(event) {
+        if (event.charAt(0) === '.' || event.charAt(0) === '\\') {
+            return event.substr(1);
+        }
+        else if (this.namespace) {
+            event = this.namespace + '.' + event;
+        }
+        return event.replace(/\./g, '\\');
+    }
+    /**
+     * Set the event namespace.
+     */
+    setNamespace(value) {
+        this.namespace = value;
+    }
+}
+
+/**
+ * This class represents a Pusher channel.
+ */
+class PusherChannel extends Channel {
+    /**
+     * Create a new class instance.
+     */
+    constructor(pusher, name, options) {
+        super();
+        this.name = name;
+        this.pusher = pusher;
+        this.options = options;
+        this.eventFormatter = new EventFormatter(this.options.namespace);
+        this.subscribe();
+    }
+    /**
+     * Subscribe to a Pusher channel.
+     */
+    subscribe() {
+        this.subscription = this.pusher.subscribe(this.name);
+    }
+    /**
+     * Unsubscribe from a Pusher channel.
+     */
+    unsubscribe() {
+        this.pusher.unsubscribe(this.name);
+    }
+    /**
+     * Listen for an event on the channel instance.
+     */
+    listen(event, callback) {
+        this.on(this.eventFormatter.format(event), callback);
+        return this;
+    }
+    /**
+     * Stop listening for an event on the channel instance.
+     */
+    stopListening(event) {
+        this.subscription.unbind(this.eventFormatter.format(event));
+        return this;
+    }
+    /**
+     * Bind a channel to an event.
+     */
+    on(event, callback) {
+        this.subscription.bind(event, callback);
+        return this;
+    }
+}
+
+/**
+ * This class represents a Pusher private channel.
+ */
+class PusherPrivateChannel extends PusherChannel {
+    /**
+     * Trigger client event on the channel.
+     */
+    whisper(eventName, data) {
+        this.pusher.channels.channels[this.name].trigger(`client-${eventName}`, data);
+        return this;
+    }
+}
+
+/**
+ * This class represents a Pusher private channel.
+ */
+class PusherEncryptedPrivateChannel extends PusherChannel {
+    /**
+     * Trigger client event on the channel.
+     */
+    whisper(eventName, data) {
+        this.pusher.channels.channels[this.name].trigger(`client-${eventName}`, data);
+        return this;
+    }
+}
+
+/**
+ * This class represents a Pusher presence channel.
+ */
+class PusherPresenceChannel extends PusherChannel {
+    /**
+     * Register a callback to be called anytime the member list changes.
+     */
+    here(callback) {
+        this.on('pusher:subscription_succeeded', data => {
+            callback(Object.keys(data.members).map(k => data.members[k]));
+        });
+        return this;
+    }
+    /**
+     * Listen for someone joining the channel.
+     */
+    joining(callback) {
+        this.on('pusher:member_added', member => {
+            callback(member.info);
+        });
+        return this;
+    }
+    /**
+     * Listen for someone leaving the channel.
+     */
+    leaving(callback) {
+        this.on('pusher:member_removed', member => {
+            callback(member.info);
+        });
+        return this;
+    }
+    /**
+     * Trigger client event on the channel.
+     */
+    whisper(eventName, data) {
+        this.pusher.channels.channels[this.name].trigger(`client-${eventName}`, data);
+        return this;
+    }
+}
+
+/**
+ * This class represents a Socket.io channel.
+ */
+class SocketIoChannel extends Channel {
+    /**
+     * Create a new class instance.
+     */
+    constructor(socket, name, options) {
+        super();
+        /**
+         * The event callbacks applied to the channel.
+         */
+        this.events = {};
+        this.name = name;
+        this.socket = socket;
+        this.options = options;
+        this.eventFormatter = new EventFormatter(this.options.namespace);
+        this.subscribe();
+        this.configureReconnector();
+    }
+    /**
+     * Subscribe to a Socket.io channel.
+     */
+    subscribe() {
+        this.socket.emit('subscribe', {
+            channel: this.name,
+            auth: this.options.auth || {},
+        });
+    }
+    /**
+     * Unsubscribe from channel and ubind event callbacks.
+     */
+    unsubscribe() {
+        this.unbind();
+        this.socket.emit('unsubscribe', {
+            channel: this.name,
+            auth: this.options.auth || {},
+        });
+    }
+    /**
+     * Listen for an event on the channel instance.
+     */
+    listen(event, callback) {
+        this.on(this.eventFormatter.format(event), callback);
+        return this;
+    }
+    /**
+     * Stop listening for an event on the channel instance.
+     */
+    stopListening(event) {
+        const name = this.eventFormatter.format(event);
+        this.socket.removeListener(name);
+        delete this.events[name];
+        return this;
+    }
+    /**
+     * Bind the channel's socket to an event and store the callback.
+     */
+    on(event, callback) {
+        let listener = (channel, data) => {
+            if (this.name == channel) {
+                callback(data);
+            }
+        };
+        this.socket.on(event, listener);
+        this.bind(event, listener);
+    }
+    /**
+     * Attach a 'reconnect' listener and bind the event.
+     */
+    configureReconnector() {
+        const listener = () => {
+            this.subscribe();
+        };
+        this.socket.on('reconnect', listener);
+        this.bind('reconnect', listener);
+    }
+    /**
+     * Bind the channel's socket to an event and store the callback.
+     */
+    bind(event, callback) {
+        this.events[event] = this.events[event] || [];
+        this.events[event].push(callback);
+    }
+    /**
+     * Unbind the channel's socket from all stored event callbacks.
+     */
+    unbind() {
+        Object.keys(this.events).forEach(event => {
+            this.events[event].forEach(callback => {
+                this.socket.removeListener(event, callback);
+            });
+            delete this.events[event];
+        });
+    }
+}
+
+/**
+ * This class represents a Socket.io presence channel.
+ */
+class SocketIoPrivateChannel extends SocketIoChannel {
+    /**
+     * Trigger client event on the channel.
+     */
+    whisper(eventName, data) {
+        this.socket.emit('client event', {
+            channel: this.name,
+            event: `client-${eventName}`,
+            data: data,
+        });
+        return this;
+    }
+}
+
+/**
+ * This class represents a Socket.io presence channel.
+ */
+class SocketIoPresenceChannel extends SocketIoPrivateChannel {
+    /**
+     * Register a callback to be called anytime the member list changes.
+     */
+    here(callback) {
+        this.on('presence:subscribed', (members) => {
+            callback(members.map(m => m.user_info));
+        });
+        return this;
+    }
+    /**
+     * Listen for someone joining the channel.
+     */
+    joining(callback) {
+        this.on('presence:joining', member => callback(member.user_info));
+        return this;
+    }
+    /**
+     * Listen for someone leaving the channel.
+     */
+    leaving(callback) {
+        this.on('presence:leaving', member => callback(member.user_info));
+        return this;
+    }
+}
+
+/**
+ * This class represents a null channel.
+ */
+class NullChannel extends Channel {
+    /**
+     * Subscribe to a channel.
+     */
+    subscribe() {
+        //
+    }
+    /**
+     * Unsubscribe from a channel.
+     */
+    unsubscribe() {
+        //
+    }
+    /**
+     * Listen for an event on the channel instance.
+     */
+    listen(event, callback) {
+        return this;
+    }
+    /**
+     * Stop listening for an event on the channel instance.
+     */
+    stopListening(event) {
+        return this;
+    }
+    /**
+     * Bind a channel to an event.
+     */
+    on(event, callback) {
+        return this;
+    }
+}
+
+/**
+ * This class represents a null private channel.
+ */
+class NullPrivateChannel extends NullChannel {
+    /**
+     * Trigger client event on the channel.
+     */
+    whisper(eventName, data) {
+        return this;
+    }
+}
+
+/**
+ * This class represents a null presence channel.
+ */
+class NullPresenceChannel extends NullChannel {
+    /**
+     * Register a callback to be called anytime the member list changes.
+     */
+    here(callback) {
+        return this;
+    }
+    /**
+     * Listen for someone joining the channel.
+     */
+    joining(callback) {
+        return this;
+    }
+    /**
+     * Listen for someone leaving the channel.
+     */
+    leaving(callback) {
+        return this;
+    }
+    /**
+     * Trigger client event on the channel.
+     */
+    whisper(eventName, data) {
+        return this;
+    }
+}
+
+/**
+ * This class creates a connector to Pusher.
+ */
+class PusherConnector extends Connector {
+    constructor() {
+        super(...arguments);
+        /**
+         * All of the subscribed channel names.
+         */
+        this.channels = {};
+    }
+    /**
+     * Create a fresh Pusher connection.
+     */
+    connect() {
+        if (typeof this.options.client !== 'undefined') {
+            this.pusher = this.options.client;
+        }
+        else {
+            this.pusher = new Pusher(this.options.key, this.options);
+        }
+    }
+    /**
+     * Listen for an event on a channel instance.
+     */
+    listen(name, event, callback) {
+        return this.channel(name).listen(event, callback);
+    }
+    /**
+     * Get a channel instance by name.
+     */
+    channel(name) {
+        if (!this.channels[name]) {
+            this.channels[name] = new PusherChannel(this.pusher, name, this.options);
+        }
+        return this.channels[name];
+    }
+    /**
+     * Get a private channel instance by name.
+     */
+    privateChannel(name) {
+        if (!this.channels['private-' + name]) {
+            this.channels['private-' + name] = new PusherPrivateChannel(this.pusher, 'private-' + name, this.options);
+        }
+        return this.channels['private-' + name];
+    }
+    /**
+     * Get a private encrypted channel instance by name.
+     */
+    encryptedPrivateChannel(name) {
+        if (!this.channels['private-encrypted-' + name]) {
+            this.channels['private-encrypted-' + name] = new PusherEncryptedPrivateChannel(this.pusher, 'private-encrypted-' + name, this.options);
+        }
+        return this.channels['private-encrypted-' + name];
+    }
+    /**
+     * Get a presence channel instance by name.
+     */
+    presenceChannel(name) {
+        if (!this.channels['presence-' + name]) {
+            this.channels['presence-' + name] = new PusherPresenceChannel(this.pusher, 'presence-' + name, this.options);
+        }
+        return this.channels['presence-' + name];
+    }
+    /**
+     * Leave the given channel, as well as its private and presence variants.
+     */
+    leave(name) {
+        let channels = [name, 'private-' + name, 'presence-' + name];
+        channels.forEach((name, index) => {
+            this.leaveChannel(name);
+        });
+    }
+    /**
+     * Leave the given channel.
+     */
+    leaveChannel(name) {
+        if (this.channels[name]) {
+            this.channels[name].unsubscribe();
+            delete this.channels[name];
+        }
+    }
+    /**
+     * Get the socket ID for the connection.
+     */
+    socketId() {
+        return this.pusher.connection.socket_id;
+    }
+    /**
+     * Disconnect Pusher connection.
+     */
+    disconnect() {
+        this.pusher.disconnect();
+    }
+}
+
+/**
+ * This class creates a connnector to a Socket.io server.
+ */
+class SocketIoConnector extends Connector {
+    constructor() {
+        super(...arguments);
+        /**
+         * All of the subscribed channel names.
+         */
+        this.channels = {};
+    }
+    /**
+     * Create a fresh Socket.io connection.
+     */
+    connect() {
+        let io = this.getSocketIO();
+        this.socket = io(this.options.host, this.options);
+        return this.socket;
+    }
+    /**
+     * Get socket.io module from global scope or options.
+     */
+    getSocketIO() {
+        if (typeof this.options.client !== 'undefined') {
+            return this.options.client;
+        }
+        if (typeof io !== 'undefined') {
+            return io;
+        }
+        throw new Error('Socket.io client not found. Should be globally available or passed via options.client');
+    }
+    /**
+     * Listen for an event on a channel instance.
+     */
+    listen(name, event, callback) {
+        return this.channel(name).listen(event, callback);
+    }
+    /**
+     * Get a channel instance by name.
+     */
+    channel(name) {
+        if (!this.channels[name]) {
+            this.channels[name] = new SocketIoChannel(this.socket, name, this.options);
+        }
+        return this.channels[name];
+    }
+    /**
+     * Get a private channel instance by name.
+     */
+    privateChannel(name) {
+        if (!this.channels['private-' + name]) {
+            this.channels['private-' + name] = new SocketIoPrivateChannel(this.socket, 'private-' + name, this.options);
+        }
+        return this.channels['private-' + name];
+    }
+    /**
+     * Get a presence channel instance by name.
+     */
+    presenceChannel(name) {
+        if (!this.channels['presence-' + name]) {
+            this.channels['presence-' + name] = new SocketIoPresenceChannel(this.socket, 'presence-' + name, this.options);
+        }
+        return this.channels['presence-' + name];
+    }
+    /**
+     * Leave the given channel, as well as its private and presence variants.
+     */
+    leave(name) {
+        let channels = [name, 'private-' + name, 'presence-' + name];
+        channels.forEach(name => {
+            this.leaveChannel(name);
+        });
+    }
+    /**
+     * Leave the given channel.
+     */
+    leaveChannel(name) {
+        if (this.channels[name]) {
+            this.channels[name].unsubscribe();
+            delete this.channels[name];
+        }
+    }
+    /**
+     * Get the socket ID for the connection.
+     */
+    socketId() {
+        return this.socket.id;
+    }
+    /**
+     * Disconnect Socketio connection.
+     */
+    disconnect() {
+        this.socket.disconnect();
+    }
+}
+
+/**
+ * This class creates a null connector.
+ */
+class NullConnector extends Connector {
+    constructor() {
+        super(...arguments);
+        /**
+         * All of the subscribed channel names.
+         */
+        this.channels = {};
+    }
+    /**
+     * Create a fresh connection.
+     */
+    connect() {
+        //
+    }
+    /**
+     * Listen for an event on a channel instance.
+     */
+    listen(name, event, callback) {
+        return new NullChannel();
+    }
+    /**
+     * Get a channel instance by name.
+     */
+    channel(name) {
+        return new NullChannel();
+    }
+    /**
+     * Get a private channel instance by name.
+     */
+    privateChannel(name) {
+        return new NullPrivateChannel();
+    }
+    /**
+     * Get a presence channel instance by name.
+     */
+    presenceChannel(name) {
+        return new NullPresenceChannel();
+    }
+    /**
+     * Leave the given channel, as well as its private and presence variants.
+     */
+    leave(name) {
+        //
+    }
+    /**
+     * Leave the given channel.
+     */
+    leaveChannel(name) {
+        //
+    }
+    /**
+     * Get the socket ID for the connection.
+     */
+    socketId() {
+        return 'fake-socket-id';
+    }
+    /**
+     * Disconnect the connection.
+     */
+    disconnect() {
+        //
+    }
+}
+
+/**
+ * This class is the primary API for interacting with broadcasting.
+ */
+class Echo {
+    /**
+     * Create a new class instance.
+     */
+    constructor(options) {
+        this.options = options;
+        this.connect();
+        if (!this.options.withoutInterceptors) {
+            this.registerInterceptors();
+        }
+    }
+    /**
+     * Get a channel instance by name.
+     */
+    channel(channel) {
+        return this.connector.channel(channel);
+    }
+    /**
+     * Create a new connection.
+     */
+    connect() {
+        if (this.options.broadcaster == 'pusher') {
+            this.connector = new PusherConnector(this.options);
+        }
+        else if (this.options.broadcaster == 'socket.io') {
+            this.connector = new SocketIoConnector(this.options);
+        }
+        else if (this.options.broadcaster == 'null') {
+            this.connector = new NullConnector(this.options);
+        }
+        else if (typeof this.options.broadcaster == 'function') {
+            this.connector = new this.options.broadcaster(this.options);
+        }
+    }
+    /**
+     * Disconnect from the Echo server.
+     */
+    disconnect() {
+        this.connector.disconnect();
+    }
+    /**
+     * Get a presence channel instance by name.
+     */
+    join(channel) {
+        return this.connector.presenceChannel(channel);
+    }
+    /**
+     * Leave the given channel, as well as its private and presence variants.
+     */
+    leave(channel) {
+        this.connector.leave(channel);
+    }
+    /**
+     * Leave the given channel.
+     */
+    leaveChannel(channel) {
+        this.connector.leaveChannel(channel);
+    }
+    /**
+     * Listen for an event on a channel instance.
+     */
+    listen(channel, event, callback) {
+        return this.connector.listen(channel, event, callback);
+    }
+    /**
+     * Get a private channel instance by name.
+     */
+    private(channel) {
+        return this.connector.privateChannel(channel);
+    }
+    /**
+     * Get a private encrypted channel instance by name.
+     */
+    encryptedPrivate(channel) {
+        return this.connector.encryptedPrivateChannel(channel);
+    }
+    /**
+     * Get the Socket ID for the connection.
+     */
+    socketId() {
+        return this.connector.socketId();
+    }
+    /**
+     * Register 3rd party request interceptiors. These are used to automatically
+     * send a connections socket id to a Laravel app with a X-Socket-Id header.
+     */
+    registerInterceptors() {
+        if (typeof Vue === 'function' && Vue.http) {
+            this.registerVueRequestInterceptor();
+        }
+        if (typeof axios === 'function') {
+            this.registerAxiosRequestInterceptor();
+        }
+        if (typeof jQuery === 'function') {
+            this.registerjQueryAjaxSetup();
+        }
+    }
+    /**
+     * Register a Vue HTTP interceptor to add the X-Socket-ID header.
+     */
+    registerVueRequestInterceptor() {
+        Vue.http.interceptors.push((request, next) => {
+            if (this.socketId()) {
+                request.headers.set('X-Socket-ID', this.socketId());
+            }
+            next();
+        });
+    }
+    /**
+     * Register an Axios HTTP interceptor to add the X-Socket-ID header.
+     */
+    registerAxiosRequestInterceptor() {
+        axios.interceptors.request.use((config) => {
+            if (this.socketId()) {
+                config.headers['X-Socket-Id'] = this.socketId();
+            }
+            return config;
+        });
+    }
+    /**
+     * Register jQuery AjaxPrefilter to add the X-Socket-ID header.
+     */
+    registerjQueryAjaxSetup() {
+        if (typeof jQuery.ajax != 'undefined') {
+            jQuery.ajaxPrefilter((options, originalOptions, xhr) => {
+                if (this.socketId()) {
+                    xhr.setRequestHeader('X-Socket-Id', this.socketId());
+                }
+            });
+        }
+    }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Echo);
 
 
 /***/ }),
@@ -37014,6 +38446,5302 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/pusher-js/dist/web/pusher.js":
+/*!***************************************************!*\
+  !*** ./node_modules/pusher-js/dist/web/pusher.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * Pusher JavaScript Library v6.0.0
+ * https://pusher.com/
+ *
+ * Copyright 2017, Pusher
+ * Released under the MIT licence.
+ */
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else {}
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// Copyright (C) 2016 Dmitry Chestnykh
+// MIT License. See LICENSE file for details.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Package base64 implements Base64 encoding and decoding.
+ */
+// Invalid character used in decoding to indicate
+// that the character to decode is out of range of
+// alphabet and cannot be decoded.
+var INVALID_BYTE = 256;
+/**
+ * Implements standard Base64 encoding.
+ *
+ * Operates in constant time.
+ */
+var Coder = /** @class */ (function () {
+    // TODO(dchest): methods to encode chunk-by-chunk.
+    function Coder(_paddingCharacter) {
+        if (_paddingCharacter === void 0) { _paddingCharacter = "="; }
+        this._paddingCharacter = _paddingCharacter;
+    }
+    Coder.prototype.encodedLength = function (length) {
+        if (!this._paddingCharacter) {
+            return (length * 8 + 5) / 6 | 0;
+        }
+        return (length + 2) / 3 * 4 | 0;
+    };
+    Coder.prototype.encode = function (data) {
+        var out = "";
+        var i = 0;
+        for (; i < data.length - 2; i += 3) {
+            var c = (data[i] << 16) | (data[i + 1] << 8) | (data[i + 2]);
+            out += this._encodeByte((c >>> 3 * 6) & 63);
+            out += this._encodeByte((c >>> 2 * 6) & 63);
+            out += this._encodeByte((c >>> 1 * 6) & 63);
+            out += this._encodeByte((c >>> 0 * 6) & 63);
+        }
+        var left = data.length - i;
+        if (left > 0) {
+            var c = (data[i] << 16) | (left === 2 ? data[i + 1] << 8 : 0);
+            out += this._encodeByte((c >>> 3 * 6) & 63);
+            out += this._encodeByte((c >>> 2 * 6) & 63);
+            if (left === 2) {
+                out += this._encodeByte((c >>> 1 * 6) & 63);
+            }
+            else {
+                out += this._paddingCharacter || "";
+            }
+            out += this._paddingCharacter || "";
+        }
+        return out;
+    };
+    Coder.prototype.maxDecodedLength = function (length) {
+        if (!this._paddingCharacter) {
+            return (length * 6 + 7) / 8 | 0;
+        }
+        return length / 4 * 3 | 0;
+    };
+    Coder.prototype.decodedLength = function (s) {
+        return this.maxDecodedLength(s.length - this._getPaddingLength(s));
+    };
+    Coder.prototype.decode = function (s) {
+        if (s.length === 0) {
+            return new Uint8Array(0);
+        }
+        var paddingLength = this._getPaddingLength(s);
+        var length = s.length - paddingLength;
+        var out = new Uint8Array(this.maxDecodedLength(length));
+        var op = 0;
+        var i = 0;
+        var haveBad = 0;
+        var v0 = 0, v1 = 0, v2 = 0, v3 = 0;
+        for (; i < length - 4; i += 4) {
+            v0 = this._decodeChar(s.charCodeAt(i + 0));
+            v1 = this._decodeChar(s.charCodeAt(i + 1));
+            v2 = this._decodeChar(s.charCodeAt(i + 2));
+            v3 = this._decodeChar(s.charCodeAt(i + 3));
+            out[op++] = (v0 << 2) | (v1 >>> 4);
+            out[op++] = (v1 << 4) | (v2 >>> 2);
+            out[op++] = (v2 << 6) | v3;
+            haveBad |= v0 & INVALID_BYTE;
+            haveBad |= v1 & INVALID_BYTE;
+            haveBad |= v2 & INVALID_BYTE;
+            haveBad |= v3 & INVALID_BYTE;
+        }
+        if (i < length - 1) {
+            v0 = this._decodeChar(s.charCodeAt(i));
+            v1 = this._decodeChar(s.charCodeAt(i + 1));
+            out[op++] = (v0 << 2) | (v1 >>> 4);
+            haveBad |= v0 & INVALID_BYTE;
+            haveBad |= v1 & INVALID_BYTE;
+        }
+        if (i < length - 2) {
+            v2 = this._decodeChar(s.charCodeAt(i + 2));
+            out[op++] = (v1 << 4) | (v2 >>> 2);
+            haveBad |= v2 & INVALID_BYTE;
+        }
+        if (i < length - 3) {
+            v3 = this._decodeChar(s.charCodeAt(i + 3));
+            out[op++] = (v2 << 6) | v3;
+            haveBad |= v3 & INVALID_BYTE;
+        }
+        if (haveBad !== 0) {
+            throw new Error("Base64Coder: incorrect characters for decoding");
+        }
+        return out;
+    };
+    // Standard encoding have the following encoded/decoded ranges,
+    // which we need to convert between.
+    //
+    // ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789  +   /
+    // Index:   0 - 25                    26 - 51              52 - 61   62  63
+    // ASCII:  65 - 90                    97 - 122             48 - 57   43  47
+    //
+    // Encode 6 bits in b into a new character.
+    Coder.prototype._encodeByte = function (b) {
+        // Encoding uses constant time operations as follows:
+        //
+        // 1. Define comparison of A with B using (A - B) >>> 8:
+        //          if A > B, then result is positive integer
+        //          if A <= B, then result is 0
+        //
+        // 2. Define selection of C or 0 using bitwise AND: X & C:
+        //          if X == 0, then result is 0
+        //          if X != 0, then result is C
+        //
+        // 3. Start with the smallest comparison (b >= 0), which is always
+        //    true, so set the result to the starting ASCII value (65).
+        //
+        // 4. Continue comparing b to higher ASCII values, and selecting
+        //    zero if comparison isn't true, otherwise selecting a value
+        //    to add to result, which:
+        //
+        //          a) undoes the previous addition
+        //          b) provides new value to add
+        //
+        var result = b;
+        // b >= 0
+        result += 65;
+        // b > 25
+        result += ((25 - b) >>> 8) & ((0 - 65) - 26 + 97);
+        // b > 51
+        result += ((51 - b) >>> 8) & ((26 - 97) - 52 + 48);
+        // b > 61
+        result += ((61 - b) >>> 8) & ((52 - 48) - 62 + 43);
+        // b > 62
+        result += ((62 - b) >>> 8) & ((62 - 43) - 63 + 47);
+        return String.fromCharCode(result);
+    };
+    // Decode a character code into a byte.
+    // Must return 256 if character is out of alphabet range.
+    Coder.prototype._decodeChar = function (c) {
+        // Decoding works similar to encoding: using the same comparison
+        // function, but now it works on ranges: result is always incremented
+        // by value, but this value becomes zero if the range is not
+        // satisfied.
+        //
+        // Decoding starts with invalid value, 256, which is then
+        // subtracted when the range is satisfied. If none of the ranges
+        // apply, the function returns 256, which is then checked by
+        // the caller to throw error.
+        var result = INVALID_BYTE; // start with invalid character
+        // c == 43 (c > 42 and c < 44)
+        result += (((42 - c) & (c - 44)) >>> 8) & (-INVALID_BYTE + c - 43 + 62);
+        // c == 47 (c > 46 and c < 48)
+        result += (((46 - c) & (c - 48)) >>> 8) & (-INVALID_BYTE + c - 47 + 63);
+        // c > 47 and c < 58
+        result += (((47 - c) & (c - 58)) >>> 8) & (-INVALID_BYTE + c - 48 + 52);
+        // c > 64 and c < 91
+        result += (((64 - c) & (c - 91)) >>> 8) & (-INVALID_BYTE + c - 65 + 0);
+        // c > 96 and c < 123
+        result += (((96 - c) & (c - 123)) >>> 8) & (-INVALID_BYTE + c - 97 + 26);
+        return result;
+    };
+    Coder.prototype._getPaddingLength = function (s) {
+        var paddingLength = 0;
+        if (this._paddingCharacter) {
+            for (var i = s.length - 1; i >= 0; i--) {
+                if (s[i] !== this._paddingCharacter) {
+                    break;
+                }
+                paddingLength++;
+            }
+            if (s.length < 4 || paddingLength > 2) {
+                throw new Error("Base64Coder: incorrect padding");
+            }
+        }
+        return paddingLength;
+    };
+    return Coder;
+}());
+exports.Coder = Coder;
+var stdCoder = new Coder();
+function encode(data) {
+    return stdCoder.encode(data);
+}
+exports.encode = encode;
+function decode(s) {
+    return stdCoder.decode(s);
+}
+exports.decode = decode;
+/**
+ * Implements URL-safe Base64 encoding.
+ * (Same as Base64, but '+' is replaced with '-', and '/' with '_').
+ *
+ * Operates in constant time.
+ */
+var URLSafeCoder = /** @class */ (function (_super) {
+    __extends(URLSafeCoder, _super);
+    function URLSafeCoder() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    // URL-safe encoding have the following encoded/decoded ranges:
+    //
+    // ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789  -   _
+    // Index:   0 - 25                    26 - 51              52 - 61   62  63
+    // ASCII:  65 - 90                    97 - 122             48 - 57   45  95
+    //
+    URLSafeCoder.prototype._encodeByte = function (b) {
+        var result = b;
+        // b >= 0
+        result += 65;
+        // b > 25
+        result += ((25 - b) >>> 8) & ((0 - 65) - 26 + 97);
+        // b > 51
+        result += ((51 - b) >>> 8) & ((26 - 97) - 52 + 48);
+        // b > 61
+        result += ((61 - b) >>> 8) & ((52 - 48) - 62 + 45);
+        // b > 62
+        result += ((62 - b) >>> 8) & ((62 - 45) - 63 + 95);
+        return String.fromCharCode(result);
+    };
+    URLSafeCoder.prototype._decodeChar = function (c) {
+        var result = INVALID_BYTE;
+        // c == 45 (c > 44 and c < 46)
+        result += (((44 - c) & (c - 46)) >>> 8) & (-INVALID_BYTE + c - 45 + 62);
+        // c == 95 (c > 94 and c < 96)
+        result += (((94 - c) & (c - 96)) >>> 8) & (-INVALID_BYTE + c - 95 + 63);
+        // c > 47 and c < 58
+        result += (((47 - c) & (c - 58)) >>> 8) & (-INVALID_BYTE + c - 48 + 52);
+        // c > 64 and c < 91
+        result += (((64 - c) & (c - 91)) >>> 8) & (-INVALID_BYTE + c - 65 + 0);
+        // c > 96 and c < 123
+        result += (((96 - c) & (c - 123)) >>> 8) & (-INVALID_BYTE + c - 97 + 26);
+        return result;
+    };
+    return URLSafeCoder;
+}(Coder));
+exports.URLSafeCoder = URLSafeCoder;
+var urlSafeCoder = new URLSafeCoder();
+function encodeURLSafe(data) {
+    return urlSafeCoder.encode(data);
+}
+exports.encodeURLSafe = encodeURLSafe;
+function decodeURLSafe(s) {
+    return urlSafeCoder.decode(s);
+}
+exports.decodeURLSafe = decodeURLSafe;
+exports.encodedLength = function (length) {
+    return stdCoder.encodedLength(length);
+};
+exports.maxDecodedLength = function (length) {
+    return stdCoder.maxDecodedLength(length);
+};
+exports.decodedLength = function (s) {
+    return stdCoder.decodedLength(s);
+};
+//# sourceMappingURL=base64.js.map
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// Copyright (C) 2016 Dmitry Chestnykh
+// MIT License. See LICENSE file for details.
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Package utf8 implements UTF-8 encoding and decoding.
+ */
+var INVALID_UTF16 = "utf8: invalid string";
+var INVALID_UTF8 = "utf8: invalid source encoding";
+/**
+ * Encodes the given string into UTF-8 byte array.
+ * Throws if the source string has invalid UTF-16 encoding.
+ */
+function encode(s) {
+    // Calculate result length and allocate output array.
+    // encodedLength() also validates string and throws errors,
+    // so we don't need repeat validation here.
+    var arr = new Uint8Array(encodedLength(s));
+    var pos = 0;
+    for (var i = 0; i < s.length; i++) {
+        var c = s.charCodeAt(i);
+        if (c < 0x80) {
+            arr[pos++] = c;
+        }
+        else if (c < 0x800) {
+            arr[pos++] = 0xc0 | c >> 6;
+            arr[pos++] = 0x80 | c & 0x3f;
+        }
+        else if (c < 0xd800) {
+            arr[pos++] = 0xe0 | c >> 12;
+            arr[pos++] = 0x80 | (c >> 6) & 0x3f;
+            arr[pos++] = 0x80 | c & 0x3f;
+        }
+        else {
+            i++; // get one more character
+            c = (c & 0x3ff) << 10;
+            c |= s.charCodeAt(i) & 0x3ff;
+            c += 0x10000;
+            arr[pos++] = 0xf0 | c >> 18;
+            arr[pos++] = 0x80 | (c >> 12) & 0x3f;
+            arr[pos++] = 0x80 | (c >> 6) & 0x3f;
+            arr[pos++] = 0x80 | c & 0x3f;
+        }
+    }
+    return arr;
+}
+exports.encode = encode;
+/**
+ * Returns the number of bytes required to encode the given string into UTF-8.
+ * Throws if the source string has invalid UTF-16 encoding.
+ */
+function encodedLength(s) {
+    var result = 0;
+    for (var i = 0; i < s.length; i++) {
+        var c = s.charCodeAt(i);
+        if (c < 0x80) {
+            result += 1;
+        }
+        else if (c < 0x800) {
+            result += 2;
+        }
+        else if (c < 0xd800) {
+            result += 3;
+        }
+        else if (c <= 0xdfff) {
+            if (i >= s.length - 1) {
+                throw new Error(INVALID_UTF16);
+            }
+            i++; // "eat" next character
+            result += 4;
+        }
+        else {
+            throw new Error(INVALID_UTF16);
+        }
+    }
+    return result;
+}
+exports.encodedLength = encodedLength;
+/**
+ * Decodes the given byte array from UTF-8 into a string.
+ * Throws if encoding is invalid.
+ */
+function decode(arr) {
+    var chars = [];
+    for (var i = 0; i < arr.length; i++) {
+        var b = arr[i];
+        if (b & 0x80) {
+            var min = void 0;
+            if (b < 0xe0) {
+                // Need 1 more byte.
+                if (i >= arr.length) {
+                    throw new Error(INVALID_UTF8);
+                }
+                var n1 = arr[++i];
+                if ((n1 & 0xc0) !== 0x80) {
+                    throw new Error(INVALID_UTF8);
+                }
+                b = (b & 0x1f) << 6 | (n1 & 0x3f);
+                min = 0x80;
+            }
+            else if (b < 0xf0) {
+                // Need 2 more bytes.
+                if (i >= arr.length - 1) {
+                    throw new Error(INVALID_UTF8);
+                }
+                var n1 = arr[++i];
+                var n2 = arr[++i];
+                if ((n1 & 0xc0) !== 0x80 || (n2 & 0xc0) !== 0x80) {
+                    throw new Error(INVALID_UTF8);
+                }
+                b = (b & 0x0f) << 12 | (n1 & 0x3f) << 6 | (n2 & 0x3f);
+                min = 0x800;
+            }
+            else if (b < 0xf8) {
+                // Need 3 more bytes.
+                if (i >= arr.length - 2) {
+                    throw new Error(INVALID_UTF8);
+                }
+                var n1 = arr[++i];
+                var n2 = arr[++i];
+                var n3 = arr[++i];
+                if ((n1 & 0xc0) !== 0x80 || (n2 & 0xc0) !== 0x80 || (n3 & 0xc0) !== 0x80) {
+                    throw new Error(INVALID_UTF8);
+                }
+                b = (b & 0x0f) << 18 | (n1 & 0x3f) << 12 | (n2 & 0x3f) << 6 | (n3 & 0x3f);
+                min = 0x10000;
+            }
+            else {
+                throw new Error(INVALID_UTF8);
+            }
+            if (b < min || (b >= 0xd800 && b <= 0xdfff)) {
+                throw new Error(INVALID_UTF8);
+            }
+            if (b >= 0x10000) {
+                // Surrogate pair.
+                if (b > 0x10ffff) {
+                    throw new Error(INVALID_UTF8);
+                }
+                b -= 0x10000;
+                chars.push(String.fromCharCode(0xd800 | (b >> 10)));
+                b = 0xdc00 | (b & 0x3ff);
+            }
+        }
+        chars.push(String.fromCharCode(b));
+    }
+    return chars.join("");
+}
+exports.decode = decode;
+//# sourceMappingURL=utf8.js.map
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// required so we don't have to do require('pusher').default etc.
+module.exports = __webpack_require__(3).default;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+// CONCATENATED MODULE: ./src/runtimes/web/dom/script_receiver_factory.ts
+var ScriptReceiverFactory = (function () {
+    function ScriptReceiverFactory(prefix, name) {
+        this.lastId = 0;
+        this.prefix = prefix;
+        this.name = name;
+    }
+    ScriptReceiverFactory.prototype.create = function (callback) {
+        this.lastId++;
+        var number = this.lastId;
+        var id = this.prefix + number;
+        var name = this.name + '[' + number + ']';
+        var called = false;
+        var callbackWrapper = function () {
+            if (!called) {
+                callback.apply(null, arguments);
+                called = true;
+            }
+        };
+        this[number] = callbackWrapper;
+        return { number: number, id: id, name: name, callback: callbackWrapper };
+    };
+    ScriptReceiverFactory.prototype.remove = function (receiver) {
+        delete this[receiver.number];
+    };
+    return ScriptReceiverFactory;
+}());
+
+var ScriptReceivers = new ScriptReceiverFactory('_pusher_script_', 'Pusher.ScriptReceivers');
+
+// CONCATENATED MODULE: ./src/core/defaults.ts
+var Defaults = {
+    VERSION: "6.0.0",
+    PROTOCOL: 7,
+    wsPort: 80,
+    wssPort: 443,
+    wsPath: '',
+    httpHost: 'sockjs.pusher.com',
+    httpPort: 80,
+    httpsPort: 443,
+    httpPath: '/pusher',
+    stats_host: 'stats.pusher.com',
+    authEndpoint: '/pusher/auth',
+    authTransport: 'ajax',
+    activityTimeout: 120000,
+    pongTimeout: 30000,
+    unavailableTimeout: 10000,
+    cluster: 'mt1',
+    cdn_http: "http://js.pusher.com",
+    cdn_https: "https://js.pusher.com",
+    dependency_suffix: ""
+};
+/* harmony default export */ var defaults = (Defaults);
+
+// CONCATENATED MODULE: ./src/runtimes/web/dom/dependency_loader.ts
+
+
+var dependency_loader_DependencyLoader = (function () {
+    function DependencyLoader(options) {
+        this.options = options;
+        this.receivers = options.receivers || ScriptReceivers;
+        this.loading = {};
+    }
+    DependencyLoader.prototype.load = function (name, options, callback) {
+        var self = this;
+        if (self.loading[name] && self.loading[name].length > 0) {
+            self.loading[name].push(callback);
+        }
+        else {
+            self.loading[name] = [callback];
+            var request = runtime.createScriptRequest(self.getPath(name, options));
+            var receiver = self.receivers.create(function (error) {
+                self.receivers.remove(receiver);
+                if (self.loading[name]) {
+                    var callbacks = self.loading[name];
+                    delete self.loading[name];
+                    var successCallback = function (wasSuccessful) {
+                        if (!wasSuccessful) {
+                            request.cleanup();
+                        }
+                    };
+                    for (var i = 0; i < callbacks.length; i++) {
+                        callbacks[i](error, successCallback);
+                    }
+                }
+            });
+            request.send(receiver);
+        }
+    };
+    DependencyLoader.prototype.getRoot = function (options) {
+        var cdn;
+        var protocol = runtime.getDocument().location.protocol;
+        if ((options && options.useTLS) || protocol === 'https:') {
+            cdn = this.options.cdn_https;
+        }
+        else {
+            cdn = this.options.cdn_http;
+        }
+        return cdn.replace(/\/*$/, '') + '/' + this.options.version;
+    };
+    DependencyLoader.prototype.getPath = function (name, options) {
+        return this.getRoot(options) + '/' + name + this.options.suffix + '.js';
+    };
+    return DependencyLoader;
+}());
+/* harmony default export */ var dependency_loader = (dependency_loader_DependencyLoader);
+
+// CONCATENATED MODULE: ./src/runtimes/web/dom/dependencies.ts
+
+
+
+var DependenciesReceivers = new ScriptReceiverFactory('_pusher_dependencies', 'Pusher.DependenciesReceivers');
+var Dependencies = new dependency_loader({
+    cdn_http: defaults.cdn_http,
+    cdn_https: defaults.cdn_https,
+    version: defaults.VERSION,
+    suffix: defaults.dependency_suffix,
+    receivers: DependenciesReceivers
+});
+
+// CONCATENATED MODULE: ./src/core/base64.ts
+function encode(s) {
+    return btoa(utob(s));
+}
+var fromCharCode = String.fromCharCode;
+var b64chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+var b64tab = {};
+for (var base64_i = 0, l = b64chars.length; base64_i < l; base64_i++) {
+    b64tab[b64chars.charAt(base64_i)] = base64_i;
+}
+var cb_utob = function (c) {
+    var cc = c.charCodeAt(0);
+    return cc < 0x80
+        ? c
+        : cc < 0x800
+            ? fromCharCode(0xc0 | (cc >>> 6)) + fromCharCode(0x80 | (cc & 0x3f))
+            : fromCharCode(0xe0 | ((cc >>> 12) & 0x0f)) +
+                fromCharCode(0x80 | ((cc >>> 6) & 0x3f)) +
+                fromCharCode(0x80 | (cc & 0x3f));
+};
+var utob = function (u) {
+    return u.replace(/[^\x00-\x7F]/g, cb_utob);
+};
+var cb_encode = function (ccc) {
+    var padlen = [0, 2, 1][ccc.length % 3];
+    var ord = (ccc.charCodeAt(0) << 16) |
+        ((ccc.length > 1 ? ccc.charCodeAt(1) : 0) << 8) |
+        (ccc.length > 2 ? ccc.charCodeAt(2) : 0);
+    var chars = [
+        b64chars.charAt(ord >>> 18),
+        b64chars.charAt((ord >>> 12) & 63),
+        padlen >= 2 ? '=' : b64chars.charAt((ord >>> 6) & 63),
+        padlen >= 1 ? '=' : b64chars.charAt(ord & 63)
+    ];
+    return chars.join('');
+};
+var btoa = window.btoa ||
+    function (b) {
+        return b.replace(/[\s\S]{1,3}/g, cb_encode);
+    };
+
+// CONCATENATED MODULE: ./src/core/utils/timers/abstract_timer.ts
+var Timer = (function () {
+    function Timer(set, clear, delay, callback) {
+        var _this = this;
+        this.clear = clear;
+        this.timer = set(function () {
+            if (_this.timer) {
+                _this.timer = callback(_this.timer);
+            }
+        }, delay);
+    }
+    Timer.prototype.isRunning = function () {
+        return this.timer !== null;
+    };
+    Timer.prototype.ensureAborted = function () {
+        if (this.timer) {
+            this.clear(this.timer);
+            this.timer = null;
+        }
+    };
+    return Timer;
+}());
+/* harmony default export */ var abstract_timer = (Timer);
+
+// CONCATENATED MODULE: ./src/core/utils/timers/index.ts
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+function timers_clearTimeout(timer) {
+    window.clearTimeout(timer);
+}
+function timers_clearInterval(timer) {
+    window.clearInterval(timer);
+}
+var OneOffTimer = (function (_super) {
+    __extends(OneOffTimer, _super);
+    function OneOffTimer(delay, callback) {
+        return _super.call(this, setTimeout, timers_clearTimeout, delay, function (timer) {
+            callback();
+            return null;
+        }) || this;
+    }
+    return OneOffTimer;
+}(abstract_timer));
+
+var PeriodicTimer = (function (_super) {
+    __extends(PeriodicTimer, _super);
+    function PeriodicTimer(delay, callback) {
+        return _super.call(this, setInterval, timers_clearInterval, delay, function (timer) {
+            callback();
+            return timer;
+        }) || this;
+    }
+    return PeriodicTimer;
+}(abstract_timer));
+
+
+// CONCATENATED MODULE: ./src/core/util.ts
+
+var Util = {
+    now: function () {
+        if (Date.now) {
+            return Date.now();
+        }
+        else {
+            return new Date().valueOf();
+        }
+    },
+    defer: function (callback) {
+        return new OneOffTimer(0, callback);
+    },
+    method: function (name) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        var boundArguments = Array.prototype.slice.call(arguments, 1);
+        return function (object) {
+            return object[name].apply(object, boundArguments.concat(arguments));
+        };
+    }
+};
+/* harmony default export */ var util = (Util);
+
+// CONCATENATED MODULE: ./src/core/utils/collections.ts
+
+
+function extend(target) {
+    var sources = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        sources[_i - 1] = arguments[_i];
+    }
+    for (var i = 0; i < sources.length; i++) {
+        var extensions = sources[i];
+        for (var property in extensions) {
+            if (extensions[property] &&
+                extensions[property].constructor &&
+                extensions[property].constructor === Object) {
+                target[property] = extend(target[property] || {}, extensions[property]);
+            }
+            else {
+                target[property] = extensions[property];
+            }
+        }
+    }
+    return target;
+}
+function stringify() {
+    var m = ['Pusher'];
+    for (var i = 0; i < arguments.length; i++) {
+        if (typeof arguments[i] === 'string') {
+            m.push(arguments[i]);
+        }
+        else {
+            m.push(safeJSONStringify(arguments[i]));
+        }
+    }
+    return m.join(' : ');
+}
+function arrayIndexOf(array, item) {
+    var nativeIndexOf = Array.prototype.indexOf;
+    if (array === null) {
+        return -1;
+    }
+    if (nativeIndexOf && array.indexOf === nativeIndexOf) {
+        return array.indexOf(item);
+    }
+    for (var i = 0, l = array.length; i < l; i++) {
+        if (array[i] === item) {
+            return i;
+        }
+    }
+    return -1;
+}
+function objectApply(object, f) {
+    for (var key in object) {
+        if (Object.prototype.hasOwnProperty.call(object, key)) {
+            f(object[key], key, object);
+        }
+    }
+}
+function keys(object) {
+    var keys = [];
+    objectApply(object, function (_, key) {
+        keys.push(key);
+    });
+    return keys;
+}
+function values(object) {
+    var values = [];
+    objectApply(object, function (value) {
+        values.push(value);
+    });
+    return values;
+}
+function apply(array, f, context) {
+    for (var i = 0; i < array.length; i++) {
+        f.call(context || window, array[i], i, array);
+    }
+}
+function map(array, f) {
+    var result = [];
+    for (var i = 0; i < array.length; i++) {
+        result.push(f(array[i], i, array, result));
+    }
+    return result;
+}
+function mapObject(object, f) {
+    var result = {};
+    objectApply(object, function (value, key) {
+        result[key] = f(value);
+    });
+    return result;
+}
+function filter(array, test) {
+    test =
+        test ||
+            function (value) {
+                return !!value;
+            };
+    var result = [];
+    for (var i = 0; i < array.length; i++) {
+        if (test(array[i], i, array, result)) {
+            result.push(array[i]);
+        }
+    }
+    return result;
+}
+function filterObject(object, test) {
+    var result = {};
+    objectApply(object, function (value, key) {
+        if ((test && test(value, key, object, result)) || Boolean(value)) {
+            result[key] = value;
+        }
+    });
+    return result;
+}
+function flatten(object) {
+    var result = [];
+    objectApply(object, function (value, key) {
+        result.push([key, value]);
+    });
+    return result;
+}
+function any(array, test) {
+    for (var i = 0; i < array.length; i++) {
+        if (test(array[i], i, array)) {
+            return true;
+        }
+    }
+    return false;
+}
+function collections_all(array, test) {
+    for (var i = 0; i < array.length; i++) {
+        if (!test(array[i], i, array)) {
+            return false;
+        }
+    }
+    return true;
+}
+function encodeParamsObject(data) {
+    return mapObject(data, function (value) {
+        if (typeof value === 'object') {
+            value = safeJSONStringify(value);
+        }
+        return encodeURIComponent(encode(value.toString()));
+    });
+}
+function buildQueryString(data) {
+    var params = filterObject(data, function (value) {
+        return value !== undefined;
+    });
+    var query = map(flatten(encodeParamsObject(params)), util.method('join', '=')).join('&');
+    return query;
+}
+function decycleObject(object) {
+    var objects = [], paths = [];
+    return (function derez(value, path) {
+        var i, name, nu;
+        switch (typeof value) {
+            case 'object':
+                if (!value) {
+                    return null;
+                }
+                for (i = 0; i < objects.length; i += 1) {
+                    if (objects[i] === value) {
+                        return { $ref: paths[i] };
+                    }
+                }
+                objects.push(value);
+                paths.push(path);
+                if (Object.prototype.toString.apply(value) === '[object Array]') {
+                    nu = [];
+                    for (i = 0; i < value.length; i += 1) {
+                        nu[i] = derez(value[i], path + '[' + i + ']');
+                    }
+                }
+                else {
+                    nu = {};
+                    for (name in value) {
+                        if (Object.prototype.hasOwnProperty.call(value, name)) {
+                            nu[name] = derez(value[name], path + '[' + JSON.stringify(name) + ']');
+                        }
+                    }
+                }
+                return nu;
+            case 'number':
+            case 'string':
+            case 'boolean':
+                return value;
+        }
+    })(object, '$');
+}
+function safeJSONStringify(source) {
+    try {
+        return JSON.stringify(source);
+    }
+    catch (e) {
+        return JSON.stringify(decycleObject(source));
+    }
+}
+
+// CONCATENATED MODULE: ./src/core/logger.ts
+
+
+var logger_Logger = (function () {
+    function Logger() {
+        this.globalLog = function (message) {
+            if (window.console && window.console.log) {
+                window.console.log(message);
+            }
+        };
+    }
+    Logger.prototype.debug = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        this.log(this.globalLog, args);
+    };
+    Logger.prototype.warn = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        this.log(this.globalLogWarn, args);
+    };
+    Logger.prototype.error = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        this.log(this.globalLogError, args);
+    };
+    Logger.prototype.globalLogWarn = function (message) {
+        if (window.console && window.console.warn) {
+            window.console.warn(message);
+        }
+        else {
+            this.globalLog(message);
+        }
+    };
+    Logger.prototype.globalLogError = function (message) {
+        if (window.console && window.console.error) {
+            window.console.error(message);
+        }
+        else {
+            this.globalLogWarn(message);
+        }
+    };
+    Logger.prototype.log = function (defaultLoggingFunction) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        var message = stringify.apply(this, arguments);
+        if (core_pusher.log) {
+            core_pusher.log(message);
+        }
+        else if (core_pusher.logToConsole) {
+            var log = defaultLoggingFunction.bind(this);
+            log(message);
+        }
+    };
+    return Logger;
+}());
+/* harmony default export */ var logger = (new logger_Logger());
+
+// CONCATENATED MODULE: ./src/core/utils/url_store.ts
+var urlStore = {
+    baseUrl: 'https://pusher.com',
+    urls: {
+        authenticationEndpoint: {
+            path: '/docs/authenticating_users'
+        },
+        javascriptQuickStart: {
+            path: '/docs/javascript_quick_start'
+        },
+        triggeringClientEvents: {
+            path: '/docs/client_api_guide/client_events#trigger-events'
+        },
+        encryptedChannelSupport: {
+            fullUrl: 'https://github.com/pusher/pusher-js/tree/cc491015371a4bde5743d1c87a0fbac0feb53195#encrypted-channel-support'
+        }
+    }
+};
+var buildLogSuffix = function (key) {
+    var urlPrefix = 'See:';
+    var urlObj = urlStore.urls[key];
+    if (!urlObj)
+        return '';
+    var url;
+    if (urlObj.fullUrl) {
+        url = urlObj.fullUrl;
+    }
+    else if (urlObj.path) {
+        url = urlStore.baseUrl + urlObj.path;
+    }
+    if (!url)
+        return '';
+    return urlPrefix + " " + url;
+};
+/* harmony default export */ var url_store = ({ buildLogSuffix: buildLogSuffix });
+
+// CONCATENATED MODULE: ./src/runtimes/isomorphic/auth/xhr_auth.ts
+
+
+
+var ajax = function (context, socketId, callback) {
+    var self = this, xhr;
+    xhr = runtime.createXHR();
+    xhr.open('POST', self.options.authEndpoint, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    for (var headerName in this.authOptions.headers) {
+        xhr.setRequestHeader(headerName, this.authOptions.headers[headerName]);
+    }
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                var data, parsed = false;
+                try {
+                    data = JSON.parse(xhr.responseText);
+                    parsed = true;
+                }
+                catch (e) {
+                    callback(true, 'JSON returned from auth endpoint was invalid, yet status code was 200. Data was: ' +
+                        xhr.responseText);
+                }
+                if (parsed) {
+                    callback(false, data);
+                }
+            }
+            else {
+                var suffix = url_store.buildLogSuffix('authenticationEndpoint');
+                logger.error('Unable to retrieve auth string from auth endpoint - ' +
+                    ("received status " + xhr.status + " from " + self.options.authEndpoint + ". ") +
+                    ("Clients must be authenticated to join private or presence channels. " + suffix));
+                callback(true, xhr.status);
+            }
+        }
+    };
+    xhr.send(this.composeQuery(socketId));
+    return xhr;
+};
+/* harmony default export */ var xhr_auth = (ajax);
+
+// CONCATENATED MODULE: ./src/runtimes/web/auth/jsonp_auth.ts
+
+var jsonp = function (context, socketId, callback) {
+    if (this.authOptions.headers !== undefined) {
+        logger.warn('To send headers with the auth request, you must use AJAX, rather than JSONP.');
+    }
+    var callbackName = context.nextAuthCallbackID.toString();
+    context.nextAuthCallbackID++;
+    var document = context.getDocument();
+    var script = document.createElement('script');
+    context.auth_callbacks[callbackName] = function (data) {
+        callback(false, data);
+    };
+    var callback_name = "Pusher.auth_callbacks['" + callbackName + "']";
+    script.src =
+        this.options.authEndpoint +
+            '?callback=' +
+            encodeURIComponent(callback_name) +
+            '&' +
+            this.composeQuery(socketId);
+    var head = document.getElementsByTagName('head')[0] || document.documentElement;
+    head.insertBefore(script, head.firstChild);
+};
+/* harmony default export */ var jsonp_auth = (jsonp);
+
+// CONCATENATED MODULE: ./src/runtimes/web/dom/script_request.ts
+var ScriptRequest = (function () {
+    function ScriptRequest(src) {
+        this.src = src;
+    }
+    ScriptRequest.prototype.send = function (receiver) {
+        var self = this;
+        var errorString = 'Error loading ' + self.src;
+        self.script = document.createElement('script');
+        self.script.id = receiver.id;
+        self.script.src = self.src;
+        self.script.type = 'text/javascript';
+        self.script.charset = 'UTF-8';
+        if (self.script.addEventListener) {
+            self.script.onerror = function () {
+                receiver.callback(errorString);
+            };
+            self.script.onload = function () {
+                receiver.callback(null);
+            };
+        }
+        else {
+            self.script.onreadystatechange = function () {
+                if (self.script.readyState === 'loaded' ||
+                    self.script.readyState === 'complete') {
+                    receiver.callback(null);
+                }
+            };
+        }
+        if (self.script.async === undefined &&
+            document.attachEvent &&
+            /opera/i.test(navigator.userAgent)) {
+            self.errorScript = document.createElement('script');
+            self.errorScript.id = receiver.id + '_error';
+            self.errorScript.text = receiver.name + "('" + errorString + "');";
+            self.script.async = self.errorScript.async = false;
+        }
+        else {
+            self.script.async = true;
+        }
+        var head = document.getElementsByTagName('head')[0];
+        head.insertBefore(self.script, head.firstChild);
+        if (self.errorScript) {
+            head.insertBefore(self.errorScript, self.script.nextSibling);
+        }
+    };
+    ScriptRequest.prototype.cleanup = function () {
+        if (this.script) {
+            this.script.onload = this.script.onerror = null;
+            this.script.onreadystatechange = null;
+        }
+        if (this.script && this.script.parentNode) {
+            this.script.parentNode.removeChild(this.script);
+        }
+        if (this.errorScript && this.errorScript.parentNode) {
+            this.errorScript.parentNode.removeChild(this.errorScript);
+        }
+        this.script = null;
+        this.errorScript = null;
+    };
+    return ScriptRequest;
+}());
+/* harmony default export */ var script_request = (ScriptRequest);
+
+// CONCATENATED MODULE: ./src/runtimes/web/dom/jsonp_request.ts
+
+
+var jsonp_request_JSONPRequest = (function () {
+    function JSONPRequest(url, data) {
+        this.url = url;
+        this.data = data;
+    }
+    JSONPRequest.prototype.send = function (receiver) {
+        if (this.request) {
+            return;
+        }
+        var query = buildQueryString(this.data);
+        var url = this.url + '/' + receiver.number + '?' + query;
+        this.request = runtime.createScriptRequest(url);
+        this.request.send(receiver);
+    };
+    JSONPRequest.prototype.cleanup = function () {
+        if (this.request) {
+            this.request.cleanup();
+        }
+    };
+    return JSONPRequest;
+}());
+/* harmony default export */ var jsonp_request = (jsonp_request_JSONPRequest);
+
+// CONCATENATED MODULE: ./src/runtimes/web/timeline/jsonp_timeline.ts
+
+
+var getAgent = function (sender, useTLS) {
+    return function (data, callback) {
+        var scheme = 'http' + (useTLS ? 's' : '') + '://';
+        var url = scheme + (sender.host || sender.options.host) + sender.options.path;
+        var request = runtime.createJSONPRequest(url, data);
+        var receiver = runtime.ScriptReceivers.create(function (error, result) {
+            ScriptReceivers.remove(receiver);
+            request.cleanup();
+            if (result && result.host) {
+                sender.host = result.host;
+            }
+            if (callback) {
+                callback(error, result);
+            }
+        });
+        request.send(receiver);
+    };
+};
+var jsonp_timeline_jsonp = {
+    name: 'jsonp',
+    getAgent: getAgent
+};
+/* harmony default export */ var jsonp_timeline = (jsonp_timeline_jsonp);
+
+// CONCATENATED MODULE: ./src/core/transports/url_schemes.ts
+
+function getGenericURL(baseScheme, params, path) {
+    var scheme = baseScheme + (params.useTLS ? 's' : '');
+    var host = params.useTLS ? params.hostTLS : params.hostNonTLS;
+    return scheme + '://' + host + path;
+}
+function getGenericPath(key, queryString) {
+    var path = '/app/' + key;
+    var query = '?protocol=' +
+        defaults.PROTOCOL +
+        '&client=js' +
+        '&version=' +
+        defaults.VERSION +
+        (queryString ? '&' + queryString : '');
+    return path + query;
+}
+var ws = {
+    getInitial: function (key, params) {
+        var path = (params.httpPath || '') + getGenericPath(key, 'flash=false');
+        return getGenericURL('ws', params, path);
+    }
+};
+var http = {
+    getInitial: function (key, params) {
+        var path = (params.httpPath || '/pusher') + getGenericPath(key);
+        return getGenericURL('http', params, path);
+    }
+};
+var sockjs = {
+    getInitial: function (key, params) {
+        return getGenericURL('http', params, params.httpPath || '/pusher');
+    },
+    getPath: function (key, params) {
+        return getGenericPath(key);
+    }
+};
+
+// CONCATENATED MODULE: ./src/core/events/callback_registry.ts
+
+var callback_registry_CallbackRegistry = (function () {
+    function CallbackRegistry() {
+        this._callbacks = {};
+    }
+    CallbackRegistry.prototype.get = function (name) {
+        return this._callbacks[prefix(name)];
+    };
+    CallbackRegistry.prototype.add = function (name, callback, context) {
+        var prefixedEventName = prefix(name);
+        this._callbacks[prefixedEventName] =
+            this._callbacks[prefixedEventName] || [];
+        this._callbacks[prefixedEventName].push({
+            fn: callback,
+            context: context
+        });
+    };
+    CallbackRegistry.prototype.remove = function (name, callback, context) {
+        if (!name && !callback && !context) {
+            this._callbacks = {};
+            return;
+        }
+        var names = name ? [prefix(name)] : keys(this._callbacks);
+        if (callback || context) {
+            this.removeCallback(names, callback, context);
+        }
+        else {
+            this.removeAllCallbacks(names);
+        }
+    };
+    CallbackRegistry.prototype.removeCallback = function (names, callback, context) {
+        apply(names, function (name) {
+            this._callbacks[name] = filter(this._callbacks[name] || [], function (binding) {
+                return ((callback && callback !== binding.fn) ||
+                    (context && context !== binding.context));
+            });
+            if (this._callbacks[name].length === 0) {
+                delete this._callbacks[name];
+            }
+        }, this);
+    };
+    CallbackRegistry.prototype.removeAllCallbacks = function (names) {
+        apply(names, function (name) {
+            delete this._callbacks[name];
+        }, this);
+    };
+    return CallbackRegistry;
+}());
+/* harmony default export */ var callback_registry = (callback_registry_CallbackRegistry);
+function prefix(name) {
+    return '_' + name;
+}
+
+// CONCATENATED MODULE: ./src/core/events/dispatcher.ts
+
+
+var dispatcher_Dispatcher = (function () {
+    function Dispatcher(failThrough) {
+        this.callbacks = new callback_registry();
+        this.global_callbacks = [];
+        this.failThrough = failThrough;
+    }
+    Dispatcher.prototype.bind = function (eventName, callback, context) {
+        this.callbacks.add(eventName, callback, context);
+        return this;
+    };
+    Dispatcher.prototype.bind_global = function (callback) {
+        this.global_callbacks.push(callback);
+        return this;
+    };
+    Dispatcher.prototype.unbind = function (eventName, callback, context) {
+        this.callbacks.remove(eventName, callback, context);
+        return this;
+    };
+    Dispatcher.prototype.unbind_global = function (callback) {
+        if (!callback) {
+            this.global_callbacks = [];
+            return this;
+        }
+        this.global_callbacks = filter(this.global_callbacks || [], function (c) { return c !== callback; });
+        return this;
+    };
+    Dispatcher.prototype.unbind_all = function () {
+        this.unbind();
+        this.unbind_global();
+        return this;
+    };
+    Dispatcher.prototype.emit = function (eventName, data, metadata) {
+        for (var i = 0; i < this.global_callbacks.length; i++) {
+            this.global_callbacks[i](eventName, data);
+        }
+        var callbacks = this.callbacks.get(eventName);
+        var args = [];
+        if (metadata) {
+            args.push(data, metadata);
+        }
+        else if (data) {
+            args.push(data);
+        }
+        if (callbacks && callbacks.length > 0) {
+            for (var i = 0; i < callbacks.length; i++) {
+                callbacks[i].fn.apply(callbacks[i].context || window, args);
+            }
+        }
+        else if (this.failThrough) {
+            this.failThrough(eventName, data);
+        }
+        return this;
+    };
+    return Dispatcher;
+}());
+/* harmony default export */ var dispatcher = (dispatcher_Dispatcher);
+
+// CONCATENATED MODULE: ./src/core/transports/transport_connection.ts
+var transport_connection_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+
+var transport_connection_TransportConnection = (function (_super) {
+    transport_connection_extends(TransportConnection, _super);
+    function TransportConnection(hooks, name, priority, key, options) {
+        var _this = _super.call(this) || this;
+        _this.initialize = runtime.transportConnectionInitializer;
+        _this.hooks = hooks;
+        _this.name = name;
+        _this.priority = priority;
+        _this.key = key;
+        _this.options = options;
+        _this.state = 'new';
+        _this.timeline = options.timeline;
+        _this.activityTimeout = options.activityTimeout;
+        _this.id = _this.timeline.generateUniqueID();
+        return _this;
+    }
+    TransportConnection.prototype.handlesActivityChecks = function () {
+        return Boolean(this.hooks.handlesActivityChecks);
+    };
+    TransportConnection.prototype.supportsPing = function () {
+        return Boolean(this.hooks.supportsPing);
+    };
+    TransportConnection.prototype.connect = function () {
+        var _this = this;
+        if (this.socket || this.state !== 'initialized') {
+            return false;
+        }
+        var url = this.hooks.urls.getInitial(this.key, this.options);
+        try {
+            this.socket = this.hooks.getSocket(url, this.options);
+        }
+        catch (e) {
+            util.defer(function () {
+                _this.onError(e);
+                _this.changeState('closed');
+            });
+            return false;
+        }
+        this.bindListeners();
+        logger.debug('Connecting', { transport: this.name, url: url });
+        this.changeState('connecting');
+        return true;
+    };
+    TransportConnection.prototype.close = function () {
+        if (this.socket) {
+            this.socket.close();
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    TransportConnection.prototype.send = function (data) {
+        var _this = this;
+        if (this.state === 'open') {
+            util.defer(function () {
+                if (_this.socket) {
+                    _this.socket.send(data);
+                }
+            });
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    TransportConnection.prototype.ping = function () {
+        if (this.state === 'open' && this.supportsPing()) {
+            this.socket.ping();
+        }
+    };
+    TransportConnection.prototype.onOpen = function () {
+        if (this.hooks.beforeOpen) {
+            this.hooks.beforeOpen(this.socket, this.hooks.urls.getPath(this.key, this.options));
+        }
+        this.changeState('open');
+        this.socket.onopen = undefined;
+    };
+    TransportConnection.prototype.onError = function (error) {
+        this.emit('error', { type: 'WebSocketError', error: error });
+        this.timeline.error(this.buildTimelineMessage({ error: error.toString() }));
+    };
+    TransportConnection.prototype.onClose = function (closeEvent) {
+        if (closeEvent) {
+            this.changeState('closed', {
+                code: closeEvent.code,
+                reason: closeEvent.reason,
+                wasClean: closeEvent.wasClean
+            });
+        }
+        else {
+            this.changeState('closed');
+        }
+        this.unbindListeners();
+        this.socket = undefined;
+    };
+    TransportConnection.prototype.onMessage = function (message) {
+        this.emit('message', message);
+    };
+    TransportConnection.prototype.onActivity = function () {
+        this.emit('activity');
+    };
+    TransportConnection.prototype.bindListeners = function () {
+        var _this = this;
+        this.socket.onopen = function () {
+            _this.onOpen();
+        };
+        this.socket.onerror = function (error) {
+            _this.onError(error);
+        };
+        this.socket.onclose = function (closeEvent) {
+            _this.onClose(closeEvent);
+        };
+        this.socket.onmessage = function (message) {
+            _this.onMessage(message);
+        };
+        if (this.supportsPing()) {
+            this.socket.onactivity = function () {
+                _this.onActivity();
+            };
+        }
+    };
+    TransportConnection.prototype.unbindListeners = function () {
+        if (this.socket) {
+            this.socket.onopen = undefined;
+            this.socket.onerror = undefined;
+            this.socket.onclose = undefined;
+            this.socket.onmessage = undefined;
+            if (this.supportsPing()) {
+                this.socket.onactivity = undefined;
+            }
+        }
+    };
+    TransportConnection.prototype.changeState = function (state, params) {
+        this.state = state;
+        this.timeline.info(this.buildTimelineMessage({
+            state: state,
+            params: params
+        }));
+        this.emit(state, params);
+    };
+    TransportConnection.prototype.buildTimelineMessage = function (message) {
+        return extend({ cid: this.id }, message);
+    };
+    return TransportConnection;
+}(dispatcher));
+/* harmony default export */ var transport_connection = (transport_connection_TransportConnection);
+
+// CONCATENATED MODULE: ./src/core/transports/transport.ts
+
+var transport_Transport = (function () {
+    function Transport(hooks) {
+        this.hooks = hooks;
+    }
+    Transport.prototype.isSupported = function (environment) {
+        return this.hooks.isSupported(environment);
+    };
+    Transport.prototype.createConnection = function (name, priority, key, options) {
+        return new transport_connection(this.hooks, name, priority, key, options);
+    };
+    return Transport;
+}());
+/* harmony default export */ var transports_transport = (transport_Transport);
+
+// CONCATENATED MODULE: ./src/runtimes/isomorphic/transports/transports.ts
+
+
+
+
+var WSTransport = new transports_transport({
+    urls: ws,
+    handlesActivityChecks: false,
+    supportsPing: false,
+    isInitialized: function () {
+        return Boolean(runtime.getWebSocketAPI());
+    },
+    isSupported: function () {
+        return Boolean(runtime.getWebSocketAPI());
+    },
+    getSocket: function (url) {
+        return runtime.createWebSocket(url);
+    }
+});
+var httpConfiguration = {
+    urls: http,
+    handlesActivityChecks: false,
+    supportsPing: true,
+    isInitialized: function () {
+        return true;
+    }
+};
+var streamingConfiguration = extend({
+    getSocket: function (url) {
+        return runtime.HTTPFactory.createStreamingSocket(url);
+    }
+}, httpConfiguration);
+var pollingConfiguration = extend({
+    getSocket: function (url) {
+        return runtime.HTTPFactory.createPollingSocket(url);
+    }
+}, httpConfiguration);
+var xhrConfiguration = {
+    isSupported: function () {
+        return runtime.isXHRSupported();
+    }
+};
+var XHRStreamingTransport = new transports_transport((extend({}, streamingConfiguration, xhrConfiguration)));
+var XHRPollingTransport = new transports_transport(extend({}, pollingConfiguration, xhrConfiguration));
+var Transports = {
+    ws: WSTransport,
+    xhr_streaming: XHRStreamingTransport,
+    xhr_polling: XHRPollingTransport
+};
+/* harmony default export */ var transports = (Transports);
+
+// CONCATENATED MODULE: ./src/runtimes/web/transports/transports.ts
+
+
+
+
+
+
+var SockJSTransport = new transports_transport({
+    file: 'sockjs',
+    urls: sockjs,
+    handlesActivityChecks: true,
+    supportsPing: false,
+    isSupported: function () {
+        return true;
+    },
+    isInitialized: function () {
+        return window.SockJS !== undefined;
+    },
+    getSocket: function (url, options) {
+        return new window.SockJS(url, null, {
+            js_path: Dependencies.getPath('sockjs', {
+                useTLS: options.useTLS
+            }),
+            ignore_null_origin: options.ignoreNullOrigin
+        });
+    },
+    beforeOpen: function (socket, path) {
+        socket.send(JSON.stringify({
+            path: path
+        }));
+    }
+});
+var xdrConfiguration = {
+    isSupported: function (environment) {
+        var yes = runtime.isXDRSupported(environment.useTLS);
+        return yes;
+    }
+};
+var XDRStreamingTransport = new transports_transport((extend({}, streamingConfiguration, xdrConfiguration)));
+var XDRPollingTransport = new transports_transport(extend({}, pollingConfiguration, xdrConfiguration));
+transports.xdr_streaming = XDRStreamingTransport;
+transports.xdr_polling = XDRPollingTransport;
+transports.sockjs = SockJSTransport;
+/* harmony default export */ var transports_transports = (transports);
+
+// CONCATENATED MODULE: ./src/runtimes/web/net_info.ts
+var net_info_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+var NetInfo = (function (_super) {
+    net_info_extends(NetInfo, _super);
+    function NetInfo() {
+        var _this = _super.call(this) || this;
+        var self = _this;
+        if (window.addEventListener !== undefined) {
+            window.addEventListener('online', function () {
+                self.emit('online');
+            }, false);
+            window.addEventListener('offline', function () {
+                self.emit('offline');
+            }, false);
+        }
+        return _this;
+    }
+    NetInfo.prototype.isOnline = function () {
+        if (window.navigator.onLine === undefined) {
+            return true;
+        }
+        else {
+            return window.navigator.onLine;
+        }
+    };
+    return NetInfo;
+}(dispatcher));
+
+var net_info_Network = new NetInfo();
+
+// CONCATENATED MODULE: ./src/core/transports/assistant_to_the_transport_manager.ts
+
+
+var assistant_to_the_transport_manager_AssistantToTheTransportManager = (function () {
+    function AssistantToTheTransportManager(manager, transport, options) {
+        this.manager = manager;
+        this.transport = transport;
+        this.minPingDelay = options.minPingDelay;
+        this.maxPingDelay = options.maxPingDelay;
+        this.pingDelay = undefined;
+    }
+    AssistantToTheTransportManager.prototype.createConnection = function (name, priority, key, options) {
+        var _this = this;
+        options = extend({}, options, {
+            activityTimeout: this.pingDelay
+        });
+        var connection = this.transport.createConnection(name, priority, key, options);
+        var openTimestamp = null;
+        var onOpen = function () {
+            connection.unbind('open', onOpen);
+            connection.bind('closed', onClosed);
+            openTimestamp = util.now();
+        };
+        var onClosed = function (closeEvent) {
+            connection.unbind('closed', onClosed);
+            if (closeEvent.code === 1002 || closeEvent.code === 1003) {
+                _this.manager.reportDeath();
+            }
+            else if (!closeEvent.wasClean && openTimestamp) {
+                var lifespan = util.now() - openTimestamp;
+                if (lifespan < 2 * _this.maxPingDelay) {
+                    _this.manager.reportDeath();
+                    _this.pingDelay = Math.max(lifespan / 2, _this.minPingDelay);
+                }
+            }
+        };
+        connection.bind('open', onOpen);
+        return connection;
+    };
+    AssistantToTheTransportManager.prototype.isSupported = function (environment) {
+        return this.manager.isAlive() && this.transport.isSupported(environment);
+    };
+    return AssistantToTheTransportManager;
+}());
+/* harmony default export */ var assistant_to_the_transport_manager = (assistant_to_the_transport_manager_AssistantToTheTransportManager);
+
+// CONCATENATED MODULE: ./src/core/connection/protocol/protocol.ts
+var Protocol = {
+    decodeMessage: function (messageEvent) {
+        try {
+            var messageData = JSON.parse(messageEvent.data);
+            var pusherEventData = messageData.data;
+            if (typeof pusherEventData === 'string') {
+                try {
+                    pusherEventData = JSON.parse(messageData.data);
+                }
+                catch (e) { }
+            }
+            var pusherEvent = {
+                event: messageData.event,
+                channel: messageData.channel,
+                data: pusherEventData
+            };
+            if (messageData.user_id) {
+                pusherEvent.user_id = messageData.user_id;
+            }
+            return pusherEvent;
+        }
+        catch (e) {
+            throw { type: 'MessageParseError', error: e, data: messageEvent.data };
+        }
+    },
+    encodeMessage: function (event) {
+        return JSON.stringify(event);
+    },
+    processHandshake: function (messageEvent) {
+        var message = Protocol.decodeMessage(messageEvent);
+        if (message.event === 'pusher:connection_established') {
+            if (!message.data.activity_timeout) {
+                throw 'No activity timeout specified in handshake';
+            }
+            return {
+                action: 'connected',
+                id: message.data.socket_id,
+                activityTimeout: message.data.activity_timeout * 1000
+            };
+        }
+        else if (message.event === 'pusher:error') {
+            return {
+                action: this.getCloseAction(message.data),
+                error: this.getCloseError(message.data)
+            };
+        }
+        else {
+            throw 'Invalid handshake';
+        }
+    },
+    getCloseAction: function (closeEvent) {
+        if (closeEvent.code < 4000) {
+            if (closeEvent.code >= 1002 && closeEvent.code <= 1004) {
+                return 'backoff';
+            }
+            else {
+                return null;
+            }
+        }
+        else if (closeEvent.code === 4000) {
+            return 'tls_only';
+        }
+        else if (closeEvent.code < 4100) {
+            return 'refused';
+        }
+        else if (closeEvent.code < 4200) {
+            return 'backoff';
+        }
+        else if (closeEvent.code < 4300) {
+            return 'retry';
+        }
+        else {
+            return 'refused';
+        }
+    },
+    getCloseError: function (closeEvent) {
+        if (closeEvent.code !== 1000 && closeEvent.code !== 1001) {
+            return {
+                type: 'PusherError',
+                data: {
+                    code: closeEvent.code,
+                    message: closeEvent.reason || closeEvent.message
+                }
+            };
+        }
+        else {
+            return null;
+        }
+    }
+};
+/* harmony default export */ var protocol_protocol = (Protocol);
+
+// CONCATENATED MODULE: ./src/core/connection/connection.ts
+var connection_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+var connection_Connection = (function (_super) {
+    connection_extends(Connection, _super);
+    function Connection(id, transport) {
+        var _this = _super.call(this) || this;
+        _this.id = id;
+        _this.transport = transport;
+        _this.activityTimeout = transport.activityTimeout;
+        _this.bindListeners();
+        return _this;
+    }
+    Connection.prototype.handlesActivityChecks = function () {
+        return this.transport.handlesActivityChecks();
+    };
+    Connection.prototype.send = function (data) {
+        return this.transport.send(data);
+    };
+    Connection.prototype.send_event = function (name, data, channel) {
+        var event = { event: name, data: data };
+        if (channel) {
+            event.channel = channel;
+        }
+        logger.debug('Event sent', event);
+        return this.send(protocol_protocol.encodeMessage(event));
+    };
+    Connection.prototype.ping = function () {
+        if (this.transport.supportsPing()) {
+            this.transport.ping();
+        }
+        else {
+            this.send_event('pusher:ping', {});
+        }
+    };
+    Connection.prototype.close = function () {
+        this.transport.close();
+    };
+    Connection.prototype.bindListeners = function () {
+        var _this = this;
+        var listeners = {
+            message: function (messageEvent) {
+                var pusherEvent;
+                try {
+                    pusherEvent = protocol_protocol.decodeMessage(messageEvent);
+                }
+                catch (e) {
+                    _this.emit('error', {
+                        type: 'MessageParseError',
+                        error: e,
+                        data: messageEvent.data
+                    });
+                }
+                if (pusherEvent !== undefined) {
+                    logger.debug('Event recd', pusherEvent);
+                    switch (pusherEvent.event) {
+                        case 'pusher:error':
+                            _this.emit('error', {
+                                type: 'PusherError',
+                                data: pusherEvent.data
+                            });
+                            break;
+                        case 'pusher:ping':
+                            _this.emit('ping');
+                            break;
+                        case 'pusher:pong':
+                            _this.emit('pong');
+                            break;
+                    }
+                    _this.emit('message', pusherEvent);
+                }
+            },
+            activity: function () {
+                _this.emit('activity');
+            },
+            error: function (error) {
+                _this.emit('error', { type: 'WebSocketError', error: error });
+            },
+            closed: function (closeEvent) {
+                unbindListeners();
+                if (closeEvent && closeEvent.code) {
+                    _this.handleCloseEvent(closeEvent);
+                }
+                _this.transport = null;
+                _this.emit('closed');
+            }
+        };
+        var unbindListeners = function () {
+            objectApply(listeners, function (listener, event) {
+                _this.transport.unbind(event, listener);
+            });
+        };
+        objectApply(listeners, function (listener, event) {
+            _this.transport.bind(event, listener);
+        });
+    };
+    Connection.prototype.handleCloseEvent = function (closeEvent) {
+        var action = protocol_protocol.getCloseAction(closeEvent);
+        var error = protocol_protocol.getCloseError(closeEvent);
+        if (error) {
+            this.emit('error', error);
+        }
+        if (action) {
+            this.emit(action, { action: action, error: error });
+        }
+    };
+    return Connection;
+}(dispatcher));
+/* harmony default export */ var connection_connection = (connection_Connection);
+
+// CONCATENATED MODULE: ./src/core/connection/handshake/index.ts
+
+
+
+var handshake_Handshake = (function () {
+    function Handshake(transport, callback) {
+        this.transport = transport;
+        this.callback = callback;
+        this.bindListeners();
+    }
+    Handshake.prototype.close = function () {
+        this.unbindListeners();
+        this.transport.close();
+    };
+    Handshake.prototype.bindListeners = function () {
+        var _this = this;
+        this.onMessage = function (m) {
+            _this.unbindListeners();
+            var result;
+            try {
+                result = protocol_protocol.processHandshake(m);
+            }
+            catch (e) {
+                _this.finish('error', { error: e });
+                _this.transport.close();
+                return;
+            }
+            if (result.action === 'connected') {
+                _this.finish('connected', {
+                    connection: new connection_connection(result.id, _this.transport),
+                    activityTimeout: result.activityTimeout
+                });
+            }
+            else {
+                _this.finish(result.action, { error: result.error });
+                _this.transport.close();
+            }
+        };
+        this.onClosed = function (closeEvent) {
+            _this.unbindListeners();
+            var action = protocol_protocol.getCloseAction(closeEvent) || 'backoff';
+            var error = protocol_protocol.getCloseError(closeEvent);
+            _this.finish(action, { error: error });
+        };
+        this.transport.bind('message', this.onMessage);
+        this.transport.bind('closed', this.onClosed);
+    };
+    Handshake.prototype.unbindListeners = function () {
+        this.transport.unbind('message', this.onMessage);
+        this.transport.unbind('closed', this.onClosed);
+    };
+    Handshake.prototype.finish = function (action, params) {
+        this.callback(extend({ transport: this.transport, action: action }, params));
+    };
+    return Handshake;
+}());
+/* harmony default export */ var connection_handshake = (handshake_Handshake);
+
+// CONCATENATED MODULE: ./src/core/auth/pusher_authorizer.ts
+
+var pusher_authorizer_PusherAuthorizer = (function () {
+    function PusherAuthorizer(channel, options) {
+        this.channel = channel;
+        var authTransport = options.authTransport;
+        if (typeof runtime.getAuthorizers()[authTransport] === 'undefined') {
+            throw "'" + authTransport + "' is not a recognized auth transport";
+        }
+        this.type = authTransport;
+        this.options = options;
+        this.authOptions = options.auth || {};
+    }
+    PusherAuthorizer.prototype.composeQuery = function (socketId) {
+        var query = 'socket_id=' +
+            encodeURIComponent(socketId) +
+            '&channel_name=' +
+            encodeURIComponent(this.channel.name);
+        for (var i in this.authOptions.params) {
+            query +=
+                '&' +
+                    encodeURIComponent(i) +
+                    '=' +
+                    encodeURIComponent(this.authOptions.params[i]);
+        }
+        return query;
+    };
+    PusherAuthorizer.prototype.authorize = function (socketId, callback) {
+        PusherAuthorizer.authorizers =
+            PusherAuthorizer.authorizers || runtime.getAuthorizers();
+        PusherAuthorizer.authorizers[this.type].call(this, runtime, socketId, callback);
+    };
+    return PusherAuthorizer;
+}());
+/* harmony default export */ var pusher_authorizer = (pusher_authorizer_PusherAuthorizer);
+
+// CONCATENATED MODULE: ./src/core/timeline/timeline_sender.ts
+
+var timeline_sender_TimelineSender = (function () {
+    function TimelineSender(timeline, options) {
+        this.timeline = timeline;
+        this.options = options || {};
+    }
+    TimelineSender.prototype.send = function (useTLS, callback) {
+        if (this.timeline.isEmpty()) {
+            return;
+        }
+        this.timeline.send(runtime.TimelineTransport.getAgent(this, useTLS), callback);
+    };
+    return TimelineSender;
+}());
+/* harmony default export */ var timeline_sender = (timeline_sender_TimelineSender);
+
+// CONCATENATED MODULE: ./src/core/errors.ts
+var errors_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var BadEventName = (function (_super) {
+    errors_extends(BadEventName, _super);
+    function BadEventName(msg) {
+        var _newTarget = this.constructor;
+        var _this = _super.call(this, msg) || this;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    return BadEventName;
+}(Error));
+
+var RequestTimedOut = (function (_super) {
+    errors_extends(RequestTimedOut, _super);
+    function RequestTimedOut(msg) {
+        var _newTarget = this.constructor;
+        var _this = _super.call(this, msg) || this;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    return RequestTimedOut;
+}(Error));
+
+var TransportPriorityTooLow = (function (_super) {
+    errors_extends(TransportPriorityTooLow, _super);
+    function TransportPriorityTooLow(msg) {
+        var _newTarget = this.constructor;
+        var _this = _super.call(this, msg) || this;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    return TransportPriorityTooLow;
+}(Error));
+
+var TransportClosed = (function (_super) {
+    errors_extends(TransportClosed, _super);
+    function TransportClosed(msg) {
+        var _newTarget = this.constructor;
+        var _this = _super.call(this, msg) || this;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    return TransportClosed;
+}(Error));
+
+var UnsupportedFeature = (function (_super) {
+    errors_extends(UnsupportedFeature, _super);
+    function UnsupportedFeature(msg) {
+        var _newTarget = this.constructor;
+        var _this = _super.call(this, msg) || this;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    return UnsupportedFeature;
+}(Error));
+
+var UnsupportedTransport = (function (_super) {
+    errors_extends(UnsupportedTransport, _super);
+    function UnsupportedTransport(msg) {
+        var _newTarget = this.constructor;
+        var _this = _super.call(this, msg) || this;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    return UnsupportedTransport;
+}(Error));
+
+var UnsupportedStrategy = (function (_super) {
+    errors_extends(UnsupportedStrategy, _super);
+    function UnsupportedStrategy(msg) {
+        var _newTarget = this.constructor;
+        var _this = _super.call(this, msg) || this;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    return UnsupportedStrategy;
+}(Error));
+
+
+// CONCATENATED MODULE: ./src/core/channels/channel.ts
+var channel_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+var channel_Channel = (function (_super) {
+    channel_extends(Channel, _super);
+    function Channel(name, pusher) {
+        var _this = _super.call(this, function (event, data) {
+            logger.debug('No callbacks on ' + name + ' for ' + event);
+        }) || this;
+        _this.name = name;
+        _this.pusher = pusher;
+        _this.subscribed = false;
+        _this.subscriptionPending = false;
+        _this.subscriptionCancelled = false;
+        return _this;
+    }
+    Channel.prototype.authorize = function (socketId, callback) {
+        return callback(false, { auth: '' });
+    };
+    Channel.prototype.trigger = function (event, data) {
+        if (event.indexOf('client-') !== 0) {
+            throw new BadEventName("Event '" + event + "' does not start with 'client-'");
+        }
+        if (!this.subscribed) {
+            var suffix = url_store.buildLogSuffix('triggeringClientEvents');
+            logger.warn("Client event triggered before channel 'subscription_succeeded' event . " + suffix);
+        }
+        return this.pusher.send_event(event, data, this.name);
+    };
+    Channel.prototype.disconnect = function () {
+        this.subscribed = false;
+        this.subscriptionPending = false;
+    };
+    Channel.prototype.handleEvent = function (event) {
+        var eventName = event.event;
+        var data = event.data;
+        if (eventName === 'pusher_internal:subscription_succeeded') {
+            this.handleSubscriptionSucceededEvent(event);
+        }
+        else if (eventName.indexOf('pusher_internal:') !== 0) {
+            var metadata = {};
+            this.emit(eventName, data, metadata);
+        }
+    };
+    Channel.prototype.handleSubscriptionSucceededEvent = function (event) {
+        this.subscriptionPending = false;
+        this.subscribed = true;
+        if (this.subscriptionCancelled) {
+            this.pusher.unsubscribe(this.name);
+        }
+        else {
+            this.emit('pusher:subscription_succeeded', event.data);
+        }
+    };
+    Channel.prototype.subscribe = function () {
+        var _this = this;
+        if (this.subscribed) {
+            return;
+        }
+        this.subscriptionPending = true;
+        this.subscriptionCancelled = false;
+        this.authorize(this.pusher.connection.socket_id, function (error, data) {
+            if (error) {
+                logger.error(data);
+                _this.emit('pusher:subscription_error', data);
+            }
+            else {
+                data = data;
+                _this.pusher.send_event('pusher:subscribe', {
+                    auth: data.auth,
+                    channel_data: data.channel_data,
+                    channel: _this.name
+                });
+            }
+        });
+    };
+    Channel.prototype.unsubscribe = function () {
+        this.subscribed = false;
+        this.pusher.send_event('pusher:unsubscribe', {
+            channel: this.name
+        });
+    };
+    Channel.prototype.cancelSubscription = function () {
+        this.subscriptionCancelled = true;
+    };
+    Channel.prototype.reinstateSubscription = function () {
+        this.subscriptionCancelled = false;
+    };
+    return Channel;
+}(dispatcher));
+/* harmony default export */ var channels_channel = (channel_Channel);
+
+// CONCATENATED MODULE: ./src/core/channels/private_channel.ts
+var private_channel_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+var private_channel_PrivateChannel = (function (_super) {
+    private_channel_extends(PrivateChannel, _super);
+    function PrivateChannel() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PrivateChannel.prototype.authorize = function (socketId, callback) {
+        var authorizer = factory.createAuthorizer(this, this.pusher.config);
+        return authorizer.authorize(socketId, callback);
+    };
+    return PrivateChannel;
+}(channels_channel));
+/* harmony default export */ var private_channel = (private_channel_PrivateChannel);
+
+// CONCATENATED MODULE: ./src/core/channels/members.ts
+
+var members_Members = (function () {
+    function Members() {
+        this.reset();
+    }
+    Members.prototype.get = function (id) {
+        if (Object.prototype.hasOwnProperty.call(this.members, id)) {
+            return {
+                id: id,
+                info: this.members[id]
+            };
+        }
+        else {
+            return null;
+        }
+    };
+    Members.prototype.each = function (callback) {
+        var _this = this;
+        objectApply(this.members, function (member, id) {
+            callback(_this.get(id));
+        });
+    };
+    Members.prototype.setMyID = function (id) {
+        this.myID = id;
+    };
+    Members.prototype.onSubscription = function (subscriptionData) {
+        this.members = subscriptionData.presence.hash;
+        this.count = subscriptionData.presence.count;
+        this.me = this.get(this.myID);
+    };
+    Members.prototype.addMember = function (memberData) {
+        if (this.get(memberData.user_id) === null) {
+            this.count++;
+        }
+        this.members[memberData.user_id] = memberData.user_info;
+        return this.get(memberData.user_id);
+    };
+    Members.prototype.removeMember = function (memberData) {
+        var member = this.get(memberData.user_id);
+        if (member) {
+            delete this.members[memberData.user_id];
+            this.count--;
+        }
+        return member;
+    };
+    Members.prototype.reset = function () {
+        this.members = {};
+        this.count = 0;
+        this.myID = null;
+        this.me = null;
+    };
+    return Members;
+}());
+/* harmony default export */ var members = (members_Members);
+
+// CONCATENATED MODULE: ./src/core/channels/presence_channel.ts
+var presence_channel_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+var presence_channel_PresenceChannel = (function (_super) {
+    presence_channel_extends(PresenceChannel, _super);
+    function PresenceChannel(name, pusher) {
+        var _this = _super.call(this, name, pusher) || this;
+        _this.members = new members();
+        return _this;
+    }
+    PresenceChannel.prototype.authorize = function (socketId, callback) {
+        var _this = this;
+        _super.prototype.authorize.call(this, socketId, function (error, authData) {
+            if (!error) {
+                authData = authData;
+                if (authData.channel_data === undefined) {
+                    var suffix = url_store.buildLogSuffix('authenticationEndpoint');
+                    logger.error("Invalid auth response for channel '" + _this.name + "'," +
+                        ("expected 'channel_data' field. " + suffix));
+                    callback('Invalid auth response');
+                    return;
+                }
+                var channelData = JSON.parse(authData.channel_data);
+                _this.members.setMyID(channelData.user_id);
+            }
+            callback(error, authData);
+        });
+    };
+    PresenceChannel.prototype.handleEvent = function (event) {
+        var eventName = event.event;
+        if (eventName.indexOf('pusher_internal:') === 0) {
+            this.handleInternalEvent(event);
+        }
+        else {
+            var data = event.data;
+            var metadata = {};
+            if (event.user_id) {
+                metadata.user_id = event.user_id;
+            }
+            this.emit(eventName, data, metadata);
+        }
+    };
+    PresenceChannel.prototype.handleInternalEvent = function (event) {
+        var eventName = event.event;
+        var data = event.data;
+        switch (eventName) {
+            case 'pusher_internal:subscription_succeeded':
+                this.handleSubscriptionSucceededEvent(event);
+                break;
+            case 'pusher_internal:member_added':
+                var addedMember = this.members.addMember(data);
+                this.emit('pusher:member_added', addedMember);
+                break;
+            case 'pusher_internal:member_removed':
+                var removedMember = this.members.removeMember(data);
+                if (removedMember) {
+                    this.emit('pusher:member_removed', removedMember);
+                }
+                break;
+        }
+    };
+    PresenceChannel.prototype.handleSubscriptionSucceededEvent = function (event) {
+        this.subscriptionPending = false;
+        this.subscribed = true;
+        if (this.subscriptionCancelled) {
+            this.pusher.unsubscribe(this.name);
+        }
+        else {
+            this.members.onSubscription(event.data);
+            this.emit('pusher:subscription_succeeded', this.members);
+        }
+    };
+    PresenceChannel.prototype.disconnect = function () {
+        this.members.reset();
+        _super.prototype.disconnect.call(this);
+    };
+    return PresenceChannel;
+}(private_channel));
+/* harmony default export */ var presence_channel = (presence_channel_PresenceChannel);
+
+// EXTERNAL MODULE: ./node_modules/@stablelib/utf8/lib/utf8.js
+var utf8 = __webpack_require__(1);
+
+// EXTERNAL MODULE: ./node_modules/@stablelib/base64/lib/base64.js
+var base64 = __webpack_require__(0);
+
+// CONCATENATED MODULE: ./src/core/channels/encrypted_channel.ts
+var encrypted_channel_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+
+var encrypted_channel_EncryptedChannel = (function (_super) {
+    encrypted_channel_extends(EncryptedChannel, _super);
+    function EncryptedChannel(name, pusher, nacl) {
+        var _this = _super.call(this, name, pusher) || this;
+        _this.key = null;
+        _this.nacl = nacl;
+        return _this;
+    }
+    EncryptedChannel.prototype.authorize = function (socketId, callback) {
+        var _this = this;
+        _super.prototype.authorize.call(this, socketId, function (error, authData) {
+            if (error) {
+                callback(true, authData);
+                return;
+            }
+            var sharedSecret = authData['shared_secret'];
+            if (!sharedSecret) {
+                var errorMsg = "No shared_secret key in auth payload for encrypted channel: " + _this.name;
+                callback(true, errorMsg);
+                return;
+            }
+            _this.key = Object(base64["decode"])(sharedSecret);
+            delete authData['shared_secret'];
+            callback(false, authData);
+        });
+    };
+    EncryptedChannel.prototype.trigger = function (event, data) {
+        throw new UnsupportedFeature('Client events are not currently supported for encrypted channels');
+    };
+    EncryptedChannel.prototype.handleEvent = function (event) {
+        var eventName = event.event;
+        var data = event.data;
+        if (eventName.indexOf('pusher_internal:') === 0 ||
+            eventName.indexOf('pusher:') === 0) {
+            _super.prototype.handleEvent.call(this, event);
+            return;
+        }
+        this.handleEncryptedEvent(eventName, data);
+    };
+    EncryptedChannel.prototype.handleEncryptedEvent = function (event, data) {
+        var _this = this;
+        if (!this.key) {
+            logger.debug('Received encrypted event before key has been retrieved from the authEndpoint');
+            return;
+        }
+        if (!data.ciphertext || !data.nonce) {
+            logger.error('Unexpected format for encrypted event, expected object with `ciphertext` and `nonce` fields, got: ' +
+                data);
+            return;
+        }
+        var cipherText = Object(base64["decode"])(data.ciphertext);
+        if (cipherText.length < this.nacl.secretbox.overheadLength) {
+            logger.error("Expected encrypted event ciphertext length to be " + this.nacl.secretbox.overheadLength + ", got: " + cipherText.length);
+            return;
+        }
+        var nonce = Object(base64["decode"])(data.nonce);
+        if (nonce.length < this.nacl.secretbox.nonceLength) {
+            logger.error("Expected encrypted event nonce length to be " + this.nacl.secretbox.nonceLength + ", got: " + nonce.length);
+            return;
+        }
+        var bytes = this.nacl.secretbox.open(cipherText, nonce, this.key);
+        if (bytes === null) {
+            logger.debug('Failed to decrypt an event, probably because it was encrypted with a different key. Fetching a new key from the authEndpoint...');
+            this.authorize(this.pusher.connection.socket_id, function (error, authData) {
+                if (error) {
+                    logger.error("Failed to make a request to the authEndpoint: " + authData + ". Unable to fetch new key, so dropping encrypted event");
+                    return;
+                }
+                bytes = _this.nacl.secretbox.open(cipherText, nonce, _this.key);
+                if (bytes === null) {
+                    logger.error("Failed to decrypt event with new key. Dropping encrypted event");
+                    return;
+                }
+                _this.emitJSON(event, Object(utf8["decode"])(bytes));
+                return;
+            });
+            return;
+        }
+        this.emitJSON(event, Object(utf8["decode"])(bytes));
+    };
+    EncryptedChannel.prototype.emitJSON = function (eventName, data) {
+        try {
+            this.emit(eventName, JSON.parse(data));
+        }
+        catch (e) {
+            this.emit(eventName, data);
+        }
+        return this;
+    };
+    return EncryptedChannel;
+}(private_channel));
+/* harmony default export */ var encrypted_channel = (encrypted_channel_EncryptedChannel);
+
+// CONCATENATED MODULE: ./src/core/connection/connection_manager.ts
+var connection_manager_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+
+var connection_manager_ConnectionManager = (function (_super) {
+    connection_manager_extends(ConnectionManager, _super);
+    function ConnectionManager(key, options) {
+        var _this = _super.call(this) || this;
+        _this.state = 'initialized';
+        _this.connection = null;
+        _this.key = key;
+        _this.options = options;
+        _this.timeline = _this.options.timeline;
+        _this.usingTLS = _this.options.useTLS;
+        _this.errorCallbacks = _this.buildErrorCallbacks();
+        _this.connectionCallbacks = _this.buildConnectionCallbacks(_this.errorCallbacks);
+        _this.handshakeCallbacks = _this.buildHandshakeCallbacks(_this.errorCallbacks);
+        var Network = runtime.getNetwork();
+        Network.bind('online', function () {
+            _this.timeline.info({ netinfo: 'online' });
+            if (_this.state === 'connecting' || _this.state === 'unavailable') {
+                _this.retryIn(0);
+            }
+        });
+        Network.bind('offline', function () {
+            _this.timeline.info({ netinfo: 'offline' });
+            if (_this.connection) {
+                _this.sendActivityCheck();
+            }
+        });
+        _this.updateStrategy();
+        return _this;
+    }
+    ConnectionManager.prototype.connect = function () {
+        if (this.connection || this.runner) {
+            return;
+        }
+        if (!this.strategy.isSupported()) {
+            this.updateState('failed');
+            return;
+        }
+        this.updateState('connecting');
+        this.startConnecting();
+        this.setUnavailableTimer();
+    };
+    ConnectionManager.prototype.send = function (data) {
+        if (this.connection) {
+            return this.connection.send(data);
+        }
+        else {
+            return false;
+        }
+    };
+    ConnectionManager.prototype.send_event = function (name, data, channel) {
+        if (this.connection) {
+            return this.connection.send_event(name, data, channel);
+        }
+        else {
+            return false;
+        }
+    };
+    ConnectionManager.prototype.disconnect = function () {
+        this.disconnectInternally();
+        this.updateState('disconnected');
+    };
+    ConnectionManager.prototype.isUsingTLS = function () {
+        return this.usingTLS;
+    };
+    ConnectionManager.prototype.startConnecting = function () {
+        var _this = this;
+        var callback = function (error, handshake) {
+            if (error) {
+                _this.runner = _this.strategy.connect(0, callback);
+            }
+            else {
+                if (handshake.action === 'error') {
+                    _this.emit('error', {
+                        type: 'HandshakeError',
+                        error: handshake.error
+                    });
+                    _this.timeline.error({ handshakeError: handshake.error });
+                }
+                else {
+                    _this.abortConnecting();
+                    _this.handshakeCallbacks[handshake.action](handshake);
+                }
+            }
+        };
+        this.runner = this.strategy.connect(0, callback);
+    };
+    ConnectionManager.prototype.abortConnecting = function () {
+        if (this.runner) {
+            this.runner.abort();
+            this.runner = null;
+        }
+    };
+    ConnectionManager.prototype.disconnectInternally = function () {
+        this.abortConnecting();
+        this.clearRetryTimer();
+        this.clearUnavailableTimer();
+        if (this.connection) {
+            var connection = this.abandonConnection();
+            connection.close();
+        }
+    };
+    ConnectionManager.prototype.updateStrategy = function () {
+        this.strategy = this.options.getStrategy({
+            key: this.key,
+            timeline: this.timeline,
+            useTLS: this.usingTLS
+        });
+    };
+    ConnectionManager.prototype.retryIn = function (delay) {
+        var _this = this;
+        this.timeline.info({ action: 'retry', delay: delay });
+        if (delay > 0) {
+            this.emit('connecting_in', Math.round(delay / 1000));
+        }
+        this.retryTimer = new OneOffTimer(delay || 0, function () {
+            _this.disconnectInternally();
+            _this.connect();
+        });
+    };
+    ConnectionManager.prototype.clearRetryTimer = function () {
+        if (this.retryTimer) {
+            this.retryTimer.ensureAborted();
+            this.retryTimer = null;
+        }
+    };
+    ConnectionManager.prototype.setUnavailableTimer = function () {
+        var _this = this;
+        this.unavailableTimer = new OneOffTimer(this.options.unavailableTimeout, function () {
+            _this.updateState('unavailable');
+        });
+    };
+    ConnectionManager.prototype.clearUnavailableTimer = function () {
+        if (this.unavailableTimer) {
+            this.unavailableTimer.ensureAborted();
+        }
+    };
+    ConnectionManager.prototype.sendActivityCheck = function () {
+        var _this = this;
+        this.stopActivityCheck();
+        this.connection.ping();
+        this.activityTimer = new OneOffTimer(this.options.pongTimeout, function () {
+            _this.timeline.error({ pong_timed_out: _this.options.pongTimeout });
+            _this.retryIn(0);
+        });
+    };
+    ConnectionManager.prototype.resetActivityCheck = function () {
+        var _this = this;
+        this.stopActivityCheck();
+        if (this.connection && !this.connection.handlesActivityChecks()) {
+            this.activityTimer = new OneOffTimer(this.activityTimeout, function () {
+                _this.sendActivityCheck();
+            });
+        }
+    };
+    ConnectionManager.prototype.stopActivityCheck = function () {
+        if (this.activityTimer) {
+            this.activityTimer.ensureAborted();
+        }
+    };
+    ConnectionManager.prototype.buildConnectionCallbacks = function (errorCallbacks) {
+        var _this = this;
+        return extend({}, errorCallbacks, {
+            message: function (message) {
+                _this.resetActivityCheck();
+                _this.emit('message', message);
+            },
+            ping: function () {
+                _this.send_event('pusher:pong', {});
+            },
+            activity: function () {
+                _this.resetActivityCheck();
+            },
+            error: function (error) {
+                _this.emit('error', { type: 'WebSocketError', error: error });
+            },
+            closed: function () {
+                _this.abandonConnection();
+                if (_this.shouldRetry()) {
+                    _this.retryIn(1000);
+                }
+            }
+        });
+    };
+    ConnectionManager.prototype.buildHandshakeCallbacks = function (errorCallbacks) {
+        var _this = this;
+        return extend({}, errorCallbacks, {
+            connected: function (handshake) {
+                _this.activityTimeout = Math.min(_this.options.activityTimeout, handshake.activityTimeout, handshake.connection.activityTimeout || Infinity);
+                _this.clearUnavailableTimer();
+                _this.setConnection(handshake.connection);
+                _this.socket_id = _this.connection.id;
+                _this.updateState('connected', { socket_id: _this.socket_id });
+            }
+        });
+    };
+    ConnectionManager.prototype.buildErrorCallbacks = function () {
+        var _this = this;
+        var withErrorEmitted = function (callback) {
+            return function (result) {
+                if (result.error) {
+                    _this.emit('error', { type: 'WebSocketError', error: result.error });
+                }
+                callback(result);
+            };
+        };
+        return {
+            tls_only: withErrorEmitted(function () {
+                _this.usingTLS = true;
+                _this.updateStrategy();
+                _this.retryIn(0);
+            }),
+            refused: withErrorEmitted(function () {
+                _this.disconnect();
+            }),
+            backoff: withErrorEmitted(function () {
+                _this.retryIn(1000);
+            }),
+            retry: withErrorEmitted(function () {
+                _this.retryIn(0);
+            })
+        };
+    };
+    ConnectionManager.prototype.setConnection = function (connection) {
+        this.connection = connection;
+        for (var event in this.connectionCallbacks) {
+            this.connection.bind(event, this.connectionCallbacks[event]);
+        }
+        this.resetActivityCheck();
+    };
+    ConnectionManager.prototype.abandonConnection = function () {
+        if (!this.connection) {
+            return;
+        }
+        this.stopActivityCheck();
+        for (var event in this.connectionCallbacks) {
+            this.connection.unbind(event, this.connectionCallbacks[event]);
+        }
+        var connection = this.connection;
+        this.connection = null;
+        return connection;
+    };
+    ConnectionManager.prototype.updateState = function (newState, data) {
+        var previousState = this.state;
+        this.state = newState;
+        if (previousState !== newState) {
+            var newStateDescription = newState;
+            if (newStateDescription === 'connected') {
+                newStateDescription += ' with new socket ID ' + data.socket_id;
+            }
+            logger.debug('State changed', previousState + ' -> ' + newStateDescription);
+            this.timeline.info({ state: newState, params: data });
+            this.emit('state_change', { previous: previousState, current: newState });
+            this.emit(newState, data);
+        }
+    };
+    ConnectionManager.prototype.shouldRetry = function () {
+        return this.state === 'connecting' || this.state === 'connected';
+    };
+    return ConnectionManager;
+}(dispatcher));
+/* harmony default export */ var connection_manager = (connection_manager_ConnectionManager);
+
+// CONCATENATED MODULE: ./src/core/channels/channels.ts
+
+
+
+
+var channels_Channels = (function () {
+    function Channels() {
+        this.channels = {};
+    }
+    Channels.prototype.add = function (name, pusher) {
+        if (!this.channels[name]) {
+            this.channels[name] = createChannel(name, pusher);
+        }
+        return this.channels[name];
+    };
+    Channels.prototype.all = function () {
+        return values(this.channels);
+    };
+    Channels.prototype.find = function (name) {
+        return this.channels[name];
+    };
+    Channels.prototype.remove = function (name) {
+        var channel = this.channels[name];
+        delete this.channels[name];
+        return channel;
+    };
+    Channels.prototype.disconnect = function () {
+        objectApply(this.channels, function (channel) {
+            channel.disconnect();
+        });
+    };
+    return Channels;
+}());
+/* harmony default export */ var channels = (channels_Channels);
+function createChannel(name, pusher) {
+    if (name.indexOf('private-encrypted-') === 0) {
+        if (pusher.config.nacl) {
+            return factory.createEncryptedChannel(name, pusher, pusher.config.nacl);
+        }
+        var errMsg = 'Tried to subscribe to a private-encrypted- channel but no nacl implementation available';
+        var suffix = url_store.buildLogSuffix('encryptedChannelSupport');
+        throw new UnsupportedFeature(errMsg + ". " + suffix);
+    }
+    else if (name.indexOf('private-') === 0) {
+        return factory.createPrivateChannel(name, pusher);
+    }
+    else if (name.indexOf('presence-') === 0) {
+        return factory.createPresenceChannel(name, pusher);
+    }
+    else {
+        return factory.createChannel(name, pusher);
+    }
+}
+
+// CONCATENATED MODULE: ./src/core/utils/factory.ts
+
+
+
+
+
+
+
+
+
+
+var Factory = {
+    createChannels: function () {
+        return new channels();
+    },
+    createConnectionManager: function (key, options) {
+        return new connection_manager(key, options);
+    },
+    createChannel: function (name, pusher) {
+        return new channels_channel(name, pusher);
+    },
+    createPrivateChannel: function (name, pusher) {
+        return new private_channel(name, pusher);
+    },
+    createPresenceChannel: function (name, pusher) {
+        return new presence_channel(name, pusher);
+    },
+    createEncryptedChannel: function (name, pusher, nacl) {
+        return new encrypted_channel(name, pusher, nacl);
+    },
+    createTimelineSender: function (timeline, options) {
+        return new timeline_sender(timeline, options);
+    },
+    createAuthorizer: function (channel, options) {
+        if (options.authorizer) {
+            return options.authorizer(channel, options);
+        }
+        return new pusher_authorizer(channel, options);
+    },
+    createHandshake: function (transport, callback) {
+        return new connection_handshake(transport, callback);
+    },
+    createAssistantToTheTransportManager: function (manager, transport, options) {
+        return new assistant_to_the_transport_manager(manager, transport, options);
+    }
+};
+/* harmony default export */ var factory = (Factory);
+
+// CONCATENATED MODULE: ./src/core/transports/transport_manager.ts
+
+var transport_manager_TransportManager = (function () {
+    function TransportManager(options) {
+        this.options = options || {};
+        this.livesLeft = this.options.lives || Infinity;
+    }
+    TransportManager.prototype.getAssistant = function (transport) {
+        return factory.createAssistantToTheTransportManager(this, transport, {
+            minPingDelay: this.options.minPingDelay,
+            maxPingDelay: this.options.maxPingDelay
+        });
+    };
+    TransportManager.prototype.isAlive = function () {
+        return this.livesLeft > 0;
+    };
+    TransportManager.prototype.reportDeath = function () {
+        this.livesLeft -= 1;
+    };
+    return TransportManager;
+}());
+/* harmony default export */ var transport_manager = (transport_manager_TransportManager);
+
+// CONCATENATED MODULE: ./src/core/strategies/sequential_strategy.ts
+
+
+
+var sequential_strategy_SequentialStrategy = (function () {
+    function SequentialStrategy(strategies, options) {
+        this.strategies = strategies;
+        this.loop = Boolean(options.loop);
+        this.failFast = Boolean(options.failFast);
+        this.timeout = options.timeout;
+        this.timeoutLimit = options.timeoutLimit;
+    }
+    SequentialStrategy.prototype.isSupported = function () {
+        return any(this.strategies, util.method('isSupported'));
+    };
+    SequentialStrategy.prototype.connect = function (minPriority, callback) {
+        var _this = this;
+        var strategies = this.strategies;
+        var current = 0;
+        var timeout = this.timeout;
+        var runner = null;
+        var tryNextStrategy = function (error, handshake) {
+            if (handshake) {
+                callback(null, handshake);
+            }
+            else {
+                current = current + 1;
+                if (_this.loop) {
+                    current = current % strategies.length;
+                }
+                if (current < strategies.length) {
+                    if (timeout) {
+                        timeout = timeout * 2;
+                        if (_this.timeoutLimit) {
+                            timeout = Math.min(timeout, _this.timeoutLimit);
+                        }
+                    }
+                    runner = _this.tryStrategy(strategies[current], minPriority, { timeout: timeout, failFast: _this.failFast }, tryNextStrategy);
+                }
+                else {
+                    callback(true);
+                }
+            }
+        };
+        runner = this.tryStrategy(strategies[current], minPriority, { timeout: timeout, failFast: this.failFast }, tryNextStrategy);
+        return {
+            abort: function () {
+                runner.abort();
+            },
+            forceMinPriority: function (p) {
+                minPriority = p;
+                if (runner) {
+                    runner.forceMinPriority(p);
+                }
+            }
+        };
+    };
+    SequentialStrategy.prototype.tryStrategy = function (strategy, minPriority, options, callback) {
+        var timer = null;
+        var runner = null;
+        if (options.timeout > 0) {
+            timer = new OneOffTimer(options.timeout, function () {
+                runner.abort();
+                callback(true);
+            });
+        }
+        runner = strategy.connect(minPriority, function (error, handshake) {
+            if (error && timer && timer.isRunning() && !options.failFast) {
+                return;
+            }
+            if (timer) {
+                timer.ensureAborted();
+            }
+            callback(error, handshake);
+        });
+        return {
+            abort: function () {
+                if (timer) {
+                    timer.ensureAborted();
+                }
+                runner.abort();
+            },
+            forceMinPriority: function (p) {
+                runner.forceMinPriority(p);
+            }
+        };
+    };
+    return SequentialStrategy;
+}());
+/* harmony default export */ var sequential_strategy = (sequential_strategy_SequentialStrategy);
+
+// CONCATENATED MODULE: ./src/core/strategies/best_connected_ever_strategy.ts
+
+
+var best_connected_ever_strategy_BestConnectedEverStrategy = (function () {
+    function BestConnectedEverStrategy(strategies) {
+        this.strategies = strategies;
+    }
+    BestConnectedEverStrategy.prototype.isSupported = function () {
+        return any(this.strategies, util.method('isSupported'));
+    };
+    BestConnectedEverStrategy.prototype.connect = function (minPriority, callback) {
+        return connect(this.strategies, minPriority, function (i, runners) {
+            return function (error, handshake) {
+                runners[i].error = error;
+                if (error) {
+                    if (allRunnersFailed(runners)) {
+                        callback(true);
+                    }
+                    return;
+                }
+                apply(runners, function (runner) {
+                    runner.forceMinPriority(handshake.transport.priority);
+                });
+                callback(null, handshake);
+            };
+        });
+    };
+    return BestConnectedEverStrategy;
+}());
+/* harmony default export */ var best_connected_ever_strategy = (best_connected_ever_strategy_BestConnectedEverStrategy);
+function connect(strategies, minPriority, callbackBuilder) {
+    var runners = map(strategies, function (strategy, i, _, rs) {
+        return strategy.connect(minPriority, callbackBuilder(i, rs));
+    });
+    return {
+        abort: function () {
+            apply(runners, abortRunner);
+        },
+        forceMinPriority: function (p) {
+            apply(runners, function (runner) {
+                runner.forceMinPriority(p);
+            });
+        }
+    };
+}
+function allRunnersFailed(runners) {
+    return collections_all(runners, function (runner) {
+        return Boolean(runner.error);
+    });
+}
+function abortRunner(runner) {
+    if (!runner.error && !runner.aborted) {
+        runner.abort();
+        runner.aborted = true;
+    }
+}
+
+// CONCATENATED MODULE: ./src/core/strategies/cached_strategy.ts
+
+
+
+
+var cached_strategy_CachedStrategy = (function () {
+    function CachedStrategy(strategy, transports, options) {
+        this.strategy = strategy;
+        this.transports = transports;
+        this.ttl = options.ttl || 1800 * 1000;
+        this.usingTLS = options.useTLS;
+        this.timeline = options.timeline;
+    }
+    CachedStrategy.prototype.isSupported = function () {
+        return this.strategy.isSupported();
+    };
+    CachedStrategy.prototype.connect = function (minPriority, callback) {
+        var usingTLS = this.usingTLS;
+        var info = fetchTransportCache(usingTLS);
+        var strategies = [this.strategy];
+        if (info && info.timestamp + this.ttl >= util.now()) {
+            var transport = this.transports[info.transport];
+            if (transport) {
+                this.timeline.info({
+                    cached: true,
+                    transport: info.transport,
+                    latency: info.latency
+                });
+                strategies.push(new sequential_strategy([transport], {
+                    timeout: info.latency * 2 + 1000,
+                    failFast: true
+                }));
+            }
+        }
+        var startTimestamp = util.now();
+        var runner = strategies
+            .pop()
+            .connect(minPriority, function cb(error, handshake) {
+            if (error) {
+                flushTransportCache(usingTLS);
+                if (strategies.length > 0) {
+                    startTimestamp = util.now();
+                    runner = strategies.pop().connect(minPriority, cb);
+                }
+                else {
+                    callback(error);
+                }
+            }
+            else {
+                storeTransportCache(usingTLS, handshake.transport.name, util.now() - startTimestamp);
+                callback(null, handshake);
+            }
+        });
+        return {
+            abort: function () {
+                runner.abort();
+            },
+            forceMinPriority: function (p) {
+                minPriority = p;
+                if (runner) {
+                    runner.forceMinPriority(p);
+                }
+            }
+        };
+    };
+    return CachedStrategy;
+}());
+/* harmony default export */ var cached_strategy = (cached_strategy_CachedStrategy);
+function getTransportCacheKey(usingTLS) {
+    return 'pusherTransport' + (usingTLS ? 'TLS' : 'NonTLS');
+}
+function fetchTransportCache(usingTLS) {
+    var storage = runtime.getLocalStorage();
+    if (storage) {
+        try {
+            var serializedCache = storage[getTransportCacheKey(usingTLS)];
+            if (serializedCache) {
+                return JSON.parse(serializedCache);
+            }
+        }
+        catch (e) {
+            flushTransportCache(usingTLS);
+        }
+    }
+    return null;
+}
+function storeTransportCache(usingTLS, transport, latency) {
+    var storage = runtime.getLocalStorage();
+    if (storage) {
+        try {
+            storage[getTransportCacheKey(usingTLS)] = safeJSONStringify({
+                timestamp: util.now(),
+                transport: transport,
+                latency: latency
+            });
+        }
+        catch (e) {
+        }
+    }
+}
+function flushTransportCache(usingTLS) {
+    var storage = runtime.getLocalStorage();
+    if (storage) {
+        try {
+            delete storage[getTransportCacheKey(usingTLS)];
+        }
+        catch (e) {
+        }
+    }
+}
+
+// CONCATENATED MODULE: ./src/core/strategies/delayed_strategy.ts
+
+var delayed_strategy_DelayedStrategy = (function () {
+    function DelayedStrategy(strategy, _a) {
+        var number = _a.delay;
+        this.strategy = strategy;
+        this.options = { delay: number };
+    }
+    DelayedStrategy.prototype.isSupported = function () {
+        return this.strategy.isSupported();
+    };
+    DelayedStrategy.prototype.connect = function (minPriority, callback) {
+        var strategy = this.strategy;
+        var runner;
+        var timer = new OneOffTimer(this.options.delay, function () {
+            runner = strategy.connect(minPriority, callback);
+        });
+        return {
+            abort: function () {
+                timer.ensureAborted();
+                if (runner) {
+                    runner.abort();
+                }
+            },
+            forceMinPriority: function (p) {
+                minPriority = p;
+                if (runner) {
+                    runner.forceMinPriority(p);
+                }
+            }
+        };
+    };
+    return DelayedStrategy;
+}());
+/* harmony default export */ var delayed_strategy = (delayed_strategy_DelayedStrategy);
+
+// CONCATENATED MODULE: ./src/core/strategies/if_strategy.ts
+var IfStrategy = (function () {
+    function IfStrategy(test, trueBranch, falseBranch) {
+        this.test = test;
+        this.trueBranch = trueBranch;
+        this.falseBranch = falseBranch;
+    }
+    IfStrategy.prototype.isSupported = function () {
+        var branch = this.test() ? this.trueBranch : this.falseBranch;
+        return branch.isSupported();
+    };
+    IfStrategy.prototype.connect = function (minPriority, callback) {
+        var branch = this.test() ? this.trueBranch : this.falseBranch;
+        return branch.connect(minPriority, callback);
+    };
+    return IfStrategy;
+}());
+/* harmony default export */ var if_strategy = (IfStrategy);
+
+// CONCATENATED MODULE: ./src/core/strategies/first_connected_strategy.ts
+var FirstConnectedStrategy = (function () {
+    function FirstConnectedStrategy(strategy) {
+        this.strategy = strategy;
+    }
+    FirstConnectedStrategy.prototype.isSupported = function () {
+        return this.strategy.isSupported();
+    };
+    FirstConnectedStrategy.prototype.connect = function (minPriority, callback) {
+        var runner = this.strategy.connect(minPriority, function (error, handshake) {
+            if (handshake) {
+                runner.abort();
+            }
+            callback(error, handshake);
+        });
+        return runner;
+    };
+    return FirstConnectedStrategy;
+}());
+/* harmony default export */ var first_connected_strategy = (FirstConnectedStrategy);
+
+// CONCATENATED MODULE: ./src/runtimes/web/default_strategy.ts
+
+
+
+
+
+
+
+function testSupportsStrategy(strategy) {
+    return function () {
+        return strategy.isSupported();
+    };
+}
+var getDefaultStrategy = function (config, baseOptions, defineTransport) {
+    var definedTransports = {};
+    function defineTransportStrategy(name, type, priority, options, manager) {
+        var transport = defineTransport(config, name, type, priority, options, manager);
+        definedTransports[name] = transport;
+        return transport;
+    }
+    var ws_options = Object.assign({}, baseOptions, {
+        hostNonTLS: config.wsHost + ':' + config.wsPort,
+        hostTLS: config.wsHost + ':' + config.wssPort,
+        httpPath: config.wsPath
+    });
+    var wss_options = Object.assign({}, ws_options, {
+        useTLS: true
+    });
+    var sockjs_options = Object.assign({}, baseOptions, {
+        hostNonTLS: config.httpHost + ':' + config.httpPort,
+        hostTLS: config.httpHost + ':' + config.httpsPort,
+        httpPath: config.httpPath
+    });
+    var timeouts = {
+        loop: true,
+        timeout: 15000,
+        timeoutLimit: 60000
+    };
+    var ws_manager = new transport_manager({
+        lives: 2,
+        minPingDelay: 10000,
+        maxPingDelay: config.activityTimeout
+    });
+    var streaming_manager = new transport_manager({
+        lives: 2,
+        minPingDelay: 10000,
+        maxPingDelay: config.activityTimeout
+    });
+    var ws_transport = defineTransportStrategy('ws', 'ws', 3, ws_options, ws_manager);
+    var wss_transport = defineTransportStrategy('wss', 'ws', 3, wss_options, ws_manager);
+    var sockjs_transport = defineTransportStrategy('sockjs', 'sockjs', 1, sockjs_options);
+    var xhr_streaming_transport = defineTransportStrategy('xhr_streaming', 'xhr_streaming', 1, sockjs_options, streaming_manager);
+    var xdr_streaming_transport = defineTransportStrategy('xdr_streaming', 'xdr_streaming', 1, sockjs_options, streaming_manager);
+    var xhr_polling_transport = defineTransportStrategy('xhr_polling', 'xhr_polling', 1, sockjs_options);
+    var xdr_polling_transport = defineTransportStrategy('xdr_polling', 'xdr_polling', 1, sockjs_options);
+    var ws_loop = new sequential_strategy([ws_transport], timeouts);
+    var wss_loop = new sequential_strategy([wss_transport], timeouts);
+    var sockjs_loop = new sequential_strategy([sockjs_transport], timeouts);
+    var streaming_loop = new sequential_strategy([
+        new if_strategy(testSupportsStrategy(xhr_streaming_transport), xhr_streaming_transport, xdr_streaming_transport)
+    ], timeouts);
+    var polling_loop = new sequential_strategy([
+        new if_strategy(testSupportsStrategy(xhr_polling_transport), xhr_polling_transport, xdr_polling_transport)
+    ], timeouts);
+    var http_loop = new sequential_strategy([
+        new if_strategy(testSupportsStrategy(streaming_loop), new best_connected_ever_strategy([
+            streaming_loop,
+            new delayed_strategy(polling_loop, { delay: 4000 })
+        ]), polling_loop)
+    ], timeouts);
+    var http_fallback_loop = new if_strategy(testSupportsStrategy(http_loop), http_loop, sockjs_loop);
+    var wsStrategy;
+    if (baseOptions.useTLS) {
+        wsStrategy = new best_connected_ever_strategy([
+            ws_loop,
+            new delayed_strategy(http_fallback_loop, { delay: 2000 })
+        ]);
+    }
+    else {
+        wsStrategy = new best_connected_ever_strategy([
+            ws_loop,
+            new delayed_strategy(wss_loop, { delay: 2000 }),
+            new delayed_strategy(http_fallback_loop, { delay: 5000 })
+        ]);
+    }
+    return new cached_strategy(new first_connected_strategy(new if_strategy(testSupportsStrategy(ws_transport), wsStrategy, http_fallback_loop)), definedTransports, {
+        ttl: 1800000,
+        timeline: baseOptions.timeline,
+        useTLS: baseOptions.useTLS
+    });
+};
+/* harmony default export */ var default_strategy = (getDefaultStrategy);
+
+// CONCATENATED MODULE: ./src/runtimes/web/transports/transport_connection_initializer.ts
+
+/* harmony default export */ var transport_connection_initializer = (function () {
+    var self = this;
+    self.timeline.info(self.buildTimelineMessage({
+        transport: self.name + (self.options.useTLS ? 's' : '')
+    }));
+    if (self.hooks.isInitialized()) {
+        self.changeState('initialized');
+    }
+    else if (self.hooks.file) {
+        self.changeState('initializing');
+        Dependencies.load(self.hooks.file, { useTLS: self.options.useTLS }, function (error, callback) {
+            if (self.hooks.isInitialized()) {
+                self.changeState('initialized');
+                callback(true);
+            }
+            else {
+                if (error) {
+                    self.onError(error);
+                }
+                self.onClose();
+                callback(false);
+            }
+        });
+    }
+    else {
+        self.onClose();
+    }
+});
+
+// CONCATENATED MODULE: ./src/runtimes/web/http/http_xdomain_request.ts
+
+var http_xdomain_request_hooks = {
+    getRequest: function (socket) {
+        var xdr = new window.XDomainRequest();
+        xdr.ontimeout = function () {
+            socket.emit('error', new RequestTimedOut());
+            socket.close();
+        };
+        xdr.onerror = function (e) {
+            socket.emit('error', e);
+            socket.close();
+        };
+        xdr.onprogress = function () {
+            if (xdr.responseText && xdr.responseText.length > 0) {
+                socket.onChunk(200, xdr.responseText);
+            }
+        };
+        xdr.onload = function () {
+            if (xdr.responseText && xdr.responseText.length > 0) {
+                socket.onChunk(200, xdr.responseText);
+            }
+            socket.emit('finished', 200);
+            socket.close();
+        };
+        return xdr;
+    },
+    abortRequest: function (xdr) {
+        xdr.ontimeout = xdr.onerror = xdr.onprogress = xdr.onload = null;
+        xdr.abort();
+    }
+};
+/* harmony default export */ var http_xdomain_request = (http_xdomain_request_hooks);
+
+// CONCATENATED MODULE: ./src/core/http/http_request.ts
+var http_request_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+var MAX_BUFFER_LENGTH = 256 * 1024;
+var http_request_HTTPRequest = (function (_super) {
+    http_request_extends(HTTPRequest, _super);
+    function HTTPRequest(hooks, method, url) {
+        var _this = _super.call(this) || this;
+        _this.hooks = hooks;
+        _this.method = method;
+        _this.url = url;
+        return _this;
+    }
+    HTTPRequest.prototype.start = function (payload) {
+        var _this = this;
+        this.position = 0;
+        this.xhr = this.hooks.getRequest(this);
+        this.unloader = function () {
+            _this.close();
+        };
+        runtime.addUnloadListener(this.unloader);
+        this.xhr.open(this.method, this.url, true);
+        if (this.xhr.setRequestHeader) {
+            this.xhr.setRequestHeader('Content-Type', 'application/json');
+        }
+        this.xhr.send(payload);
+    };
+    HTTPRequest.prototype.close = function () {
+        if (this.unloader) {
+            runtime.removeUnloadListener(this.unloader);
+            this.unloader = null;
+        }
+        if (this.xhr) {
+            this.hooks.abortRequest(this.xhr);
+            this.xhr = null;
+        }
+    };
+    HTTPRequest.prototype.onChunk = function (status, data) {
+        while (true) {
+            var chunk = this.advanceBuffer(data);
+            if (chunk) {
+                this.emit('chunk', { status: status, data: chunk });
+            }
+            else {
+                break;
+            }
+        }
+        if (this.isBufferTooLong(data)) {
+            this.emit('buffer_too_long');
+        }
+    };
+    HTTPRequest.prototype.advanceBuffer = function (buffer) {
+        var unreadData = buffer.slice(this.position);
+        var endOfLinePosition = unreadData.indexOf('\n');
+        if (endOfLinePosition !== -1) {
+            this.position += endOfLinePosition + 1;
+            return unreadData.slice(0, endOfLinePosition);
+        }
+        else {
+            return null;
+        }
+    };
+    HTTPRequest.prototype.isBufferTooLong = function (buffer) {
+        return this.position === buffer.length && buffer.length > MAX_BUFFER_LENGTH;
+    };
+    return HTTPRequest;
+}(dispatcher));
+/* harmony default export */ var http_request = (http_request_HTTPRequest);
+
+// CONCATENATED MODULE: ./src/core/http/state.ts
+var State;
+(function (State) {
+    State[State["CONNECTING"] = 0] = "CONNECTING";
+    State[State["OPEN"] = 1] = "OPEN";
+    State[State["CLOSED"] = 3] = "CLOSED";
+})(State || (State = {}));
+/* harmony default export */ var state = (State);
+
+// CONCATENATED MODULE: ./src/core/http/http_socket.ts
+
+
+
+var autoIncrement = 1;
+var http_socket_HTTPSocket = (function () {
+    function HTTPSocket(hooks, url) {
+        this.hooks = hooks;
+        this.session = randomNumber(1000) + '/' + randomString(8);
+        this.location = getLocation(url);
+        this.readyState = state.CONNECTING;
+        this.openStream();
+    }
+    HTTPSocket.prototype.send = function (payload) {
+        return this.sendRaw(JSON.stringify([payload]));
+    };
+    HTTPSocket.prototype.ping = function () {
+        this.hooks.sendHeartbeat(this);
+    };
+    HTTPSocket.prototype.close = function (code, reason) {
+        this.onClose(code, reason, true);
+    };
+    HTTPSocket.prototype.sendRaw = function (payload) {
+        if (this.readyState === state.OPEN) {
+            try {
+                runtime.createSocketRequest('POST', getUniqueURL(getSendURL(this.location, this.session))).start(payload);
+                return true;
+            }
+            catch (e) {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    };
+    HTTPSocket.prototype.reconnect = function () {
+        this.closeStream();
+        this.openStream();
+    };
+    HTTPSocket.prototype.onClose = function (code, reason, wasClean) {
+        this.closeStream();
+        this.readyState = state.CLOSED;
+        if (this.onclose) {
+            this.onclose({
+                code: code,
+                reason: reason,
+                wasClean: wasClean
+            });
+        }
+    };
+    HTTPSocket.prototype.onChunk = function (chunk) {
+        if (chunk.status !== 200) {
+            return;
+        }
+        if (this.readyState === state.OPEN) {
+            this.onActivity();
+        }
+        var payload;
+        var type = chunk.data.slice(0, 1);
+        switch (type) {
+            case 'o':
+                payload = JSON.parse(chunk.data.slice(1) || '{}');
+                this.onOpen(payload);
+                break;
+            case 'a':
+                payload = JSON.parse(chunk.data.slice(1) || '[]');
+                for (var i = 0; i < payload.length; i++) {
+                    this.onEvent(payload[i]);
+                }
+                break;
+            case 'm':
+                payload = JSON.parse(chunk.data.slice(1) || 'null');
+                this.onEvent(payload);
+                break;
+            case 'h':
+                this.hooks.onHeartbeat(this);
+                break;
+            case 'c':
+                payload = JSON.parse(chunk.data.slice(1) || '[]');
+                this.onClose(payload[0], payload[1], true);
+                break;
+        }
+    };
+    HTTPSocket.prototype.onOpen = function (options) {
+        if (this.readyState === state.CONNECTING) {
+            if (options && options.hostname) {
+                this.location.base = replaceHost(this.location.base, options.hostname);
+            }
+            this.readyState = state.OPEN;
+            if (this.onopen) {
+                this.onopen();
+            }
+        }
+        else {
+            this.onClose(1006, 'Server lost session', true);
+        }
+    };
+    HTTPSocket.prototype.onEvent = function (event) {
+        if (this.readyState === state.OPEN && this.onmessage) {
+            this.onmessage({ data: event });
+        }
+    };
+    HTTPSocket.prototype.onActivity = function () {
+        if (this.onactivity) {
+            this.onactivity();
+        }
+    };
+    HTTPSocket.prototype.onError = function (error) {
+        if (this.onerror) {
+            this.onerror(error);
+        }
+    };
+    HTTPSocket.prototype.openStream = function () {
+        var _this = this;
+        this.stream = runtime.createSocketRequest('POST', getUniqueURL(this.hooks.getReceiveURL(this.location, this.session)));
+        this.stream.bind('chunk', function (chunk) {
+            _this.onChunk(chunk);
+        });
+        this.stream.bind('finished', function (status) {
+            _this.hooks.onFinished(_this, status);
+        });
+        this.stream.bind('buffer_too_long', function () {
+            _this.reconnect();
+        });
+        try {
+            this.stream.start();
+        }
+        catch (error) {
+            util.defer(function () {
+                _this.onError(error);
+                _this.onClose(1006, 'Could not start streaming', false);
+            });
+        }
+    };
+    HTTPSocket.prototype.closeStream = function () {
+        if (this.stream) {
+            this.stream.unbind_all();
+            this.stream.close();
+            this.stream = null;
+        }
+    };
+    return HTTPSocket;
+}());
+function getLocation(url) {
+    var parts = /([^\?]*)\/*(\??.*)/.exec(url);
+    return {
+        base: parts[1],
+        queryString: parts[2]
+    };
+}
+function getSendURL(url, session) {
+    return url.base + '/' + session + '/xhr_send';
+}
+function getUniqueURL(url) {
+    var separator = url.indexOf('?') === -1 ? '?' : '&';
+    return url + separator + 't=' + +new Date() + '&n=' + autoIncrement++;
+}
+function replaceHost(url, hostname) {
+    var urlParts = /(https?:\/\/)([^\/:]+)((\/|:)?.*)/.exec(url);
+    return urlParts[1] + hostname + urlParts[3];
+}
+function randomNumber(max) {
+    return Math.floor(Math.random() * max);
+}
+function randomString(length) {
+    var result = [];
+    for (var i = 0; i < length; i++) {
+        result.push(randomNumber(32).toString(32));
+    }
+    return result.join('');
+}
+/* harmony default export */ var http_socket = (http_socket_HTTPSocket);
+
+// CONCATENATED MODULE: ./src/core/http/http_streaming_socket.ts
+var http_streaming_socket_hooks = {
+    getReceiveURL: function (url, session) {
+        return url.base + '/' + session + '/xhr_streaming' + url.queryString;
+    },
+    onHeartbeat: function (socket) {
+        socket.sendRaw('[]');
+    },
+    sendHeartbeat: function (socket) {
+        socket.sendRaw('[]');
+    },
+    onFinished: function (socket, status) {
+        socket.onClose(1006, 'Connection interrupted (' + status + ')', false);
+    }
+};
+/* harmony default export */ var http_streaming_socket = (http_streaming_socket_hooks);
+
+// CONCATENATED MODULE: ./src/core/http/http_polling_socket.ts
+var http_polling_socket_hooks = {
+    getReceiveURL: function (url, session) {
+        return url.base + '/' + session + '/xhr' + url.queryString;
+    },
+    onHeartbeat: function () {
+    },
+    sendHeartbeat: function (socket) {
+        socket.sendRaw('[]');
+    },
+    onFinished: function (socket, status) {
+        if (status === 200) {
+            socket.reconnect();
+        }
+        else {
+            socket.onClose(1006, 'Connection interrupted (' + status + ')', false);
+        }
+    }
+};
+/* harmony default export */ var http_polling_socket = (http_polling_socket_hooks);
+
+// CONCATENATED MODULE: ./src/runtimes/isomorphic/http/http_xhr_request.ts
+
+var http_xhr_request_hooks = {
+    getRequest: function (socket) {
+        var Constructor = runtime.getXHRAPI();
+        var xhr = new Constructor();
+        xhr.onreadystatechange = xhr.onprogress = function () {
+            switch (xhr.readyState) {
+                case 3:
+                    if (xhr.responseText && xhr.responseText.length > 0) {
+                        socket.onChunk(xhr.status, xhr.responseText);
+                    }
+                    break;
+                case 4:
+                    if (xhr.responseText && xhr.responseText.length > 0) {
+                        socket.onChunk(xhr.status, xhr.responseText);
+                    }
+                    socket.emit('finished', xhr.status);
+                    socket.close();
+                    break;
+            }
+        };
+        return xhr;
+    },
+    abortRequest: function (xhr) {
+        xhr.onreadystatechange = null;
+        xhr.abort();
+    }
+};
+/* harmony default export */ var http_xhr_request = (http_xhr_request_hooks);
+
+// CONCATENATED MODULE: ./src/runtimes/isomorphic/http/http.ts
+
+
+
+
+
+var HTTP = {
+    createStreamingSocket: function (url) {
+        return this.createSocket(http_streaming_socket, url);
+    },
+    createPollingSocket: function (url) {
+        return this.createSocket(http_polling_socket, url);
+    },
+    createSocket: function (hooks, url) {
+        return new http_socket(hooks, url);
+    },
+    createXHR: function (method, url) {
+        return this.createRequest(http_xhr_request, method, url);
+    },
+    createRequest: function (hooks, method, url) {
+        return new http_request(hooks, method, url);
+    }
+};
+/* harmony default export */ var http_http = (HTTP);
+
+// CONCATENATED MODULE: ./src/runtimes/web/http/http.ts
+
+
+http_http.createXDR = function (method, url) {
+    return this.createRequest(http_xdomain_request, method, url);
+};
+/* harmony default export */ var web_http_http = (http_http);
+
+// CONCATENATED MODULE: ./src/runtimes/web/runtime.ts
+
+
+
+
+
+
+
+
+
+
+
+
+var Runtime = {
+    nextAuthCallbackID: 1,
+    auth_callbacks: {},
+    ScriptReceivers: ScriptReceivers,
+    DependenciesReceivers: DependenciesReceivers,
+    getDefaultStrategy: default_strategy,
+    Transports: transports_transports,
+    transportConnectionInitializer: transport_connection_initializer,
+    HTTPFactory: web_http_http,
+    TimelineTransport: jsonp_timeline,
+    getXHRAPI: function () {
+        return window.XMLHttpRequest;
+    },
+    getWebSocketAPI: function () {
+        return window.WebSocket || window.MozWebSocket;
+    },
+    setup: function (PusherClass) {
+        var _this = this;
+        window.Pusher = PusherClass;
+        var initializeOnDocumentBody = function () {
+            _this.onDocumentBody(PusherClass.ready);
+        };
+        if (!window.JSON) {
+            Dependencies.load('json2', {}, initializeOnDocumentBody);
+        }
+        else {
+            initializeOnDocumentBody();
+        }
+    },
+    getDocument: function () {
+        return document;
+    },
+    getProtocol: function () {
+        return this.getDocument().location.protocol;
+    },
+    getAuthorizers: function () {
+        return { ajax: xhr_auth, jsonp: jsonp_auth };
+    },
+    onDocumentBody: function (callback) {
+        var _this = this;
+        if (document.body) {
+            callback();
+        }
+        else {
+            setTimeout(function () {
+                _this.onDocumentBody(callback);
+            }, 0);
+        }
+    },
+    createJSONPRequest: function (url, data) {
+        return new jsonp_request(url, data);
+    },
+    createScriptRequest: function (src) {
+        return new script_request(src);
+    },
+    getLocalStorage: function () {
+        try {
+            return window.localStorage;
+        }
+        catch (e) {
+            return undefined;
+        }
+    },
+    createXHR: function () {
+        if (this.getXHRAPI()) {
+            return this.createXMLHttpRequest();
+        }
+        else {
+            return this.createMicrosoftXHR();
+        }
+    },
+    createXMLHttpRequest: function () {
+        var Constructor = this.getXHRAPI();
+        return new Constructor();
+    },
+    createMicrosoftXHR: function () {
+        return new ActiveXObject('Microsoft.XMLHTTP');
+    },
+    getNetwork: function () {
+        return net_info_Network;
+    },
+    createWebSocket: function (url) {
+        var Constructor = this.getWebSocketAPI();
+        return new Constructor(url);
+    },
+    createSocketRequest: function (method, url) {
+        if (this.isXHRSupported()) {
+            return this.HTTPFactory.createXHR(method, url);
+        }
+        else if (this.isXDRSupported(url.indexOf('https:') === 0)) {
+            return this.HTTPFactory.createXDR(method, url);
+        }
+        else {
+            throw 'Cross-origin HTTP requests are not supported';
+        }
+    },
+    isXHRSupported: function () {
+        var Constructor = this.getXHRAPI();
+        return (Boolean(Constructor) && new Constructor().withCredentials !== undefined);
+    },
+    isXDRSupported: function (useTLS) {
+        var protocol = useTLS ? 'https:' : 'http:';
+        var documentProtocol = this.getProtocol();
+        return (Boolean(window['XDomainRequest']) && documentProtocol === protocol);
+    },
+    addUnloadListener: function (listener) {
+        if (window.addEventListener !== undefined) {
+            window.addEventListener('unload', listener, false);
+        }
+        else if (window.attachEvent !== undefined) {
+            window.attachEvent('onunload', listener);
+        }
+    },
+    removeUnloadListener: function (listener) {
+        if (window.addEventListener !== undefined) {
+            window.removeEventListener('unload', listener, false);
+        }
+        else if (window.detachEvent !== undefined) {
+            window.detachEvent('onunload', listener);
+        }
+    }
+};
+/* harmony default export */ var runtime = (Runtime);
+
+// CONCATENATED MODULE: ./src/core/timeline/level.ts
+var TimelineLevel;
+(function (TimelineLevel) {
+    TimelineLevel[TimelineLevel["ERROR"] = 3] = "ERROR";
+    TimelineLevel[TimelineLevel["INFO"] = 6] = "INFO";
+    TimelineLevel[TimelineLevel["DEBUG"] = 7] = "DEBUG";
+})(TimelineLevel || (TimelineLevel = {}));
+/* harmony default export */ var timeline_level = (TimelineLevel);
+
+// CONCATENATED MODULE: ./src/core/timeline/timeline.ts
+
+
+
+var timeline_Timeline = (function () {
+    function Timeline(key, session, options) {
+        this.key = key;
+        this.session = session;
+        this.events = [];
+        this.options = options || {};
+        this.sent = 0;
+        this.uniqueID = 0;
+    }
+    Timeline.prototype.log = function (level, event) {
+        if (level <= this.options.level) {
+            this.events.push(extend({}, event, { timestamp: util.now() }));
+            if (this.options.limit && this.events.length > this.options.limit) {
+                this.events.shift();
+            }
+        }
+    };
+    Timeline.prototype.error = function (event) {
+        this.log(timeline_level.ERROR, event);
+    };
+    Timeline.prototype.info = function (event) {
+        this.log(timeline_level.INFO, event);
+    };
+    Timeline.prototype.debug = function (event) {
+        this.log(timeline_level.DEBUG, event);
+    };
+    Timeline.prototype.isEmpty = function () {
+        return this.events.length === 0;
+    };
+    Timeline.prototype.send = function (sendfn, callback) {
+        var _this = this;
+        var data = extend({
+            session: this.session,
+            bundle: this.sent + 1,
+            key: this.key,
+            lib: 'js',
+            version: this.options.version,
+            cluster: this.options.cluster,
+            features: this.options.features,
+            timeline: this.events
+        }, this.options.params);
+        this.events = [];
+        sendfn(data, function (error, result) {
+            if (!error) {
+                _this.sent++;
+            }
+            if (callback) {
+                callback(error, result);
+            }
+        });
+        return true;
+    };
+    Timeline.prototype.generateUniqueID = function () {
+        this.uniqueID++;
+        return this.uniqueID;
+    };
+    return Timeline;
+}());
+/* harmony default export */ var timeline_timeline = (timeline_Timeline);
+
+// CONCATENATED MODULE: ./src/core/strategies/transport_strategy.ts
+
+
+
+
+var transport_strategy_TransportStrategy = (function () {
+    function TransportStrategy(name, priority, transport, options) {
+        this.name = name;
+        this.priority = priority;
+        this.transport = transport;
+        this.options = options || {};
+    }
+    TransportStrategy.prototype.isSupported = function () {
+        return this.transport.isSupported({
+            useTLS: this.options.useTLS
+        });
+    };
+    TransportStrategy.prototype.connect = function (minPriority, callback) {
+        var _this = this;
+        if (!this.isSupported()) {
+            return failAttempt(new UnsupportedStrategy(), callback);
+        }
+        else if (this.priority < minPriority) {
+            return failAttempt(new TransportPriorityTooLow(), callback);
+        }
+        var connected = false;
+        var transport = this.transport.createConnection(this.name, this.priority, this.options.key, this.options);
+        var handshake = null;
+        var onInitialized = function () {
+            transport.unbind('initialized', onInitialized);
+            transport.connect();
+        };
+        var onOpen = function () {
+            handshake = factory.createHandshake(transport, function (result) {
+                connected = true;
+                unbindListeners();
+                callback(null, result);
+            });
+        };
+        var onError = function (error) {
+            unbindListeners();
+            callback(error);
+        };
+        var onClosed = function () {
+            unbindListeners();
+            var serializedTransport;
+            serializedTransport = safeJSONStringify(transport);
+            callback(new TransportClosed(serializedTransport));
+        };
+        var unbindListeners = function () {
+            transport.unbind('initialized', onInitialized);
+            transport.unbind('open', onOpen);
+            transport.unbind('error', onError);
+            transport.unbind('closed', onClosed);
+        };
+        transport.bind('initialized', onInitialized);
+        transport.bind('open', onOpen);
+        transport.bind('error', onError);
+        transport.bind('closed', onClosed);
+        transport.initialize();
+        return {
+            abort: function () {
+                if (connected) {
+                    return;
+                }
+                unbindListeners();
+                if (handshake) {
+                    handshake.close();
+                }
+                else {
+                    transport.close();
+                }
+            },
+            forceMinPriority: function (p) {
+                if (connected) {
+                    return;
+                }
+                if (_this.priority < p) {
+                    if (handshake) {
+                        handshake.close();
+                    }
+                    else {
+                        transport.close();
+                    }
+                }
+            }
+        };
+    };
+    return TransportStrategy;
+}());
+/* harmony default export */ var transport_strategy = (transport_strategy_TransportStrategy);
+function failAttempt(error, callback) {
+    util.defer(function () {
+        callback(error);
+    });
+    return {
+        abort: function () { },
+        forceMinPriority: function () { }
+    };
+}
+
+// CONCATENATED MODULE: ./src/core/strategies/strategy_builder.ts
+
+
+
+
+
+var strategy_builder_Transports = runtime.Transports;
+var strategy_builder_defineTransport = function (config, name, type, priority, options, manager) {
+    var transportClass = strategy_builder_Transports[type];
+    if (!transportClass) {
+        throw new UnsupportedTransport(type);
+    }
+    var enabled = (!config.enabledTransports ||
+        arrayIndexOf(config.enabledTransports, name) !== -1) &&
+        (!config.disabledTransports ||
+            arrayIndexOf(config.disabledTransports, name) === -1);
+    var transport;
+    if (enabled) {
+        options = Object.assign({ ignoreNullOrigin: config.ignoreNullOrigin }, options);
+        transport = new transport_strategy(name, priority, manager ? manager.getAssistant(transportClass) : transportClass, options);
+    }
+    else {
+        transport = strategy_builder_UnsupportedStrategy;
+    }
+    return transport;
+};
+var strategy_builder_UnsupportedStrategy = {
+    isSupported: function () {
+        return false;
+    },
+    connect: function (_, callback) {
+        var deferred = util.defer(function () {
+            callback(new UnsupportedStrategy());
+        });
+        return {
+            abort: function () {
+                deferred.ensureAborted();
+            },
+            forceMinPriority: function () { }
+        };
+    }
+};
+
+// CONCATENATED MODULE: ./src/core/config.ts
+
+
+function getConfig(opts) {
+    var config = {
+        activityTimeout: opts.activityTimeout || defaults.activityTimeout,
+        authEndpoint: opts.authEndpoint || defaults.authEndpoint,
+        authTransport: opts.authTransport || defaults.authTransport,
+        cluster: opts.cluster || defaults.cluster,
+        httpPath: opts.httpPath || defaults.httpPath,
+        httpPort: opts.httpPort || defaults.httpPort,
+        httpsPort: opts.httpsPort || defaults.httpsPort,
+        pongTimeout: opts.pongTimeout || defaults.pongTimeout,
+        statsHost: opts.statsHost || defaults.stats_host,
+        unavailableTimeout: opts.unavailableTimeout || defaults.unavailableTimeout,
+        wsPath: opts.wsPath || defaults.wsPath,
+        wsPort: opts.wsPort || defaults.wsPort,
+        wssPort: opts.wssPort || defaults.wssPort,
+        enableStats: getEnableStatsConfig(opts),
+        httpHost: getHttpHost(opts),
+        useTLS: shouldUseTLS(opts),
+        wsHost: getWebsocketHost(opts)
+    };
+    if ('auth' in opts)
+        config.auth = opts.auth;
+    if ('authorizer' in opts)
+        config.authorizer = opts.authorizer;
+    if ('disabledTransports' in opts)
+        config.disabledTransports = opts.disabledTransports;
+    if ('enabledTransports' in opts)
+        config.enabledTransports = opts.enabledTransports;
+    if ('ignoreNullOrigin' in opts)
+        config.ignoreNullOrigin = opts.ignoreNullOrigin;
+    if ('timelineParams' in opts)
+        config.timelineParams = opts.timelineParams;
+    if ('nacl' in opts) {
+        config.nacl = opts.nacl;
+    }
+    return config;
+}
+function getHttpHost(opts) {
+    if (opts.httpHost) {
+        return opts.httpHost;
+    }
+    if (opts.cluster) {
+        return "sockjs-" + opts.cluster + ".pusher.com";
+    }
+    return defaults.httpHost;
+}
+function getWebsocketHost(opts) {
+    if (opts.wsHost) {
+        return opts.wsHost;
+    }
+    if (opts.cluster) {
+        return getWebsocketHostFromCluster(opts.cluster);
+    }
+    return getWebsocketHostFromCluster(defaults.cluster);
+}
+function getWebsocketHostFromCluster(cluster) {
+    return "ws-" + cluster + ".pusher.com";
+}
+function shouldUseTLS(opts) {
+    if (runtime.getProtocol() === 'https:') {
+        return true;
+    }
+    else if (opts.forceTLS === false) {
+        return false;
+    }
+    return true;
+}
+function getEnableStatsConfig(opts) {
+    if ('enableStats' in opts) {
+        return opts.enableStats;
+    }
+    if ('disableStats' in opts) {
+        return !opts.disableStats;
+    }
+    return false;
+}
+
+// CONCATENATED MODULE: ./src/core/pusher.ts
+
+
+
+
+
+
+
+
+
+
+
+
+var pusher_Pusher = (function () {
+    function Pusher(app_key, options) {
+        var _this = this;
+        checkAppKey(app_key);
+        options = options || {};
+        if (!options.cluster && !(options.wsHost || options.httpHost)) {
+            var suffix = url_store.buildLogSuffix('javascriptQuickStart');
+            logger.warn("You should always specify a cluster when connecting. " + suffix);
+        }
+        if ('disableStats' in options) {
+            logger.warn('The disableStats option is deprecated in favor of enableStats');
+        }
+        this.key = app_key;
+        this.config = getConfig(options);
+        this.channels = factory.createChannels();
+        this.global_emitter = new dispatcher();
+        this.sessionID = Math.floor(Math.random() * 1000000000);
+        this.timeline = new timeline_timeline(this.key, this.sessionID, {
+            cluster: this.config.cluster,
+            features: Pusher.getClientFeatures(),
+            params: this.config.timelineParams || {},
+            limit: 50,
+            level: timeline_level.INFO,
+            version: defaults.VERSION
+        });
+        if (this.config.enableStats) {
+            this.timelineSender = factory.createTimelineSender(this.timeline, {
+                host: this.config.statsHost,
+                path: '/timeline/v2/' + runtime.TimelineTransport.name
+            });
+        }
+        var getStrategy = function (options) {
+            return runtime.getDefaultStrategy(_this.config, options, strategy_builder_defineTransport);
+        };
+        this.connection = factory.createConnectionManager(this.key, {
+            getStrategy: getStrategy,
+            timeline: this.timeline,
+            activityTimeout: this.config.activityTimeout,
+            pongTimeout: this.config.pongTimeout,
+            unavailableTimeout: this.config.unavailableTimeout,
+            useTLS: Boolean(this.config.useTLS)
+        });
+        this.connection.bind('connected', function () {
+            _this.subscribeAll();
+            if (_this.timelineSender) {
+                _this.timelineSender.send(_this.connection.isUsingTLS());
+            }
+        });
+        this.connection.bind('message', function (event) {
+            var eventName = event.event;
+            var internal = eventName.indexOf('pusher_internal:') === 0;
+            if (event.channel) {
+                var channel = _this.channel(event.channel);
+                if (channel) {
+                    channel.handleEvent(event);
+                }
+            }
+            if (!internal) {
+                _this.global_emitter.emit(event.event, event.data);
+            }
+        });
+        this.connection.bind('connecting', function () {
+            _this.channels.disconnect();
+        });
+        this.connection.bind('disconnected', function () {
+            _this.channels.disconnect();
+        });
+        this.connection.bind('error', function (err) {
+            logger.warn(err);
+        });
+        Pusher.instances.push(this);
+        this.timeline.info({ instances: Pusher.instances.length });
+        if (Pusher.isReady) {
+            this.connect();
+        }
+    }
+    Pusher.ready = function () {
+        Pusher.isReady = true;
+        for (var i = 0, l = Pusher.instances.length; i < l; i++) {
+            Pusher.instances[i].connect();
+        }
+    };
+    Pusher.getClientFeatures = function () {
+        return keys(filterObject({ ws: runtime.Transports.ws }, function (t) {
+            return t.isSupported({});
+        }));
+    };
+    Pusher.prototype.channel = function (name) {
+        return this.channels.find(name);
+    };
+    Pusher.prototype.allChannels = function () {
+        return this.channels.all();
+    };
+    Pusher.prototype.connect = function () {
+        this.connection.connect();
+        if (this.timelineSender) {
+            if (!this.timelineSenderTimer) {
+                var usingTLS = this.connection.isUsingTLS();
+                var timelineSender = this.timelineSender;
+                this.timelineSenderTimer = new PeriodicTimer(60000, function () {
+                    timelineSender.send(usingTLS);
+                });
+            }
+        }
+    };
+    Pusher.prototype.disconnect = function () {
+        this.connection.disconnect();
+        if (this.timelineSenderTimer) {
+            this.timelineSenderTimer.ensureAborted();
+            this.timelineSenderTimer = null;
+        }
+    };
+    Pusher.prototype.bind = function (event_name, callback, context) {
+        this.global_emitter.bind(event_name, callback, context);
+        return this;
+    };
+    Pusher.prototype.unbind = function (event_name, callback, context) {
+        this.global_emitter.unbind(event_name, callback, context);
+        return this;
+    };
+    Pusher.prototype.bind_global = function (callback) {
+        this.global_emitter.bind_global(callback);
+        return this;
+    };
+    Pusher.prototype.unbind_global = function (callback) {
+        this.global_emitter.unbind_global(callback);
+        return this;
+    };
+    Pusher.prototype.unbind_all = function (callback) {
+        this.global_emitter.unbind_all();
+        return this;
+    };
+    Pusher.prototype.subscribeAll = function () {
+        var channelName;
+        for (channelName in this.channels.channels) {
+            if (this.channels.channels.hasOwnProperty(channelName)) {
+                this.subscribe(channelName);
+            }
+        }
+    };
+    Pusher.prototype.subscribe = function (channel_name) {
+        var channel = this.channels.add(channel_name, this);
+        if (channel.subscriptionPending && channel.subscriptionCancelled) {
+            channel.reinstateSubscription();
+        }
+        else if (!channel.subscriptionPending &&
+            this.connection.state === 'connected') {
+            channel.subscribe();
+        }
+        return channel;
+    };
+    Pusher.prototype.unsubscribe = function (channel_name) {
+        var channel = this.channels.find(channel_name);
+        if (channel && channel.subscriptionPending) {
+            channel.cancelSubscription();
+        }
+        else {
+            channel = this.channels.remove(channel_name);
+            if (channel && this.connection.state === 'connected') {
+                channel.unsubscribe();
+            }
+        }
+    };
+    Pusher.prototype.send_event = function (event_name, data, channel) {
+        return this.connection.send_event(event_name, data, channel);
+    };
+    Pusher.prototype.shouldUseTLS = function () {
+        return this.config.useTLS;
+    };
+    Pusher.instances = [];
+    Pusher.isReady = false;
+    Pusher.logToConsole = false;
+    Pusher.Runtime = runtime;
+    Pusher.ScriptReceivers = runtime.ScriptReceivers;
+    Pusher.DependenciesReceivers = runtime.DependenciesReceivers;
+    Pusher.auth_callbacks = runtime.auth_callbacks;
+    return Pusher;
+}());
+/* harmony default export */ var core_pusher = __webpack_exports__["default"] = (pusher_Pusher);
+function checkAppKey(key) {
+    if (key === null || key === undefined) {
+        throw 'You must pass your app key when you instantiate Pusher.';
+    }
+}
+runtime.setup(pusher_Pusher);
+
+
+/***/ })
+/******/ ]);
+});
+
+/***/ }),
+
+/***/ "./node_modules/regenerator-runtime/runtime.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var runtime = (function (exports) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  exports.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  exports.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  exports.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  exports.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator, PromiseImpl) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return PromiseImpl.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return PromiseImpl.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new PromiseImpl(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  exports.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  exports.async = function(innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+    if (PromiseImpl === void 0) PromiseImpl = Promise;
+
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList),
+      PromiseImpl
+    );
+
+    return exports.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        // Note: ["return"] must be used for ES3 parsing compatibility.
+        if (delegate.iterator["return"]) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  exports.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  exports.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+
+  // Regardless of whether this script is executing as a CommonJS module
+  // or not, return the runtime object so that we can declare the variable
+  // regeneratorRuntime in the outer scope, which allows this module to be
+  // injected easily by `bin/regenerator --include-runtime script.js`.
+  return exports;
+
+}(
+  // If this script is executing as a CommonJS module, use module.exports
+  // as the regeneratorRuntime namespace. Otherwise create a new empty
+  // object. Either way, the resulting object will be used to initialize
+  // the regeneratorRuntime variable at the top of this file.
+   true ? module.exports : undefined
+));
+
+try {
+  regeneratorRuntime = runtime;
+} catch (accidentalStrictMode) {
+  // This module should not be running in strict mode, so the above
+  // assignment should always work unless something is misconfigured. Just
+  // in case runtime.js accidentally runs in strict mode, we can escape
+  // strict mode using a global Function call. This could conceivably fail
+  // if a Content Security Policy forbids using Function, but in that case
+  // the proper solution is to fix the accidental strict mode problem. If
+  // you've misconfigured your bundler to force strict mode and applied a
+  // CSP to forbid Function, and you're not willing to fix either of those
+  // problems, please detail your unique predicament in a GitHub issue.
+  Function("r", "regeneratorRuntime = r")(runtime);
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/setimmediate/setImmediate.js":
 /*!***************************************************!*\
   !*** ./node_modules/setimmediate/setImmediate.js ***!
@@ -47354,6 +54082,3118 @@ external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.summe
 
 /***/ }),
 
+/***/ "./node_modules/sweetalert2/dist/sweetalert2.all.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/sweetalert2/dist/sweetalert2.all.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+* sweetalert2 v9.10.12
+* Released under the MIT License.
+*/
+(function (global, factory) {
+   true ? module.exports = factory() :
+  undefined;
+}(this, function () { 'use strict';
+
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
+
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function (obj) {
+        return typeof obj;
+      };
+    } else {
+      _typeof = function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
+    }
+
+    return _typeof(obj);
+  }
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
+  }
+
+  function _extends() {
+    _extends = Object.assign || function (target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+
+      return target;
+    };
+
+    return _extends.apply(this, arguments);
+  }
+
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function");
+    }
+
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass) _setPrototypeOf(subClass, superClass);
+  }
+
+  function _getPrototypeOf(o) {
+    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+      return o.__proto__ || Object.getPrototypeOf(o);
+    };
+    return _getPrototypeOf(o);
+  }
+
+  function _setPrototypeOf(o, p) {
+    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+      o.__proto__ = p;
+      return o;
+    };
+
+    return _setPrototypeOf(o, p);
+  }
+
+  function _isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (Reflect.construct.sham) return false;
+    if (typeof Proxy === "function") return true;
+
+    try {
+      Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function _construct(Parent, args, Class) {
+    if (_isNativeReflectConstruct()) {
+      _construct = Reflect.construct;
+    } else {
+      _construct = function _construct(Parent, args, Class) {
+        var a = [null];
+        a.push.apply(a, args);
+        var Constructor = Function.bind.apply(Parent, a);
+        var instance = new Constructor();
+        if (Class) _setPrototypeOf(instance, Class.prototype);
+        return instance;
+      };
+    }
+
+    return _construct.apply(null, arguments);
+  }
+
+  function _assertThisInitialized(self) {
+    if (self === void 0) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return self;
+  }
+
+  function _possibleConstructorReturn(self, call) {
+    if (call && (typeof call === "object" || typeof call === "function")) {
+      return call;
+    }
+
+    return _assertThisInitialized(self);
+  }
+
+  function _createSuper(Derived) {
+    return function () {
+      var Super = _getPrototypeOf(Derived),
+          result;
+
+      if (_isNativeReflectConstruct()) {
+        var NewTarget = _getPrototypeOf(this).constructor;
+
+        result = Reflect.construct(Super, arguments, NewTarget);
+      } else {
+        result = Super.apply(this, arguments);
+      }
+
+      return _possibleConstructorReturn(this, result);
+    };
+  }
+
+  function _superPropBase(object, property) {
+    while (!Object.prototype.hasOwnProperty.call(object, property)) {
+      object = _getPrototypeOf(object);
+      if (object === null) break;
+    }
+
+    return object;
+  }
+
+  function _get(target, property, receiver) {
+    if (typeof Reflect !== "undefined" && Reflect.get) {
+      _get = Reflect.get;
+    } else {
+      _get = function _get(target, property, receiver) {
+        var base = _superPropBase(target, property);
+
+        if (!base) return;
+        var desc = Object.getOwnPropertyDescriptor(base, property);
+
+        if (desc.get) {
+          return desc.get.call(receiver);
+        }
+
+        return desc.value;
+      };
+    }
+
+    return _get(target, property, receiver || target);
+  }
+
+  var consolePrefix = 'SweetAlert2:';
+  /**
+   * Filter the unique values into a new array
+   * @param arr
+   */
+
+  var uniqueArray = function uniqueArray(arr) {
+    var result = [];
+
+    for (var i = 0; i < arr.length; i++) {
+      if (result.indexOf(arr[i]) === -1) {
+        result.push(arr[i]);
+      }
+    }
+
+    return result;
+  };
+  /**
+   * Capitalize the first letter of a string
+   * @param str
+   */
+
+  var capitalizeFirstLetter = function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+  /**
+   * Returns the array ob object values (Object.values isn't supported in IE11)
+   * @param obj
+   */
+
+  var objectValues = function objectValues(obj) {
+    return Object.keys(obj).map(function (key) {
+      return obj[key];
+    });
+  };
+  /**
+   * Convert NodeList to Array
+   * @param nodeList
+   */
+
+  var toArray = function toArray(nodeList) {
+    return Array.prototype.slice.call(nodeList);
+  };
+  /**
+   * Standardise console warnings
+   * @param message
+   */
+
+  var warn = function warn(message) {
+    console.warn("".concat(consolePrefix, " ").concat(message));
+  };
+  /**
+   * Standardise console errors
+   * @param message
+   */
+
+  var error = function error(message) {
+    console.error("".concat(consolePrefix, " ").concat(message));
+  };
+  /**
+   * Private global state for `warnOnce`
+   * @type {Array}
+   * @private
+   */
+
+  var previousWarnOnceMessages = [];
+  /**
+   * Show a console warning, but only if it hasn't already been shown
+   * @param message
+   */
+
+  var warnOnce = function warnOnce(message) {
+    if (!(previousWarnOnceMessages.indexOf(message) !== -1)) {
+      previousWarnOnceMessages.push(message);
+      warn(message);
+    }
+  };
+  /**
+   * Show a one-time console warning about deprecated params/methods
+   */
+
+  var warnAboutDepreation = function warnAboutDepreation(deprecatedParam, useInstead) {
+    warnOnce("\"".concat(deprecatedParam, "\" is deprecated and will be removed in the next major release. Please use \"").concat(useInstead, "\" instead."));
+  };
+  /**
+   * If `arg` is a function, call it (with no arguments or context) and return the result.
+   * Otherwise, just pass the value through
+   * @param arg
+   */
+
+  var callIfFunction = function callIfFunction(arg) {
+    return typeof arg === 'function' ? arg() : arg;
+  };
+  var isPromise = function isPromise(arg) {
+    return arg && Promise.resolve(arg) === arg;
+  };
+
+  var DismissReason = Object.freeze({
+    cancel: 'cancel',
+    backdrop: 'backdrop',
+    close: 'close',
+    esc: 'esc',
+    timer: 'timer'
+  });
+
+  var isJqueryElement = function isJqueryElement(elem) {
+    return _typeof(elem) === 'object' && elem.jquery;
+  };
+
+  var isElement = function isElement(elem) {
+    return elem instanceof Element || isJqueryElement(elem);
+  };
+
+  var argsToParams = function argsToParams(args) {
+    var params = {};
+
+    if (_typeof(args[0]) === 'object' && !isElement(args[0])) {
+      _extends(params, args[0]);
+    } else {
+      ['title', 'html', 'icon'].forEach(function (name, index) {
+        var arg = args[index];
+
+        if (typeof arg === 'string' || isElement(arg)) {
+          params[name] = arg;
+        } else if (arg !== undefined) {
+          error("Unexpected type of ".concat(name, "! Expected \"string\" or \"Element\", got ").concat(_typeof(arg)));
+        }
+      });
+    }
+
+    return params;
+  };
+
+  var swalPrefix = 'swal2-';
+  var prefix = function prefix(items) {
+    var result = {};
+
+    for (var i in items) {
+      result[items[i]] = swalPrefix + items[i];
+    }
+
+    return result;
+  };
+  var swalClasses = prefix(['container', 'shown', 'height-auto', 'iosfix', 'popup', 'modal', 'no-backdrop', 'no-transition', 'toast', 'toast-shown', 'toast-column', 'show', 'hide', 'close', 'title', 'header', 'content', 'html-container', 'actions', 'confirm', 'cancel', 'footer', 'icon', 'icon-content', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'label', 'textarea', 'inputerror', 'validation-message', 'progress-steps', 'active-progress-step', 'progress-step', 'progress-step-line', 'loading', 'styled', 'top', 'top-start', 'top-end', 'top-left', 'top-right', 'center', 'center-start', 'center-end', 'center-left', 'center-right', 'bottom', 'bottom-start', 'bottom-end', 'bottom-left', 'bottom-right', 'grow-row', 'grow-column', 'grow-fullscreen', 'rtl', 'timer-progress-bar', 'timer-progress-bar-container', 'scrollbar-measure', 'icon-success', 'icon-warning', 'icon-info', 'icon-question', 'icon-error']);
+  var iconTypes = prefix(['success', 'warning', 'info', 'question', 'error']);
+
+  var getContainer = function getContainer() {
+    return document.body.querySelector(".".concat(swalClasses.container));
+  };
+  var elementBySelector = function elementBySelector(selectorString) {
+    var container = getContainer();
+    return container ? container.querySelector(selectorString) : null;
+  };
+
+  var elementByClass = function elementByClass(className) {
+    return elementBySelector(".".concat(className));
+  };
+
+  var getPopup = function getPopup() {
+    return elementByClass(swalClasses.popup);
+  };
+  var getIcons = function getIcons() {
+    var popup = getPopup();
+    return toArray(popup.querySelectorAll(".".concat(swalClasses.icon)));
+  };
+  var getIcon = function getIcon() {
+    var visibleIcon = getIcons().filter(function (icon) {
+      return isVisible(icon);
+    });
+    return visibleIcon.length ? visibleIcon[0] : null;
+  };
+  var getTitle = function getTitle() {
+    return elementByClass(swalClasses.title);
+  };
+  var getContent = function getContent() {
+    return elementByClass(swalClasses.content);
+  };
+  var getHtmlContainer = function getHtmlContainer() {
+    return elementByClass(swalClasses['html-container']);
+  };
+  var getImage = function getImage() {
+    return elementByClass(swalClasses.image);
+  };
+  var getProgressSteps = function getProgressSteps() {
+    return elementByClass(swalClasses['progress-steps']);
+  };
+  var getValidationMessage = function getValidationMessage() {
+    return elementByClass(swalClasses['validation-message']);
+  };
+  var getConfirmButton = function getConfirmButton() {
+    return elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.confirm));
+  };
+  var getCancelButton = function getCancelButton() {
+    return elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.cancel));
+  };
+  var getActions = function getActions() {
+    return elementByClass(swalClasses.actions);
+  };
+  var getHeader = function getHeader() {
+    return elementByClass(swalClasses.header);
+  };
+  var getFooter = function getFooter() {
+    return elementByClass(swalClasses.footer);
+  };
+  var getTimerProgressBar = function getTimerProgressBar() {
+    return elementByClass(swalClasses['timer-progress-bar']);
+  };
+  var getCloseButton = function getCloseButton() {
+    return elementByClass(swalClasses.close);
+  }; // https://github.com/jkup/focusable/blob/master/index.js
+
+  var focusable = "\n  a[href],\n  area[href],\n  input:not([disabled]),\n  select:not([disabled]),\n  textarea:not([disabled]),\n  button:not([disabled]),\n  iframe,\n  object,\n  embed,\n  [tabindex=\"0\"],\n  [contenteditable],\n  audio[controls],\n  video[controls],\n  summary\n";
+  var getFocusableElements = function getFocusableElements() {
+    var focusableElementsWithTabindex = toArray(getPopup().querySelectorAll('[tabindex]:not([tabindex="-1"]):not([tabindex="0"])')) // sort according to tabindex
+    .sort(function (a, b) {
+      a = parseInt(a.getAttribute('tabindex'));
+      b = parseInt(b.getAttribute('tabindex'));
+
+      if (a > b) {
+        return 1;
+      } else if (a < b) {
+        return -1;
+      }
+
+      return 0;
+    });
+    var otherFocusableElements = toArray(getPopup().querySelectorAll(focusable)).filter(function (el) {
+      return el.getAttribute('tabindex') !== '-1';
+    });
+    return uniqueArray(focusableElementsWithTabindex.concat(otherFocusableElements)).filter(function (el) {
+      return isVisible(el);
+    });
+  };
+  var isModal = function isModal() {
+    return !isToast() && !document.body.classList.contains(swalClasses['no-backdrop']);
+  };
+  var isToast = function isToast() {
+    return document.body.classList.contains(swalClasses['toast-shown']);
+  };
+  var isLoading = function isLoading() {
+    return getPopup().hasAttribute('data-loading');
+  };
+
+  var states = {
+    previousBodyPadding: null
+  };
+  var setInnerHtml = function setInnerHtml(elem, html) {
+    // #1926
+    elem.textContent = '';
+
+    if (html) {
+      var parser = new DOMParser();
+      var parsed = parser.parseFromString(html, "text/html");
+      toArray(parsed.querySelector('head').childNodes).forEach(function (child) {
+        elem.appendChild(child);
+      });
+      toArray(parsed.querySelector('body').childNodes).forEach(function (child) {
+        elem.appendChild(child);
+      });
+    }
+  };
+  var hasClass = function hasClass(elem, className) {
+    if (!className) {
+      return false;
+    }
+
+    var classList = className.split(/\s+/);
+
+    for (var i = 0; i < classList.length; i++) {
+      if (!elem.classList.contains(classList[i])) {
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+  var removeCustomClasses = function removeCustomClasses(elem, params) {
+    toArray(elem.classList).forEach(function (className) {
+      if (!(objectValues(swalClasses).indexOf(className) !== -1) && !(objectValues(iconTypes).indexOf(className) !== -1) && !(objectValues(params.showClass).indexOf(className) !== -1)) {
+        elem.classList.remove(className);
+      }
+    });
+  };
+
+  var applyCustomClass = function applyCustomClass(elem, params, className) {
+    removeCustomClasses(elem, params);
+
+    if (params.customClass && params.customClass[className]) {
+      if (typeof params.customClass[className] !== 'string' && !params.customClass[className].forEach) {
+        return warn("Invalid type of customClass.".concat(className, "! Expected string or iterable object, got \"").concat(_typeof(params.customClass[className]), "\""));
+      }
+
+      addClass(elem, params.customClass[className]);
+    }
+  };
+  function getInput(content, inputType) {
+    if (!inputType) {
+      return null;
+    }
+
+    switch (inputType) {
+      case 'select':
+      case 'textarea':
+      case 'file':
+        return getChildByClass(content, swalClasses[inputType]);
+
+      case 'checkbox':
+        return content.querySelector(".".concat(swalClasses.checkbox, " input"));
+
+      case 'radio':
+        return content.querySelector(".".concat(swalClasses.radio, " input:checked")) || content.querySelector(".".concat(swalClasses.radio, " input:first-child"));
+
+      case 'range':
+        return content.querySelector(".".concat(swalClasses.range, " input"));
+
+      default:
+        return getChildByClass(content, swalClasses.input);
+    }
+  }
+  var focusInput = function focusInput(input) {
+    input.focus(); // place cursor at end of text in text input
+
+    if (input.type !== 'file') {
+      // http://stackoverflow.com/a/2345915
+      var val = input.value;
+      input.value = '';
+      input.value = val;
+    }
+  };
+  var toggleClass = function toggleClass(target, classList, condition) {
+    if (!target || !classList) {
+      return;
+    }
+
+    if (typeof classList === 'string') {
+      classList = classList.split(/\s+/).filter(Boolean);
+    }
+
+    classList.forEach(function (className) {
+      if (target.forEach) {
+        target.forEach(function (elem) {
+          condition ? elem.classList.add(className) : elem.classList.remove(className);
+        });
+      } else {
+        condition ? target.classList.add(className) : target.classList.remove(className);
+      }
+    });
+  };
+  var addClass = function addClass(target, classList) {
+    toggleClass(target, classList, true);
+  };
+  var removeClass = function removeClass(target, classList) {
+    toggleClass(target, classList, false);
+  };
+  var getChildByClass = function getChildByClass(elem, className) {
+    for (var i = 0; i < elem.childNodes.length; i++) {
+      if (hasClass(elem.childNodes[i], className)) {
+        return elem.childNodes[i];
+      }
+    }
+  };
+  var applyNumericalStyle = function applyNumericalStyle(elem, property, value) {
+    if (value || parseInt(value) === 0) {
+      elem.style[property] = typeof value === 'number' ? "".concat(value, "px") : value;
+    } else {
+      elem.style.removeProperty(property);
+    }
+  };
+  var show = function show(elem) {
+    var display = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'flex';
+    elem.style.opacity = '';
+    elem.style.display = display;
+  };
+  var hide = function hide(elem) {
+    elem.style.opacity = '';
+    elem.style.display = 'none';
+  };
+  var toggle = function toggle(elem, condition, display) {
+    condition ? show(elem, display) : hide(elem);
+  }; // borrowed from jquery $(elem).is(':visible') implementation
+
+  var isVisible = function isVisible(elem) {
+    return !!(elem && (elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length));
+  };
+  /* istanbul ignore next */
+
+  var isScrollable = function isScrollable(elem) {
+    return !!(elem.scrollHeight > elem.clientHeight);
+  }; // borrowed from https://stackoverflow.com/a/46352119
+
+  var hasCssAnimation = function hasCssAnimation(elem) {
+    var style = window.getComputedStyle(elem);
+    var animDuration = parseFloat(style.getPropertyValue('animation-duration') || '0');
+    var transDuration = parseFloat(style.getPropertyValue('transition-duration') || '0');
+    return animDuration > 0 || transDuration > 0;
+  };
+  var contains = function contains(haystack, needle) {
+    if (typeof haystack.contains === 'function') {
+      return haystack.contains(needle);
+    }
+  };
+  var animateTimerProgressBar = function animateTimerProgressBar(timer) {
+    var reset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var timerProgressBar = getTimerProgressBar();
+
+    if (isVisible(timerProgressBar)) {
+      if (reset) {
+        timerProgressBar.style.transition = 'none';
+        timerProgressBar.style.width = '100%';
+      }
+
+      setTimeout(function () {
+        timerProgressBar.style.transition = "width ".concat(timer / 1000, "s linear");
+        timerProgressBar.style.width = '0%';
+      }, 10);
+    }
+  };
+  var stopTimerProgressBar = function stopTimerProgressBar() {
+    var timerProgressBar = getTimerProgressBar();
+    var timerProgressBarWidth = parseInt(window.getComputedStyle(timerProgressBar).width);
+    timerProgressBar.style.removeProperty('transition');
+    timerProgressBar.style.width = '100%';
+    var timerProgressBarFullWidth = parseInt(window.getComputedStyle(timerProgressBar).width);
+    var timerProgressBarPercent = parseInt(timerProgressBarWidth / timerProgressBarFullWidth * 100);
+    timerProgressBar.style.removeProperty('transition');
+    timerProgressBar.style.width = "".concat(timerProgressBarPercent, "%");
+  };
+
+  // Detect Node env
+  var isNodeEnv = function isNodeEnv() {
+    return typeof window === 'undefined' || typeof document === 'undefined';
+  };
+
+  var sweetHTML = "\n <div aria-labelledby=\"".concat(swalClasses.title, "\" aria-describedby=\"").concat(swalClasses.content, "\" class=\"").concat(swalClasses.popup, "\" tabindex=\"-1\">\n   <div class=\"").concat(swalClasses.header, "\">\n     <ul class=\"").concat(swalClasses['progress-steps'], "\"></ul>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.error, "\"></div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.question, "\"></div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.warning, "\"></div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.info, "\"></div>\n     <div class=\"").concat(swalClasses.icon, " ").concat(iconTypes.success, "\"></div>\n     <img class=\"").concat(swalClasses.image, "\" />\n     <h2 class=\"").concat(swalClasses.title, "\" id=\"").concat(swalClasses.title, "\"></h2>\n     <button type=\"button\" class=\"").concat(swalClasses.close, "\"></button>\n   </div>\n   <div class=\"").concat(swalClasses.content, "\">\n     <div id=\"").concat(swalClasses.content, "\" class=\"").concat(swalClasses['html-container'], "\"></div>\n     <input class=\"").concat(swalClasses.input, "\" />\n     <input type=\"file\" class=\"").concat(swalClasses.file, "\" />\n     <div class=\"").concat(swalClasses.range, "\">\n       <input type=\"range\" />\n       <output></output>\n     </div>\n     <select class=\"").concat(swalClasses.select, "\"></select>\n     <div class=\"").concat(swalClasses.radio, "\"></div>\n     <label for=\"").concat(swalClasses.checkbox, "\" class=\"").concat(swalClasses.checkbox, "\">\n       <input type=\"checkbox\" />\n       <span class=\"").concat(swalClasses.label, "\"></span>\n     </label>\n     <textarea class=\"").concat(swalClasses.textarea, "\"></textarea>\n     <div class=\"").concat(swalClasses['validation-message'], "\" id=\"").concat(swalClasses['validation-message'], "\"></div>\n   </div>\n   <div class=\"").concat(swalClasses.actions, "\">\n     <button type=\"button\" class=\"").concat(swalClasses.confirm, "\">OK</button>\n     <button type=\"button\" class=\"").concat(swalClasses.cancel, "\">Cancel</button>\n   </div>\n   <div class=\"").concat(swalClasses.footer, "\"></div>\n   <div class=\"").concat(swalClasses['timer-progress-bar-container'], "\">\n     <div class=\"").concat(swalClasses['timer-progress-bar'], "\"></div>\n   </div>\n </div>\n").replace(/(^|\n)\s*/g, '');
+
+  var resetOldContainer = function resetOldContainer() {
+    var oldContainer = getContainer();
+
+    if (!oldContainer) {
+      return false;
+    }
+
+    oldContainer.parentNode.removeChild(oldContainer);
+    removeClass([document.documentElement, document.body], [swalClasses['no-backdrop'], swalClasses['toast-shown'], swalClasses['has-column']]);
+    return true;
+  };
+
+  var oldInputVal; // IE11 workaround, see #1109 for details
+
+  var resetValidationMessage = function resetValidationMessage(e) {
+    if (Swal.isVisible() && oldInputVal !== e.target.value) {
+      Swal.resetValidationMessage();
+    }
+
+    oldInputVal = e.target.value;
+  };
+
+  var addInputChangeListeners = function addInputChangeListeners() {
+    var content = getContent();
+    var input = getChildByClass(content, swalClasses.input);
+    var file = getChildByClass(content, swalClasses.file);
+    var range = content.querySelector(".".concat(swalClasses.range, " input"));
+    var rangeOutput = content.querySelector(".".concat(swalClasses.range, " output"));
+    var select = getChildByClass(content, swalClasses.select);
+    var checkbox = content.querySelector(".".concat(swalClasses.checkbox, " input"));
+    var textarea = getChildByClass(content, swalClasses.textarea);
+    input.oninput = resetValidationMessage;
+    file.onchange = resetValidationMessage;
+    select.onchange = resetValidationMessage;
+    checkbox.onchange = resetValidationMessage;
+    textarea.oninput = resetValidationMessage;
+
+    range.oninput = function (e) {
+      resetValidationMessage(e);
+      rangeOutput.value = range.value;
+    };
+
+    range.onchange = function (e) {
+      resetValidationMessage(e);
+      range.nextSibling.value = range.value;
+    };
+  };
+
+  var getTarget = function getTarget(target) {
+    return typeof target === 'string' ? document.querySelector(target) : target;
+  };
+
+  var setupAccessibility = function setupAccessibility(params) {
+    var popup = getPopup();
+    popup.setAttribute('role', params.toast ? 'alert' : 'dialog');
+    popup.setAttribute('aria-live', params.toast ? 'polite' : 'assertive');
+
+    if (!params.toast) {
+      popup.setAttribute('aria-modal', 'true');
+    }
+  };
+
+  var setupRTL = function setupRTL(targetElement) {
+    if (window.getComputedStyle(targetElement).direction === 'rtl') {
+      addClass(getContainer(), swalClasses.rtl);
+    }
+  };
+  /*
+   * Add modal + backdrop to DOM
+   */
+
+
+  var init = function init(params) {
+    // Clean up the old popup container if it exists
+    var oldContainerExisted = resetOldContainer();
+    /* istanbul ignore if */
+
+    if (isNodeEnv()) {
+      error('SweetAlert2 requires document to initialize');
+      return;
+    }
+
+    var container = document.createElement('div');
+    container.className = swalClasses.container;
+
+    if (oldContainerExisted) {
+      addClass(container, swalClasses['no-transition']);
+    }
+
+    setInnerHtml(container, sweetHTML);
+    var targetElement = getTarget(params.target);
+    targetElement.appendChild(container);
+    setupAccessibility(params);
+    setupRTL(targetElement);
+    addInputChangeListeners();
+  };
+
+  var parseHtmlToContainer = function parseHtmlToContainer(param, target) {
+    // DOM element
+    if (param instanceof HTMLElement) {
+      target.appendChild(param); // Object
+    } else if (_typeof(param) === 'object') {
+      handleObject(param, target); // Plain string
+    } else if (param) {
+      setInnerHtml(target, param);
+    }
+  };
+
+  var handleObject = function handleObject(param, target) {
+    // JQuery element(s)
+    if (param.jquery) {
+      handleJqueryElem(target, param); // For other objects use their string representation
+    } else {
+      setInnerHtml(target, param.toString());
+    }
+  };
+
+  var handleJqueryElem = function handleJqueryElem(target, elem) {
+    target.textContent = '';
+
+    if (0 in elem) {
+      for (var i = 0; (i in elem); i++) {
+        target.appendChild(elem[i].cloneNode(true));
+      }
+    } else {
+      target.appendChild(elem.cloneNode(true));
+    }
+  };
+
+  var animationEndEvent = function () {
+    // Prevent run in Node env
+
+    /* istanbul ignore if */
+    if (isNodeEnv()) {
+      return false;
+    }
+
+    var testEl = document.createElement('div');
+    var transEndEventNames = {
+      WebkitAnimation: 'webkitAnimationEnd',
+      OAnimation: 'oAnimationEnd oanimationend',
+      animation: 'animationend'
+    };
+
+    for (var i in transEndEventNames) {
+      if (Object.prototype.hasOwnProperty.call(transEndEventNames, i) && typeof testEl.style[i] !== 'undefined') {
+        return transEndEventNames[i];
+      }
+    }
+
+    return false;
+  }();
+
+  // https://github.com/twbs/bootstrap/blob/master/js/src/modal.js
+
+  var measureScrollbar = function measureScrollbar() {
+    var scrollDiv = document.createElement('div');
+    scrollDiv.className = swalClasses['scrollbar-measure'];
+    document.body.appendChild(scrollDiv);
+    var scrollbarWidth = scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth;
+    document.body.removeChild(scrollDiv);
+    return scrollbarWidth;
+  };
+
+  var renderActions = function renderActions(instance, params) {
+    var actions = getActions();
+    var confirmButton = getConfirmButton();
+    var cancelButton = getCancelButton(); // Actions (buttons) wrapper
+
+    if (!params.showConfirmButton && !params.showCancelButton) {
+      hide(actions);
+    } // Custom class
+
+
+    applyCustomClass(actions, params, 'actions'); // Render confirm button
+
+    renderButton(confirmButton, 'confirm', params); // render Cancel Button
+
+    renderButton(cancelButton, 'cancel', params);
+
+    if (params.buttonsStyling) {
+      handleButtonsStyling(confirmButton, cancelButton, params);
+    } else {
+      removeClass([confirmButton, cancelButton], swalClasses.styled);
+      confirmButton.style.backgroundColor = confirmButton.style.borderLeftColor = confirmButton.style.borderRightColor = '';
+      cancelButton.style.backgroundColor = cancelButton.style.borderLeftColor = cancelButton.style.borderRightColor = '';
+    }
+
+    if (params.reverseButtons) {
+      confirmButton.parentNode.insertBefore(cancelButton, confirmButton);
+    }
+  };
+
+  function handleButtonsStyling(confirmButton, cancelButton, params) {
+    addClass([confirmButton, cancelButton], swalClasses.styled); // Buttons background colors
+
+    if (params.confirmButtonColor) {
+      confirmButton.style.backgroundColor = params.confirmButtonColor;
+    }
+
+    if (params.cancelButtonColor) {
+      cancelButton.style.backgroundColor = params.cancelButtonColor;
+    } // Loading state
+
+
+    var confirmButtonBackgroundColor = window.getComputedStyle(confirmButton).getPropertyValue('background-color');
+    confirmButton.style.borderLeftColor = confirmButtonBackgroundColor;
+    confirmButton.style.borderRightColor = confirmButtonBackgroundColor;
+  }
+
+  function renderButton(button, buttonType, params) {
+    toggle(button, params["show".concat(capitalizeFirstLetter(buttonType), "Button")], 'inline-block');
+    setInnerHtml(button, params["".concat(buttonType, "ButtonText")]); // Set caption text
+
+    button.setAttribute('aria-label', params["".concat(buttonType, "ButtonAriaLabel")]); // ARIA label
+    // Add buttons custom classes
+
+    button.className = swalClasses[buttonType];
+    applyCustomClass(button, params, "".concat(buttonType, "Button"));
+    addClass(button, params["".concat(buttonType, "ButtonClass")]);
+  }
+
+  function handleBackdropParam(container, backdrop) {
+    if (typeof backdrop === 'string') {
+      container.style.background = backdrop;
+    } else if (!backdrop) {
+      addClass([document.documentElement, document.body], swalClasses['no-backdrop']);
+    }
+  }
+
+  function handlePositionParam(container, position) {
+    if (position in swalClasses) {
+      addClass(container, swalClasses[position]);
+    } else {
+      warn('The "position" parameter is not valid, defaulting to "center"');
+      addClass(container, swalClasses.center);
+    }
+  }
+
+  function handleGrowParam(container, grow) {
+    if (grow && typeof grow === 'string') {
+      var growClass = "grow-".concat(grow);
+
+      if (growClass in swalClasses) {
+        addClass(container, swalClasses[growClass]);
+      }
+    }
+  }
+
+  var renderContainer = function renderContainer(instance, params) {
+    var container = getContainer();
+
+    if (!container) {
+      return;
+    }
+
+    handleBackdropParam(container, params.backdrop);
+
+    if (!params.backdrop && params.allowOutsideClick) {
+      warn('"allowOutsideClick" parameter requires `backdrop` parameter to be set to `true`');
+    }
+
+    handlePositionParam(container, params.position);
+    handleGrowParam(container, params.grow); // Custom class
+
+    applyCustomClass(container, params, 'container'); // Set queue step attribute for getQueueStep() method
+
+    var queueStep = document.body.getAttribute('data-swal2-queue-step');
+
+    if (queueStep) {
+      container.setAttribute('data-queue-step', queueStep);
+      document.body.removeAttribute('data-swal2-queue-step');
+    }
+  };
+
+  /**
+   * This module containts `WeakMap`s for each effectively-"private  property" that a `Swal` has.
+   * For example, to set the private property "foo" of `this` to "bar", you can `privateProps.foo.set(this, 'bar')`
+   * This is the approach that Babel will probably take to implement private methods/fields
+   *   https://github.com/tc39/proposal-private-methods
+   *   https://github.com/babel/babel/pull/7555
+   * Once we have the changes from that PR in Babel, and our core class fits reasonable in *one module*
+   *   then we can use that language feature.
+   */
+  var privateProps = {
+    promise: new WeakMap(),
+    innerParams: new WeakMap(),
+    domCache: new WeakMap()
+  };
+
+  var inputTypes = ['input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea'];
+  var renderInput = function renderInput(instance, params) {
+    var content = getContent();
+    var innerParams = privateProps.innerParams.get(instance);
+    var rerender = !innerParams || params.input !== innerParams.input;
+    inputTypes.forEach(function (inputType) {
+      var inputClass = swalClasses[inputType];
+      var inputContainer = getChildByClass(content, inputClass); // set attributes
+
+      setAttributes(inputType, params.inputAttributes); // set class
+
+      inputContainer.className = inputClass;
+
+      if (rerender) {
+        hide(inputContainer);
+      }
+    });
+
+    if (params.input) {
+      if (rerender) {
+        showInput(params);
+      } // set custom class
+
+
+      setCustomClass(params);
+    }
+  };
+
+  var showInput = function showInput(params) {
+    if (!renderInputType[params.input]) {
+      return error("Unexpected type of input! Expected \"text\", \"email\", \"password\", \"number\", \"tel\", \"select\", \"radio\", \"checkbox\", \"textarea\", \"file\" or \"url\", got \"".concat(params.input, "\""));
+    }
+
+    var inputContainer = getInputContainer(params.input);
+    var input = renderInputType[params.input](inputContainer, params);
+    show(input); // input autofocus
+
+    setTimeout(function () {
+      focusInput(input);
+    });
+  };
+
+  var removeAttributes = function removeAttributes(input) {
+    for (var i = 0; i < input.attributes.length; i++) {
+      var attrName = input.attributes[i].name;
+
+      if (!(['type', 'value', 'style'].indexOf(attrName) !== -1)) {
+        input.removeAttribute(attrName);
+      }
+    }
+  };
+
+  var setAttributes = function setAttributes(inputType, inputAttributes) {
+    var input = getInput(getContent(), inputType);
+
+    if (!input) {
+      return;
+    }
+
+    removeAttributes(input);
+
+    for (var attr in inputAttributes) {
+      // Do not set a placeholder for <input type="range">
+      // it'll crash Edge, #1298
+      if (inputType === 'range' && attr === 'placeholder') {
+        continue;
+      }
+
+      input.setAttribute(attr, inputAttributes[attr]);
+    }
+  };
+
+  var setCustomClass = function setCustomClass(params) {
+    var inputContainer = getInputContainer(params.input);
+
+    if (params.customClass) {
+      addClass(inputContainer, params.customClass.input);
+    }
+  };
+
+  var setInputPlaceholder = function setInputPlaceholder(input, params) {
+    if (!input.placeholder || params.inputPlaceholder) {
+      input.placeholder = params.inputPlaceholder;
+    }
+  };
+
+  var getInputContainer = function getInputContainer(inputType) {
+    var inputClass = swalClasses[inputType] ? swalClasses[inputType] : swalClasses.input;
+    return getChildByClass(getContent(), inputClass);
+  };
+
+  var renderInputType = {};
+
+  renderInputType.text = renderInputType.email = renderInputType.password = renderInputType.number = renderInputType.tel = renderInputType.url = function (input, params) {
+    if (typeof params.inputValue === 'string' || typeof params.inputValue === 'number') {
+      input.value = params.inputValue;
+    } else if (!isPromise(params.inputValue)) {
+      warn("Unexpected type of inputValue! Expected \"string\", \"number\" or \"Promise\", got \"".concat(_typeof(params.inputValue), "\""));
+    }
+
+    setInputPlaceholder(input, params);
+    input.type = params.input;
+    return input;
+  };
+
+  renderInputType.file = function (input, params) {
+    setInputPlaceholder(input, params);
+    return input;
+  };
+
+  renderInputType.range = function (range, params) {
+    var rangeInput = range.querySelector('input');
+    var rangeOutput = range.querySelector('output');
+    rangeInput.value = params.inputValue;
+    rangeInput.type = params.input;
+    rangeOutput.value = params.inputValue;
+    return range;
+  };
+
+  renderInputType.select = function (select, params) {
+    select.textContent = '';
+
+    if (params.inputPlaceholder) {
+      var placeholder = document.createElement('option');
+      setInnerHtml(placeholder, params.inputPlaceholder);
+      placeholder.value = '';
+      placeholder.disabled = true;
+      placeholder.selected = true;
+      select.appendChild(placeholder);
+    }
+
+    return select;
+  };
+
+  renderInputType.radio = function (radio) {
+    radio.textContent = '';
+    return radio;
+  };
+
+  renderInputType.checkbox = function (checkboxContainer, params) {
+    var checkbox = getInput(getContent(), 'checkbox');
+    checkbox.value = 1;
+    checkbox.id = swalClasses.checkbox;
+    checkbox.checked = Boolean(params.inputValue);
+    var label = checkboxContainer.querySelector('span');
+    setInnerHtml(label, params.inputPlaceholder);
+    return checkboxContainer;
+  };
+
+  renderInputType.textarea = function (textarea, params) {
+    textarea.value = params.inputValue;
+    setInputPlaceholder(textarea, params);
+
+    if ('MutationObserver' in window) {
+      // #1699
+      var initialPopupWidth = parseInt(window.getComputedStyle(getPopup()).width);
+      var popupPadding = parseInt(window.getComputedStyle(getPopup()).paddingLeft) + parseInt(window.getComputedStyle(getPopup()).paddingRight);
+
+      var outputsize = function outputsize() {
+        var contentWidth = textarea.offsetWidth + popupPadding;
+
+        if (contentWidth > initialPopupWidth) {
+          getPopup().style.width = "".concat(contentWidth, "px");
+        } else {
+          getPopup().style.width = null;
+        }
+      };
+
+      new MutationObserver(outputsize).observe(textarea, {
+        attributes: true,
+        attributeFilter: ['style']
+      });
+    }
+
+    return textarea;
+  };
+
+  var renderContent = function renderContent(instance, params) {
+    var content = getContent().querySelector("#".concat(swalClasses.content)); // Content as HTML
+
+    if (params.html) {
+      parseHtmlToContainer(params.html, content);
+      show(content, 'block'); // Content as plain text
+    } else if (params.text) {
+      content.textContent = params.text;
+      show(content, 'block'); // No content
+    } else {
+      hide(content);
+    }
+
+    renderInput(instance, params); // Custom class
+
+    applyCustomClass(getContent(), params, 'content');
+  };
+
+  var renderFooter = function renderFooter(instance, params) {
+    var footer = getFooter();
+    toggle(footer, params.footer);
+
+    if (params.footer) {
+      parseHtmlToContainer(params.footer, footer);
+    } // Custom class
+
+
+    applyCustomClass(footer, params, 'footer');
+  };
+
+  var renderCloseButton = function renderCloseButton(instance, params) {
+    var closeButton = getCloseButton();
+    setInnerHtml(closeButton, params.closeButtonHtml); // Custom class
+
+    applyCustomClass(closeButton, params, 'closeButton');
+    toggle(closeButton, params.showCloseButton);
+    closeButton.setAttribute('aria-label', params.closeButtonAriaLabel);
+  };
+
+  var renderIcon = function renderIcon(instance, params) {
+    var innerParams = privateProps.innerParams.get(instance); // if the give icon already rendered, apply the custom class without re-rendering the icon
+
+    if (innerParams && params.icon === innerParams.icon && getIcon()) {
+      applyCustomClass(getIcon(), params, 'icon');
+      return;
+    }
+
+    hideAllIcons();
+
+    if (!params.icon) {
+      return;
+    }
+
+    if (Object.keys(iconTypes).indexOf(params.icon) !== -1) {
+      var icon = elementBySelector(".".concat(swalClasses.icon, ".").concat(iconTypes[params.icon]));
+      show(icon); // Custom or default content
+
+      setContent(icon, params);
+      adjustSuccessIconBackgoundColor(); // Custom class
+
+      applyCustomClass(icon, params, 'icon'); // Animate icon
+
+      addClass(icon, params.showClass.icon);
+    } else {
+      error("Unknown icon! Expected \"success\", \"error\", \"warning\", \"info\" or \"question\", got \"".concat(params.icon, "\""));
+    }
+  };
+
+  var hideAllIcons = function hideAllIcons() {
+    var icons = getIcons();
+
+    for (var i = 0; i < icons.length; i++) {
+      hide(icons[i]);
+    }
+  }; // Adjust success icon background color to match the popup background color
+
+
+  var adjustSuccessIconBackgoundColor = function adjustSuccessIconBackgoundColor() {
+    var popup = getPopup();
+    var popupBackgroundColor = window.getComputedStyle(popup).getPropertyValue('background-color');
+    var successIconParts = popup.querySelectorAll('[class^=swal2-success-circular-line], .swal2-success-fix');
+
+    for (var i = 0; i < successIconParts.length; i++) {
+      successIconParts[i].style.backgroundColor = popupBackgroundColor;
+    }
+  };
+
+  var setContent = function setContent(icon, params) {
+    icon.textContent = '';
+
+    if (params.iconHtml) {
+      setInnerHtml(icon, iconContent(params.iconHtml));
+    } else if (params.icon === 'success') {
+      setInnerHtml(icon, "\n      <div class=\"swal2-success-circular-line-left\"></div>\n      <span class=\"swal2-success-line-tip\"></span> <span class=\"swal2-success-line-long\"></span>\n      <div class=\"swal2-success-ring\"></div> <div class=\"swal2-success-fix\"></div>\n      <div class=\"swal2-success-circular-line-right\"></div>\n    ");
+    } else if (params.icon === 'error') {
+      setInnerHtml(icon, "\n      <span class=\"swal2-x-mark\">\n        <span class=\"swal2-x-mark-line-left\"></span>\n        <span class=\"swal2-x-mark-line-right\"></span>\n      </span>\n    ");
+    } else {
+      var defaultIconHtml = {
+        question: '?',
+        warning: '!',
+        info: 'i'
+      };
+      setInnerHtml(icon, iconContent(defaultIconHtml[params.icon]));
+    }
+  };
+
+  var iconContent = function iconContent(content) {
+    return "<div class=\"".concat(swalClasses['icon-content'], "\">").concat(content, "</div>");
+  };
+
+  var renderImage = function renderImage(instance, params) {
+    var image = getImage();
+
+    if (!params.imageUrl) {
+      return hide(image);
+    }
+
+    show(image); // Src, alt
+
+    image.setAttribute('src', params.imageUrl);
+    image.setAttribute('alt', params.imageAlt); // Width, height
+
+    applyNumericalStyle(image, 'width', params.imageWidth);
+    applyNumericalStyle(image, 'height', params.imageHeight); // Class
+
+    image.className = swalClasses.image;
+    applyCustomClass(image, params, 'image');
+  };
+
+  var currentSteps = [];
+  /*
+   * Global function for chaining sweetAlert popups
+   */
+
+  var queue = function queue(steps) {
+    var Swal = this;
+    currentSteps = steps;
+
+    var resetAndResolve = function resetAndResolve(resolve, value) {
+      currentSteps = [];
+      resolve(value);
+    };
+
+    var queueResult = [];
+    return new Promise(function (resolve) {
+      (function step(i, callback) {
+        if (i < currentSteps.length) {
+          document.body.setAttribute('data-swal2-queue-step', i);
+          Swal.fire(currentSteps[i]).then(function (result) {
+            if (typeof result.value !== 'undefined') {
+              queueResult.push(result.value);
+              step(i + 1, callback);
+            } else {
+              resetAndResolve(resolve, {
+                dismiss: result.dismiss
+              });
+            }
+          });
+        } else {
+          resetAndResolve(resolve, {
+            value: queueResult
+          });
+        }
+      })(0);
+    });
+  };
+  /*
+   * Global function for getting the index of current popup in queue
+   */
+
+  var getQueueStep = function getQueueStep() {
+    return getContainer() && getContainer().getAttribute('data-queue-step');
+  };
+  /*
+   * Global function for inserting a popup to the queue
+   */
+
+  var insertQueueStep = function insertQueueStep(step, index) {
+    if (index && index < currentSteps.length) {
+      return currentSteps.splice(index, 0, step);
+    }
+
+    return currentSteps.push(step);
+  };
+  /*
+   * Global function for deleting a popup from the queue
+   */
+
+  var deleteQueueStep = function deleteQueueStep(index) {
+    if (typeof currentSteps[index] !== 'undefined') {
+      currentSteps.splice(index, 1);
+    }
+  };
+
+  var createStepElement = function createStepElement(step) {
+    var stepEl = document.createElement('li');
+    addClass(stepEl, swalClasses['progress-step']);
+    setInnerHtml(stepEl, step);
+    return stepEl;
+  };
+
+  var createLineElement = function createLineElement(params) {
+    var lineEl = document.createElement('li');
+    addClass(lineEl, swalClasses['progress-step-line']);
+
+    if (params.progressStepsDistance) {
+      lineEl.style.width = params.progressStepsDistance;
+    }
+
+    return lineEl;
+  };
+
+  var renderProgressSteps = function renderProgressSteps(instance, params) {
+    var progressStepsContainer = getProgressSteps();
+
+    if (!params.progressSteps || params.progressSteps.length === 0) {
+      return hide(progressStepsContainer);
+    }
+
+    show(progressStepsContainer);
+    progressStepsContainer.textContent = '';
+    var currentProgressStep = parseInt(params.currentProgressStep === undefined ? getQueueStep() : params.currentProgressStep);
+
+    if (currentProgressStep >= params.progressSteps.length) {
+      warn('Invalid currentProgressStep parameter, it should be less than progressSteps.length ' + '(currentProgressStep like JS arrays starts from 0)');
+    }
+
+    params.progressSteps.forEach(function (step, index) {
+      var stepEl = createStepElement(step);
+      progressStepsContainer.appendChild(stepEl);
+
+      if (index === currentProgressStep) {
+        addClass(stepEl, swalClasses['active-progress-step']);
+      }
+
+      if (index !== params.progressSteps.length - 1) {
+        var lineEl = createLineElement(step);
+        progressStepsContainer.appendChild(lineEl);
+      }
+    });
+  };
+
+  var renderTitle = function renderTitle(instance, params) {
+    var title = getTitle();
+    toggle(title, params.title || params.titleText);
+
+    if (params.title) {
+      parseHtmlToContainer(params.title, title);
+    }
+
+    if (params.titleText) {
+      title.innerText = params.titleText;
+    } // Custom class
+
+
+    applyCustomClass(title, params, 'title');
+  };
+
+  var renderHeader = function renderHeader(instance, params) {
+    var header = getHeader(); // Custom class
+
+    applyCustomClass(header, params, 'header'); // Progress steps
+
+    renderProgressSteps(instance, params); // Icon
+
+    renderIcon(instance, params); // Image
+
+    renderImage(instance, params); // Title
+
+    renderTitle(instance, params); // Close button
+
+    renderCloseButton(instance, params);
+  };
+
+  var renderPopup = function renderPopup(instance, params) {
+    var popup = getPopup(); // Width
+
+    applyNumericalStyle(popup, 'width', params.width); // Padding
+
+    applyNumericalStyle(popup, 'padding', params.padding); // Background
+
+    if (params.background) {
+      popup.style.background = params.background;
+    } // Classes
+
+
+    addClasses(popup, params);
+  };
+
+  var addClasses = function addClasses(popup, params) {
+    // Default Class + showClass when updating Swal.update({})
+    popup.className = "".concat(swalClasses.popup, " ").concat(isVisible(popup) ? params.showClass.popup : '');
+
+    if (params.toast) {
+      addClass([document.documentElement, document.body], swalClasses['toast-shown']);
+      addClass(popup, swalClasses.toast);
+    } else {
+      addClass(popup, swalClasses.modal);
+    } // Custom class
+
+
+    applyCustomClass(popup, params, 'popup');
+
+    if (typeof params.customClass === 'string') {
+      addClass(popup, params.customClass);
+    } // Icon class (#1842)
+
+
+    if (params.icon) {
+      addClass(popup, swalClasses["icon-".concat(params.icon)]);
+    }
+  };
+
+  var render = function render(instance, params) {
+    renderPopup(instance, params);
+    renderContainer(instance, params);
+    renderHeader(instance, params);
+    renderContent(instance, params);
+    renderActions(instance, params);
+    renderFooter(instance, params);
+
+    if (typeof params.onRender === 'function') {
+      params.onRender(getPopup());
+    }
+  };
+
+  /*
+   * Global function to determine if SweetAlert2 popup is shown
+   */
+
+  var isVisible$1 = function isVisible$$1() {
+    return isVisible(getPopup());
+  };
+  /*
+   * Global function to click 'Confirm' button
+   */
+
+  var clickConfirm = function clickConfirm() {
+    return getConfirmButton() && getConfirmButton().click();
+  };
+  /*
+   * Global function to click 'Cancel' button
+   */
+
+  var clickCancel = function clickCancel() {
+    return getCancelButton() && getCancelButton().click();
+  };
+
+  function fire() {
+    var Swal = this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _construct(Swal, args);
+  }
+
+  /**
+   * Returns an extended version of `Swal` containing `params` as defaults.
+   * Useful for reusing Swal configuration.
+   *
+   * For example:
+   *
+   * Before:
+   * const textPromptOptions = { input: 'text', showCancelButton: true }
+   * const {value: firstName} = await Swal.fire({ ...textPromptOptions, title: 'What is your first name?' })
+   * const {value: lastName} = await Swal.fire({ ...textPromptOptions, title: 'What is your last name?' })
+   *
+   * After:
+   * const TextPrompt = Swal.mixin({ input: 'text', showCancelButton: true })
+   * const {value: firstName} = await TextPrompt('What is your first name?')
+   * const {value: lastName} = await TextPrompt('What is your last name?')
+   *
+   * @param mixinParams
+   */
+  function mixin(mixinParams) {
+    var MixinSwal = /*#__PURE__*/function (_this) {
+      _inherits(MixinSwal, _this);
+
+      var _super = _createSuper(MixinSwal);
+
+      function MixinSwal() {
+        _classCallCheck(this, MixinSwal);
+
+        return _super.apply(this, arguments);
+      }
+
+      _createClass(MixinSwal, [{
+        key: "_main",
+        value: function _main(params) {
+          return _get(_getPrototypeOf(MixinSwal.prototype), "_main", this).call(this, _extends({}, mixinParams, params));
+        }
+      }]);
+
+      return MixinSwal;
+    }(this);
+
+    return MixinSwal;
+  }
+
+  /**
+   * Show spinner instead of Confirm button
+   */
+
+  var showLoading = function showLoading() {
+    var popup = getPopup();
+
+    if (!popup) {
+      Swal.fire();
+    }
+
+    popup = getPopup();
+    var actions = getActions();
+    var confirmButton = getConfirmButton();
+    show(actions);
+    show(confirmButton, 'inline-block');
+    addClass([popup, actions], swalClasses.loading);
+    confirmButton.disabled = true;
+    popup.setAttribute('data-loading', true);
+    popup.setAttribute('aria-busy', true);
+    popup.focus();
+  };
+
+  var RESTORE_FOCUS_TIMEOUT = 100;
+
+  var globalState = {};
+
+  var focusPreviousActiveElement = function focusPreviousActiveElement() {
+    if (globalState.previousActiveElement && globalState.previousActiveElement.focus) {
+      globalState.previousActiveElement.focus();
+      globalState.previousActiveElement = null;
+    } else if (document.body) {
+      document.body.focus();
+    }
+  }; // Restore previous active (focused) element
+
+
+  var restoreActiveElement = function restoreActiveElement() {
+    return new Promise(function (resolve) {
+      var x = window.scrollX;
+      var y = window.scrollY;
+      globalState.restoreFocusTimeout = setTimeout(function () {
+        focusPreviousActiveElement();
+        resolve();
+      }, RESTORE_FOCUS_TIMEOUT); // issues/900
+
+      /* istanbul ignore if */
+
+      if (typeof x !== 'undefined' && typeof y !== 'undefined') {
+        // IE doesn't have scrollX/scrollY support
+        window.scrollTo(x, y);
+      }
+    });
+  };
+
+  /**
+   * If `timer` parameter is set, returns number of milliseconds of timer remained.
+   * Otherwise, returns undefined.
+   */
+
+  var getTimerLeft = function getTimerLeft() {
+    return globalState.timeout && globalState.timeout.getTimerLeft();
+  };
+  /**
+   * Stop timer. Returns number of milliseconds of timer remained.
+   * If `timer` parameter isn't set, returns undefined.
+   */
+
+  var stopTimer = function stopTimer() {
+    if (globalState.timeout) {
+      stopTimerProgressBar();
+      return globalState.timeout.stop();
+    }
+  };
+  /**
+   * Resume timer. Returns number of milliseconds of timer remained.
+   * If `timer` parameter isn't set, returns undefined.
+   */
+
+  var resumeTimer = function resumeTimer() {
+    if (globalState.timeout) {
+      var remaining = globalState.timeout.start();
+      animateTimerProgressBar(remaining);
+      return remaining;
+    }
+  };
+  /**
+   * Resume timer. Returns number of milliseconds of timer remained.
+   * If `timer` parameter isn't set, returns undefined.
+   */
+
+  var toggleTimer = function toggleTimer() {
+    var timer = globalState.timeout;
+    return timer && (timer.running ? stopTimer() : resumeTimer());
+  };
+  /**
+   * Increase timer. Returns number of milliseconds of an updated timer.
+   * If `timer` parameter isn't set, returns undefined.
+   */
+
+  var increaseTimer = function increaseTimer(n) {
+    if (globalState.timeout) {
+      var remaining = globalState.timeout.increase(n);
+      animateTimerProgressBar(remaining, true);
+      return remaining;
+    }
+  };
+  /**
+   * Check if timer is running. Returns true if timer is running
+   * or false if timer is paused or stopped.
+   * If `timer` parameter isn't set, returns undefined
+   */
+
+  var isTimerRunning = function isTimerRunning() {
+    return globalState.timeout && globalState.timeout.isRunning();
+  };
+
+  var defaultParams = {
+    title: '',
+    titleText: '',
+    text: '',
+    html: '',
+    footer: '',
+    icon: undefined,
+    iconHtml: undefined,
+    toast: false,
+    animation: true,
+    showClass: {
+      popup: 'swal2-show',
+      backdrop: 'swal2-backdrop-show',
+      icon: 'swal2-icon-show'
+    },
+    hideClass: {
+      popup: 'swal2-hide',
+      backdrop: 'swal2-backdrop-hide',
+      icon: 'swal2-icon-hide'
+    },
+    customClass: undefined,
+    target: 'body',
+    backdrop: true,
+    heightAuto: true,
+    allowOutsideClick: true,
+    allowEscapeKey: true,
+    allowEnterKey: true,
+    stopKeydownPropagation: true,
+    keydownListenerCapture: false,
+    showConfirmButton: true,
+    showCancelButton: false,
+    preConfirm: undefined,
+    confirmButtonText: 'OK',
+    confirmButtonAriaLabel: '',
+    confirmButtonColor: undefined,
+    cancelButtonText: 'Cancel',
+    cancelButtonAriaLabel: '',
+    cancelButtonColor: undefined,
+    buttonsStyling: true,
+    reverseButtons: false,
+    focusConfirm: true,
+    focusCancel: false,
+    showCloseButton: false,
+    closeButtonHtml: '&times;',
+    closeButtonAriaLabel: 'Close this dialog',
+    showLoaderOnConfirm: false,
+    imageUrl: undefined,
+    imageWidth: undefined,
+    imageHeight: undefined,
+    imageAlt: '',
+    timer: undefined,
+    timerProgressBar: false,
+    width: undefined,
+    padding: undefined,
+    background: undefined,
+    input: undefined,
+    inputPlaceholder: '',
+    inputValue: '',
+    inputOptions: {},
+    inputAutoTrim: true,
+    inputAttributes: {},
+    inputValidator: undefined,
+    validationMessage: undefined,
+    grow: false,
+    position: 'center',
+    progressSteps: [],
+    currentProgressStep: undefined,
+    progressStepsDistance: undefined,
+    onBeforeOpen: undefined,
+    onOpen: undefined,
+    onRender: undefined,
+    onClose: undefined,
+    onAfterClose: undefined,
+    onDestroy: undefined,
+    scrollbarPadding: true
+  };
+  var updatableParams = ['title', 'titleText', 'text', 'html', 'icon', 'hideClass', 'customClass', 'allowOutsideClick', 'allowEscapeKey', 'showConfirmButton', 'showCancelButton', 'confirmButtonText', 'confirmButtonAriaLabel', 'confirmButtonColor', 'cancelButtonText', 'cancelButtonAriaLabel', 'cancelButtonColor', 'buttonsStyling', 'reverseButtons', 'imageUrl', 'imageWidth', 'imageHeight', 'imageAlt', 'progressSteps', 'currentProgressStep'];
+  var deprecatedParams = {
+    animation: 'showClass" and "hideClass'
+  };
+  var toastIncompatibleParams = ['allowOutsideClick', 'allowEnterKey', 'backdrop', 'focusConfirm', 'focusCancel', 'heightAuto', 'keydownListenerCapture'];
+  /**
+   * Is valid parameter
+   * @param {String} paramName
+   */
+
+  var isValidParameter = function isValidParameter(paramName) {
+    return Object.prototype.hasOwnProperty.call(defaultParams, paramName);
+  };
+  /**
+   * Is valid parameter for Swal.update() method
+   * @param {String} paramName
+   */
+
+  var isUpdatableParameter = function isUpdatableParameter(paramName) {
+    return updatableParams.indexOf(paramName) !== -1;
+  };
+  /**
+   * Is deprecated parameter
+   * @param {String} paramName
+   */
+
+  var isDeprecatedParameter = function isDeprecatedParameter(paramName) {
+    return deprecatedParams[paramName];
+  };
+
+  var checkIfParamIsValid = function checkIfParamIsValid(param) {
+    if (!isValidParameter(param)) {
+      warn("Unknown parameter \"".concat(param, "\""));
+    }
+  };
+
+  var checkIfToastParamIsValid = function checkIfToastParamIsValid(param) {
+    if (toastIncompatibleParams.indexOf(param) !== -1) {
+      warn("The parameter \"".concat(param, "\" is incompatible with toasts"));
+    }
+  };
+
+  var checkIfParamIsDeprecated = function checkIfParamIsDeprecated(param) {
+    if (isDeprecatedParameter(param)) {
+      warnAboutDepreation(param, isDeprecatedParameter(param));
+    }
+  };
+  /**
+   * Show relevant warnings for given params
+   *
+   * @param params
+   */
+
+
+  var showWarningsForParams = function showWarningsForParams(params) {
+    for (var param in params) {
+      checkIfParamIsValid(param);
+
+      if (params.toast) {
+        checkIfToastParamIsValid(param);
+      }
+
+      checkIfParamIsDeprecated(param);
+    }
+  };
+
+
+
+  var staticMethods = /*#__PURE__*/Object.freeze({
+    isValidParameter: isValidParameter,
+    isUpdatableParameter: isUpdatableParameter,
+    isDeprecatedParameter: isDeprecatedParameter,
+    argsToParams: argsToParams,
+    isVisible: isVisible$1,
+    clickConfirm: clickConfirm,
+    clickCancel: clickCancel,
+    getContainer: getContainer,
+    getPopup: getPopup,
+    getTitle: getTitle,
+    getContent: getContent,
+    getHtmlContainer: getHtmlContainer,
+    getImage: getImage,
+    getIcon: getIcon,
+    getIcons: getIcons,
+    getCloseButton: getCloseButton,
+    getActions: getActions,
+    getConfirmButton: getConfirmButton,
+    getCancelButton: getCancelButton,
+    getHeader: getHeader,
+    getFooter: getFooter,
+    getTimerProgressBar: getTimerProgressBar,
+    getFocusableElements: getFocusableElements,
+    getValidationMessage: getValidationMessage,
+    isLoading: isLoading,
+    fire: fire,
+    mixin: mixin,
+    queue: queue,
+    getQueueStep: getQueueStep,
+    insertQueueStep: insertQueueStep,
+    deleteQueueStep: deleteQueueStep,
+    showLoading: showLoading,
+    enableLoading: showLoading,
+    getTimerLeft: getTimerLeft,
+    stopTimer: stopTimer,
+    resumeTimer: resumeTimer,
+    toggleTimer: toggleTimer,
+    increaseTimer: increaseTimer,
+    isTimerRunning: isTimerRunning
+  });
+
+  /**
+   * Enables buttons and hide loader.
+   */
+
+  function hideLoading() {
+    // do nothing if popup is closed
+    var innerParams = privateProps.innerParams.get(this);
+
+    if (!innerParams) {
+      return;
+    }
+
+    var domCache = privateProps.domCache.get(this);
+
+    if (!innerParams.showConfirmButton) {
+      hide(domCache.confirmButton);
+
+      if (!innerParams.showCancelButton) {
+        hide(domCache.actions);
+      }
+    }
+
+    removeClass([domCache.popup, domCache.actions], swalClasses.loading);
+    domCache.popup.removeAttribute('aria-busy');
+    domCache.popup.removeAttribute('data-loading');
+    domCache.confirmButton.disabled = false;
+    domCache.cancelButton.disabled = false;
+  }
+
+  function getInput$1(instance) {
+    var innerParams = privateProps.innerParams.get(instance || this);
+    var domCache = privateProps.domCache.get(instance || this);
+
+    if (!domCache) {
+      return null;
+    }
+
+    return getInput(domCache.content, innerParams.input);
+  }
+
+  var fixScrollbar = function fixScrollbar() {
+    // for queues, do not do this more than once
+    if (states.previousBodyPadding !== null) {
+      return;
+    } // if the body has overflow
+
+
+    if (document.body.scrollHeight > window.innerHeight) {
+      // add padding so the content doesn't shift after removal of scrollbar
+      states.previousBodyPadding = parseInt(window.getComputedStyle(document.body).getPropertyValue('padding-right'));
+      document.body.style.paddingRight = "".concat(states.previousBodyPadding + measureScrollbar(), "px");
+    }
+  };
+  var undoScrollbar = function undoScrollbar() {
+    if (states.previousBodyPadding !== null) {
+      document.body.style.paddingRight = "".concat(states.previousBodyPadding, "px");
+      states.previousBodyPadding = null;
+    }
+  };
+
+  /* istanbul ignore file */
+
+  var iOSfix = function iOSfix() {
+    var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream || navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+
+    if (iOS && !hasClass(document.body, swalClasses.iosfix)) {
+      var offset = document.body.scrollTop;
+      document.body.style.top = "".concat(offset * -1, "px");
+      addClass(document.body, swalClasses.iosfix);
+      lockBodyScroll();
+    }
+  };
+
+  var lockBodyScroll = function lockBodyScroll() {
+    // #1246
+    var container = getContainer();
+    var preventTouchMove;
+
+    container.ontouchstart = function (e) {
+      preventTouchMove = shouldPreventTouchMove(e.target);
+    };
+
+    container.ontouchmove = function (e) {
+      if (preventTouchMove) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+  };
+
+  var shouldPreventTouchMove = function shouldPreventTouchMove(target) {
+    var container = getContainer();
+
+    if (target === container) {
+      return true;
+    }
+
+    if (!isScrollable(container) && target.tagName !== 'INPUT' && // #1603
+    !(isScrollable(getContent()) && // #1944
+    getContent().contains(target))) {
+      return true;
+    }
+
+    return false;
+  };
+
+  var undoIOSfix = function undoIOSfix() {
+    if (hasClass(document.body, swalClasses.iosfix)) {
+      var offset = parseInt(document.body.style.top, 10);
+      removeClass(document.body, swalClasses.iosfix);
+      document.body.style.top = '';
+      document.body.scrollTop = offset * -1;
+    }
+  };
+
+  /* istanbul ignore file */
+
+  var isIE11 = function isIE11() {
+    return !!window.MSInputMethodContext && !!document.documentMode;
+  }; // Fix IE11 centering sweetalert2/issues/933
+
+
+  var fixVerticalPositionIE = function fixVerticalPositionIE() {
+    var container = getContainer();
+    var popup = getPopup();
+    container.style.removeProperty('align-items');
+
+    if (popup.offsetTop < 0) {
+      container.style.alignItems = 'flex-start';
+    }
+  };
+
+  var IEfix = function IEfix() {
+    if (typeof window !== 'undefined' && isIE11()) {
+      fixVerticalPositionIE();
+      window.addEventListener('resize', fixVerticalPositionIE);
+    }
+  };
+  var undoIEfix = function undoIEfix() {
+    if (typeof window !== 'undefined' && isIE11()) {
+      window.removeEventListener('resize', fixVerticalPositionIE);
+    }
+  };
+
+  // Adding aria-hidden="true" to elements outside of the active modal dialog ensures that
+  // elements not within the active modal dialog will not be surfaced if a user opens a screen
+  // reader’s list of elements (headings, form controls, landmarks, etc.) in the document.
+
+  var setAriaHidden = function setAriaHidden() {
+    var bodyChildren = toArray(document.body.children);
+    bodyChildren.forEach(function (el) {
+      if (el === getContainer() || contains(el, getContainer())) {
+        return;
+      }
+
+      if (el.hasAttribute('aria-hidden')) {
+        el.setAttribute('data-previous-aria-hidden', el.getAttribute('aria-hidden'));
+      }
+
+      el.setAttribute('aria-hidden', 'true');
+    });
+  };
+  var unsetAriaHidden = function unsetAriaHidden() {
+    var bodyChildren = toArray(document.body.children);
+    bodyChildren.forEach(function (el) {
+      if (el.hasAttribute('data-previous-aria-hidden')) {
+        el.setAttribute('aria-hidden', el.getAttribute('data-previous-aria-hidden'));
+        el.removeAttribute('data-previous-aria-hidden');
+      } else {
+        el.removeAttribute('aria-hidden');
+      }
+    });
+  };
+
+  /**
+   * This module containts `WeakMap`s for each effectively-"private  property" that a `Swal` has.
+   * For example, to set the private property "foo" of `this` to "bar", you can `privateProps.foo.set(this, 'bar')`
+   * This is the approach that Babel will probably take to implement private methods/fields
+   *   https://github.com/tc39/proposal-private-methods
+   *   https://github.com/babel/babel/pull/7555
+   * Once we have the changes from that PR in Babel, and our core class fits reasonable in *one module*
+   *   then we can use that language feature.
+   */
+  var privateMethods = {
+    swalPromiseResolve: new WeakMap()
+  };
+
+  /*
+   * Instance method to close sweetAlert
+   */
+
+  function removePopupAndResetState(instance, container, isToast$$1, onAfterClose) {
+    if (isToast$$1) {
+      triggerOnAfterCloseAndDispose(instance, onAfterClose);
+    } else {
+      restoreActiveElement().then(function () {
+        return triggerOnAfterCloseAndDispose(instance, onAfterClose);
+      });
+      globalState.keydownTarget.removeEventListener('keydown', globalState.keydownHandler, {
+        capture: globalState.keydownListenerCapture
+      });
+      globalState.keydownHandlerAdded = false;
+    }
+
+    if (container.parentNode && !document.body.getAttribute('data-swal2-queue-step')) {
+      container.parentNode.removeChild(container);
+    }
+
+    if (isModal()) {
+      undoScrollbar();
+      undoIOSfix();
+      undoIEfix();
+      unsetAriaHidden();
+    }
+
+    removeBodyClasses();
+  }
+
+  function removeBodyClasses() {
+    removeClass([document.documentElement, document.body], [swalClasses.shown, swalClasses['height-auto'], swalClasses['no-backdrop'], swalClasses['toast-shown'], swalClasses['toast-column']]);
+  }
+
+  function close(resolveValue) {
+    var popup = getPopup();
+
+    if (!popup) {
+      return;
+    }
+
+    var innerParams = privateProps.innerParams.get(this);
+
+    if (!innerParams || hasClass(popup, innerParams.hideClass.popup)) {
+      return;
+    }
+
+    var swalPromiseResolve = privateMethods.swalPromiseResolve.get(this);
+    removeClass(popup, innerParams.showClass.popup);
+    addClass(popup, innerParams.hideClass.popup);
+    var backdrop = getContainer();
+    removeClass(backdrop, innerParams.showClass.backdrop);
+    addClass(backdrop, innerParams.hideClass.backdrop);
+    handlePopupAnimation(this, popup, innerParams); // Resolve Swal promise
+
+    swalPromiseResolve(resolveValue || {});
+  }
+
+  var handlePopupAnimation = function handlePopupAnimation(instance, popup, innerParams) {
+    var container = getContainer(); // If animation is supported, animate
+
+    var animationIsSupported = animationEndEvent && hasCssAnimation(popup);
+    var onClose = innerParams.onClose,
+        onAfterClose = innerParams.onAfterClose;
+
+    if (onClose !== null && typeof onClose === 'function') {
+      onClose(popup);
+    }
+
+    if (animationIsSupported) {
+      animatePopup(instance, popup, container, onAfterClose);
+    } else {
+      // Otherwise, remove immediately
+      removePopupAndResetState(instance, container, isToast(), onAfterClose);
+    }
+  };
+
+  var animatePopup = function animatePopup(instance, popup, container, onAfterClose) {
+    globalState.swalCloseEventFinishedCallback = removePopupAndResetState.bind(null, instance, container, isToast(), onAfterClose);
+    popup.addEventListener(animationEndEvent, function (e) {
+      if (e.target === popup) {
+        globalState.swalCloseEventFinishedCallback();
+        delete globalState.swalCloseEventFinishedCallback;
+      }
+    });
+  };
+
+  var triggerOnAfterCloseAndDispose = function triggerOnAfterCloseAndDispose(instance, onAfterClose) {
+    setTimeout(function () {
+      if (typeof onAfterClose === 'function') {
+        onAfterClose();
+      }
+
+      instance._destroy();
+    });
+  };
+
+  function setButtonsDisabled(instance, buttons, disabled) {
+    var domCache = privateProps.domCache.get(instance);
+    buttons.forEach(function (button) {
+      domCache[button].disabled = disabled;
+    });
+  }
+
+  function setInputDisabled(input, disabled) {
+    if (!input) {
+      return false;
+    }
+
+    if (input.type === 'radio') {
+      var radiosContainer = input.parentNode.parentNode;
+      var radios = radiosContainer.querySelectorAll('input');
+
+      for (var i = 0; i < radios.length; i++) {
+        radios[i].disabled = disabled;
+      }
+    } else {
+      input.disabled = disabled;
+    }
+  }
+
+  function enableButtons() {
+    setButtonsDisabled(this, ['confirmButton', 'cancelButton'], false);
+  }
+  function disableButtons() {
+    setButtonsDisabled(this, ['confirmButton', 'cancelButton'], true);
+  }
+  function enableInput() {
+    return setInputDisabled(this.getInput(), false);
+  }
+  function disableInput() {
+    return setInputDisabled(this.getInput(), true);
+  }
+
+  function showValidationMessage(error) {
+    var domCache = privateProps.domCache.get(this);
+    setInnerHtml(domCache.validationMessage, error);
+    var popupComputedStyle = window.getComputedStyle(domCache.popup);
+    domCache.validationMessage.style.marginLeft = "-".concat(popupComputedStyle.getPropertyValue('padding-left'));
+    domCache.validationMessage.style.marginRight = "-".concat(popupComputedStyle.getPropertyValue('padding-right'));
+    show(domCache.validationMessage);
+    var input = this.getInput();
+
+    if (input) {
+      input.setAttribute('aria-invalid', true);
+      input.setAttribute('aria-describedBy', swalClasses['validation-message']);
+      focusInput(input);
+      addClass(input, swalClasses.inputerror);
+    }
+  } // Hide block with validation message
+
+  function resetValidationMessage$1() {
+    var domCache = privateProps.domCache.get(this);
+
+    if (domCache.validationMessage) {
+      hide(domCache.validationMessage);
+    }
+
+    var input = this.getInput();
+
+    if (input) {
+      input.removeAttribute('aria-invalid');
+      input.removeAttribute('aria-describedBy');
+      removeClass(input, swalClasses.inputerror);
+    }
+  }
+
+  function getProgressSteps$1() {
+    var domCache = privateProps.domCache.get(this);
+    return domCache.progressSteps;
+  }
+
+  var Timer = /*#__PURE__*/function () {
+    function Timer(callback, delay) {
+      _classCallCheck(this, Timer);
+
+      this.callback = callback;
+      this.remaining = delay;
+      this.running = false;
+      this.start();
+    }
+
+    _createClass(Timer, [{
+      key: "start",
+      value: function start() {
+        if (!this.running) {
+          this.running = true;
+          this.started = new Date();
+          this.id = setTimeout(this.callback, this.remaining);
+        }
+
+        return this.remaining;
+      }
+    }, {
+      key: "stop",
+      value: function stop() {
+        if (this.running) {
+          this.running = false;
+          clearTimeout(this.id);
+          this.remaining -= new Date() - this.started;
+        }
+
+        return this.remaining;
+      }
+    }, {
+      key: "increase",
+      value: function increase(n) {
+        var running = this.running;
+
+        if (running) {
+          this.stop();
+        }
+
+        this.remaining += n;
+
+        if (running) {
+          this.start();
+        }
+
+        return this.remaining;
+      }
+    }, {
+      key: "getTimerLeft",
+      value: function getTimerLeft() {
+        if (this.running) {
+          this.stop();
+          this.start();
+        }
+
+        return this.remaining;
+      }
+    }, {
+      key: "isRunning",
+      value: function isRunning() {
+        return this.running;
+      }
+    }]);
+
+    return Timer;
+  }();
+
+  var defaultInputValidators = {
+    email: function email(string, validationMessage) {
+      return /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9-]{2,24}$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid email address');
+    },
+    url: function url(string, validationMessage) {
+      // taken from https://stackoverflow.com/a/3809435 with a small change from #1306
+      return /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,63}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid URL');
+    }
+  };
+
+  function setDefaultInputValidators(params) {
+    // Use default `inputValidator` for supported input types if not provided
+    if (!params.inputValidator) {
+      Object.keys(defaultInputValidators).forEach(function (key) {
+        if (params.input === key) {
+          params.inputValidator = defaultInputValidators[key];
+        }
+      });
+    }
+  }
+
+  function validateCustomTargetElement(params) {
+    // Determine if the custom target element is valid
+    if (!params.target || typeof params.target === 'string' && !document.querySelector(params.target) || typeof params.target !== 'string' && !params.target.appendChild) {
+      warn('Target parameter is not valid, defaulting to "body"');
+      params.target = 'body';
+    }
+  }
+  /**
+   * Set type, text and actions on popup
+   *
+   * @param params
+   * @returns {boolean}
+   */
+
+
+  function setParameters(params) {
+    setDefaultInputValidators(params); // showLoaderOnConfirm && preConfirm
+
+    if (params.showLoaderOnConfirm && !params.preConfirm) {
+      warn('showLoaderOnConfirm is set to true, but preConfirm is not defined.\n' + 'showLoaderOnConfirm should be used together with preConfirm, see usage example:\n' + 'https://sweetalert2.github.io/#ajax-request');
+    } // params.animation will be actually used in renderPopup.js
+    // but in case when params.animation is a function, we need to call that function
+    // before popup (re)initialization, so it'll be possible to check Swal.isVisible()
+    // inside the params.animation function
+
+
+    params.animation = callIfFunction(params.animation);
+    validateCustomTargetElement(params); // Replace newlines with <br> in title
+
+    if (typeof params.title === 'string') {
+      params.title = params.title.split('\n').join('<br />');
+    }
+
+    init(params);
+  }
+
+  /**
+   * Open popup, add necessary classes and styles, fix scrollbar
+   *
+   * @param {Array} params
+   */
+
+  var openPopup = function openPopup(params) {
+    var container = getContainer();
+    var popup = getPopup();
+
+    if (typeof params.onBeforeOpen === 'function') {
+      params.onBeforeOpen(popup);
+    }
+
+    addClasses$1(container, popup, params); // scrolling is 'hidden' until animation is done, after that 'auto'
+
+    setScrollingVisibility(container, popup);
+
+    if (isModal()) {
+      fixScrollContainer(container, params.scrollbarPadding);
+    }
+
+    if (!isToast() && !globalState.previousActiveElement) {
+      globalState.previousActiveElement = document.activeElement;
+    }
+
+    if (typeof params.onOpen === 'function') {
+      setTimeout(function () {
+        return params.onOpen(popup);
+      });
+    }
+
+    removeClass(container, swalClasses['no-transition']);
+  };
+
+  function swalOpenAnimationFinished(event) {
+    var popup = getPopup();
+
+    if (event.target !== popup) {
+      return;
+    }
+
+    var container = getContainer();
+    popup.removeEventListener(animationEndEvent, swalOpenAnimationFinished);
+    container.style.overflowY = 'auto';
+  }
+
+  var setScrollingVisibility = function setScrollingVisibility(container, popup) {
+    if (animationEndEvent && hasCssAnimation(popup)) {
+      container.style.overflowY = 'hidden';
+      popup.addEventListener(animationEndEvent, swalOpenAnimationFinished);
+    } else {
+      container.style.overflowY = 'auto';
+    }
+  };
+
+  var fixScrollContainer = function fixScrollContainer(container, scrollbarPadding) {
+    iOSfix();
+    IEfix();
+    setAriaHidden();
+
+    if (scrollbarPadding) {
+      fixScrollbar();
+    } // sweetalert2/issues/1247
+
+
+    setTimeout(function () {
+      container.scrollTop = 0;
+    });
+  };
+
+  var addClasses$1 = function addClasses(container, popup, params) {
+    addClass(container, params.showClass.backdrop);
+    show(popup); // Animate popup right after showing it
+
+    addClass(popup, params.showClass.popup);
+    addClass([document.documentElement, document.body], swalClasses.shown);
+
+    if (params.heightAuto && params.backdrop && !params.toast) {
+      addClass([document.documentElement, document.body], swalClasses['height-auto']);
+    }
+  };
+
+  var handleInputOptionsAndValue = function handleInputOptionsAndValue(instance, params) {
+    if (params.input === 'select' || params.input === 'radio') {
+      handleInputOptions(instance, params);
+    } else if (['text', 'email', 'number', 'tel', 'textarea'].indexOf(params.input) !== -1 && isPromise(params.inputValue)) {
+      handleInputValue(instance, params);
+    }
+  };
+  var getInputValue = function getInputValue(instance, innerParams) {
+    var input = instance.getInput();
+
+    if (!input) {
+      return null;
+    }
+
+    switch (innerParams.input) {
+      case 'checkbox':
+        return getCheckboxValue(input);
+
+      case 'radio':
+        return getRadioValue(input);
+
+      case 'file':
+        return getFileValue(input);
+
+      default:
+        return innerParams.inputAutoTrim ? input.value.trim() : input.value;
+    }
+  };
+
+  var getCheckboxValue = function getCheckboxValue(input) {
+    return input.checked ? 1 : 0;
+  };
+
+  var getRadioValue = function getRadioValue(input) {
+    return input.checked ? input.value : null;
+  };
+
+  var getFileValue = function getFileValue(input) {
+    return input.files.length ? input.getAttribute('multiple') !== null ? input.files : input.files[0] : null;
+  };
+
+  var handleInputOptions = function handleInputOptions(instance, params) {
+    var content = getContent();
+
+    var processInputOptions = function processInputOptions(inputOptions) {
+      return populateInputOptions[params.input](content, formatInputOptions(inputOptions), params);
+    };
+
+    if (isPromise(params.inputOptions)) {
+      showLoading();
+      params.inputOptions.then(function (inputOptions) {
+        instance.hideLoading();
+        processInputOptions(inputOptions);
+      });
+    } else if (_typeof(params.inputOptions) === 'object') {
+      processInputOptions(params.inputOptions);
+    } else {
+      error("Unexpected type of inputOptions! Expected object, Map or Promise, got ".concat(_typeof(params.inputOptions)));
+    }
+  };
+
+  var handleInputValue = function handleInputValue(instance, params) {
+    var input = instance.getInput();
+    hide(input);
+    params.inputValue.then(function (inputValue) {
+      input.value = params.input === 'number' ? parseFloat(inputValue) || 0 : "".concat(inputValue);
+      show(input);
+      input.focus();
+      instance.hideLoading();
+    })["catch"](function (err) {
+      error("Error in inputValue promise: ".concat(err));
+      input.value = '';
+      show(input);
+      input.focus();
+      instance.hideLoading();
+    });
+  };
+
+  var populateInputOptions = {
+    select: function select(content, inputOptions, params) {
+      var select = getChildByClass(content, swalClasses.select);
+      inputOptions.forEach(function (inputOption) {
+        var optionValue = inputOption[0];
+        var optionLabel = inputOption[1];
+        var option = document.createElement('option');
+        option.value = optionValue;
+        setInnerHtml(option, optionLabel);
+
+        if (params.inputValue.toString() === optionValue.toString()) {
+          option.selected = true;
+        }
+
+        select.appendChild(option);
+      });
+      select.focus();
+    },
+    radio: function radio(content, inputOptions, params) {
+      var radio = getChildByClass(content, swalClasses.radio);
+      inputOptions.forEach(function (inputOption) {
+        var radioValue = inputOption[0];
+        var radioLabel = inputOption[1];
+        var radioInput = document.createElement('input');
+        var radioLabelElement = document.createElement('label');
+        radioInput.type = 'radio';
+        radioInput.name = swalClasses.radio;
+        radioInput.value = radioValue;
+
+        if (params.inputValue.toString() === radioValue.toString()) {
+          radioInput.checked = true;
+        }
+
+        var label = document.createElement('span');
+        setInnerHtml(label, radioLabel);
+        label.className = swalClasses.label;
+        radioLabelElement.appendChild(radioInput);
+        radioLabelElement.appendChild(label);
+        radio.appendChild(radioLabelElement);
+      });
+      var radios = radio.querySelectorAll('input');
+
+      if (radios.length) {
+        radios[0].focus();
+      }
+    }
+  };
+  /**
+   * Converts `inputOptions` into an array of `[value, label]`s
+   * @param inputOptions
+   */
+
+  var formatInputOptions = function formatInputOptions(inputOptions) {
+    var result = [];
+
+    if (typeof Map !== 'undefined' && inputOptions instanceof Map) {
+      inputOptions.forEach(function (value, key) {
+        result.push([key, value]);
+      });
+    } else {
+      Object.keys(inputOptions).forEach(function (key) {
+        result.push([key, inputOptions[key]]);
+      });
+    }
+
+    return result;
+  };
+
+  var handleConfirmButtonClick = function handleConfirmButtonClick(instance, innerParams) {
+    instance.disableButtons();
+
+    if (innerParams.input) {
+      handleConfirmWithInput(instance, innerParams);
+    } else {
+      confirm(instance, innerParams, true);
+    }
+  };
+  var handleCancelButtonClick = function handleCancelButtonClick(instance, dismissWith) {
+    instance.disableButtons();
+    dismissWith(DismissReason.cancel);
+  };
+
+  var handleConfirmWithInput = function handleConfirmWithInput(instance, innerParams) {
+    var inputValue = getInputValue(instance, innerParams);
+
+    if (innerParams.inputValidator) {
+      instance.disableInput();
+      var validationPromise = Promise.resolve().then(function () {
+        return innerParams.inputValidator(inputValue, innerParams.validationMessage);
+      });
+      validationPromise.then(function (validationMessage) {
+        instance.enableButtons();
+        instance.enableInput();
+
+        if (validationMessage) {
+          instance.showValidationMessage(validationMessage);
+        } else {
+          confirm(instance, innerParams, inputValue);
+        }
+      });
+    } else if (!instance.getInput().checkValidity()) {
+      instance.enableButtons();
+      instance.showValidationMessage(innerParams.validationMessage);
+    } else {
+      confirm(instance, innerParams, inputValue);
+    }
+  };
+
+  var succeedWith = function succeedWith(instance, value) {
+    instance.closePopup({
+      value: value
+    });
+  };
+
+  var confirm = function confirm(instance, innerParams, value) {
+    if (innerParams.showLoaderOnConfirm) {
+      showLoading(); // TODO: make showLoading an *instance* method
+    }
+
+    if (innerParams.preConfirm) {
+      instance.resetValidationMessage();
+      var preConfirmPromise = Promise.resolve().then(function () {
+        return innerParams.preConfirm(value, innerParams.validationMessage);
+      });
+      preConfirmPromise.then(function (preConfirmValue) {
+        if (isVisible(getValidationMessage()) || preConfirmValue === false) {
+          instance.hideLoading();
+        } else {
+          succeedWith(instance, typeof preConfirmValue === 'undefined' ? value : preConfirmValue);
+        }
+      });
+    } else {
+      succeedWith(instance, value);
+    }
+  };
+
+  var addKeydownHandler = function addKeydownHandler(instance, globalState, innerParams, dismissWith) {
+    if (globalState.keydownTarget && globalState.keydownHandlerAdded) {
+      globalState.keydownTarget.removeEventListener('keydown', globalState.keydownHandler, {
+        capture: globalState.keydownListenerCapture
+      });
+      globalState.keydownHandlerAdded = false;
+    }
+
+    if (!innerParams.toast) {
+      globalState.keydownHandler = function (e) {
+        return keydownHandler(instance, e, dismissWith);
+      };
+
+      globalState.keydownTarget = innerParams.keydownListenerCapture ? window : getPopup();
+      globalState.keydownListenerCapture = innerParams.keydownListenerCapture;
+      globalState.keydownTarget.addEventListener('keydown', globalState.keydownHandler, {
+        capture: globalState.keydownListenerCapture
+      });
+      globalState.keydownHandlerAdded = true;
+    }
+  }; // Focus handling
+
+  var setFocus = function setFocus(innerParams, index, increment) {
+    var focusableElements = getFocusableElements(); // search for visible elements and select the next possible match
+
+    for (var i = 0; i < focusableElements.length; i++) {
+      index = index + increment; // rollover to first item
+
+      if (index === focusableElements.length) {
+        index = 0; // go to last item
+      } else if (index === -1) {
+        index = focusableElements.length - 1;
+      }
+
+      return focusableElements[index].focus();
+    } // no visible focusable elements, focus the popup
+
+
+    getPopup().focus();
+  };
+  var arrowKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Left', 'Right', 'Up', 'Down' // IE11
+  ];
+  var escKeys = ['Escape', 'Esc' // IE11
+  ];
+
+  var keydownHandler = function keydownHandler(instance, e, dismissWith) {
+    var innerParams = privateProps.innerParams.get(instance);
+
+    if (innerParams.stopKeydownPropagation) {
+      e.stopPropagation();
+    } // ENTER
+
+
+    if (e.key === 'Enter') {
+      handleEnter(instance, e, innerParams); // TAB
+    } else if (e.key === 'Tab') {
+      handleTab(e, innerParams); // ARROWS - switch focus between buttons
+    } else if (arrowKeys.indexOf(e.key) !== -1) {
+      handleArrows(); // ESC
+    } else if (escKeys.indexOf(e.key) !== -1) {
+      handleEsc(e, innerParams, dismissWith);
+    }
+  };
+
+  var handleEnter = function handleEnter(instance, e, innerParams) {
+    // #720 #721
+    if (e.isComposing) {
+      return;
+    }
+
+    if (e.target && instance.getInput() && e.target.outerHTML === instance.getInput().outerHTML) {
+      if (['textarea', 'file'].indexOf(innerParams.input) !== -1) {
+        return; // do not submit
+      }
+
+      clickConfirm();
+      e.preventDefault();
+    }
+  };
+
+  var handleTab = function handleTab(e, innerParams) {
+    var targetElement = e.target;
+    var focusableElements = getFocusableElements();
+    var btnIndex = -1;
+
+    for (var i = 0; i < focusableElements.length; i++) {
+      if (targetElement === focusableElements[i]) {
+        btnIndex = i;
+        break;
+      }
+    }
+
+    if (!e.shiftKey) {
+      // Cycle to the next button
+      setFocus(innerParams, btnIndex, 1);
+    } else {
+      // Cycle to the prev button
+      setFocus(innerParams, btnIndex, -1);
+    }
+
+    e.stopPropagation();
+    e.preventDefault();
+  };
+
+  var handleArrows = function handleArrows() {
+    var confirmButton = getConfirmButton();
+    var cancelButton = getCancelButton(); // focus Cancel button if Confirm button is currently focused
+
+    if (document.activeElement === confirmButton && isVisible(cancelButton)) {
+      cancelButton.focus(); // and vice versa
+    } else if (document.activeElement === cancelButton && isVisible(confirmButton)) {
+      confirmButton.focus();
+    }
+  };
+
+  var handleEsc = function handleEsc(e, innerParams, dismissWith) {
+    if (callIfFunction(innerParams.allowEscapeKey)) {
+      e.preventDefault();
+      dismissWith(DismissReason.esc);
+    }
+  };
+
+  var handlePopupClick = function handlePopupClick(instance, domCache, dismissWith) {
+    var innerParams = privateProps.innerParams.get(instance);
+
+    if (innerParams.toast) {
+      handleToastClick(instance, domCache, dismissWith);
+    } else {
+      // Ignore click events that had mousedown on the popup but mouseup on the container
+      // This can happen when the user drags a slider
+      handleModalMousedown(domCache); // Ignore click events that had mousedown on the container but mouseup on the popup
+
+      handleContainerMousedown(domCache);
+      handleModalClick(instance, domCache, dismissWith);
+    }
+  };
+
+  var handleToastClick = function handleToastClick(instance, domCache, dismissWith) {
+    // Closing toast by internal click
+    domCache.popup.onclick = function () {
+      var innerParams = privateProps.innerParams.get(instance);
+
+      if (innerParams.showConfirmButton || innerParams.showCancelButton || innerParams.showCloseButton || innerParams.input) {
+        return;
+      }
+
+      dismissWith(DismissReason.close);
+    };
+  };
+
+  var ignoreOutsideClick = false;
+
+  var handleModalMousedown = function handleModalMousedown(domCache) {
+    domCache.popup.onmousedown = function () {
+      domCache.container.onmouseup = function (e) {
+        domCache.container.onmouseup = undefined; // We only check if the mouseup target is the container because usually it doesn't
+        // have any other direct children aside of the popup
+
+        if (e.target === domCache.container) {
+          ignoreOutsideClick = true;
+        }
+      };
+    };
+  };
+
+  var handleContainerMousedown = function handleContainerMousedown(domCache) {
+    domCache.container.onmousedown = function () {
+      domCache.popup.onmouseup = function (e) {
+        domCache.popup.onmouseup = undefined; // We also need to check if the mouseup target is a child of the popup
+
+        if (e.target === domCache.popup || domCache.popup.contains(e.target)) {
+          ignoreOutsideClick = true;
+        }
+      };
+    };
+  };
+
+  var handleModalClick = function handleModalClick(instance, domCache, dismissWith) {
+    domCache.container.onclick = function (e) {
+      var innerParams = privateProps.innerParams.get(instance);
+
+      if (ignoreOutsideClick) {
+        ignoreOutsideClick = false;
+        return;
+      }
+
+      if (e.target === domCache.container && callIfFunction(innerParams.allowOutsideClick)) {
+        dismissWith(DismissReason.backdrop);
+      }
+    };
+  };
+
+  function _main(userParams) {
+    showWarningsForParams(userParams);
+
+    if (globalState.currentInstance) {
+      globalState.currentInstance._destroy();
+    }
+
+    globalState.currentInstance = this;
+    var innerParams = prepareParams(userParams);
+    setParameters(innerParams);
+    Object.freeze(innerParams); // clear the previous timer
+
+    if (globalState.timeout) {
+      globalState.timeout.stop();
+      delete globalState.timeout;
+    } // clear the restore focus timeout
+
+
+    clearTimeout(globalState.restoreFocusTimeout);
+    var domCache = populateDomCache(this);
+    render(this, innerParams);
+    privateProps.innerParams.set(this, innerParams);
+    return swalPromise(this, domCache, innerParams);
+  }
+
+  var prepareParams = function prepareParams(userParams) {
+    var showClass = _extends({}, defaultParams.showClass, userParams.showClass);
+
+    var hideClass = _extends({}, defaultParams.hideClass, userParams.hideClass);
+
+    var params = _extends({}, defaultParams, userParams);
+
+    params.showClass = showClass;
+    params.hideClass = hideClass; // @deprecated
+
+    if (userParams.animation === false) {
+      params.showClass = {
+        popup: 'swal2-noanimation',
+        backdrop: 'swal2-noanimation'
+      };
+      params.hideClass = {};
+    }
+
+    return params;
+  };
+
+  var swalPromise = function swalPromise(instance, domCache, innerParams) {
+    return new Promise(function (resolve) {
+      // functions to handle all closings/dismissals
+      var dismissWith = function dismissWith(dismiss) {
+        instance.closePopup({
+          dismiss: dismiss
+        });
+      };
+
+      privateMethods.swalPromiseResolve.set(instance, resolve);
+
+      domCache.confirmButton.onclick = function () {
+        return handleConfirmButtonClick(instance, innerParams);
+      };
+
+      domCache.cancelButton.onclick = function () {
+        return handleCancelButtonClick(instance, dismissWith);
+      };
+
+      domCache.closeButton.onclick = function () {
+        return dismissWith(DismissReason.close);
+      };
+
+      handlePopupClick(instance, domCache, dismissWith);
+      addKeydownHandler(instance, globalState, innerParams, dismissWith);
+
+      if (innerParams.toast && (innerParams.input || innerParams.footer || innerParams.showCloseButton)) {
+        addClass(document.body, swalClasses['toast-column']);
+      } else {
+        removeClass(document.body, swalClasses['toast-column']);
+      }
+
+      handleInputOptionsAndValue(instance, innerParams);
+      openPopup(innerParams);
+      setupTimer(globalState, innerParams, dismissWith);
+      initFocus(domCache, innerParams); // Scroll container to top on open (#1247, #1946)
+
+      setTimeout(function () {
+        domCache.container.scrollTop = 0;
+      });
+    });
+  };
+
+  var populateDomCache = function populateDomCache(instance) {
+    var domCache = {
+      popup: getPopup(),
+      container: getContainer(),
+      content: getContent(),
+      actions: getActions(),
+      confirmButton: getConfirmButton(),
+      cancelButton: getCancelButton(),
+      closeButton: getCloseButton(),
+      validationMessage: getValidationMessage(),
+      progressSteps: getProgressSteps()
+    };
+    privateProps.domCache.set(instance, domCache);
+    return domCache;
+  };
+
+  var setupTimer = function setupTimer(globalState$$1, innerParams, dismissWith) {
+    var timerProgressBar = getTimerProgressBar();
+    hide(timerProgressBar);
+
+    if (innerParams.timer) {
+      globalState$$1.timeout = new Timer(function () {
+        dismissWith('timer');
+        delete globalState$$1.timeout;
+      }, innerParams.timer);
+
+      if (innerParams.timerProgressBar) {
+        show(timerProgressBar);
+        setTimeout(function () {
+          if (globalState$$1.timeout.running) {
+            // timer can be already stopped at this point
+            animateTimerProgressBar(innerParams.timer);
+          }
+        });
+      }
+    }
+  };
+
+  var initFocus = function initFocus(domCache, innerParams) {
+    if (innerParams.toast) {
+      return;
+    }
+
+    if (!callIfFunction(innerParams.allowEnterKey)) {
+      return blurActiveElement();
+    }
+
+    if (innerParams.focusCancel && isVisible(domCache.cancelButton)) {
+      return domCache.cancelButton.focus();
+    }
+
+    if (innerParams.focusConfirm && isVisible(domCache.confirmButton)) {
+      return domCache.confirmButton.focus();
+    }
+
+    setFocus(innerParams, -1, 1);
+  };
+
+  var blurActiveElement = function blurActiveElement() {
+    if (document.activeElement && typeof document.activeElement.blur === 'function') {
+      document.activeElement.blur();
+    }
+  };
+
+  /**
+   * Updates popup parameters.
+   */
+
+  function update(params) {
+    var popup = getPopup();
+    var innerParams = privateProps.innerParams.get(this);
+
+    if (!popup || hasClass(popup, innerParams.hideClass.popup)) {
+      return warn("You're trying to update the closed or closing popup, that won't work. Use the update() method in preConfirm parameter or show a new popup.");
+    }
+
+    var validUpdatableParams = {}; // assign valid params from `params` to `defaults`
+
+    Object.keys(params).forEach(function (param) {
+      if (Swal.isUpdatableParameter(param)) {
+        validUpdatableParams[param] = params[param];
+      } else {
+        warn("Invalid parameter to update: \"".concat(param, "\". Updatable params are listed here: https://github.com/sweetalert2/sweetalert2/blob/master/src/utils/params.js"));
+      }
+    });
+
+    var updatedParams = _extends({}, innerParams, validUpdatableParams);
+
+    render(this, updatedParams);
+    privateProps.innerParams.set(this, updatedParams);
+    Object.defineProperties(this, {
+      params: {
+        value: _extends({}, this.params, params),
+        writable: false,
+        enumerable: true
+      }
+    });
+  }
+
+  function _destroy() {
+    var domCache = privateProps.domCache.get(this);
+    var innerParams = privateProps.innerParams.get(this);
+
+    if (!innerParams) {
+      return; // This instance has already been destroyed
+    } // Check if there is another Swal closing
+
+
+    if (domCache.popup && globalState.swalCloseEventFinishedCallback) {
+      globalState.swalCloseEventFinishedCallback();
+      delete globalState.swalCloseEventFinishedCallback;
+    } // Check if there is a swal disposal defer timer
+
+
+    if (globalState.deferDisposalTimer) {
+      clearTimeout(globalState.deferDisposalTimer);
+      delete globalState.deferDisposalTimer;
+    }
+
+    if (typeof innerParams.onDestroy === 'function') {
+      innerParams.onDestroy();
+    }
+
+    disposeSwal(this);
+  }
+
+  var disposeSwal = function disposeSwal(instance) {
+    // Unset this.params so GC will dispose it (#1569)
+    delete instance.params; // Unset globalState props so GC will dispose globalState (#1569)
+
+    delete globalState.keydownHandler;
+    delete globalState.keydownTarget; // Unset WeakMaps so GC will be able to dispose them (#1569)
+
+    unsetWeakMaps(privateProps);
+    unsetWeakMaps(privateMethods);
+  };
+
+  var unsetWeakMaps = function unsetWeakMaps(obj) {
+    for (var i in obj) {
+      obj[i] = new WeakMap();
+    }
+  };
+
+
+
+  var instanceMethods = /*#__PURE__*/Object.freeze({
+    hideLoading: hideLoading,
+    disableLoading: hideLoading,
+    getInput: getInput$1,
+    close: close,
+    closePopup: close,
+    closeModal: close,
+    closeToast: close,
+    enableButtons: enableButtons,
+    disableButtons: disableButtons,
+    enableInput: enableInput,
+    disableInput: disableInput,
+    showValidationMessage: showValidationMessage,
+    resetValidationMessage: resetValidationMessage$1,
+    getProgressSteps: getProgressSteps$1,
+    _main: _main,
+    update: update,
+    _destroy: _destroy
+  });
+
+  var currentInstance; // SweetAlert constructor
+
+  function SweetAlert() {
+    // Prevent run in Node env
+
+    /* istanbul ignore if */
+    if (typeof window === 'undefined') {
+      return;
+    } // Check for the existence of Promise
+
+    /* istanbul ignore if */
+
+
+    if (typeof Promise === 'undefined') {
+      error('This package requires a Promise library, please include a shim to enable it in this browser (See: https://github.com/sweetalert2/sweetalert2/wiki/Migration-from-SweetAlert-to-SweetAlert2#1-ie-support)');
+    }
+
+    currentInstance = this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var outerParams = Object.freeze(this.constructor.argsToParams(args));
+    Object.defineProperties(this, {
+      params: {
+        value: outerParams,
+        writable: false,
+        enumerable: true,
+        configurable: true
+      }
+    });
+
+    var promise = this._main(this.params);
+
+    privateProps.promise.set(this, promise);
+  } // `catch` cannot be the name of a module export, so we define our thenable methods here instead
+
+
+  SweetAlert.prototype.then = function (onFulfilled) {
+    var promise = privateProps.promise.get(this);
+    return promise.then(onFulfilled);
+  };
+
+  SweetAlert.prototype["finally"] = function (onFinally) {
+    var promise = privateProps.promise.get(this);
+    return promise["finally"](onFinally);
+  }; // Assign instance methods from src/instanceMethods/*.js to prototype
+
+
+  _extends(SweetAlert.prototype, instanceMethods); // Assign static methods from src/staticMethods/*.js to constructor
+
+
+  _extends(SweetAlert, staticMethods); // Proxy to instance methods to constructor, for now, for backwards compatibility
+
+
+  Object.keys(instanceMethods).forEach(function (key) {
+    SweetAlert[key] = function () {
+      if (currentInstance) {
+        var _currentInstance;
+
+        return (_currentInstance = currentInstance)[key].apply(_currentInstance, arguments);
+      }
+    };
+  });
+  SweetAlert.DismissReason = DismissReason;
+  SweetAlert.version = '9.10.12';
+
+  var Swal = SweetAlert;
+  Swal["default"] = Swal;
+
+  return Swal;
+
+}));
+if (typeof this !== 'undefined' && this.Sweetalert2){  this.swal = this.sweetAlert = this.Swal = this.SweetAlert = this.Sweetalert2}
+
+"undefined"!=typeof document&&function(e,t){var n=e.createElement("style");if(e.getElementsByTagName("head")[0].appendChild(n),n.styleSheet)n.styleSheet.disabled||(n.styleSheet.cssText=t);else try{n.innerHTML=t}catch(e){n.innerText=t}}(document,".swal2-popup.swal2-toast{flex-direction:row;align-items:center;width:auto;padding:.625em;overflow-y:hidden;background:#fff;box-shadow:0 0 .625em #d9d9d9}.swal2-popup.swal2-toast .swal2-header{flex-direction:row}.swal2-popup.swal2-toast .swal2-title{flex-grow:1;justify-content:flex-start;margin:0 .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{position:static;width:.8em;height:.8em;line-height:.8}.swal2-popup.swal2-toast .swal2-content{justify-content:flex-start;font-size:1em}.swal2-popup.swal2-toast .swal2-icon{width:2em;min-width:2em;height:2em;margin:0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:700}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{font-size:.25em}}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{flex-basis:auto!important;width:auto;height:auto;margin:0 .3125em}.swal2-popup.swal2-toast .swal2-styled{margin:0 .3125em;padding:.3125em .625em;font-size:1em}.swal2-popup.swal2-toast .swal2-styled:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(50,100,150,.4)}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.8em;left:-.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-toast-animate-success-line-tip .75s;animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-toast-animate-success-line-long .75s;animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{-webkit-animation:swal2-toast-show .5s;animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{-webkit-animation:swal2-toast-hide .1s forwards;animation:swal2-toast-hide .1s forwards}.swal2-container{display:flex;position:fixed;z-index:1060;top:0;right:0;bottom:0;left:0;flex-direction:row;align-items:center;justify-content:center;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}.swal2-container.swal2-backdrop-show,.swal2-container.swal2-noanimation{background:rgba(0,0,0,.4)}.swal2-container.swal2-backdrop-hide{background:0 0!important}.swal2-container.swal2-top{align-items:flex-start}.swal2-container.swal2-top-left,.swal2-container.swal2-top-start{align-items:flex-start;justify-content:flex-start}.swal2-container.swal2-top-end,.swal2-container.swal2-top-right{align-items:flex-start;justify-content:flex-end}.swal2-container.swal2-center{align-items:center}.swal2-container.swal2-center-left,.swal2-container.swal2-center-start{align-items:center;justify-content:flex-start}.swal2-container.swal2-center-end,.swal2-container.swal2-center-right{align-items:center;justify-content:flex-end}.swal2-container.swal2-bottom{align-items:flex-end}.swal2-container.swal2-bottom-left,.swal2-container.swal2-bottom-start{align-items:flex-end;justify-content:flex-start}.swal2-container.swal2-bottom-end,.swal2-container.swal2-bottom-right{align-items:flex-end;justify-content:flex-end}.swal2-container.swal2-bottom-end>:first-child,.swal2-container.swal2-bottom-left>:first-child,.swal2-container.swal2-bottom-right>:first-child,.swal2-container.swal2-bottom-start>:first-child,.swal2-container.swal2-bottom>:first-child{margin-top:auto}.swal2-container.swal2-grow-fullscreen>.swal2-modal{display:flex!important;flex:1;align-self:stretch;justify-content:center}.swal2-container.swal2-grow-row>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container.swal2-grow-column{flex:1;flex-direction:column}.swal2-container.swal2-grow-column.swal2-bottom,.swal2-container.swal2-grow-column.swal2-center,.swal2-container.swal2-grow-column.swal2-top{align-items:center}.swal2-container.swal2-grow-column.swal2-bottom-left,.swal2-container.swal2-grow-column.swal2-bottom-start,.swal2-container.swal2-grow-column.swal2-center-left,.swal2-container.swal2-grow-column.swal2-center-start,.swal2-container.swal2-grow-column.swal2-top-left,.swal2-container.swal2-grow-column.swal2-top-start{align-items:flex-start}.swal2-container.swal2-grow-column.swal2-bottom-end,.swal2-container.swal2-grow-column.swal2-bottom-right,.swal2-container.swal2-grow-column.swal2-center-end,.swal2-container.swal2-grow-column.swal2-center-right,.swal2-container.swal2-grow-column.swal2-top-end,.swal2-container.swal2-grow-column.swal2-top-right{align-items:flex-end}.swal2-container.swal2-grow-column>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container.swal2-no-transition{transition:none!important}.swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right):not(.swal2-grow-fullscreen)>.swal2-modal{margin:auto}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-container .swal2-modal{margin:0!important}}.swal2-popup{display:none;position:relative;box-sizing:border-box;flex-direction:column;justify-content:center;width:32em;max-width:100%;padding:1.25em;border:none;border-radius:.3125em;background:#fff;font-family:inherit;font-size:1rem}.swal2-popup:focus{outline:0}.swal2-popup.swal2-loading{overflow-y:hidden}.swal2-header{display:flex;flex-direction:column;align-items:center}.swal2-title{position:relative;max-width:100%;margin:0 0 .4em;padding:0;color:#595959;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}.swal2-actions{display:flex;z-index:1;flex-wrap:wrap;align-items:center;justify-content:center;width:100%;margin:1.25em auto 0}.swal2-actions:not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}.swal2-actions:not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))}.swal2-actions:not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2))}.swal2-actions.swal2-loading .swal2-styled.swal2-confirm{box-sizing:border-box;width:2.5em;height:2.5em;margin:.46875em;padding:0;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border:.25em solid transparent;border-radius:100%;border-color:transparent;background-color:transparent!important;color:transparent!important;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.swal2-actions.swal2-loading .swal2-styled.swal2-cancel{margin-right:30px;margin-left:30px}.swal2-actions.swal2-loading :not(.swal2-styled).swal2-confirm::after{content:\"\";display:inline-block;width:15px;height:15px;margin-left:5px;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border:3px solid #999;border-radius:50%;border-right-color:transparent;box-shadow:1px 1px 1px #fff}.swal2-styled{margin:.3125em;padding:.625em 2em;box-shadow:none;font-weight:500}.swal2-styled:not([disabled]){cursor:pointer}.swal2-styled.swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#3085d6;color:#fff;font-size:1.0625em}.swal2-styled.swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#aaa;color:#fff;font-size:1.0625em}.swal2-styled:focus{outline:0;box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(50,100,150,.4)}.swal2-styled::-moz-focus-inner{border:0}.swal2-footer{justify-content:center;margin:1.25em 0 0;padding:1em 0 0;border-top:1px solid #eee;color:#545454;font-size:1em}.swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;height:.25em;overflow:hidden;border-bottom-right-radius:.3125em;border-bottom-left-radius:.3125em}.swal2-timer-progress-bar{width:100%;height:.25em;background:rgba(0,0,0,.2)}.swal2-image{max-width:100%;margin:1.25em auto}.swal2-close{position:absolute;z-index:2;top:0;right:0;align-items:center;justify-content:center;width:1.2em;height:1.2em;padding:0;overflow:hidden;transition:color .1s ease-out;border:none;border-radius:0;background:0 0;color:#ccc;font-family:serif;font-size:2.5em;line-height:1.2;cursor:pointer}.swal2-close:hover{transform:none;background:0 0;color:#f27474}.swal2-close::-moz-focus-inner{border:0}.swal2-content{z-index:1;justify-content:center;margin:0;padding:0;color:#545454;font-size:1.125em;font-weight:400;line-height:normal;text-align:center;word-wrap:break-word}.swal2-checkbox,.swal2-file,.swal2-input,.swal2-radio,.swal2-select,.swal2-textarea{margin:1em auto}.swal2-file,.swal2-input,.swal2-textarea{box-sizing:border-box;width:100%;transition:border-color .3s,box-shadow .3s;border:1px solid #d9d9d9;border-radius:.1875em;background:inherit;box-shadow:inset 0 1px 1px rgba(0,0,0,.06);color:inherit;font-size:1.125em}.swal2-file.swal2-inputerror,.swal2-input.swal2-inputerror,.swal2-textarea.swal2-inputerror{border-color:#f27474!important;box-shadow:0 0 2px #f27474!important}.swal2-file:focus,.swal2-input:focus,.swal2-textarea:focus{border:1px solid #b4dbed;outline:0;box-shadow:0 0 3px #c4e6f5}.swal2-file::-webkit-input-placeholder,.swal2-input::-webkit-input-placeholder,.swal2-textarea::-webkit-input-placeholder{color:#ccc}.swal2-file::-moz-placeholder,.swal2-input::-moz-placeholder,.swal2-textarea::-moz-placeholder{color:#ccc}.swal2-file:-ms-input-placeholder,.swal2-input:-ms-input-placeholder,.swal2-textarea:-ms-input-placeholder{color:#ccc}.swal2-file::-ms-input-placeholder,.swal2-input::-ms-input-placeholder,.swal2-textarea::-ms-input-placeholder{color:#ccc}.swal2-file::placeholder,.swal2-input::placeholder,.swal2-textarea::placeholder{color:#ccc}.swal2-range{margin:1em auto;background:#fff}.swal2-range input{width:80%}.swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}.swal2-range input,.swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}.swal2-input{height:2.625em;padding:0 .75em}.swal2-input[type=number]{max-width:10em}.swal2-file{background:inherit;font-size:1.125em}.swal2-textarea{height:6.75em;padding:.75em}.swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:inherit;color:inherit;font-size:1.125em}.swal2-checkbox,.swal2-radio{align-items:center;justify-content:center;background:#fff;color:inherit}.swal2-checkbox label,.swal2-radio label{margin:0 .6em;font-size:1.125em}.swal2-checkbox input,.swal2-radio input{margin:0 .4em}.swal2-validation-message{display:none;align-items:center;justify-content:center;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}.swal2-validation-message::before{content:\"!\";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}.swal2-icon{position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:1.25em auto 1.875em;border:.25em solid transparent;border-radius:50%;font-family:inherit;line-height:5em;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}.swal2-icon.swal2-error{border-color:#f27474;color:#f27474}.swal2-icon.swal2-error .swal2-x-mark{position:relative;flex-grow:1}.swal2-icon.swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}.swal2-icon.swal2-error.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-error.swal2-icon-show .swal2-x-mark{-webkit-animation:swal2-animate-error-x-mark .5s;animation:swal2-animate-error-x-mark .5s}.swal2-icon.swal2-warning{border-color:#facea8;color:#f8bb86}.swal2-icon.swal2-info{border-color:#9de0f6;color:#3fc3ee}.swal2-icon.swal2-question{border-color:#c9dae1;color:#87adbd}.swal2-icon.swal2-success{border-color:#a5dc86;color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;transform:rotate(45deg);border-radius:50%}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}.swal2-icon.swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-.25em;left:-.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}.swal2-icon.swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}.swal2-icon.swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}.swal2-icon.swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-animate-success-line-tip .75s;animation:swal2-animate-success-line-tip .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-animate-success-line-long .75s;animation:swal2-animate-success-line-long .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-circular-line-right{-webkit-animation:swal2-rotate-success-circular-line 4.25s ease-in;animation:swal2-rotate-success-circular-line 4.25s ease-in}.swal2-progress-steps{align-items:center;margin:0 0 1.25em;padding:0;background:inherit;font-weight:600}.swal2-progress-steps li{display:inline-block;position:relative}.swal2-progress-steps .swal2-progress-step{z-index:20;width:2em;height:2em;border-radius:2em;background:#3085d6;color:#fff;line-height:2em;text-align:center}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#3085d6}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}.swal2-progress-steps .swal2-progress-step-line{z-index:10;width:2.5em;height:.4em;margin:0 -1px;background:#3085d6}[class^=swal2]{-webkit-tap-highlight-color:transparent}.swal2-show{-webkit-animation:swal2-show .3s;animation:swal2-show .3s}.swal2-hide{-webkit-animation:swal2-hide .15s forwards;animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{right:auto;left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}@supports (-ms-accelerator:true){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@-moz-document url-prefix(){.swal2-close:focus{outline:2px solid rgba(50,100,150,.4)}}@-webkit-keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@-webkit-keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@-webkit-keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@-webkit-keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@-webkit-keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@-webkit-keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@-webkit-keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@-webkit-keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@-webkit-keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@-webkit-keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@-webkit-keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@-webkit-keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto!important}body.swal2-no-backdrop .swal2-container{top:auto;right:auto;bottom:auto;left:auto;max-width:calc(100% - .625em * 2);background-color:transparent!important}body.swal2-no-backdrop .swal2-container>.swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}body.swal2-no-backdrop .swal2-container.swal2-top{top:0;left:50%;transform:translateX(-50%)}body.swal2-no-backdrop .swal2-container.swal2-top-left,body.swal2-no-backdrop .swal2-container.swal2-top-start{top:0;left:0}body.swal2-no-backdrop .swal2-container.swal2-top-end,body.swal2-no-backdrop .swal2-container.swal2-top-right{top:0;right:0}body.swal2-no-backdrop .swal2-container.swal2-center{top:50%;left:50%;transform:translate(-50%,-50%)}body.swal2-no-backdrop .swal2-container.swal2-center-left,body.swal2-no-backdrop .swal2-container.swal2-center-start{top:50%;left:0;transform:translateY(-50%)}body.swal2-no-backdrop .swal2-container.swal2-center-end,body.swal2-no-backdrop .swal2-container.swal2-center-right{top:50%;right:0;transform:translateY(-50%)}body.swal2-no-backdrop .swal2-container.swal2-bottom{bottom:0;left:50%;transform:translateX(-50%)}body.swal2-no-backdrop .swal2-container.swal2-bottom-left,body.swal2-no-backdrop .swal2-container.swal2-bottom-start{bottom:0;left:0}body.swal2-no-backdrop .swal2-container.swal2-bottom-end,body.swal2-no-backdrop .swal2-container.swal2-bottom-right{right:0;bottom:0}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll!important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static!important}}body.swal2-toast-shown .swal2-container{background-color:transparent}body.swal2-toast-shown .swal2-container.swal2-top{top:0;right:auto;bottom:auto;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{top:0;right:0;bottom:auto;left:auto}body.swal2-toast-shown .swal2-container.swal2-top-left,body.swal2-toast-shown .swal2-container.swal2-top-start{top:0;right:auto;bottom:auto;left:0}body.swal2-toast-shown .swal2-container.swal2-center-left,body.swal2-toast-shown .swal2-container.swal2-center-start{top:50%;right:auto;bottom:auto;left:0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{top:50%;right:auto;bottom:auto;left:50%;transform:translate(-50%,-50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{top:50%;right:0;bottom:auto;left:auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-left,body.swal2-toast-shown .swal2-container.swal2-bottom-start{top:auto;right:auto;bottom:0;left:0}body.swal2-toast-shown .swal2-container.swal2-bottom{top:auto;right:auto;bottom:0;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{top:auto;right:0;bottom:0;left:auto}body.swal2-toast-column .swal2-toast{flex-direction:column;align-items:stretch}body.swal2-toast-column .swal2-toast .swal2-actions{flex:1;align-self:stretch;height:2.2em;margin-top:.3125em}body.swal2-toast-column .swal2-toast .swal2-loading{justify-content:center}body.swal2-toast-column .swal2-toast .swal2-input{height:2em;margin:.3125em auto;font-size:1em}body.swal2-toast-column .swal2-toast .swal2-validation-message{font-size:1em}");
+
+/***/ }),
+
 /***/ "./node_modules/timers-browserify/main.js":
 /*!************************************************!*\
   !*** ./node_modules/timers-browserify/main.js ***!
@@ -47429,10 +57269,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Chat.vue?vue&type=template&id=0d66c37a&":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Chat.vue?vue&type=template&id=0d66c37a& ***!
+  \*******************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -47444,32 +57284,553 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "card" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "col-lg-12" },
+          _vm._l(_vm.sortedContacts, function(conversationWithUser) {
+            return _c(
+              "a",
+              {
+                key: conversationWithUser.id,
+                staticClass: "subscribe-item mb-4 p-3",
+                class: {
+                  "new-msg-bg": conversationWithUser.unreadMessagesCount > 0
+                },
+                staticStyle: {
+                  border: "1px solid rgba(0,0,0,0.9)",
+                  display: "block"
+                },
+                attrs: {
+                  href:
+                    "/conversation/" +
+                    conversationWithUser.nickname +
+                    "/" +
+                    conversationWithUser.id
+                }
+              },
+              [
+                _c("div", { staticClass: "row align-items-center" }, [
+                  _c("div", { staticClass: "col-lg-1 " }, [
+                    _c("div", { staticClass: "wall-post-img" }, [
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href: "/profile/id/" + conversationWithUser.id
+                          }
+                        },
+                        [
+                          _c("img", {
+                            attrs: { src: conversationWithUser.photo, alt: "" }
+                          })
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-lg-11" }, [
+                    _c("div", { staticClass: "wall-post-author" }, [
+                      _c("h6", [
+                        _c("a", {
+                          attrs: {
+                            href: "/profile/id/" + conversationWithUser.id
+                          },
+                          domProps: {
+                            innerHTML: _vm._s(
+                              _vm.fullName(
+                                conversationWithUser.name,
+                                conversationWithUser.nickname,
+                                conversationWithUser.surname
+                              )
+                            )
+                          }
+                        }),
+                        _vm._v(" "),
+                        conversationWithUser.isOnline
+                          ? _c("span", { staticClass: "green" }, [
+                              _c("i", { staticClass: "fas fa-circle" }),
+                              _vm._v(" Online")
+                            ])
+                          : _c("span", { staticClass: "blocks" }, [
+                              _c("i", { staticClass: "fas fa-circle" }),
+                              _vm._v(" Offline")
+                            ]),
+                        _vm._v(" "),
+                        conversationWithUser.unreadMessagesCount > 0
+                          ? _c(
+                              "span",
+                              {
+                                staticClass: "green float-right",
+                                staticStyle: { "font-size": "20px" }
+                              },
+                              [
+                                _vm._v(
+                                  "+" +
+                                    _vm._s(
+                                      conversationWithUser.unreadMessagesCount
+                                    )
+                                )
+                              ]
+                            )
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "row align-items-center mt-3" },
+                        [
+                          _c("div", { staticClass: "col-sm-1" }, [
+                            conversationWithUser.lastMessage.from ==
+                            _vm.authUser.id
+                              ? _c("img", {
+                                  staticStyle: { width: "60%" },
+                                  attrs: { src: _vm.authUser.photo, alt: "" }
+                                })
+                              : _vm._e()
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-11 p-0" }, [
+                            _c("p", { staticClass: "m-0" }, [
+                              _vm._v(
+                                "\n                                            " +
+                                  _vm._s(
+                                    conversationWithUser.lastMessage.text
+                                  ) +
+                                  "\n                                            "
+                              ),
+                              _c("small", { staticClass: "float-right mr-3" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    conversationWithUser.lastMessage.created_at
+                                  )
+                                )
+                              ])
+                            ])
+                          ])
+                        ]
+                      )
+                    ])
+                  ])
+                ])
+              ]
+            )
+          }),
+          0
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", [_vm._v("Messages")]),
+      _vm._v(" "),
+      _c("form", { staticClass: "form-inline my-2 my-lg-0 w-100" }, [
+        _c("input", {
+          staticClass: "form-control mr-sm-2",
+          attrs: {
+            type: "search",
+            placeholder: "Search",
+            "aria-label": "Search"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-success my-2 my-sm-0",
+            attrs: { type: "submit" }
+          },
+          [_c("i", { staticClass: "fas fa-search" })]
+        )
       ])
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Conversation.vue?vue&type=template&id=63f956ee&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Conversation.vue?vue&type=template&id=63f956ee& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card conversation-wrap" }, [
+    _c("div", { staticClass: "card-header" }, [
+      _c("div", { staticClass: "row align-items-center" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-1" }, [
+          _c(
+            "a",
+            { attrs: { href: "/profile/id/" + _vm.userConversationWith.id } },
+            [
+              _c("img", {
+                attrs: { src: "/" + _vm.userConversationWith.photo, alt: "" }
+              })
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-6" }, [
+          _c(
+            "a",
+            { attrs: { href: "/profile/id/" + _vm.userConversationWith.id } },
+            [
+              _c("h3", {
+                domProps: {
+                  innerHTML: _vm._s(
+                    _vm.fullName(
+                      _vm.userConversationWith.name,
+                      _vm.userConversationWith.nickname,
+                      _vm.userConversationWith.surname
+                    )
+                  )
+                }
+              })
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _vm._m(1)
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        ref: "conversation",
+        staticClass: "card-body conversation",
+        attrs: { id: "conversation" }
+      },
+      [
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "col-lg-12 " },
+            _vm._l(_vm.allMessages, function(message) {
+              return _c("div", { staticClass: "subscribe-item" }, [
+                _c("div", { staticClass: "row align-items-start" }, [
+                  _c("div", { staticClass: "col-lg-1 " }, [
+                    _c("div", { staticClass: "wall-post-img" }, [
+                      message.from == _vm.userConversationWith.id
+                        ? _c(
+                            "a",
+                            {
+                              attrs: {
+                                href:
+                                  "/profile/id/" + _vm.userConversationWith.id
+                              }
+                            },
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: "/" + _vm.userConversationWith.photo,
+                                  alt: ""
+                                }
+                              })
+                            ]
+                          )
+                        : _c(
+                            "a",
+                            {
+                              attrs: { href: "/profile/id/" + _vm.authUser.id }
+                            },
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: "/" + _vm.authUser.photo,
+                                  alt: ""
+                                }
+                              })
+                            ]
+                          )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-lg-11" },
+                    [
+                      message.from == _vm.userConversationWith.id
+                        ? _c("div", [
+                            _c("a", {
+                              attrs: {
+                                href:
+                                  "/profile/id/" + _vm.userConversationWith.id
+                              },
+                              domProps: {
+                                innerHTML: _vm._s(
+                                  _vm.fullName(
+                                    _vm.userConversationWith.name,
+                                    _vm.userConversationWith.nickname,
+                                    _vm.userConversationWith.surname
+                                  )
+                                )
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("small", { staticClass: "float-right" }, [
+                              _vm._v(_vm._s(message.created_at))
+                            ])
+                          ])
+                        : _c("div", [
+                            _c("a", {
+                              attrs: { href: "/profile/id/" + _vm.authUser.id },
+                              domProps: {
+                                innerHTML: _vm._s(
+                                  _vm.fullName(
+                                    _vm.authUser.name,
+                                    _vm.authUser.nickname,
+                                    _vm.authUser.surname
+                                  )
+                                )
+                              }
+                            })
+                          ]),
+                      _vm._v(" "),
+                      _vm._l(message.messages, function(m) {
+                        return _c(
+                          "p",
+                          {
+                            staticClass: "ml-4 mt-2",
+                            class: { "new-msg-bg": !m.is_read },
+                            attrs: { "data-msg-from": message.from }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(m.text)
+                            ),
+                            _c("small", { staticClass: "float-right " }, [
+                              _vm._v(_vm._s(m.created_at))
+                            ])
+                          ]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ])
+              ])
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row pt-2 position-relative" }, [
+          _c("div", { staticClass: "col-lg-12 position-absolute" }, [
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.isTyping,
+                    expression: "isTyping"
+                  }
+                ],
+                staticClass: "grey"
+              },
+              [
+                _c("span", {
+                  domProps: {
+                    innerHTML: _vm._s(
+                      _vm.fullName(
+                        _vm.userConversationWith.name,
+                        _vm.userConversationWith.nickname,
+                        _vm.userConversationWith.surname
+                      )
+                    )
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(2)
+              ]
+            )
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "card-footer" },
+      [
+        _vm.canMessageSend
+          ? _c("message-composer", {
+              on: { send: _vm.sendMessage, typing: _vm.typing }
+            })
+          : _c("div", [
+              _vm._v(
+                "\n                The user blocked his DM\n                "
+              ),
+              _c("i", { staticClass: "fas fa-lock" })
+            ])
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "col-lg-1",
+        staticStyle: { "border-right": "1px solid rgba(0,0,0,0.9)" }
+      },
+      [
+        _c(
+          "a",
+          {
+            staticClass: "btn m-0",
+            staticStyle: { background: "rgba(255,255,255,0.6)" },
+            attrs: { href: "/messages" }
+          },
+          [
+            _c("i", { staticClass: "fas fa-long-arrow-alt-left" }),
+            _vm._v("\n                        Back\n                    ")
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-4" }, [
+      _c("form", { staticClass: "form-inline my-2 my-lg-0 w-100" }, [
+        _c("input", {
+          staticClass: "form-control mr-sm-2",
+          attrs: {
+            type: "search",
+            placeholder: "Search by message",
+            "aria-label": "Search"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-success my-2 my-sm-0",
+            attrs: { type: "submit" }
+          },
+          [_c("i", { staticClass: "fas fa-search" })]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _vm._v("typing... "),
+      _c("i", { staticClass: "fas fa-pencil-alt" })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MessageComposer.vue?vue&type=template&id=5a28bf2c&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MessageComposer.vue?vue&type=template&id=5a28bf2c&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "message-composer" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-11" }, [
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.message,
+              expression: "message"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { placeholder: "Message..." },
+          domProps: { value: _vm.message },
+          on: {
+            keydown: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              return _vm.send($event)
+            },
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.message = $event.target.value
+              },
+              function($event) {
+                $event.preventDefault()
+                return _vm.typing($event)
+              }
+            ]
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-1" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-primary h-100 m-0", on: { click: _vm.send } },
+          [_vm._v("Send")]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -47580,6 +57941,1174 @@ function normalizeComponent (
   }
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/vue-notification/dist/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/vue-notification/dist/index.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory(__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"));
+	else {}
+})(this, function(__WEBPACK_EXTERNAL_MODULE_20__) {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/dist/";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
+
+// this module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  scopeId,
+  cssModules
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  // inject cssModules
+  if (cssModules) {
+    var computed = Object.create(options.computed || null)
+    Object.keys(cssModules).forEach(function (key) {
+      var module = cssModules[key]
+      computed[key] = function () { return module }
+    })
+    options.computed = computed
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return events; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+
+
+var events = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({ name: 'vue-notification' });
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Notifications_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Notifications_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Notifications_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__events__ = __webpack_require__(1);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+
+
+
+var Notify = {
+  install: function install(Vue) {
+    var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    if (this.installed) {
+      return;
+    }
+
+    this.installed = true;
+    this.params = args;
+
+    Vue.component(args.componentName || 'notifications', __WEBPACK_IMPORTED_MODULE_0__Notifications_vue___default.a);
+
+    var notify = function notify(params) {
+      if (typeof params === 'string') {
+        params = { title: '', text: params };
+      }
+
+      if ((typeof params === 'undefined' ? 'undefined' : _typeof(params)) === 'object') {
+        __WEBPACK_IMPORTED_MODULE_1__events__["a" /* events */].$emit('add', params);
+      }
+    };
+
+    notify.close = function (id) {
+      __WEBPACK_IMPORTED_MODULE_1__events__["a" /* events */].$emit('close', id);
+    };
+
+    var name = args.name || 'notify';
+
+    Vue.prototype['$' + name] = notify;
+    Vue[name] = notify;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Notify);
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(17)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(5),
+  /* template */
+  __webpack_require__(15),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'CssGroup',
+  props: ['name']
+});
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__events__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__defaults__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__VelocityGroup_vue__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__VelocityGroup_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__VelocityGroup_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CssGroup_vue__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CssGroup_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__CssGroup_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__parser__ = __webpack_require__(8);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+var STATE = {
+  IDLE: 0,
+  DESTROYED: 2
+};
+
+var Component = {
+  name: 'Notifications',
+  components: {
+    VelocityGroup: __WEBPACK_IMPORTED_MODULE_4__VelocityGroup_vue___default.a,
+    CssGroup: __WEBPACK_IMPORTED_MODULE_5__CssGroup_vue___default.a
+  },
+  props: {
+    group: {
+      type: String,
+      default: ''
+    },
+
+    width: {
+      type: [Number, String],
+      default: 300
+    },
+
+    reverse: {
+      type: Boolean,
+      default: false
+    },
+
+    position: {
+      type: [String, Array],
+      default: function _default() {
+        return __WEBPACK_IMPORTED_MODULE_3__defaults__["a" /* default */].position;
+      }
+    },
+
+    classes: {
+      type: String,
+      default: 'vue-notification'
+    },
+
+    animationType: {
+      type: String,
+      default: 'css',
+      validator: function validator(value) {
+        return value === 'css' || value === 'velocity';
+      }
+    },
+
+    animation: {
+      type: Object,
+      default: function _default() {
+        return __WEBPACK_IMPORTED_MODULE_3__defaults__["a" /* default */].velocityAnimation;
+      }
+    },
+
+    animationName: {
+      type: String,
+      default: __WEBPACK_IMPORTED_MODULE_3__defaults__["a" /* default */].cssAnimation
+    },
+
+    speed: {
+      type: Number,
+      default: 300
+    },
+
+    cooldown: {
+      type: Number,
+      default: 0
+    },
+
+    duration: {
+      type: Number,
+      default: 3000
+    },
+
+    delay: {
+      type: Number,
+      default: 0
+    },
+
+    max: {
+      type: Number,
+      default: Infinity
+    },
+
+    ignoreDuplicates: {
+      type: Boolean,
+      default: false
+    },
+
+    closeOnClick: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data: function data() {
+    return {
+      list: [],
+      velocity: __WEBPACK_IMPORTED_MODULE_0__index__["default"].params.velocity
+    };
+  },
+  mounted: function mounted() {
+    __WEBPACK_IMPORTED_MODULE_1__events__["a" /* events */].$on('add', this.addItem);
+    __WEBPACK_IMPORTED_MODULE_1__events__["a" /* events */].$on('close', this.closeItem);
+  },
+
+  computed: {
+    actualWidth: function actualWidth() {
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__parser__["a" /* default */])(this.width);
+    },
+    isVA: function isVA() {
+      return this.animationType === 'velocity';
+    },
+    componentName: function componentName() {
+      return this.isVA ? 'VelocityGroup' : 'CssGroup';
+    },
+    styles: function styles() {
+      var _listToDirection = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__util__["a" /* listToDirection */])(this.position),
+          x = _listToDirection.x,
+          y = _listToDirection.y;
+
+      var width = this.actualWidth.value;
+      var suffix = this.actualWidth.type;
+
+      var styles = _defineProperty({
+        width: width + suffix
+      }, y, '0px');
+
+      if (x === 'center') {
+        styles['left'] = 'calc(50% - ' + width / 2 + suffix + ')';
+      } else {
+        styles[x] = '0px';
+      }
+
+      return styles;
+    },
+    active: function active() {
+      return this.list.filter(function (v) {
+        return v.state !== STATE.DESTROYED;
+      });
+    },
+    botToTop: function botToTop() {
+      return this.styles.hasOwnProperty('bottom');
+    }
+  },
+  methods: {
+    destroyIfNecessary: function destroyIfNecessary(item) {
+      if (this.closeOnClick) {
+        this.destroy(item);
+      }
+    },
+    addItem: function addItem(event) {
+      var _this = this;
+
+      event.group = event.group || '';
+
+      if (this.group !== event.group) {
+        return;
+      }
+
+      if (event.clean || event.clear) {
+        this.destroyAll();
+        return;
+      }
+
+      var duration = typeof event.duration === 'number' ? event.duration : this.duration;
+
+      var speed = typeof event.speed === 'number' ? event.speed : this.speed;
+
+      var ignoreDuplicates = typeof event.ignoreDuplicates === 'boolean' ? event.ignoreDuplicates : this.ignoreDuplicates;
+
+      var title = event.title,
+          text = event.text,
+          type = event.type,
+          data = event.data,
+          id = event.id;
+
+
+      var item = {
+        id: id || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__util__["b" /* Id */])(),
+        title: title,
+        text: text,
+        type: type,
+        state: STATE.IDLE,
+        speed: speed,
+        length: duration + 2 * speed,
+        data: data
+      };
+
+      if (duration >= 0) {
+        item.timer = setTimeout(function () {
+          _this.destroy(item);
+        }, item.length);
+      }
+
+      var direction = this.reverse ? !this.botToTop : this.botToTop;
+
+      var indexToDestroy = -1;
+
+      var isDuplicate = this.active.some(function (item) {
+        return item.title === event.title && item.text === event.text;
+      });
+
+      var canAdd = ignoreDuplicates ? !isDuplicate : true;
+
+      if (!canAdd) return;
+
+      if (direction) {
+        this.list.push(item);
+
+        if (this.active.length > this.max) {
+          indexToDestroy = 0;
+        }
+      } else {
+        this.list.unshift(item);
+
+        if (this.active.length > this.max) {
+          indexToDestroy = this.active.length - 1;
+        }
+      }
+
+      if (indexToDestroy !== -1) {
+        this.destroy(this.active[indexToDestroy]);
+      }
+    },
+    closeItem: function closeItem(id) {
+      this.destroyById(id);
+    },
+    notifyClass: function notifyClass(item) {
+      return ['vue-notification-template', this.classes, item.type];
+    },
+    notifyWrapperStyle: function notifyWrapperStyle(item) {
+      return this.isVA ? null : { transition: 'all ' + item.speed + 'ms' };
+    },
+    destroy: function destroy(item) {
+      clearTimeout(item.timer);
+      item.state = STATE.DESTROYED;
+
+      if (!this.isVA) {
+        this.clean();
+      }
+    },
+    destroyById: function destroyById(id) {
+      var item = this.list.find(function (v) {
+        return v.id === id;
+      });
+
+      if (item) {
+        this.destroy(item);
+      }
+    },
+    destroyAll: function destroyAll() {
+      this.active.forEach(this.destroy);
+    },
+    getAnimation: function getAnimation(index, el) {
+      var animation = this.animation[index];
+
+      return typeof animation === 'function' ? animation.call(this, el) : animation;
+    },
+    enter: function enter(_ref) {
+      var el = _ref.el,
+          complete = _ref.complete;
+
+      var animation = this.getAnimation('enter', el);
+
+      this.velocity(el, animation, {
+        duration: this.speed,
+        complete: complete
+      });
+    },
+    leave: function leave(_ref2) {
+      var el = _ref2.el,
+          complete = _ref2.complete;
+
+      var animation = this.getAnimation('leave', el);
+
+      this.velocity(el, animation, {
+        duration: this.speed,
+        complete: complete
+      });
+    },
+    clean: function clean() {
+      this.list = this.list.filter(function (v) {
+        return v.state !== STATE.DESTROYED;
+      });
+    }
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Component);
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'VelocityGroup',
+  methods: {
+    enter: function enter(el, complete) {
+      this.$emit('enter', { el: el, complete: complete });
+    },
+    leave: function leave(el, complete) {
+      this.$emit('leave', { el: el, complete: complete });
+    },
+    afterLeave: function afterLeave() {
+      this.$emit('afterLeave');
+    }
+  }
+});
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  position: ['top', 'right'],
+  cssAnimation: 'vn-fade',
+  velocityAnimation: {
+    enter: function enter(el) {
+      var height = el.clientHeight;
+
+      return {
+        height: [height, 0],
+        opacity: [1, 0]
+      };
+    },
+    leave: {
+      height: 0,
+      opacity: [0, 1]
+    }
+  }
+});
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export parse */
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var floatRegexp = '[-+]?[0-9]*.?[0-9]+';
+
+var types = [{
+  name: 'px',
+  regexp: new RegExp('^' + floatRegexp + 'px$')
+}, {
+  name: '%',
+  regexp: new RegExp('^' + floatRegexp + '%$')
+}, {
+  name: 'px',
+  regexp: new RegExp('^' + floatRegexp + '$')
+}];
+
+var getType = function getType(value) {
+  if (value === 'auto') {
+    return {
+      type: value,
+      value: 0
+    };
+  }
+
+  for (var i = 0; i < types.length; i++) {
+    var type = types[i];
+    if (type.regexp.test(value)) {
+      return {
+        type: type.name,
+        value: parseFloat(value)
+      };
+    }
+  }
+
+  return {
+    type: '',
+    value: value
+  };
+};
+
+var parse = function parse(value) {
+  switch (typeof value === 'undefined' ? 'undefined' : _typeof(value)) {
+    case 'number':
+      return { type: 'px', value: value };
+    case 'string':
+      return getType(value);
+    default:
+      return { type: '', value: value };
+  }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (parse);
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Id; });
+/* unused harmony export split */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return listToDirection; });
+var directions = {
+  x: ['left', 'center', 'right'],
+  y: ['top', 'bottom']
+};
+
+var Id = function (i) {
+  return function () {
+    return i++;
+  };
+}(0);
+
+var split = function split(value) {
+  if (typeof value !== 'string') {
+    return [];
+  }
+
+  return value.split(/\s+/gi).filter(function (v) {
+    return v;
+  });
+};
+
+var listToDirection = function listToDirection(value) {
+  if (typeof value === 'string') {
+    value = split(value);
+  }
+
+  var x = null;
+  var y = null;
+
+  value.forEach(function (v) {
+    if (directions.y.indexOf(v) !== -1) {
+      y = v;
+    }
+    if (directions.x.indexOf(v) !== -1) {
+      x = v;
+    }
+  });
+
+  return { x: x, y: y };
+};
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(11)();
+// imports
+
+
+// module
+exports.push([module.i, ".vue-notification-group{display:block;position:fixed;z-index:5000}.vue-notification-wrapper{display:block;overflow:hidden;width:100%;margin:0;padding:0}.notification-title{font-weight:600}.vue-notification-template{background:#fff}.vue-notification,.vue-notification-template{display:block;box-sizing:border-box;text-align:left}.vue-notification{font-size:12px;padding:10px;margin:0 5px 5px;color:#fff;background:#44a4fc;border-left:5px solid #187fe7}.vue-notification.warn{background:#ffb648;border-left-color:#f48a06}.vue-notification.error{background:#e54d42;border-left-color:#b82e24}.vue-notification.success{background:#68cd86;border-left-color:#42a85f}.vn-fade-enter-active,.vn-fade-leave-active,.vn-fade-move{transition:all .5s}.vn-fade-enter,.vn-fade-leave-to{opacity:0}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(4),
+  /* template */
+  __webpack_require__(16),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(6),
+  /* template */
+  __webpack_require__(14),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('transition-group', {
+    attrs: {
+      "css": false
+    },
+    on: {
+      "enter": _vm.enter,
+      "leave": _vm.leave,
+      "after-leave": _vm.afterLeave
+    }
+  }, [_vm._t("default")], 2)
+},staticRenderFns: []}
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "vue-notification-group",
+    style: (_vm.styles)
+  }, [_c(_vm.componentName, {
+    tag: "component",
+    attrs: {
+      "name": _vm.animationName
+    },
+    on: {
+      "enter": _vm.enter,
+      "leave": _vm.leave,
+      "after-leave": _vm.clean
+    }
+  }, _vm._l((_vm.active), function(item) {
+    return _c('div', {
+      key: item.id,
+      staticClass: "vue-notification-wrapper",
+      style: (_vm.notifyWrapperStyle(item)),
+      attrs: {
+        "data-id": item.id
+      }
+    }, [_vm._t("body", [_c('div', {
+      class: _vm.notifyClass(item),
+      on: {
+        "click": function($event) {
+          return _vm.destroyIfNecessary(item)
+        }
+      }
+    }, [(item.title) ? _c('div', {
+      staticClass: "notification-title",
+      domProps: {
+        "innerHTML": _vm._s(item.title)
+      }
+    }) : _vm._e(), _vm._v(" "), _c('div', {
+      staticClass: "notification-content",
+      domProps: {
+        "innerHTML": _vm._s(item.text)
+      }
+    })])], {
+      "item": item,
+      "close": function () { return _vm.destroy(item); }
+    })], 2)
+  }), 0)], 1)
+},staticRenderFns: []}
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('transition-group', {
+    attrs: {
+      "name": _vm.name
+    }
+  }, [_vm._t("default")], 2)
+},staticRenderFns: []}
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(10);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(18)("2901aeae", content, true);
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(19)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction) {
+  isProduction = _isProduction
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_20__;
+
+/***/ })
+/******/ ]);
+});
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -59569,6 +71098,1105 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/vuex/dist/vuex.esm.js":
+/*!********************************************!*\
+  !*** ./node_modules/vuex/dist/vuex.esm.js ***!
+  \********************************************/
+/*! exports provided: default, Store, install, mapState, mapMutations, mapGetters, mapActions, createNamespacedHelpers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapState", function() { return mapState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMutations", function() { return mapMutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapGetters", function() { return mapGetters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActions", function() { return mapActions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNamespacedHelpers", function() { return createNamespacedHelpers; });
+/**
+ * vuex v3.3.0
+ * (c) 2020 Evan You
+ * @license MIT
+ */
+function applyMixin (Vue) {
+  var version = Number(Vue.version.split('.')[0]);
+
+  if (version >= 2) {
+    Vue.mixin({ beforeCreate: vuexInit });
+  } else {
+    // override init and inject vuex init procedure
+    // for 1.x backwards compatibility.
+    var _init = Vue.prototype._init;
+    Vue.prototype._init = function (options) {
+      if ( options === void 0 ) options = {};
+
+      options.init = options.init
+        ? [vuexInit].concat(options.init)
+        : vuexInit;
+      _init.call(this, options);
+    };
+  }
+
+  /**
+   * Vuex init hook, injected into each instances init hooks list.
+   */
+
+  function vuexInit () {
+    var options = this.$options;
+    // store injection
+    if (options.store) {
+      this.$store = typeof options.store === 'function'
+        ? options.store()
+        : options.store;
+    } else if (options.parent && options.parent.$store) {
+      this.$store = options.parent.$store;
+    }
+  }
+}
+
+var target = typeof window !== 'undefined'
+  ? window
+  : typeof global !== 'undefined'
+    ? global
+    : {};
+var devtoolHook = target.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+
+function devtoolPlugin (store) {
+  if (!devtoolHook) { return }
+
+  store._devtoolHook = devtoolHook;
+
+  devtoolHook.emit('vuex:init', store);
+
+  devtoolHook.on('vuex:travel-to-state', function (targetState) {
+    store.replaceState(targetState);
+  });
+
+  store.subscribe(function (mutation, state) {
+    devtoolHook.emit('vuex:mutation', mutation, state);
+  }, { prepend: true });
+
+  store.subscribeAction(function (action, state) {
+    devtoolHook.emit('vuex:action', action, state);
+  }, { prepend: true });
+}
+
+/**
+ * Get the first item that pass the test
+ * by second argument function
+ *
+ * @param {Array} list
+ * @param {Function} f
+ * @return {*}
+ */
+
+/**
+ * forEach for object
+ */
+function forEachValue (obj, fn) {
+  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); });
+}
+
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+function isPromise (val) {
+  return val && typeof val.then === 'function'
+}
+
+function assert (condition, msg) {
+  if (!condition) { throw new Error(("[vuex] " + msg)) }
+}
+
+function partial (fn, arg) {
+  return function () {
+    return fn(arg)
+  }
+}
+
+// Base data struct for store's module, package with some attribute and method
+var Module = function Module (rawModule, runtime) {
+  this.runtime = runtime;
+  // Store some children item
+  this._children = Object.create(null);
+  // Store the origin module object which passed by programmer
+  this._rawModule = rawModule;
+  var rawState = rawModule.state;
+
+  // Store the origin module's state
+  this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
+};
+
+var prototypeAccessors = { namespaced: { configurable: true } };
+
+prototypeAccessors.namespaced.get = function () {
+  return !!this._rawModule.namespaced
+};
+
+Module.prototype.addChild = function addChild (key, module) {
+  this._children[key] = module;
+};
+
+Module.prototype.removeChild = function removeChild (key) {
+  delete this._children[key];
+};
+
+Module.prototype.getChild = function getChild (key) {
+  return this._children[key]
+};
+
+Module.prototype.hasChild = function hasChild (key) {
+  return key in this._children
+};
+
+Module.prototype.update = function update (rawModule) {
+  this._rawModule.namespaced = rawModule.namespaced;
+  if (rawModule.actions) {
+    this._rawModule.actions = rawModule.actions;
+  }
+  if (rawModule.mutations) {
+    this._rawModule.mutations = rawModule.mutations;
+  }
+  if (rawModule.getters) {
+    this._rawModule.getters = rawModule.getters;
+  }
+};
+
+Module.prototype.forEachChild = function forEachChild (fn) {
+  forEachValue(this._children, fn);
+};
+
+Module.prototype.forEachGetter = function forEachGetter (fn) {
+  if (this._rawModule.getters) {
+    forEachValue(this._rawModule.getters, fn);
+  }
+};
+
+Module.prototype.forEachAction = function forEachAction (fn) {
+  if (this._rawModule.actions) {
+    forEachValue(this._rawModule.actions, fn);
+  }
+};
+
+Module.prototype.forEachMutation = function forEachMutation (fn) {
+  if (this._rawModule.mutations) {
+    forEachValue(this._rawModule.mutations, fn);
+  }
+};
+
+Object.defineProperties( Module.prototype, prototypeAccessors );
+
+var ModuleCollection = function ModuleCollection (rawRootModule) {
+  // register root module (Vuex.Store options)
+  this.register([], rawRootModule, false);
+};
+
+ModuleCollection.prototype.get = function get (path) {
+  return path.reduce(function (module, key) {
+    return module.getChild(key)
+  }, this.root)
+};
+
+ModuleCollection.prototype.getNamespace = function getNamespace (path) {
+  var module = this.root;
+  return path.reduce(function (namespace, key) {
+    module = module.getChild(key);
+    return namespace + (module.namespaced ? key + '/' : '')
+  }, '')
+};
+
+ModuleCollection.prototype.update = function update$1 (rawRootModule) {
+  update([], this.root, rawRootModule);
+};
+
+ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
+    var this$1 = this;
+    if ( runtime === void 0 ) runtime = true;
+
+  if (true) {
+    assertRawModule(path, rawModule);
+  }
+
+  var newModule = new Module(rawModule, runtime);
+  if (path.length === 0) {
+    this.root = newModule;
+  } else {
+    var parent = this.get(path.slice(0, -1));
+    parent.addChild(path[path.length - 1], newModule);
+  }
+
+  // register nested modules
+  if (rawModule.modules) {
+    forEachValue(rawModule.modules, function (rawChildModule, key) {
+      this$1.register(path.concat(key), rawChildModule, runtime);
+    });
+  }
+};
+
+ModuleCollection.prototype.unregister = function unregister (path) {
+  var parent = this.get(path.slice(0, -1));
+  var key = path[path.length - 1];
+  if (!parent.getChild(key).runtime) { return }
+
+  parent.removeChild(key);
+};
+
+ModuleCollection.prototype.isRegistered = function isRegistered (path) {
+  var parent = this.get(path.slice(0, -1));
+  var key = path[path.length - 1];
+
+  return parent.hasChild(key)
+};
+
+function update (path, targetModule, newModule) {
+  if (true) {
+    assertRawModule(path, newModule);
+  }
+
+  // update target module
+  targetModule.update(newModule);
+
+  // update nested modules
+  if (newModule.modules) {
+    for (var key in newModule.modules) {
+      if (!targetModule.getChild(key)) {
+        if (true) {
+          console.warn(
+            "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
+            'manual reload is needed'
+          );
+        }
+        return
+      }
+      update(
+        path.concat(key),
+        targetModule.getChild(key),
+        newModule.modules[key]
+      );
+    }
+  }
+}
+
+var functionAssert = {
+  assert: function (value) { return typeof value === 'function'; },
+  expected: 'function'
+};
+
+var objectAssert = {
+  assert: function (value) { return typeof value === 'function' ||
+    (typeof value === 'object' && typeof value.handler === 'function'); },
+  expected: 'function or object with "handler" function'
+};
+
+var assertTypes = {
+  getters: functionAssert,
+  mutations: functionAssert,
+  actions: objectAssert
+};
+
+function assertRawModule (path, rawModule) {
+  Object.keys(assertTypes).forEach(function (key) {
+    if (!rawModule[key]) { return }
+
+    var assertOptions = assertTypes[key];
+
+    forEachValue(rawModule[key], function (value, type) {
+      assert(
+        assertOptions.assert(value),
+        makeAssertionMessage(path, key, type, value, assertOptions.expected)
+      );
+    });
+  });
+}
+
+function makeAssertionMessage (path, key, type, value, expected) {
+  var buf = key + " should be " + expected + " but \"" + key + "." + type + "\"";
+  if (path.length > 0) {
+    buf += " in module \"" + (path.join('.')) + "\"";
+  }
+  buf += " is " + (JSON.stringify(value)) + ".";
+  return buf
+}
+
+var Vue; // bind on install
+
+var Store = function Store (options) {
+  var this$1 = this;
+  if ( options === void 0 ) options = {};
+
+  // Auto install if it is not done yet and `window` has `Vue`.
+  // To allow users to avoid auto-installation in some cases,
+  // this code should be placed here. See #731
+  if (!Vue && typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+  }
+
+  if (true) {
+    assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
+    assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
+    assert(this instanceof Store, "store must be called with the new operator.");
+  }
+
+  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
+  var strict = options.strict; if ( strict === void 0 ) strict = false;
+
+  // store internal state
+  this._committing = false;
+  this._actions = Object.create(null);
+  this._actionSubscribers = [];
+  this._mutations = Object.create(null);
+  this._wrappedGetters = Object.create(null);
+  this._modules = new ModuleCollection(options);
+  this._modulesNamespaceMap = Object.create(null);
+  this._subscribers = [];
+  this._watcherVM = new Vue();
+  this._makeLocalGettersCache = Object.create(null);
+
+  // bind commit and dispatch to self
+  var store = this;
+  var ref = this;
+  var dispatch = ref.dispatch;
+  var commit = ref.commit;
+  this.dispatch = function boundDispatch (type, payload) {
+    return dispatch.call(store, type, payload)
+  };
+  this.commit = function boundCommit (type, payload, options) {
+    return commit.call(store, type, payload, options)
+  };
+
+  // strict mode
+  this.strict = strict;
+
+  var state = this._modules.root.state;
+
+  // init root module.
+  // this also recursively registers all sub-modules
+  // and collects all module getters inside this._wrappedGetters
+  installModule(this, state, [], this._modules.root);
+
+  // initialize the store vm, which is responsible for the reactivity
+  // (also registers _wrappedGetters as computed properties)
+  resetStoreVM(this, state);
+
+  // apply plugins
+  plugins.forEach(function (plugin) { return plugin(this$1); });
+
+  var useDevtools = options.devtools !== undefined ? options.devtools : Vue.config.devtools;
+  if (useDevtools) {
+    devtoolPlugin(this);
+  }
+};
+
+var prototypeAccessors$1 = { state: { configurable: true } };
+
+prototypeAccessors$1.state.get = function () {
+  return this._vm._data.$$state
+};
+
+prototypeAccessors$1.state.set = function (v) {
+  if (true) {
+    assert(false, "use store.replaceState() to explicit replace store state.");
+  }
+};
+
+Store.prototype.commit = function commit (_type, _payload, _options) {
+    var this$1 = this;
+
+  // check object-style commit
+  var ref = unifyObjectStyle(_type, _payload, _options);
+    var type = ref.type;
+    var payload = ref.payload;
+    var options = ref.options;
+
+  var mutation = { type: type, payload: payload };
+  var entry = this._mutations[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown mutation type: " + type));
+    }
+    return
+  }
+  this._withCommit(function () {
+    entry.forEach(function commitIterator (handler) {
+      handler(payload);
+    });
+  });
+
+  this._subscribers
+    .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe
+    .forEach(function (sub) { return sub(mutation, this$1.state); });
+
+  if (
+     true &&
+    options && options.silent
+  ) {
+    console.warn(
+      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
+      'Use the filter functionality in the vue-devtools'
+    );
+  }
+};
+
+Store.prototype.dispatch = function dispatch (_type, _payload) {
+    var this$1 = this;
+
+  // check object-style dispatch
+  var ref = unifyObjectStyle(_type, _payload);
+    var type = ref.type;
+    var payload = ref.payload;
+
+  var action = { type: type, payload: payload };
+  var entry = this._actions[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown action type: " + type));
+    }
+    return
+  }
+
+  try {
+    this._actionSubscribers
+      .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe
+      .filter(function (sub) { return sub.before; })
+      .forEach(function (sub) { return sub.before(action, this$1.state); });
+  } catch (e) {
+    if (true) {
+      console.warn("[vuex] error in before action subscribers: ");
+      console.error(e);
+    }
+  }
+
+  var result = entry.length > 1
+    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
+    : entry[0](payload);
+
+  return result.then(function (res) {
+    try {
+      this$1._actionSubscribers
+        .filter(function (sub) { return sub.after; })
+        .forEach(function (sub) { return sub.after(action, this$1.state); });
+    } catch (e) {
+      if (true) {
+        console.warn("[vuex] error in after action subscribers: ");
+        console.error(e);
+      }
+    }
+    return res
+  })
+};
+
+Store.prototype.subscribe = function subscribe (fn, options) {
+  return genericSubscribe(fn, this._subscribers, options)
+};
+
+Store.prototype.subscribeAction = function subscribeAction (fn, options) {
+  var subs = typeof fn === 'function' ? { before: fn } : fn;
+  return genericSubscribe(subs, this._actionSubscribers, options)
+};
+
+Store.prototype.watch = function watch (getter, cb, options) {
+    var this$1 = this;
+
+  if (true) {
+    assert(typeof getter === 'function', "store.watch only accepts a function.");
+  }
+  return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
+};
+
+Store.prototype.replaceState = function replaceState (state) {
+    var this$1 = this;
+
+  this._withCommit(function () {
+    this$1._vm._data.$$state = state;
+  });
+};
+
+Store.prototype.registerModule = function registerModule (path, rawModule, options) {
+    if ( options === void 0 ) options = {};
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+    assert(path.length > 0, 'cannot register the root module by using registerModule.');
+  }
+
+  this._modules.register(path, rawModule);
+  installModule(this, this.state, path, this._modules.get(path), options.preserveState);
+  // reset store to update getters...
+  resetStoreVM(this, this.state);
+};
+
+Store.prototype.unregisterModule = function unregisterModule (path) {
+    var this$1 = this;
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+  }
+
+  this._modules.unregister(path);
+  this._withCommit(function () {
+    var parentState = getNestedState(this$1.state, path.slice(0, -1));
+    Vue.delete(parentState, path[path.length - 1]);
+  });
+  resetStore(this);
+};
+
+Store.prototype.hasModule = function hasModule (path) {
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+  }
+
+  return this._modules.isRegistered(path)
+};
+
+Store.prototype.hotUpdate = function hotUpdate (newOptions) {
+  this._modules.update(newOptions);
+  resetStore(this, true);
+};
+
+Store.prototype._withCommit = function _withCommit (fn) {
+  var committing = this._committing;
+  this._committing = true;
+  fn();
+  this._committing = committing;
+};
+
+Object.defineProperties( Store.prototype, prototypeAccessors$1 );
+
+function genericSubscribe (fn, subs, options) {
+  if (subs.indexOf(fn) < 0) {
+    options && options.prepend
+      ? subs.unshift(fn)
+      : subs.push(fn);
+  }
+  return function () {
+    var i = subs.indexOf(fn);
+    if (i > -1) {
+      subs.splice(i, 1);
+    }
+  }
+}
+
+function resetStore (store, hot) {
+  store._actions = Object.create(null);
+  store._mutations = Object.create(null);
+  store._wrappedGetters = Object.create(null);
+  store._modulesNamespaceMap = Object.create(null);
+  var state = store.state;
+  // init all modules
+  installModule(store, state, [], store._modules.root, true);
+  // reset vm
+  resetStoreVM(store, state, hot);
+}
+
+function resetStoreVM (store, state, hot) {
+  var oldVm = store._vm;
+
+  // bind store public getters
+  store.getters = {};
+  // reset local getters cache
+  store._makeLocalGettersCache = Object.create(null);
+  var wrappedGetters = store._wrappedGetters;
+  var computed = {};
+  forEachValue(wrappedGetters, function (fn, key) {
+    // use computed to leverage its lazy-caching mechanism
+    // direct inline function use will lead to closure preserving oldVm.
+    // using partial to return function with only arguments preserved in closure environment.
+    computed[key] = partial(fn, store);
+    Object.defineProperty(store.getters, key, {
+      get: function () { return store._vm[key]; },
+      enumerable: true // for local getters
+    });
+  });
+
+  // use a Vue instance to store the state tree
+  // suppress warnings just in case the user has added
+  // some funky global mixins
+  var silent = Vue.config.silent;
+  Vue.config.silent = true;
+  store._vm = new Vue({
+    data: {
+      $$state: state
+    },
+    computed: computed
+  });
+  Vue.config.silent = silent;
+
+  // enable strict mode for new vm
+  if (store.strict) {
+    enableStrictMode(store);
+  }
+
+  if (oldVm) {
+    if (hot) {
+      // dispatch changes in all subscribed watchers
+      // to force getter re-evaluation for hot reloading.
+      store._withCommit(function () {
+        oldVm._data.$$state = null;
+      });
+    }
+    Vue.nextTick(function () { return oldVm.$destroy(); });
+  }
+}
+
+function installModule (store, rootState, path, module, hot) {
+  var isRoot = !path.length;
+  var namespace = store._modules.getNamespace(path);
+
+  // register in namespace map
+  if (module.namespaced) {
+    if (store._modulesNamespaceMap[namespace] && "development" !== 'production') {
+      console.error(("[vuex] duplicate namespace " + namespace + " for the namespaced module " + (path.join('/'))));
+    }
+    store._modulesNamespaceMap[namespace] = module;
+  }
+
+  // set state
+  if (!isRoot && !hot) {
+    var parentState = getNestedState(rootState, path.slice(0, -1));
+    var moduleName = path[path.length - 1];
+    store._withCommit(function () {
+      if (true) {
+        if (moduleName in parentState) {
+          console.warn(
+            ("[vuex] state field \"" + moduleName + "\" was overridden by a module with the same name at \"" + (path.join('.')) + "\"")
+          );
+        }
+      }
+      Vue.set(parentState, moduleName, module.state);
+    });
+  }
+
+  var local = module.context = makeLocalContext(store, namespace, path);
+
+  module.forEachMutation(function (mutation, key) {
+    var namespacedType = namespace + key;
+    registerMutation(store, namespacedType, mutation, local);
+  });
+
+  module.forEachAction(function (action, key) {
+    var type = action.root ? key : namespace + key;
+    var handler = action.handler || action;
+    registerAction(store, type, handler, local);
+  });
+
+  module.forEachGetter(function (getter, key) {
+    var namespacedType = namespace + key;
+    registerGetter(store, namespacedType, getter, local);
+  });
+
+  module.forEachChild(function (child, key) {
+    installModule(store, rootState, path.concat(key), child, hot);
+  });
+}
+
+/**
+ * make localized dispatch, commit, getters and state
+ * if there is no namespace, just use root ones
+ */
+function makeLocalContext (store, namespace, path) {
+  var noNamespace = namespace === '';
+
+  var local = {
+    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ( true && !store._actions[type]) {
+          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      return store.dispatch(type, payload)
+    },
+
+    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ( true && !store._mutations[type]) {
+          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      store.commit(type, payload, options);
+    }
+  };
+
+  // getters and state object must be gotten lazily
+  // because they will be changed by vm update
+  Object.defineProperties(local, {
+    getters: {
+      get: noNamespace
+        ? function () { return store.getters; }
+        : function () { return makeLocalGetters(store, namespace); }
+    },
+    state: {
+      get: function () { return getNestedState(store.state, path); }
+    }
+  });
+
+  return local
+}
+
+function makeLocalGetters (store, namespace) {
+  if (!store._makeLocalGettersCache[namespace]) {
+    var gettersProxy = {};
+    var splitPos = namespace.length;
+    Object.keys(store.getters).forEach(function (type) {
+      // skip if the target getter is not match this namespace
+      if (type.slice(0, splitPos) !== namespace) { return }
+
+      // extract local getter type
+      var localType = type.slice(splitPos);
+
+      // Add a port to the getters proxy.
+      // Define as getter property because
+      // we do not want to evaluate the getters in this time.
+      Object.defineProperty(gettersProxy, localType, {
+        get: function () { return store.getters[type]; },
+        enumerable: true
+      });
+    });
+    store._makeLocalGettersCache[namespace] = gettersProxy;
+  }
+
+  return store._makeLocalGettersCache[namespace]
+}
+
+function registerMutation (store, type, handler, local) {
+  var entry = store._mutations[type] || (store._mutations[type] = []);
+  entry.push(function wrappedMutationHandler (payload) {
+    handler.call(store, local.state, payload);
+  });
+}
+
+function registerAction (store, type, handler, local) {
+  var entry = store._actions[type] || (store._actions[type] = []);
+  entry.push(function wrappedActionHandler (payload) {
+    var res = handler.call(store, {
+      dispatch: local.dispatch,
+      commit: local.commit,
+      getters: local.getters,
+      state: local.state,
+      rootGetters: store.getters,
+      rootState: store.state
+    }, payload);
+    if (!isPromise(res)) {
+      res = Promise.resolve(res);
+    }
+    if (store._devtoolHook) {
+      return res.catch(function (err) {
+        store._devtoolHook.emit('vuex:error', err);
+        throw err
+      })
+    } else {
+      return res
+    }
+  });
+}
+
+function registerGetter (store, type, rawGetter, local) {
+  if (store._wrappedGetters[type]) {
+    if (true) {
+      console.error(("[vuex] duplicate getter key: " + type));
+    }
+    return
+  }
+  store._wrappedGetters[type] = function wrappedGetter (store) {
+    return rawGetter(
+      local.state, // local state
+      local.getters, // local getters
+      store.state, // root state
+      store.getters // root getters
+    )
+  };
+}
+
+function enableStrictMode (store) {
+  store._vm.$watch(function () { return this._data.$$state }, function () {
+    if (true) {
+      assert(store._committing, "do not mutate vuex store state outside mutation handlers.");
+    }
+  }, { deep: true, sync: true });
+}
+
+function getNestedState (state, path) {
+  return path.reduce(function (state, key) { return state[key]; }, state)
+}
+
+function unifyObjectStyle (type, payload, options) {
+  if (isObject(type) && type.type) {
+    options = payload;
+    payload = type;
+    type = type.type;
+  }
+
+  if (true) {
+    assert(typeof type === 'string', ("expects string as the type, but found " + (typeof type) + "."));
+  }
+
+  return { type: type, payload: payload, options: options }
+}
+
+function install (_Vue) {
+  if (Vue && _Vue === Vue) {
+    if (true) {
+      console.error(
+        '[vuex] already installed. Vue.use(Vuex) should be called only once.'
+      );
+    }
+    return
+  }
+  Vue = _Vue;
+  applyMixin(Vue);
+}
+
+/**
+ * Reduce the code which written in Vue.js for getting the state.
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} states # Object's item can be a function which accept state and getters for param, you can do something for state and getters in it.
+ * @param {Object}
+ */
+var mapState = normalizeNamespace(function (namespace, states) {
+  var res = {};
+  if ( true && !isValidMap(states)) {
+    console.error('[vuex] mapState: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(states).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedState () {
+      var state = this.$store.state;
+      var getters = this.$store.getters;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapState', namespace);
+        if (!module) {
+          return
+        }
+        state = module.context.state;
+        getters = module.context.getters;
+      }
+      return typeof val === 'function'
+        ? val.call(this, state, getters)
+        : state[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+/**
+ * Reduce the code which written in Vue.js for committing the mutation
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} mutations # Object's item can be a function which accept `commit` function as the first param, it can accept anthor params. You can commit mutation and do any other things in this function. specially, You need to pass anthor params from the mapped function.
+ * @return {Object}
+ */
+var mapMutations = normalizeNamespace(function (namespace, mutations) {
+  var res = {};
+  if ( true && !isValidMap(mutations)) {
+    console.error('[vuex] mapMutations: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(mutations).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedMutation () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      // Get the commit method from store
+      var commit = this.$store.commit;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
+        if (!module) {
+          return
+        }
+        commit = module.context.commit;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [commit].concat(args))
+        : commit.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+/**
+ * Reduce the code which written in Vue.js for getting the getters
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} getters
+ * @return {Object}
+ */
+var mapGetters = normalizeNamespace(function (namespace, getters) {
+  var res = {};
+  if ( true && !isValidMap(getters)) {
+    console.error('[vuex] mapGetters: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(getters).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    // The namespace has been mutated by normalizeNamespace
+    val = namespace + val;
+    res[key] = function mappedGetter () {
+      if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
+        return
+      }
+      if ( true && !(val in this.$store.getters)) {
+        console.error(("[vuex] unknown getter: " + val));
+        return
+      }
+      return this.$store.getters[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+/**
+ * Reduce the code which written in Vue.js for dispatch the action
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} actions # Object's item can be a function which accept `dispatch` function as the first param, it can accept anthor params. You can dispatch action and do any other things in this function. specially, You need to pass anthor params from the mapped function.
+ * @return {Object}
+ */
+var mapActions = normalizeNamespace(function (namespace, actions) {
+  var res = {};
+  if ( true && !isValidMap(actions)) {
+    console.error('[vuex] mapActions: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(actions).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedAction () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      // get dispatch function from store
+      var dispatch = this.$store.dispatch;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
+        if (!module) {
+          return
+        }
+        dispatch = module.context.dispatch;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [dispatch].concat(args))
+        : dispatch.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+/**
+ * Rebinding namespace param for mapXXX function in special scoped, and return them by simple object
+ * @param {String} namespace
+ * @return {Object}
+ */
+var createNamespacedHelpers = function (namespace) { return ({
+  mapState: mapState.bind(null, namespace),
+  mapGetters: mapGetters.bind(null, namespace),
+  mapMutations: mapMutations.bind(null, namespace),
+  mapActions: mapActions.bind(null, namespace)
+}); };
+
+/**
+ * Normalize the map
+ * normalizeMap([1, 2, 3]) => [ { key: 1, val: 1 }, { key: 2, val: 2 }, { key: 3, val: 3 } ]
+ * normalizeMap({a: 1, b: 2, c: 3}) => [ { key: 'a', val: 1 }, { key: 'b', val: 2 }, { key: 'c', val: 3 } ]
+ * @param {Array|Object} map
+ * @return {Object}
+ */
+function normalizeMap (map) {
+  if (!isValidMap(map)) {
+    return []
+  }
+  return Array.isArray(map)
+    ? map.map(function (key) { return ({ key: key, val: key }); })
+    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
+}
+
+/**
+ * Validate whether given map is valid or not
+ * @param {*} map
+ * @return {Boolean}
+ */
+function isValidMap (map) {
+  return Array.isArray(map) || isObject(map)
+}
+
+/**
+ * Return a function expect two param contains namespace and map. it will normalize the namespace and then the param's function will handle the new namespace and the map.
+ * @param {Function} fn
+ * @return {Function}
+ */
+function normalizeNamespace (fn) {
+  return function (namespace, map) {
+    if (typeof namespace !== 'string') {
+      map = namespace;
+      namespace = '';
+    } else if (namespace.charAt(namespace.length - 1) !== '/') {
+      namespace += '/';
+    }
+    return fn(namespace, map)
+  }
+}
+
+/**
+ * Search a special module from store by namespace. if module not exist, print error message.
+ * @param {Object} store
+ * @param {String} helper
+ * @param {String} namespace
+ * @return {Object}
+ */
+function getModuleByNamespace (store, helper, namespace) {
+  var module = store._modulesNamespaceMap[namespace];
+  if ( true && !module) {
+    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
+  }
+  return module
+}
+
+var index_esm = {
+  Store: Store,
+  install: install,
+  version: '3.3.0',
+  mapState: mapState,
+  mapMutations: mapMutations,
+  mapGetters: mapGetters,
+  mapActions: mapActions,
+  createNamespacedHelpers: createNamespacedHelpers
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (index_esm);
+
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/global.js":
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -59637,9 +72265,18 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_notification__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-notification */ "./node_modules/vue-notification/dist/index.js");
+/* harmony import */ var vue_notification__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_notification__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var debounce__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! debounce */ "./node_modules/debounce/index.js");
+/* harmony import */ var debounce__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(debounce__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -59660,17 +72297,81 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+Vue.component('chat', __webpack_require__(/*! ./components/Chat.vue */ "./resources/js/components/Chat.vue")["default"]);
+Vue.component('conversation', __webpack_require__(/*! ./components/Conversation.vue */ "./resources/js/components/Conversation.vue")["default"]);
+
+
+
+
+Vue.use(vue_notification__WEBPACK_IMPORTED_MODULE_0___default.a);
+Vue.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+window.debounce = debounce__WEBPACK_IMPORTED_MODULE_2__["debounce"];
+window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a;
+var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
+  state: {
+    isNewMessage: false,
+    isReadMessages: false
+  },
+  mutations: {
+    SET_IS_NEW_MESSAGE: function SET_IS_NEW_MESSAGE(state, newMessage) {
+      state.isNewMessage = newMessage;
+    },
+    SET_IS_READ_MESSAGES: function SET_IS_READ_MESSAGES(state, isRead) {
+      state.isReadMessages = isRead;
+    }
+  },
+  getters: {}
+});
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-//
-// const app = new Vue({
-//     el: '#app',
-// });
-//
+
+var app = new Vue({
+  el: '#app',
+  store: store,
+  created: function created() {
+    var _this = this;
+
+    var authUserId = $('meta[name="auth-user-id"]').attr('content');
+    Echo["private"]("App.User.".concat(authUserId)).notification(function (response) {
+      if (location.href.match(/\/conversation\/.+\/\d+/)) {
+        if (response.type === 'MessagesHaveBeenRead') {
+          _this.$store.commit('SET_IS_READ_MESSAGES', response);
+        }
+      } else {
+        if (response.type === 'NewMessageNotification') {
+          _this.newMessageNotification(response);
+
+          _this.$emit('changeMessagesCount', {
+            'newMessage': response
+          });
+
+          _this.$store.commit('SET_IS_NEW_MESSAGE', response);
+        }
+      }
+    });
+  },
+  mounted: function mounted() {
+    this.$on('changeMessagesCount', function (data) {
+      $('#messagesCount').text("+" + data.newMessage.newMessagesCount);
+    });
+  },
+  methods: {
+    newMessageNotification: function newMessageNotification(newMessage) {
+      this.$notify({
+        group: 'messages',
+        duration: 10000,
+        speed: 1000,
+        data: {
+          message: newMessage.message,
+          from_user: newMessage.from_user
+        }
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -59678,9 +72379,12 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
   \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -59710,28 +72414,29 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
-// import Echo from 'laravel-echo';
-// window.Pusher = require('pusher-js');
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
+
+
+window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
+  broadcaster: 'pusher',
+  key: "d0a2750f6777cd50422e",
+  cluster: "eu",
+  encrypted: true
+});
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
+/***/ "./resources/js/components/Chat.vue":
+/*!******************************************!*\
+  !*** ./resources/js/components/Chat.vue ***!
+  \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Chat_vue_vue_type_template_id_0d66c37a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Chat.vue?vue&type=template&id=0d66c37a& */ "./resources/js/components/Chat.vue?vue&type=template&id=0d66c37a&");
+/* harmony import */ var _Chat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Chat.vue?vue&type=script&lang=js& */ "./resources/js/components/Chat.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -59741,9 +72446,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Chat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Chat_vue_vue_type_template_id_0d66c37a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Chat_vue_vue_type_template_id_0d66c37a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -59753,38 +72458,176 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/ExampleComponent.vue"
+component.options.__file = "resources/js/components/Chat.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
+/***/ "./resources/js/components/Chat.vue?vue&type=script&lang=js&":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/Chat.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Chat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Chat.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Chat.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Chat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*************************************************************************************/
+/***/ "./resources/js/components/Chat.vue?vue&type=template&id=0d66c37a&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/Chat.vue?vue&type=template&id=0d66c37a& ***!
+  \*************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Chat_vue_vue_type_template_id_0d66c37a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Chat.vue?vue&type=template&id=0d66c37a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Chat.vue?vue&type=template&id=0d66c37a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Chat_vue_vue_type_template_id_0d66c37a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Chat_vue_vue_type_template_id_0d66c37a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Conversation.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/Conversation.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Conversation_vue_vue_type_template_id_63f956ee___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Conversation.vue?vue&type=template&id=63f956ee& */ "./resources/js/components/Conversation.vue?vue&type=template&id=63f956ee&");
+/* harmony import */ var _Conversation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Conversation.vue?vue&type=script&lang=js& */ "./resources/js/components/Conversation.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Conversation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Conversation_vue_vue_type_template_id_63f956ee___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Conversation_vue_vue_type_template_id_63f956ee___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Conversation.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Conversation.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Conversation.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Conversation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Conversation.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Conversation.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Conversation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Conversation.vue?vue&type=template&id=63f956ee&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/Conversation.vue?vue&type=template&id=63f956ee& ***!
+  \*********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Conversation_vue_vue_type_template_id_63f956ee___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Conversation.vue?vue&type=template&id=63f956ee& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Conversation.vue?vue&type=template&id=63f956ee&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Conversation_vue_vue_type_template_id_63f956ee___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Conversation_vue_vue_type_template_id_63f956ee___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/MessageComposer.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/MessageComposer.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MessageComposer_vue_vue_type_template_id_5a28bf2c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MessageComposer.vue?vue&type=template&id=5a28bf2c&scoped=true& */ "./resources/js/components/MessageComposer.vue?vue&type=template&id=5a28bf2c&scoped=true&");
+/* harmony import */ var _MessageComposer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MessageComposer.vue?vue&type=script&lang=js& */ "./resources/js/components/MessageComposer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MessageComposer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MessageComposer_vue_vue_type_template_id_5a28bf2c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MessageComposer_vue_vue_type_template_id_5a28bf2c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "5a28bf2c",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/MessageComposer.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/MessageComposer.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/MessageComposer.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageComposer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MessageComposer.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MessageComposer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageComposer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/MessageComposer.vue?vue&type=template&id=5a28bf2c&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/MessageComposer.vue?vue&type=template&id=5a28bf2c&scoped=true& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageComposer_vue_vue_type_template_id_5a28bf2c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./MessageComposer.vue?vue&type=template&id=5a28bf2c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/MessageComposer.vue?vue&type=template&id=5a28bf2c&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageComposer_vue_vue_type_template_id_5a28bf2c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MessageComposer_vue_vue_type_template_id_5a28bf2c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -59834,6 +72677,26 @@ $(document).ready(function () {
     });
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/mixins/userMixin.js":
+/*!******************************************!*\
+  !*** ./resources/js/mixins/userMixin.js ***!
+  \******************************************/
+/*! exports provided: userMixin */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userMixin", function() { return userMixin; });
+var userMixin = {
+  methods: {
+    fullName: function fullName(name, nickname, surname) {
+      return name + "<span class='pink'> " + nickname + " </span>" + surname;
+    }
+  }
+};
 
 /***/ }),
 

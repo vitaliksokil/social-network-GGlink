@@ -32,12 +32,16 @@ body{
     font-family: 'Changa', sans-serif;
     color: rgba(255,255,255,0.9);
 }
+img{
+    width: 100%;
+}
 th,td,small{
     color: rgba(255,255,255,0.9);
 }
 header{
     background: $bg;
 }
+textarea { resize: none; }
 a{
     color: $white;
     font-size: 18px;
@@ -214,4 +218,42 @@ pre{
     a{
         font-size: 14px;
     }
+}
+
+.conversation-wrap{
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 130px);
+}
+.conversation{
+    overflow: auto;
+    &::-webkit-scrollbar{
+        width: 20px;
+    }
+    &::-webkit-scrollbar-track{
+        background: $bgLight ;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: $purple;
+        border-radius: 10px  ;
+    }
+}
+
+.new-message-notification {
+    // Style of the notification itself
+    display: block;
+    color: $black;
+    background: $white;
+    border-radius: 8px !important;
+    padding: 20px !important;
+
+    .notification-title {
+
+    }
+
+    .notification-content {
+        // Style for content
+        word-break: break-word;
+    }
+
 }

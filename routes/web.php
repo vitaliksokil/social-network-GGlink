@@ -147,5 +147,15 @@ Route::group(['middleware' => 'verified'], function () {
     Route::delete('community/{community}','CommunityController@destroy')->name('community.destroy');
 
 
+    // MessageController /////////////////////
+    Route::get('messages','MessageController@myMessagesPage')->name('messages.page');
+
+    Route::get('/conversation/{userNickname}/{userId}','MessageController@getMessagesFor')->name('conversation');
+    Route::post('/conversation/send','MessageController@sendMessage')->name('send.message');
+    Route::put('/conversation/set-messages-as-read/{from}','MessageController@setMessagesAsRead');
+
+    Route::post('/conversation/can-send-message','MessageController@canMessageSend');
+
+
 });
 Auth::routes(['verify' => true]);
