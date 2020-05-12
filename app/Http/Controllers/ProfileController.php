@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
+use App\FriendShip;
 use App\Traits\UploadTrait;
 use App\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -20,11 +19,46 @@ class ProfileController extends Controller
         $this->middleware('verified');
     }
 
+    public function index(){
+        return redirect()->route('profile',['id'=>Auth::user()->id]);
+    }
+
     public function profile($id)
     {
         $user = User::findOrFail($id);
-        $posts = $user->wall;
-        return view('pages.profile.profile',['user'=>$user,'posts'=>$posts]);
+
+        $friends = $user->friends()->shuffle();
+        $countFriends = count($friends);
+        if ($countFriends < 5) {
+            $friends = $friends->random($countFriends);
+        } else {
+            $friends = $friends->random(5);
+        }
+
+        $comments = $user->wall;
+        $isFriend = Auth::user()->isFriend($user->id);
+        $authUser = Auth::user();
+
+        $gamesSubscriptions = $user->games->shuffle();
+        $gamesSubscriptions = count($gamesSubscriptions) < 9 ? $gamesSubscriptions->random(count($gamesSubscriptions)) :
+            $gamesSubscriptions->random(9);
+
+
+        $isSentRequest = FriendShip::findFriendShip($user->id, $authUser->id)->where([['status', 0]])->first();
+        $communities = $user->communities->shuffle();
+        $communities = count($communities) < 5 ? $communities->random(count($communities)) :
+            $communities->random(5);
+
+        return view('pages.profile.profile', [
+            'user' => $user,
+            'comments' => $comments,
+            'isFriend' => $isFriend,
+            'authUser' => $authUser,
+            'isSentRequest' => $isSentRequest,
+            'friends' => $friends,
+            'gamesSubscriptions'=>$gamesSubscriptions,
+            'communities'=>$communities
+        ]);
     }
 
     public function edit()
@@ -36,18 +70,18 @@ class ProfileController extends Controller
     public function updatePhoto(Request $request)
     {
         $user = Auth::user();
-        $this->uploadPhoto($request, $user, 'img/profiles');
+        $this->uploadPhoto($request, $user, 'photo','img/profiles');
         return redirect()->route('edit');
     }
 
     public function update(Request $request)
     {
         $this->validator($request->all())->validate();
-        if(Hash::check($request->password,Auth::user()->password)){
+        if (Hash::check($request->password, Auth::user()->password)) {
             $user = Auth::user();
             $user->update($request->except('password'));
-            return redirect()->route('edit')->with('success','Successfully updated!!!');
-        }else{
+            return redirect()->route('edit')->with('success', 'Successfully updated!!!');
+        } else {
             return redirect()->back()->withErrors(['password' => 'Incorrect password']);
         }
     }
@@ -75,38 +109,59 @@ class ProfileController extends Controller
             'password' => ['required', 'string', 'min:8'],
         ]);
 
-        if(Hash::check($request->password,Auth::user()->password)) {
+        if (Hash::check($request->password, Auth::user()->password)) {
             $user = Auth::user();
             $user->email = $request->email;
             $user->email_verified_at = Null;
             $user->save();
             return redirect()->route('verification.resend');
-        }else{
+        } else {
             return redirect()->back()->withErrors(['password' => 'Incorrect password']);
         }
     }
 
-    public function editPassword(){
+    public function editPassword()
+    {
         return view('pages.profile.editPassword');
     }
-    public function updatePassword(Request $request){
+
+    public function updatePassword(Request $request)
+    {
         $request->validate([
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-        if(Hash::check($request->currentPassword,Auth::user()->password)) {
+        if (Hash::check($request->currentPassword, Auth::user()->password)) {
             $user = Auth::user();
             $user->password = Hash::make($request->password);
             $user->save();
-            return redirect()->route('editPassword')->with('success','Successfully changed!!!');
-        }else{
+            return redirect()->route('editPassword')->with('success', 'Successfully changed!!!');
+        } else {
             return redirect()->back()->withErrors(['password' => 'Incorrect password']);
         }
     }
 
-    public function settings(){
-        return view('pages.profile.settings');
+    public function settings()
+    {
+
+        return view('pages.profile.settings', [
+            'user' => Auth::user()
+        ]);
     }
-    public function updateSettings(){
+
+    public function updateSettings(Request $request)
+    {
+        $request->validate([
+           'wall_can_edit' => ['sometimes','min:0','max:2','integer'],
+           'show_email' => ['sometimes','min:0','max:1','integer'],
+           'message_can_send' => ['sometimes','min:0','max:2','integer'],
+        ]);
+        $user = Auth::user();
+        if ($user->update($request->all())) {
+            return redirect()->back()->with('success', 'Successfully changed!!!');
+        } else {
+            return redirect()->back()->withErrors(['error' => 'Something went wrong']);
+        }
+
 
     }
 }

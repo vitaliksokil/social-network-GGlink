@@ -10,17 +10,19 @@ use Intervention\Image\Facades\Image;
 
 trait UploadTrait
 {
-    public function uploadPhoto(Request $request,$object,$path){
+    public function uploadPhoto(Request $request,$object,$propertyName,$path,$width=300,$height=300){
         $request->validate([
-            'photo' => 'required|file|image|max:5000'
+            $propertyName => 'required|file|image|max:5000'
         ]);
-        if($request->has('photo')){
-            if(isset($object->photo)){
-                unlink($object->photo);
+        if($request->has($propertyName)){
+            if(isset($object->{$propertyName})){
+                if(file_exists($object->{$propertyName})){
+                    unlink($object->{$propertyName});
+                }
             }
-            $object->photo = 'storage/'.$request->photo->store($path,'public');
+            $object->{$propertyName} = 'storage/'.$request->{$propertyName}->store($path,'public');
             $object->save();
-            $image = Image::make(public_path($object->photo))->fit(300, 300);
+            $image = Image::make(public_path($object->{$propertyName}))->fit($width, $height);
             $image->save();
         }
     }
