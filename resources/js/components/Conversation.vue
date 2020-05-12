@@ -31,7 +31,7 @@
 
             </div>
         </div>
-        <div class="card-body conversation" ref="conversation">
+        <div class="card-body conversation" ref="conversation" id="conversation">
             <div class="row">
                 <div class="col-lg-12 ">
                     <div v-for="message in allMessages" class="subscribe-item">
@@ -109,6 +109,7 @@
                 allMessages: JSON.parse(JSON.stringify(this.messages)),
                 isTyping: false,
                 canMessageSend:false,
+                loading:false,
             }
         },
         created() {
@@ -125,13 +126,51 @@
                     this.scrollToBottom();
                 });
             this.scrollToBottom();
-            axios.post('/conversation/can-send-message',{
-                'userConversationWith':this.userConversationWith
-            }).then((response)=>{
-                this.canMessageSend = response.data;
+            this.canSendMessage();
+            $(document).ready(() => {
+                this.scrollHandler = debounce(this.scrollHandler,400);
+                $('#conversation').scroll(this.scrollHandler);
+
             });
+
         },
         methods: {
+            scrollHandler(e){
+                let scrollTopPoint = e.target.scrollHeight;
+                if(e.target.scrollTop == 0){
+                    this.loadMoreMessages();
+                    setTimeout(()=>{
+                        e.target.scrollTop = e.target.scrollHeight - scrollTopPoint;
+                    },100)
+
+                }
+            },
+            async loadMoreMessages(){
+                let skip = this.countAllMessagesCount();
+              axios.get(`/conversation/${this.userConversationWith.nickname}/${this.userConversationWith.id}`,{
+                  params:{
+                      skip:skip
+                  }
+              }).then((response)=>{
+                  for(let item of response.data.messages){
+                      this.allMessages.unshift(item);
+                  }
+              })
+            },
+            countAllMessagesCount(){
+                let count = 0;
+                for(let item of this.allMessages){
+                    count += item.messages.length;
+                }
+                return count;
+            },
+            canSendMessage(){
+                axios.post('/conversation/can-send-message',{
+                    'userConversationWith':this.userConversationWith
+                }).then((response)=>{
+                    this.canMessageSend = response.data;
+                });
+            },
             typing() {
                 if($(`p.new-msg-bg[data-msg-from="${this.userConversationWith.id}"]`).length){
                     this.updateMessagesAsRead();

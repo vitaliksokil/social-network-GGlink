@@ -65,8 +65,14 @@ class MessageController extends Controller
         return $usersWithWhomIgetConversation;
     }
 
-    public function getMessagesFor($userNickname, $userId)
+    public function getMessagesFor(Request $request)
     {
+        $userId = $request->userId;
+        if(!$request->ajax()){
+            if($request->skip){
+                abort(404);
+            }
+        }
         try {
             $this->authorize('doesConversationExist', [Message::class, $userId]);
         } catch (AuthorizationException $e) {
@@ -85,6 +91,8 @@ class MessageController extends Controller
 
 
         $myId = Auth::user()->id;
+        $skip = (int)$request->skip ?? 0;
+
         $messages = Message::where(function ($q) use ($myId, $userId) {
             $q->where([
                 ['from', $myId],
@@ -93,64 +101,71 @@ class MessageController extends Controller
                 ['from', $userId],
                 ['to', $myId],
             ]);
-        })->orderBy('created_at', 'asc')->get();
-        // stacking messages of 1 user to 1 array,
-        // new array
-        // ( from 1, to 2, messages = [message1,message2], from 2 to 1, messages = [message1,message2],from 1, to 2, messages = [message1,message2]...)
-        $newMessagesCollection = new Collection();
-        $currentFrom = $messages->first()->from;
-        $currentTo = $messages->first()->to;
-        $currentMessages = [];
-        foreach ($messages as $message) {
-            if ($currentFrom == $message->from) {
-                $currentMessages[] = [
-                    'is_read' => $message->is_read,
-                    'text' => $message->text,
-                    'created_at' => (string)$message->created_at];
+        })->orderBy('created_at', 'desc')->skip($skip)->take(50)->get();
+        $messages = $messages->reverse();
+        if ($messages->isNotEmpty()) {
+
+            // stacking messages of 1 user to 1 array,
+            // new array
+            // ( from 1, to 2, messages = [message1,message2], from 2 to 1, messages = [message1,message2],from 1, to 2, messages = [message1,message2]...)
+            $newMessagesCollection = new Collection();
+            $currentFrom = $messages->first()->from;
+            $currentTo = $messages->first()->to;
+            $currentMessages = [];
+            foreach ($messages as $message) {
+                if ($currentFrom == $message->from) {
+                    $currentMessages[] = [
+                        'is_read' => $message->is_read,
+                        'text' => $message->text,
+                        'created_at' => (string)$message->created_at];
+                } else {
+                    $newMessagesCollection->push([
+                        'from' => $currentFrom,
+                        'to' => $currentTo,
+                        'messages' => $currentMessages
+                    ]);
+                    $currentFrom = $message->from;
+                    $currentTo = $message->to;
+                    $currentMessages = [];
+                    $currentMessages[] = [
+                        'is_read' => $message->is_read,
+                        'text' => $message->text,
+                        'created_at' => (string)$message->created_at];
+                }
+            }
+            // for last element, because we skip it, by continue
+            // ( i could check if it's not last element then continue, but i think it will be more expensive for productivity,
+            // because if we would got 2millions messages checking every time will be very costly)
+            // we have 1 more stack of messages, which will not pass through else section previously in loop
+            // so i decided to do some actions for last stack of messages, because we need to write it
+            $lastMessage = $newMessagesCollection->pop(); // firstly getting the last element
+            if (isset($lastMessage) && $lastMessage['from'] == $currentFrom) {         // checking if sender id of last messages in ready collection is the same as it's in the last stack of messages
+                foreach ($currentMessages as $currentMessage) {  // if so, the whole array we push to messages array of last item of collection
+                    $lastMessage['messages'][] = $currentMessage;
+                }
+                $newMessagesCollection->push($lastMessage); // pushing the element back to the collection, because we popped it
             } else {
+                if (isset($lastMessage)) {
+                    // if sender id is not the same, it means that we have another new stack of messages from another user
+                    $newMessagesCollection->push($lastMessage); // pushing the last element back to collection, because we popped it
+                }
+                // adding a new stack of messages from another user
                 $newMessagesCollection->push([
                     'from' => $currentFrom,
                     'to' => $currentTo,
                     'messages' => $currentMessages
                 ]);
-                $currentFrom = $message->from;
-                $currentTo = $message->to;
-                $currentMessages = [];
-                $currentMessages[] = [
-                    'is_read' => $message->is_read,
-                    'text' => $message->text,
-                    'created_at' => (string)$message->created_at];
+            }
+            if ($request->ajax()) {
+                return response()->json(['messages' => $newMessagesCollection]);
+            } else {
+                return view('pages.messages.conversation', [
+                    'messages' => $newMessagesCollection,
+                    'userConversationWith' => User::findOrFail($userId)
+                ]);
             }
         }
-        // for last element, because we skip it, by continue
-        // ( i could check if it's not last element then continue, but i think it will be more expensive for productivity,
-        // because if we would got 2millions messages checking every time will be very costly)
-        // we have 1 more stack of messages, which will not pass through else section previously in loop
-        // so i decided to do some actions for last stack of messages, because we need to write it
-        $lastMessage = $newMessagesCollection->pop(); // firstly getting the last element
-        if (isset($lastMessage) && $lastMessage['from'] == $currentFrom) {         // checking if sender id of last messages in ready collection is the same as it's in the last stack of messages
-            foreach ($currentMessages as $currentMessage) {  // if so, the whole array we push to messages array of last item of collection
-                $lastMessage['messages'][] = $currentMessage;
-            }
-            $newMessagesCollection->push($lastMessage); // pushing the element back to the collection, because we popped it
-        } else {
-            if (isset($lastMessage)) {
-                // if sender id is not the same, it means that we have another new stack of messages from another user
-                $newMessagesCollection->push($lastMessage); // pushing the last element back to collection, because we popped it
-            }
-            // adding a new stack of messages from another user
-            $newMessagesCollection->push([
-                'from' => $currentFrom,
-                'to' => $currentTo,
-                'messages' => $currentMessages
-            ]);
-        }
-
-        return view('pages.messages.conversation', [
-            'messages' => $newMessagesCollection,
-            'userConversationWith' => User::findOrFail($userId)
-        ]);
-
+        abort(500,'No messages more!!!');
     }
 
     public function sendMessage(Request $request)
@@ -158,7 +173,7 @@ class MessageController extends Controller
         try {
             $this->authorize('sendTo', [Message::class, User::findOrFail($request->to)]);
         } catch (AuthorizationException $e) {
-            abort(403,'You can\'t send message right now!!! Try reload the page');
+            abort(403, 'You can\'t send message right now!!! Try reload the page');
         }
         try {
             $newMessage = Message::create([
