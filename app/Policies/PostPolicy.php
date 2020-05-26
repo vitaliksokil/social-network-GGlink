@@ -3,9 +3,9 @@
 namespace App\Policies;
 
 use App\Community;
-use App\CommunitySubscriber;
+use App\manyToManyModels\CommunitySubscriber;
 use App\Game;
-use App\GameSubscriber;
+use App\manyToManyModels\GameSubscriber;
 use App\User;
 use App\Post;
 use Illuminate\Auth\Access\HandlesAuthorization;

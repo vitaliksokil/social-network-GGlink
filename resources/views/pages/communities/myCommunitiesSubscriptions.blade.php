@@ -3,27 +3,30 @@
  subscriptions' : 'My Communities')
 @section('content')
     <div class="card">
-        <div class="card-header">
+        <div class="card-header pt-0">
             @isset($user)
                 <h3>{{$user.'\'s '}} communities subscriptions</h3>
             @else
+                <div class="actions-panel mb-3">
+                    <ul class="nav d-flex justify-content-between">
+                        <li class="{{ (request()->routeIs('community.my')) ? 'active' : '' }}">
+                            <a class="nav-link " href="{{route('community.my')}}">
+                                <i class="fas fa-cog grey"></i>
+                                Managed communities
+                            </a>
+                        </li>
+                        <li class="{{ (request()->routeIs('community.create')) ? 'active' : '' }}">
+                            <a class="nav-link " href="{{route('community.create')}}" >
+                                <i class="fas fa-plus green"></i>
+                                Add new community
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+
                 <a href="{{route('community.my.subscriptions')}}"><h3>My community subscriptions </h3></a>
-                <ul class="nav justify-content-between">
-                    <li class="nav-item {{ (request()->routeIs('community.my')) ? 'active' : '' }}">
-                        <a class="nav-link " href="{{route('community.my')}}">
-                            Managed communities
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <ul class="nav">
-                            <li class="nav-item {{ (request()->routeIs('community.create')) ? 'active' : '' }}">
-                                <a class="nav-link " href="{{route('community.create')}}">
-                                    Add new community
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+
             @endisset
             <form class="form-inline mt-4">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search"

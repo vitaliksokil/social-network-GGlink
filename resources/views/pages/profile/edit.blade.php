@@ -24,10 +24,10 @@
                                         alt="">
                                 </div>
                                 <button class="btn btn-success" style="
-                width: 300px;
-                border-top-left-radius: 0;
-                border-top-right-radius:0
-" data-toggle="modal" data-target="#uploadPhoto">
+                                        width: 300px;
+                                        border-top-left-radius: 0;
+                                        border-top-right-radius:0"
+                                        data-toggle="modal" data-target="#uploadPhoto">
                                     <i class="fas fa-upload"></i>
                                     Update photo
                                 </button>
@@ -130,7 +130,8 @@
                                             <h5 class="modal-title text-center">
                                                 Change your profile info
                                             </h5>
-                                            <button type="button" class="close" data-id='changeProfileInfo' aria-label="Close">
+                                            <button type="button" class="close" data-id='changeProfileInfo'
+                                                    aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -224,7 +225,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-id='changeProfileInfo'>
+                                                    <button type="button" class="btn btn-danger"
+                                                            data-id='changeProfileInfo'>
                                                         Close
                                                     </button>
                                                     <button type="submit" class="btn btn-success">Submit</button>

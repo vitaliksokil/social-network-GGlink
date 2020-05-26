@@ -2,21 +2,22 @@
 @section('title','All Communities')
 @section('content')
     <div class="card">
-        <div class="card-header">
+        <div class="card-header pt-0">
+            <div class="actions-panel mb-3">
+                <ul class="nav d-flex justify-content-between">
+                    <li class="nav-item {{ (request()->routeIs('community.create')) ? 'active' : '' }}">
+                        <a class="nav-link " href="{{route('community.create')}}">
+                            <i class="fas fa-plus green"></i>
+                            Add new community
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <a href="{{route('community.all')}}">
                 <h3>
                     Communities
                 </h3>
             </a>
-
-            <ul class="nav">
-                <li class="nav-item {{ (request()->routeIs('community.create')) ? 'active' : '' }}">
-                    <a class="nav-link " href="{{route('community.create')}}">
-                        Add new community
-                    </a>
-                </li>
-            </ul>
-
             <form class="form-inline my-2 my-lg-0 w-100">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search"
                        aria-label="Search">

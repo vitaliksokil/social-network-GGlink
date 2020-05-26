@@ -27,8 +27,8 @@
                             <div class="col-lg-3">
                                 <img src="{{asset($community->logo)}}" class="card-img"
                                      alt="...">
-                                @cannot('isCreator',[\App\CommunitySubscriber::class,$community])
-                                    @can('subscribe',[\App\CommunitySubscriber::class,$community])
+                                @cannot('isCreator',[\App\manyToManyModels\CommunitySubscriber::class,$community])
+                                    @can('subscribe',[\App\manyToManyModels\CommunitySubscriber::class,$community])
                                         <form action="{{route('community.sub.store')}}" method="POST">
                                             @csrf
                                             <input type="hidden" name="community_id" value="{{$community->id}}">
@@ -44,13 +44,13 @@
                                         </form>
                                     @endcan
                                 @endcannot
-                                @can('isAdmin',[App\CommunitySubscriber::class,$community])
+                                @can('isAdmin',[App\manyToManyModels\CommunitySubscriber::class,$community])
                                     <a href="{{route('community.edit',['community'=>$community])}}" class="btn btn-primary w-100">
                                         <i class="fas fa-edit"></i>
                                         Edit
                                     </a>
                                 @endcan
-                                @can('isCreator',[\App\CommunitySubscriber::class,$community])
+                                @can('isCreator',[\App\manyToManyModels\CommunitySubscriber::class,$community])
                                     <form action="{{route('community.destroy',['community'=>$community])}}" method="POST">
                                         @csrf
                                         @method('DELETE')

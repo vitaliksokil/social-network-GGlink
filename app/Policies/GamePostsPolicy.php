@@ -3,10 +3,8 @@
 namespace App\Policies;
 
 use App\Game;
-use App\GameSubscriber;
-use App\Post;
+use App\manyToManyModels\GameSubscriber;
 use App\User;
-use App\GamePosts;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class GamePostsPolicy

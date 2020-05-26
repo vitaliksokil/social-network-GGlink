@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\Community;
 use App\Game;
 use App\User;
-use App\CommunitySubscriber;
+use App\manyToManyModels\CommunitySubscriber;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CommunitySubscriberPolicy

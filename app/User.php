@@ -30,7 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail, Htmlable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','created_at','updated_at'
     ];
 
     /**
@@ -60,10 +60,10 @@ class User extends Authenticatable implements MustVerifyEmail, Htmlable
         return $this->hasMany(FriendShip::class,'sender_id')->select('receiver_id')->where('status',0)->with('receiver');
     }
     public function games(){
-        return $this->hasMany(GameSubscriber::class,'user_id')->select('game_id')->with('game');
+        return $this->hasMany(manyToManyModels\GameSubscriber::class,'user_id')->select('game_id')->with('game');
     }
     public function communities(){
-        return $this->hasMany(CommunitySubscriber::class,'user_id')->select('community_id')->with('community');
+        return $this->hasMany(manyToManyModels\CommunitySubscriber::class,'user_id')->select('community_id')->with('community');
     }
     public function friends() : Collection{
         $user_id = $this->id;

@@ -1,7 +1,9 @@
 <?php
 
-namespace App;
+namespace App\manyToManyModels;
 
+use App\Game;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class GameSubscriber extends Model

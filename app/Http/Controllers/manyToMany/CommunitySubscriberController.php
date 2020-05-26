@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\manyToMany;
 
 use App\Community;
-use App\CommunitySubscriber;
+use App\manyToManyModels\CommunitySubscriber;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;

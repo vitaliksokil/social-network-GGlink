@@ -25,7 +25,7 @@
                             <div class="col-lg-3">
                                 <img src="{{$game->logo?asset($game->logo):asset('img/no_photo.png')}}" class="card-img"
                                      alt="...">
-                                @can('subscribe',[\App\GameSubscriber::class,$game])
+                                @can('subscribe',[\App\manyToManyModels\GameSubscriber::class,$game])
                                     <form action="{{route('subscriber.store')}}" method="POST">
                                         @csrf
                                         <input type="hidden" name="game_id" value="{{$game->id}}">

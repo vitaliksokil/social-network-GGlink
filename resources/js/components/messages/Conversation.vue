@@ -93,7 +93,7 @@
 </template>
 
 <script>
-    import {userMixin} from '../mixins/userMixin'
+    import {userMixin} from '../../mixins/userMixin'
     import MessageComposer from './MessageComposer'
     import {mapState} from 'vuex'
 
@@ -109,7 +109,6 @@
                 allMessages: JSON.parse(JSON.stringify(this.messages)),
                 isTyping: false,
                 canMessageSend:false,
-                loading:false,
             }
         },
         created() {

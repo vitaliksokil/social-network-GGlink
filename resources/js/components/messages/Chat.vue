@@ -65,7 +65,7 @@
 </template>
 
 <script>
-    import {userMixin} from '../mixins/userMixin'
+    import {userMixin} from '../../mixins/userMixin'
     import {mapState} from 'vuex'
     export default {
         mixins:[userMixin],
