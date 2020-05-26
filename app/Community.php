@@ -17,7 +17,7 @@ class Community extends Model
     ];
 
     public function subscribers(){
-        return $this->hasMany(CommunitySubscriber::class,'community_id')->with('user');
+        return $this->hasMany(manyToManyModels\CommunitySubscriber::class,'community_id')->with('user');
     }
     public function posts(){
         return $this->hasMany(CommunityPosts::class,'community_id')->with('post');

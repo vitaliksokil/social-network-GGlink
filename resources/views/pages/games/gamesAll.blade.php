@@ -2,22 +2,24 @@
 @section('title','All Games')
 @section('content')
     <div class="card">
-        <div class="card-header">
+        <div class="card-header pt-0">
+            <div class="actions-panel mb-3">
+                <ul class="nav d-flex justify-content-between">
+                    @can('create',App\Game::class)
+                        <li class="nav-item {{ (request()->routeIs('game.create')) ? 'active' : '' }}">
+                            <a class="nav-link " href="{{route('game.create')}}">
+                                <i class="fas fa-plus green"></i>
+                                Add new game
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </div>
             <a href="{{route('gamesAll')}}">
                 <h3>
                     Games
                 </h3>
             </a>
-
-            <ul class="nav">
-                @can('create',App\Game::class)
-                    <li class="nav-item {{ (request()->routeIs('game.create')) ? 'active' : '' }}">
-                        <a class="nav-link " href="{{route('game.create')}}">
-                            Add new game
-                        </a>
-                    </li>
-                @endcan
-            </ul>
 
             <form class="form-inline my-2 my-lg-0 w-100">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search"
@@ -87,7 +89,7 @@
                                                 </form>
                                             </a>
                                         @endcan
-                                            @can('subscribe',[\App\GameSubscriber::class,$game])
+                                            @can('subscribe',[\App\manyToManyModels\GameSubscriber::class,$game])
                                                 <form action="{{route('subscriber.store')}}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="game_id" value="{{$game->id}}">

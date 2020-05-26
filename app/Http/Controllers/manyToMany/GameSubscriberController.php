@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\manyToMany;
 
 use App\Game;
-use App\GameSubscriber;
+use App\manyToManyModels\GameSubscriber;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;

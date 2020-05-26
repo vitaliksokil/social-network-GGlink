@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Community;
-use App\CommunitySubscriber;
+use App\manyToManyModels\CommunitySubscriber;
 use App\Game;
 use App\Traits\UploadTrait;
 use Illuminate\Http\Request;

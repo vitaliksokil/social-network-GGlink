@@ -1,7 +1,9 @@
 <?php
 
-namespace App;
+namespace App\manyToManyModels;
 
+use App\Community;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class CommunitySubscriber extends Model

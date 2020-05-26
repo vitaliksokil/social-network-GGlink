@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Community;
-use App\CommunitySubscriber;
+use App\manyToManyModels\CommunitySubscriber;
 use App\User;
 use App\oneHasManyModels\CommunityPosts;
 use Illuminate\Auth\Access\HandlesAuthorization;

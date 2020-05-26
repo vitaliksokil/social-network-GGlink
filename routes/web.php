@@ -156,6 +156,20 @@ Route::group(['middleware' => 'verified'], function () {
 
     Route::post('/conversation/can-send-message','MessageController@canMessageSend');
 
+    // RoomController
+    Route::get('/rooms/all','RoomController@index')->name('rooms.index');
+    Route::get('/room/{game_short_address}/{id}','RoomController@show')->name('rooms.show');
+    Route::get('/rooms/of/{game_short_address}','RoomController@roomsOfGame')->name('rooms.of.game');
+    Route::post('/room/create','RoomController@create');
+    Route::post('/room/new/member','RoomController@addMember');
+    Route::post('/room/add/member/to/team','RoomController@addMemberToTeam');
+    Route::post('/room/add/message','RoomController@addMessage');
+    Route::put('/room/lock/unlock','RoomController@lockUnlockTheRoom');
+
+    Route::delete('/room/kick/member/{member_id}/{room_id}','RoomController@kickMember');
+    Route::delete('/room/delete/member','RoomController@deleteMember');
+    Route::delete('/room/delete/{game_short_address}/{id}','RoomController@delete')->middleware('can:delete,App\Room,id');
+
 
 });
 Auth::routes(['verify' => true]);

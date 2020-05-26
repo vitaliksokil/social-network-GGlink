@@ -62,6 +62,16 @@
                                 </span>
                             </a>
                         </li>
+                        <li class="nav-item {{ (request()->routeIs('rooms.index')) ? 'active' : '' }}">
+                            <a class="nav-link" href="{{route('rooms.index')}}">
+                                <span class="col-lg-1">
+                                   <i class="fas fa-dungeon"></i>
+                                </span>
+                                <span class="col-lg-11">
+                                    Rooms
+                                </span>
+                            </a>
+                        </li>
                     </ul>
                     <hr>
                     <hr>

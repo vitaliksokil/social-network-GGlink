@@ -34,3 +34,11 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
+Broadcast::channel('rooms.of.game.{game_short_address}', function () {
+    return true;
+});
+
+Broadcast::channel('room.{id}', function () {
+    return true;
+});
+

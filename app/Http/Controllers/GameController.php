@@ -19,8 +19,12 @@ class GameController extends Controller
      */
     public function index()
     {
+        $games = Game::all();
+        $games = $games->sortByDesc(function ($item){
+            return count($item->subscribers);
+        });
         return view('pages.games.gamesAll',[
-            'games'=>Game::all()
+            'games'=>$games
         ]);
     }
 

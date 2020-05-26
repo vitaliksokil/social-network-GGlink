@@ -130,6 +130,7 @@ a{
 }
 
 .active{
+    color:$green !important;
     a{
         color:$green !important;
     }
@@ -256,4 +257,45 @@ pre{
         word-break: break-word;
     }
 
+}
+.actions-panel{
+
+    width: 100%;
+    //padding-top: 3px;
+
+    li{
+        border-bottom-width: 1px;
+        border-right-width: 1px;
+        border-left-width: 1px;
+        border-top-width: 0;
+        padding: 4px;
+        padding-top: 0;
+        border-style: solid;
+        border-color: $black;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        background: $bgLight;
+        margin: 0 4px;
+    }
+
+
+}
+.members-size{
+    //height: 100%;
+    width: 100%;
+}
+.room-member-plus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    opacity: 0.7;
+
+}
+.list-of-joined-users{
+    position: absolute;
+    right: -320px;
+    width: 300px;
 }
