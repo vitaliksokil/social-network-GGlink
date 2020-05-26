@@ -299,3 +299,25 @@ pre{
     right: -320px;
     width: 300px;
 }
+.pagination{
+    justify-content: center;
+    margin-top: 10px;
+    .active{
+        .page-link{
+            background: $indigo !important;
+        }
+    }
+    .disabled{
+        .page-link{
+            background: rgba(255,255,255,0.3) !important;
+        }
+    }
+    .page-item {
+        .page-link{
+            background: rgba(255,255,255,0.1);
+            color: $green;
+            border:none;
+            font-size: 23px;
+        }
+    }
+}

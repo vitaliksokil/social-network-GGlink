@@ -17602,3 +17602,23 @@ pre {
   width: 300px;
 }
 
+.pagination {
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.pagination .active .page-link {
+  background: #6574cd !important;
+}
+
+.pagination .disabled .page-link {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.pagination .page-item .page-link {
+  background: rgba(255, 255, 255, 0.1);
+  color: #38c172;
+  border: none;
+  font-size: 23px;
+}
+

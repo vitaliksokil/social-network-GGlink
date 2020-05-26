@@ -76,6 +76,16 @@
                     <hr>
                     <hr>
                     <ul class="nav flex-column mb-2">
+                        <li class="nav-item {{ (request()->routeIs('users.all')) ? 'active' : '' }}">
+                            <a class="nav-link" href="{{route('users.all')}}">
+                                <span class="col-lg-1">
+                                    <img src="{{asset('img/icons/all-users.svg')}}" class="icon" alt="">
+                                </span>
+                                <span class="col-lg-11">
+                                    All users
+                                </span>
+                            </a>
+                        </li>
                         <li class="nav-item {{ (request()->routeIs('gamesAll')) ? 'active' : '' }}">
                             <a class="nav-link" href="{{route('gamesAll')}}">
                                 <span class="col-lg-1">

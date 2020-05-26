@@ -171,5 +171,7 @@ Route::group(['middleware' => 'verified'], function () {
     Route::delete('/room/delete/{game_short_address}/{id}','RoomController@delete')->middleware('can:delete,App\Room,id');
 
 
+    // UserController
+    Route::get('/users/all' ,'UserController@allUsers')->name('users.all');
 });
 Auth::routes(['verify' => true]);
