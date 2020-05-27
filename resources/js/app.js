@@ -21,18 +21,26 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('chat', require('./components/Chat.vue').default);
-Vue.component('conversation', require('./components/Conversation.vue').default);
+Vue.component('chat', require('./components/messages/Chat.vue').default);
+Vue.component('conversation', require('./components/messages/Conversation.vue').default);
+Vue.component('rooms-of-game', require('./components/rooms/RoomsOfGame.vue').default);
+Vue.component('room', require('./components/rooms/Room.vue').default);
+Vue.component('show-flash-message', require('./components/ShowFlashMessage').default);
 
 import Notifications from 'vue-notification'
 import Vuex from 'vuex';
 import { debounce } from "debounce";
 import Swal from 'sweetalert2'
+import Resource from 'vue-resource';
 
 Vue.use(Notifications);
 Vue.use(Vuex);
+Vue.use(Resource);
+
 window.debounce = debounce;
 window.Swal = Swal;
+
+
 
 const store = new Vuex.Store({
     state: {

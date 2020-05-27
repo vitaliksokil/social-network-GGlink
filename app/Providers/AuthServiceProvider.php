@@ -17,10 +17,14 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
          'App\ProfileComment' => 'App\Policies\ProfileCommentPolicy',
          'App\Game' => 'App\Policies\GamePolicy',
-         'App\GameSubscriber' => 'App\Policies\GameSubscriberPolicy',
+         'App\manyToManyModels\GameSubscriber' => 'App\Policies\GameSubscriberPolicy',
          'App\Post' => 'App\Policies\PostPolicy',
          'App\oneHasManyModels\GamePosts' => 'App\Policies\GamePostsPolicy',
          'App\oneHasManyModels\CommunityPosts' => 'App\Policies\CommunityPostsPolicy',
+         'App\manyToManyModels\CommunitySubscriber' => 'App\Policies\CommunitySubscriberPolicy',
+         'App\Message' => 'App\Policies\MessagePolicy',
+         'App\oneHasManyModels\RoomMember' => 'App\Policies\RoomMemberPolicy',
+         'App\Room' => 'App\Policies\RoomPolicy',
     ];
 
     /**

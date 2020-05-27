@@ -4,7 +4,7 @@ namespace App\Policies;
 
 use App\Game;
 use App\User;
-use App\GameSubscriber;
+use App\manyToManyModels\GameSubscriber;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class GameSubscriberPolicy

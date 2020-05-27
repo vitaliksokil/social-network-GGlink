@@ -2,27 +2,30 @@
 @section('title','All Communities')
 @section('content')
     <div class="card">
-        <div class="card-header">
+        <div class="card-header pt-0">
+            <div class="actions-panel mb-3">
+                <ul class="nav d-flex justify-content-between">
+                    <li class="nav-item {{ (request()->routeIs('community.create')) ? 'active' : '' }}">
+                        <a class="nav-link " href="{{route('community.create')}}">
+                            <i class="fas fa-plus green"></i>
+                            Add new community
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <a href="{{route('community.all')}}">
                 <h3>
                     Communities
                 </h3>
             </a>
-
-            <ul class="nav">
-                <li class="nav-item {{ (request()->routeIs('community.create')) ? 'active' : '' }}">
-                    <a class="nav-link " href="{{route('community.create')}}">
-                        Add new community
-                    </a>
-                </li>
-            </ul>
-
-            <form class="form-inline my-2 my-lg-0 w-100">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                       aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
-                        class="fas fa-search"></i></button>
-            </form>
+            @if(!request()->routeIs('community.create'))
+                <form class="form-inline mt-4" action="{{url()->current()}}" method="GET">
+                    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search"
+                           aria-label="Search" value="{{isset($_GET['q'])?$_GET['q']:''}}">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
+                            class="fas fa-search"></i></button>
+                </form>
+             @endif
             @include('includes.message')
         </div>
         @hasSection('form')

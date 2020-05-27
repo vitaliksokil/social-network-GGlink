@@ -161,7 +161,5 @@ class ProfileController extends Controller
         } else {
             return redirect()->back()->withErrors(['error' => 'Something went wrong']);
         }
-
-
     }
 }

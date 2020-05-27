@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\manyToMany;
 
 use App\Game;
-use App\GameSubscriber;
+use App\manyToManyModels\GameSubscriber;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
@@ -18,8 +18,17 @@ class GameSubscriberController extends Controller
      */
     public function index()
     {
+        if($search = \Request::get('q')){
+            $games = Auth::user()->games->filter(function($item) use ($search){
+                if(stristr($item->game->title,$search)){
+                    return  $item;
+                }
+            });
+        }else{
+            $games = Auth::user()->games;
+        }
         return view('pages.games.myGamesSubscriptions', [
-            'games' => Auth::user()->games
+            'games' => $games
         ]);
     }
 
@@ -27,6 +36,13 @@ class GameSubscriberController extends Controller
     {
         $user = User::findOrFail($id);
         $games = GameSubscriber::with('game')->where('user_id',$id)->get();
+        if($search = \Request::get('q')){
+            $games = $games->filter(function($item) use ($search){
+                if(stristr($item->game->title,$search)){
+                    return  $item;
+                }
+            });
+        }
         return view('pages.games.myGamesSubscriptions', [
             'games' => $games,
             'user'=>$user
@@ -65,8 +81,24 @@ class GameSubscriberController extends Controller
     public function allGameSubscribers(string $gameShortAddress)
     {
         $game = Game::where('short_address',$gameShortAddress)->firstOrFail();
+        $subscribers = $game->subscribers;
+        if($search = \Request::get('q')){
+            $subscribers = $subscribers->filter(function($item) use($search){
+                if(
+                    stristr($item->user->id,$search)
+                    ||
+                    stristr($item->user->name,$search)
+                    ||
+                    stristr($item->user->nickname,$search)
+                    ||
+                    stristr($item->user->surname,$search)
+                ){
+                    return $item;
+                }
+            });
+        }
         return view('pages.games.gameSubscribers',[
-            'subscribers'=>$game->subscribers,
+            'subscribers'=>$subscribers,
             'game'=>$game
         ]);
     }
@@ -79,6 +111,21 @@ class GameSubscriberController extends Controller
                 return $item;
             }
         });
+        if($search = \Request::get('q')){
+            $gameSubscribers = $gameSubscribers->filter(function($item) use($search){
+                if(
+                    stristr($item->user->id,$search)
+                    ||
+                    stristr($item->user->name,$search)
+                    ||
+                    stristr($item->user->nickname,$search)
+                    ||
+                    stristr($item->user->surname,$search)
+                ){
+                    return $item;
+                }
+            });
+        }
         return view('pages.games.gameSubscribers',[
             'subscribers'=>$gameSubscribers,
             'game'=>$game
@@ -92,6 +139,21 @@ class GameSubscriberController extends Controller
                 return $item;
             }
         });
+        if($search = \Request::get('q')){
+            $gameSubscribers = $gameSubscribers->filter(function($item) use($search){
+                if(
+                    stristr($item->user->id,$search)
+                    ||
+                    stristr($item->user->name,$search)
+                    ||
+                    stristr($item->user->nickname,$search)
+                    ||
+                    stristr($item->user->surname,$search)
+                ){
+                    return $item;
+                }
+            });
+        }
         return view('pages.games.gameSubscribers',[
             'subscribers'=>$gameSubscribers,
             'game'=>$game

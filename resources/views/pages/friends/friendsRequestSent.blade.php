@@ -27,7 +27,7 @@
         </div>
     @empty
         <h4>
-            No friendship requests have been sent
+            No friendship requests have been found
         </h4>
     @endforelse
 

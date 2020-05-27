@@ -14,9 +14,27 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
-    public function myMessagesPage()
+    public function myMessagesPage(Request $request)
     {
         $messages = $this->getMyMessages();
+        if($request->ajax()){
+            if($search = \Request::get('q')){
+                $messages = array_filter($messages,function ($item) use ($search) {
+                    if (
+                        stristr($item->id, $search)
+                        ||
+                        stristr($item->name, $search)
+                        ||
+                        stristr($item->nickname, $search)
+                        ||
+                        stristr($item->surname, $search)
+                    ) {
+                        return $item;
+                    }
+                });
+            }
+            return $messages;
+        }
         return view('pages.messages.my', [
             'messages' => $messages
         ]);

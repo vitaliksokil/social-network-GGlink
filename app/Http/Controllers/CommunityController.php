@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Community;
-use App\CommunitySubscriber;
+use App\manyToManyModels\CommunitySubscriber;
 use App\Game;
 use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
@@ -22,6 +22,13 @@ class CommunityController extends Controller
     public function index()
     {
         $communities = Community::all();
+        if($search = \Request::get('q')){
+            $communities = $communities->filter(function($item) use ($search){
+                if(stristr($item->title,$search)){
+                    return  $item;
+                }
+            });
+        }
         return view('pages.communities.allCommunities',[
             'communities'=>$communities
         ]);

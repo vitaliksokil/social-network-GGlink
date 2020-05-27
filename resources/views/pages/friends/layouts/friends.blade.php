@@ -4,8 +4,12 @@
     <div class="card">
         <div class="card-header">
             @if($user->id != Auth::user()->id)
-                <h3>{{$user}}'s friends</h3>
-                @else
+                <h3>
+                    <a href="{{route('profile',['id'=>$user->id])}}">
+                        {{$user}}'s friends
+                    </a>
+                </h3>
+            @else
                 <h3>Friends</h3>
             @endif
 
@@ -59,9 +63,10 @@
                     </li>
                 @endif
             </ul>
-            <form class="form-inline my-2 my-lg-0 w-100">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                       aria-label="Search">
+            <form class="form-inline my-2 my-lg-0 w-100" action="{{url()->current()}}" method="GET">
+                <input class="form-control mr-sm-2" style="width: 30%;" type="search"
+                       placeholder="Search by id,name,nickname or surname"
+                       aria-label="Search" name="q" value="{{isset($_GET['q']) ? $_GET['q'] : ''}}">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
                         class="fas fa-search"></i></button>
             </form>

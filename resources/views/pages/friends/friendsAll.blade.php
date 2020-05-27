@@ -25,6 +25,6 @@
             </div>
         </div>
     @empty
-        <h4>No friends yet</h4>
+        <h4>No friends found</h4>
     @endforelse
 @endsection

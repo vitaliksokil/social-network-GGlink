@@ -90,6 +90,6 @@
             </div>
         </div>
     @empty
-        <h4>No subscribers yet</h4>
+        <h4>No subscribers found</h4>
     @endforelse
 @endsection

@@ -17427,6 +17427,10 @@ a:not([href]):hover {
   background: rgba(70, 70, 70, 0.3);
 }
 
+.active {
+  color: #38c172 !important;
+}
+
 .active a {
   color: #38c172 !important;
 }
@@ -17557,5 +17561,64 @@ pre {
 
 .new-message-notification .notification-content {
   word-break: break-word;
+}
+
+.actions-panel {
+  width: 100%;
+}
+
+.actions-panel li {
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+  border-left-width: 1px;
+  border-top-width: 0;
+  padding: 4px;
+  padding-top: 0;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.9);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 4px;
+}
+
+.members-size {
+  width: 100%;
+}
+
+.room-member-plus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  opacity: 0.7;
+}
+
+.list-of-joined-users {
+  position: absolute;
+  right: -320px;
+  width: 300px;
+}
+
+.pagination {
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.pagination .active .page-link {
+  background: #6574cd !important;
+}
+
+.pagination .disabled .page-link {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.pagination .page-item .page-link {
+  background: rgba(255, 255, 255, 0.1);
+  color: #38c172;
+  border: none;
+  font-size: 23px;
 }
 
