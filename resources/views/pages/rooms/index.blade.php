@@ -4,9 +4,9 @@
     <div class="card">
         <div class="card-header">
             <h3>Rooms</h3>
-            <form class="form-inline my-2 my-lg-0 w-100">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                       aria-label="Search">
+            <form class="form-inline mt-4" action="{{url()->current()}}" method="GET">
+                <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search"
+                       aria-label="Search" value="{{isset($_GET['q'])?$_GET['q']:''}}">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
                         class="fas fa-search"></i></button>
             </form>
@@ -30,7 +30,7 @@
             </div>
         </div>
     @empty
-        <h3 class="text-center">No games yet</h3>
+        <h3 class="text-center">No games found</h3>
     @endforelse
 </div>
         </div>

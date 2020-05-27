@@ -23,6 +23,14 @@ class GameController extends Controller
         $games = $games->sortByDesc(function ($item){
             return count($item->subscribers);
         });
+        if($search = \Request::get('q')){
+            $games = $games->filter(function($item) use ($search){
+                if(stristr($item->title,$search)){
+                    return  $item;
+                }
+            });
+        }
+
         return view('pages.games.gamesAll',[
             'games'=>$games
         ]);

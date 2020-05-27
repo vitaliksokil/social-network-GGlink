@@ -2,9 +2,9 @@
         <div class="card">
             <div class="card-header">
                 <h3>Messages</h3>
-                <form class="form-inline my-2 my-lg-0 w-100">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                           aria-label="Search">
+                <form @submit.prevent="search" class="form-inline my-2 my-lg-0 w-100">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search for conversation"
+                           aria-label="Search" v-model="q">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
                         class="fas fa-search"></i></button>
                 </form>
@@ -73,6 +73,7 @@
         data(){
             return{
                 conversationsWithUsers: JSON.parse(JSON.stringify(this.messages)),
+                q:''
             }
         },
         mounted() {
@@ -91,6 +92,11 @@
                     }
                 }
             },
+            search(){
+                axios.get('/messages?q='+this.q).then(response=>{
+                    this.conversationsWithUsers = response.data;
+                });
+            }
         },
         computed:{
           ...mapState(['isNewMessage']),

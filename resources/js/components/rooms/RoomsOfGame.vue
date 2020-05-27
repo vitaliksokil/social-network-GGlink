@@ -25,12 +25,6 @@
             </div>
             <hr>
             <h3>{{game.title + '\'s rooms'}}</h3>
-            <form class="form-inline my-2 my-lg-0 w-100">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                       aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
-                    class="fas fa-search"></i></button>
-            </form>
 
             <div class="modal fade" id="addRoom" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -103,8 +97,8 @@
                         </span>
                 </a>
             </div>
-            <div v-if="!(typeof allRooms !== 'undefined' && allRooms.length > 0)">
-                <h4>No rooms yet.</h4>
+            <div v-show="!(Array.isArray(allRooms) && allRooms.length > 0)">
+                <h4>No rooms found</h4>
             </div>
         </div>
 
@@ -149,7 +143,6 @@
         },
         methods: {
             submitNewRoom() {
-                // todo check lenght of the title should be not greater that 100 symbols!!!
                 axios.post('/room/create', {
                     ...this.newRoom,
                     game_id: this.game.id
@@ -221,7 +214,7 @@
                         return;
                     }
                 }
-            }
+            },
         }
     }
 </script>

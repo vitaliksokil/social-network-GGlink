@@ -5,7 +5,11 @@
     <div class="card">
         <div class="card-header pt-0">
             @isset($user)
-                <h3>{{$user.'\'s '}} communities subscriptions</h3>
+                <h3>
+                    <a href="{{route('profile',['id'=>$user->id])}}">
+                        {{$user}}'s communities subscriptions
+                    </a>
+                </h3>
             @else
                 <div class="actions-panel mb-3">
                     <ul class="nav d-flex justify-content-between">
@@ -28,12 +32,12 @@
                 <a href="{{route('community.my.subscriptions')}}"><h3>My community subscriptions </h3></a>
 
             @endisset
-            <form class="form-inline mt-4">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                       aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
-                        class="fas fa-search"></i></button>
-            </form>
+                <form class="form-inline mt-4" action="{{url()->current()}}" method="GET">
+                    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search"
+                           aria-label="Search" value="{{isset($_GET['q'])?$_GET['q']:''}}">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
+                            class="fas fa-search"></i></button>
+                </form>
         </div>
         <div class="card-body">
             <div class="row">

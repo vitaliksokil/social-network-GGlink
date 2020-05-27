@@ -4,16 +4,20 @@
     <div class="card">
         <div class="card-header">
             @isset($user)
-                <h3>{{$user}}'s favourite games</h3>
+                <h3>
+                    <a href="{{route('profile',['id'=>$user->id])}}">
+                        {{$user}}'s favourite games
+                    </a>
+                </h3>
             @else
                 <h3>My games subscriptions</h3>
             @endisset
-            <form class="form-inline mt-4">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                       aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
-                        class="fas fa-search"></i></button>
-            </form>
+                <form class="form-inline mt-4" action="{{url()->current()}}" method="GET">
+                    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search"
+                           aria-label="Search" value="{{isset($_GET['q'])?$_GET['q']:''}}">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
+                            class="fas fa-search"></i></button>
+                </form>
         </div>
         <div class="card-body">
             <div class="row">
@@ -52,7 +56,7 @@
                             </div>
                         </div>
                     @empty
-                        <h4>No games yet</h4>
+                        <h4>No games found</h4>
                     @endforelse
                 </div>
             </div>

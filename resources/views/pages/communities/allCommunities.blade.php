@@ -18,12 +18,14 @@
                     Communities
                 </h3>
             </a>
-            <form class="form-inline my-2 my-lg-0 w-100">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                       aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
-                        class="fas fa-search"></i></button>
-            </form>
+            @if(!request()->routeIs('community.create'))
+                <form class="form-inline mt-4" action="{{url()->current()}}" method="GET">
+                    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search"
+                           aria-label="Search" value="{{isset($_GET['q'])?$_GET['q']:''}}">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
+                            class="fas fa-search"></i></button>
+                </form>
+             @endif
             @include('includes.message')
         </div>
         @hasSection('form')

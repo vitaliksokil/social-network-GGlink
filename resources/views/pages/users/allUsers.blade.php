@@ -4,15 +4,15 @@
     <div class="card">
         <div class="card-header">
             <h3>All users</h3>
-            <form class="form-inline my-2 my-lg-0 w-100">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                       aria-label="Search">
+            <form class="form-inline my-2 my-lg-0 w-100" action="{{route('users.all')}}" method="GET">
+                <input class="form-control mr-sm-2" style="width: 30%;" type="search" placeholder="Search by id,name,nickname or surname"
+                       aria-label="Search" name="q" value="{{isset($_GET['q']) ? $_GET['q'] : ''}}">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
                         class="fas fa-search"></i></button>
             </form>
         </div>
         <div class="card-body">
-            @foreach($allUsers as $user)
+            @forelse($allUsers as $user)
                 <div class="subscribe-item">
                     <div class="row align-items-center">
                         <div class="col-lg-1 ">
@@ -36,7 +36,9 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                No users
+            @endforelse
                 {{ $allUsers->links() }}
 
         </div>

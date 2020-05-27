@@ -18,8 +18,18 @@ class CommunitySubscriberController extends Controller
      */
     public function index()
     {
+
+        if($search = \Request::get('q')){
+            $communities = Auth::user()->communities->filter(function($item) use ($search){
+                if(stristr($item->community->title,$search)){
+                    return  $item;
+                }
+            });
+        }else{
+            $communities = Auth::user()->communities;
+        }
         return view('pages.communities.myCommunitiesSubscriptions', [
-            'communities' => Auth::user()->communities
+            'communities' => $communities
         ]);
     }
     public function myCommunities(){
@@ -36,6 +46,13 @@ class CommunitySubscriberController extends Controller
                 ['is_moderator',1]
             ]);
         })->get();
+        if($search = \Request::get('q')){
+            $communities = $communities->filter(function ($item) use($search){
+                if(stristr($item->community->title,$search)){
+                    return $item;
+                }
+            });
+        }
         return view('pages.communities.myCommunitiesSubscriptions',[
             'communities'=>$communities
         ]);
@@ -85,8 +102,24 @@ class CommunitySubscriberController extends Controller
     public function allCommunitySubscribers(string $communityShortAddress)
     {
         $community = Community::where('short_address',$communityShortAddress)->firstOrFail();
+        $subscribers = $community->subscribers;
+        if($search = \Request::get('q')){
+            $subscribers = $subscribers->filter(function($item) use($search){
+                if(
+                    stristr($item->user->id,$search)
+                    ||
+                    stristr($item->user->name,$search)
+                    ||
+                    stristr($item->user->nickname,$search)
+                    ||
+                    stristr($item->user->surname,$search)
+                ){
+                    return $item;
+                }
+            });
+        }
         return view('pages.communities.communitySubscribers',[
-            'subscribers'=>$community->subscribers,
+            'subscribers'=> $subscribers,
             'community'=>$community
         ]);
     }
@@ -97,6 +130,21 @@ class CommunitySubscriberController extends Controller
                 return $item;
             }
         });
+        if($search = \Request::get('q')){
+            $communitySubscribers = $communitySubscribers->filter(function($item) use($search){
+                if(
+                    stristr($item->user->id,$search)
+                    ||
+                    stristr($item->user->name,$search)
+                    ||
+                    stristr($item->user->nickname,$search)
+                    ||
+                    stristr($item->user->surname,$search)
+                ){
+                    return $item;
+                }
+            });
+        }
         return view('pages.communities.communitySubscribers',[
             'subscribers'=>$communitySubscribers,
             'community'=>$community
@@ -109,6 +157,21 @@ class CommunitySubscriberController extends Controller
                 return $item;
             }
         });
+        if($search = \Request::get('q')){
+            $communitySubscribers = $communitySubscribers->filter(function($item) use($search){
+                if(
+                    stristr($item->user->id,$search)
+                    ||
+                    stristr($item->user->name,$search)
+                    ||
+                    stristr($item->user->nickname,$search)
+                    ||
+                    stristr($item->user->surname,$search)
+                ){
+                    return $item;
+                }
+            });
+        }
         return view('pages.communities.communitySubscribers',[
             'subscribers'=>$communitySubscribers,
             'community'=>$community
@@ -159,6 +222,13 @@ class CommunitySubscriberController extends Controller
     public function communitiesSubscriptionsById(int $id){
         $user = User::findOrFail($id);
         $communities = CommunitySubscriber::with('community')->where('user_id',$user->id)->get();
+        if($search = \Request::get('q')){
+            $communities = $communities->filter(function($item) use($search){
+               if(stristr($item->community->title,$search)){
+                   return $item;
+               }
+            });
+        }
         return view('pages.communities.myCommunitiesSubscriptions', [
             'communities' => $communities,
             'user'=>$user

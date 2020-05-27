@@ -20,12 +20,20 @@ class RoomController extends Controller
     public function index()
     {
         $games = Game::select('id', 'title', 'short_address', 'logo')->withCount('unlockedRooms')->get()->sortByDesc('rooms_count');
+        if($search = \Request::get('q')){
+            $games = $games->filter(function($item) use ($search){
+                if(stristr($item->title,$search)){
+                    return  $item;
+                }
+            });
+        }
+
         return view('pages.rooms.index', [
             'games' => $games
         ]);
     }
 
-    public function roomsOfGame($gameShortAddress)
+    public function roomsOfGame(Request $request, $gameShortAddress)
     {
         $game = Game::select('id', 'title', 'short_address')->where('short_address', $gameShortAddress)->first();
         $rooms = Room::with('creator:id,photo')->where([

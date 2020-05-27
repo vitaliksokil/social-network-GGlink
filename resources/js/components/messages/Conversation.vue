@@ -20,14 +20,6 @@
                         ></h3>
                     </a>
                 </div>
-                <div class="col-lg-4">
-                    <form class="form-inline my-2 my-lg-0 w-100">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search by message"
-                               aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
-                            class="fas fa-search"></i></button>
-                    </form>
-                </div>
 
             </div>
         </div>

@@ -2030,7 +2030,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: ['authUser', 'messages'],
   data: function data() {
     return {
-      conversationsWithUsers: JSON.parse(JSON.stringify(this.messages))
+      conversationsWithUsers: JSON.parse(JSON.stringify(this.messages)),
+      q: ''
     };
   },
   mounted: function mounted() {},
@@ -2046,6 +2047,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           break;
         }
       }
+    },
+    search: function search() {
+      var _this = this;
+
+      axios.get('/messages?q=' + this.q).then(function (response) {
+        _this.conversationsWithUsers = response.data;
+      });
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['isNewMessage']), {
@@ -2090,14 +2098,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2976,12 +2976,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RoomsOfGame",
   props: ['game', 'rooms', 'authUserRoom'],
@@ -3021,7 +3015,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     submitNewRoom: function submitNewRoom() {
       var _this2 = this;
 
-      // todo check lenght of the title should be not greater that 100 symbols!!!
       axios.post('/room/create', _objectSpread({}, this.newRoom, {
         game_id: this.game.id
       })).then(function (response) {
@@ -58251,7 +58244,51 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "card-header" }, [
+      _c("h3", [_vm._v("Messages")]),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "form-inline my-2 my-lg-0 w-100",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.search($event)
+            }
+          }
+        },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.q,
+                expression: "q"
+              }
+            ],
+            staticClass: "form-control mr-sm-2",
+            attrs: {
+              type: "search",
+              placeholder: "Search for conversation",
+              "aria-label": "Search"
+            },
+            domProps: { value: _vm.q },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.q = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      )
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
       _c("div", { staticClass: "row" }, [
@@ -58397,29 +58434,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h3", [_vm._v("Messages")]),
-      _vm._v(" "),
-      _c("form", { staticClass: "form-inline my-2 my-lg-0 w-100" }, [
-        _c("input", {
-          staticClass: "form-control mr-sm-2",
-          attrs: {
-            type: "search",
-            placeholder: "Search",
-            "aria-label": "Search"
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-outline-success my-2 my-sm-0",
-            attrs: { type: "submit" }
-          },
-          [_c("i", { staticClass: "fas fa-search" })]
-        )
-      ])
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-outline-success my-2 my-sm-0",
+        attrs: { type: "submit" }
+      },
+      [_c("i", { staticClass: "fas fa-search" })]
+    )
   }
 ]
 render._withStripped = true
@@ -58478,9 +58500,7 @@ var render = function() {
               })
             ]
           )
-        ]),
-        _vm._v(" "),
-        _vm._m(1)
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -58634,7 +58654,7 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _vm._m(2)
+                _vm._m(1)
               ]
             )
           ])
@@ -58687,32 +58707,6 @@ var staticRenderFns = [
         )
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-4" }, [
-      _c("form", { staticClass: "form-inline my-2 my-lg-0 w-100" }, [
-        _c("input", {
-          staticClass: "form-control mr-sm-2",
-          attrs: {
-            type: "search",
-            placeholder: "Search by message",
-            "aria-label": "Search"
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-outline-success my-2 my-sm-0",
-            attrs: { type: "submit" }
-          },
-          [_c("i", { staticClass: "fas fa-search" })]
-        )
-      ])
-    ])
   },
   function() {
     var _vm = this
@@ -59226,8 +59220,6 @@ var render = function() {
       _vm._v(" "),
       _c("h3", [_vm._v(_vm._s(_vm.game.title + "'s rooms"))]),
       _vm._v(" "),
-      _vm._m(2),
-      _vm._v(" "),
       _c(
         "div",
         {
@@ -59248,7 +59240,7 @@ var render = function() {
             },
             [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(3),
+                _vm._m(2),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
                   _c(
@@ -59321,7 +59313,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group row" }, [
-                        _vm._m(4),
+                        _vm._m(3),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -59376,7 +59368,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _vm._m(5)
+                      _vm._m(4)
                     ]
                   )
                 ])
@@ -59458,9 +59450,22 @@ var render = function() {
           ])
         }),
         _vm._v(" "),
-        !(typeof _vm.allRooms !== "undefined" && _vm.allRooms.length > 0)
-          ? _c("div", [_c("h4", [_vm._v("No rooms yet.")])])
-          : _vm._e()
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: !(
+                  Array.isArray(_vm.allRooms) && _vm.allRooms.length > 0
+                ),
+                expression: "!(Array.isArray(allRooms) && allRooms.length > 0)"
+              }
+            ]
+          },
+          [_c("h4", [_vm._v("No rooms found")])]
+        )
       ],
       2
     )
@@ -59493,26 +59498,6 @@ var staticRenderFns = [
           _c("i", { staticClass: "fas fa-plus green" }),
           _vm._v("\n                        Add new room\n                    ")
         ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("form", { staticClass: "form-inline my-2 my-lg-0 w-100" }, [
-      _c("input", {
-        staticClass: "form-control mr-sm-2",
-        attrs: { type: "search", placeholder: "Search", "aria-label": "Search" }
-      }),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-success my-2 my-sm-0",
-          attrs: { type: "submit" }
-        },
-        [_c("i", { staticClass: "fas fa-search" })]
       )
     ])
   },
