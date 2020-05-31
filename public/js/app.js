@@ -2783,11 +2783,18 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     canJoin: function canJoin() {
-      // check if there is no empty slots for join return false
+      // check if user is user is in team -> if so return false
+      for (var key in this.teamMembers) {
+        if (this.teamMembers[key].member_id == this.authUserID && this.teamMembers[key].is_joined == 1) {
+          return false;
+        }
+      } // check if there is no empty slots for join return false
+
+
       if (this.teamMembers.length == this.room.count_of_members) return false; // check if user is in the room and his param is_joined = 0
 
-      for (var key in this.members) {
-        if (this.members[key].member_id == this.authUserID && this.members[key].is_joined == 0 || this.members[key].is_joined == null) {
+      for (var _key in this.members) {
+        if (this.members[_key].member_id == this.authUserID && this.members[_key].is_joined == 0 || this.members[_key].is_joined == null) {
           return true;
         }
       }

@@ -319,6 +319,12 @@
                 })
             },
             canJoin() {
+                // check if user is user is in team -> if so return false
+                for (let key in this.teamMembers) {
+                    if (this.teamMembers[key].member_id == this.authUserID && this.teamMembers[key].is_joined == 1) {
+                        return false;
+                    }
+                }
                 // check if there is no empty slots for join return false
                 if (this.teamMembers.length == this.room.count_of_members) return false;
                 // check if user is in the room and his param is_joined = 0
@@ -327,6 +333,7 @@
                         return true;
                     }
                 }
+
             },
             lockTheRoom() {
                 if (this.room.creator_id == this.authUserID) {
