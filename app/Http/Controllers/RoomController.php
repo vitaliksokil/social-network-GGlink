@@ -19,7 +19,7 @@ class RoomController extends Controller
 {
     public function index()
     {
-        $games = Game::select('id', 'title', 'short_address', 'logo')->withCount('unlockedRooms')->get()->sortByDesc('rooms_count');
+        $games = Game::select('id', 'title', 'short_address', 'logo')->withCount('unlockedRooms')->get()->sortByDesc('unlocked_rooms_count');
         if($search = \Request::get('q')){
             $games = $games->filter(function($item) use ($search){
                 if(stristr($item->title,$search)){
@@ -44,7 +44,8 @@ class RoomController extends Controller
         return view('pages.rooms.roomsOfGame', [
             'game' => $game,
             'rooms' => $rooms,
-            'authUserRoom' => $authUserRoom
+            'authUserRoom' => $authUserRoom,
+            'myRoomGameShortAddress'=>$authUserRoom->game->short_address ?? ''
         ]);
     }
 
@@ -83,7 +84,7 @@ class RoomController extends Controller
     public function delete($game_short_address, $id)
     {
         $room = Room::findOrFail($id);
-        if ($room->game->short_address == $game_short_address) {
+        if ($room->game->short_address == $game_short_address && $room->creator_id == Auth::user()->id) {
             if ($room->delete()) {
                 event(new RoomEvent($game_short_address, $room->id, 'delete'));
                 return response()->json(['message' => 'Successfully deleted!!!', 'roomID' => $room->id]);
@@ -154,7 +155,7 @@ class RoomController extends Controller
             event(new RoomInsideEvent($request->room_id, $eventData, 'create'));
             return response()->json($newMember->member);
         } catch (\Exception $exception) {
-            abort(500, 'You didn\'t join the room! The reason is that you have your own room. Delete your room to join others');
+            abort(500, 'You didn\'t join the room! Try reload the page and try again!');
         }
     }
 

@@ -2650,7 +2650,7 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (error) {
       Swal.fire({
         title: error.response.data.message,
-        icon: 'warning',
+        icon: 'error',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'OK'
       }).then(function (result) {
@@ -2985,7 +2985,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "RoomsOfGame",
-  props: ['game', 'rooms', 'authUserRoom'],
+  props: ['game', 'rooms', 'authUserRoom', 'myRoomGameShortAddress'],
   data: function data() {
     return {
       newRoom: {
@@ -2995,7 +2995,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       allRooms: JSON.parse(JSON.stringify(this.rooms)),
       errors: {},
       authUserId: $('meta[name="auth-user-id"]').attr('content'),
-      myRoom: JSON.parse(JSON.stringify(this.authUserRoom))
+      myRoom: JSON.parse(JSON.stringify(this.authUserRoom)),
+      myRoom_GameShortAddress: JSON.parse(JSON.stringify(this.myRoomGameShortAddress))
     };
   },
   mounted: function mounted() {
@@ -3030,6 +3031,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this2.newRoom.count_of_members = 2;
         _this2.errors = {};
         _this2.myRoom = response.data;
+        _this2.myRoom_GameShortAddress = _this2.game.short_address;
       })["catch"](function (error) {
         Swal.fire({
           icon: 'error',
@@ -59208,7 +59210,10 @@ var render = function() {
                     staticClass: "nav-link",
                     attrs: {
                       href:
-                        "/room/" + _vm.game.short_address + "/" + _vm.myRoom.id
+                        "/room/" +
+                        _vm.myRoom_GameShortAddress +
+                        "/" +
+                        _vm.myRoom.id
                     }
                   },
                   [

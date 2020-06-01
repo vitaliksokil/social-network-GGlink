@@ -183,7 +183,7 @@
             }).catch(error => {
                 Swal.fire({
                     title: error.response.data.message,
-                    icon: 'warning',
+                    icon: 'error',
                     confirmButtonColor: '#3085d6',
                     confirmButtonText: 'OK'
                 }).then((result) => {

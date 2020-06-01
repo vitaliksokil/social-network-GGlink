@@ -16,7 +16,7 @@
                         </a>
                     </li>
                     <li v-if="myRoom" class="ml-auto">
-                        <a class="nav-link" :href="`/room/${game.short_address}/${myRoom.id}`">
+                        <a class="nav-link" :href="`/room/${myRoom_GameShortAddress}/${myRoom.id}`">
                             <i class="fas fa-door-closed cyan"></i>
                             My room
                         </a>
@@ -108,7 +108,7 @@
 <script>
     export default {
         name: "RoomsOfGame",
-        props: ['game','rooms','authUserRoom'],
+        props: ['game','rooms','authUserRoom','myRoomGameShortAddress'],
         data() {
             return {
                 newRoom: {
@@ -119,7 +119,7 @@
                 errors:{},
                 authUserId:$('meta[name="auth-user-id"]').attr('content'),
                 myRoom:JSON.parse(JSON.stringify(this.authUserRoom)),
-
+                myRoom_GameShortAddress:JSON.parse(JSON.stringify(this.myRoomGameShortAddress)),
             }
         },
         mounted() {
@@ -155,6 +155,7 @@
                     this.errors = {}
 
                     this.myRoom = response.data;
+                    this.myRoom_GameShortAddress = this.game.short_address;
                 }).catch(error=>{
                     Swal.fire({
                         icon: 'error',
