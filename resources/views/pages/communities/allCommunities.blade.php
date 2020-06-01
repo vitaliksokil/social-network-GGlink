@@ -18,7 +18,7 @@
                     Communities
                 </h3>
             </a>
-            @if(!request()->routeIs('community.create'))
+            @if(!request()->routeIs('community.create') && !request()->routeIs('community.edit'))
                 <form class="form-inline mt-4" action="{{url()->current()}}" method="GET">
                     <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search"
                            aria-label="Search" value="{{isset($_GET['q'])?$_GET['q']:''}}">
