@@ -219,7 +219,7 @@ class RoomController extends Controller
             'room' => 'required',
         ]);
         if (Auth::user()->id == $request->room['creator_id']) {
-            $room = Room::findOrFail($request->room['id'])->withCount('members')->first();
+            $room = Room::withCount('members')->findOrFail($request->room['id']);
             if ($room->is_locked == 0) {
                 $room->update([
                     'is_locked' => 1
