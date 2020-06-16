@@ -15,14 +15,14 @@
     @forelse($subscribers as $item)
         <div class="subscribe-item">
             <div class="row align-items-center">
-                <div class="col-lg-1 ">
+                <div class="col-lg-1 col-sm-2">
                     <div class="wall-post-img">
                         <a href="{{route('profile',['id'=>$item->user->id])}}">
                             <img src="{{asset($item->user->photo)}}" alt="">
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-5">
+                <div class="col-lg-5 col-sm-5">
                     <div class="wall-post-author">
                         <h6>
                             <a href="{{route('profile',['id'=>$item->user->id])}}">{{$item->user}}</a> <br>
@@ -34,7 +34,7 @@
                         </h6>
                     </div>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-2 col-sm-4">
                     @if($item->is_creator)
                         <h5 class="green">CREATOR</h5>
                     @elseif($item->is_admin)
@@ -45,7 +45,7 @@
                 </div>
                 @if(!$item->is_creator)
                     @can('isCreator',[App\CommunitySubscriber::class,$community])
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-sm-4">
                             @if($item->is_admin)
                                 <button class="btn btn-success" disabled>ADMIN</button>
                                 <form action="{{route('community.removeAdmin',['communitySubscriber'=>$item])}}"
@@ -65,7 +65,7 @@
                         </div>
                     @endcan
                     @can('isAdmin',[App\CommunitySubscriber::class,$community])
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-sm-4">
                             @if(!$item->is_admin)
                                 @if($item->is_moderator)
                                     <button class="btn btn-success" disabled>Moderator</button>

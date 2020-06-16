@@ -17622,3 +17622,195 @@ pre {
   font-size: 23px;
 }
 
+.room-member-name {
+  font-size: 13px;
+}
+
+@media (min-width: 576px) {
+  .sidebar .nav-link {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .sidebar .nav-link span:last-child {
+    font-size: 10px;
+    padding: 0;
+  }
+
+  .com .wall-post-author h6 a {
+    font-size: 10px;
+  }
+
+  h4 {
+    font-size: 0.7rem;
+  }
+
+  .actions-panel li a {
+    font-size: 12px;
+  }
+
+  .room-member-plus {
+    font-size: 50px;
+  }
+
+  .list-of-joined-users {
+    right: -100px;
+    width: 95px;
+  }
+
+  .room-member-name {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 992px) {
+  .sidebar .nav-link {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .sidebar .nav-link .col-lg-1 {
+    padding: 0;
+  }
+
+  .sidebar .nav-link .icon {
+    width: 25px;
+  }
+
+  .sidebar .nav-link i {
+    width: 25px;
+  }
+
+  .sidebar .nav-link span:last-child {
+    font-size: 15px;
+    padding: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .ml-xxl-0,
+  .mx-xxl-0 {
+    margin-left: 0 !important;
+  }
+
+  .p-xxl-3 {
+    padding: 1rem !important;
+  }
+
+  .flex-xxl-row {
+    flex-direction: row !important;
+  }
+
+  .col-xxl-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .col-xxl-11 {
+    flex: 0 0 91.6666666667%;
+    max-width: 91.6666666667%;
+  }
+
+  .col-xxl-10 {
+    flex: 0 0 83.3333333333%;
+    max-width: 83.3333333333%;
+  }
+
+  .col-xxl-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+
+  .col-xxl-8 {
+    flex: 0 0 66.6666666667%;
+    max-width: 66.6666666667%;
+  }
+
+  .col-xxl-7 {
+    flex: 0 0 58.3333333333%;
+    max-width: 58.3333333333%;
+  }
+
+  .col-xxl-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .col-xxl-5 {
+    flex: 0 0 41.6666666667%;
+    max-width: 41.6666666667%;
+  }
+
+  .col-xxl-4 {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+
+  .col-xxl-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .col-xxl-2 {
+    flex: 0 0 16.6666666667%;
+    max-width: 16.6666666667%;
+  }
+
+  .col-xxl-1 {
+    flex: 0 0 8.3333333333%;
+    max-width: 8.3333333333%;
+  }
+
+  .sidebar {
+    margin-left: 50px !important;
+  }
+
+  .sidebar .icon {
+    width: 25px !important;
+  }
+
+  .sidebar i {
+    width: 25px !important;
+  }
+
+  .sidebar a {
+    font-size: 22px !important;
+  }
+
+  .sidebar .nav-link {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    padding: 15px;
+  }
+
+  .sidebar .nav-link span:last-child {
+    font-size: 22px;
+    padding-left: 15px;
+  }
+
+  h4 {
+    font-size: 1.35rem;
+  }
+
+  .actions-panel li a {
+    font-size: 18px;
+  }
+
+  .room-member-plus {
+    font-size: 100px;
+  }
+
+  .list-of-joined-users {
+    right: -320px;
+    width: 300px;
+  }
+
+  .room-member-name {
+    font-size: 13px;
+  }
+}
+

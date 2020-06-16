@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg justify-content-between">
-                    <div class="col-lg-2">
+                    <div class="col-lg-2 text-sm-center">
                         <a class="logo" href="{{url('/')}}">GG <span>link</span></a>
                     </div>
                     <div class="col-lg-10">

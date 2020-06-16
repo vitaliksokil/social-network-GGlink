@@ -1,7 +1,7 @@
 @auth
     <div class="container-fluid">
         <div class="row pt-4">
-            <nav class="col-md-2 d-none d-md-block sidebar card ml-5">
+            <nav class="col-sm-2 col-lg-2 d-none d-sm-block sidebar card ml-5  ml-sm-0 p-sm-0  " style="z-index: 999">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item {{ (request()->fullUrlIs(route('profile',['id'=>Auth::user()->id]))) ? 'active' : '' }}">
@@ -109,15 +109,15 @@
                     </ul>
                 </div>
             </nav>
-            <div class="container main-wrap">
-                <main role="main" class="col-md-9 col-lg-12 px-4">
+            <div class="container container-sm  main-wrap">
+                <main role="main" class="main col-md-12 col-lg-12  px-4 ml-sm-3 ml-md-4 ml-lg-5 ml-xxl-0">
                     @yield('content')
                 </main>
             </div>
         </div>
     </div>
 @else
-    <main class="py-4">
+    <main class="main container container-sm py-4">
         @yield('content')
     </main>
 @endauth

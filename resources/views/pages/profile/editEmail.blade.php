@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="row justify-content-start">
-        <div class="col-md-12">
+    <div class="row justify-content-start justify-content-sm-center justify-content-md-center">
+        <div class="col-lg-10 col-sm-10 col-lg-10 col-xxl-12" >
             <div class="card">
                 <div class="card-header">{{ __('Change email') }}</div>
 
@@ -14,7 +14,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('New E-Mail Address') }}</label>
 
-                            <div class="col-md-3">
+                            <div class="col-lg-3">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email }}" required autocomplete="email" autofocus>
 
                                 @error('email')
@@ -28,7 +28,7 @@
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Your password') }}</label>
 
-                            <div class="col-md-3">
+                            <div class="col-lg-3">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
                                 @error('password')
                                 <span class="red" role="alert">

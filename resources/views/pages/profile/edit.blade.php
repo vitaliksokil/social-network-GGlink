@@ -6,8 +6,8 @@
             {{ session('success') }}
         </div>
     @endif
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="row justify-content-sm-center">
+        <div class="col-lg-10 col-sm-10 col-xxl-12 ">
             <div class="card">
                 <div class="card-header">
                     <h3>
@@ -24,7 +24,7 @@
                                         alt="">
                                 </div>
                                 <button class="btn btn-success" style="
-                                        width: 300px;
+                                        width: 100%;
                                         border-top-left-radius: 0;
                                         border-top-right-radius:0"
                                         data-toggle="modal" data-target="#uploadPhoto">
@@ -78,7 +78,7 @@
 
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-8">
                             <table class="table">
                                 <tbody>
                                 <tr>

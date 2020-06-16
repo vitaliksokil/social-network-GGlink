@@ -1,8 +1,8 @@
 @extends('layouts.main')
 @section('title', $community->title)
 @section('content')
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="row justify-content-sm-center">
+        <div class="col-lg-10 col-sm-10 col-xxl-12">
             <div class="card">
                 @isset($community->poster)
                     <div class="row no-gutters align-items-center justify-content-between poster" style="
@@ -11,10 +11,10 @@
                     </div>
                 @endisset
                 <div class="row">
-                    <div class="card-body p-5">
+                    <div class="card-body p-5 p-sm-4">
                         <div class="row">
                             @include('includes.message')
-                            <div class="col-lg-9">
+                            <div class="col-lg-9 col-sm-9">
                                 <div class="card h-100">
                                     <div class="card-header">
                                         <h1 class="card-title">{{$community->title}}</h1>
@@ -24,7 +24,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 col-sm-3">
                                 <img src="{{asset($community->logo)}}" class="card-img"
                                      alt="...">
                                 @cannot('isCreator',[\App\manyToManyModels\CommunitySubscriber::class,$community])
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="row mt-5">
-                            <div class="col-lg-9">
+                            <div class="col-lg-9 col-sm-9">
                                 <div class="card">
                                     <div class="card-header">
                                         <h3>News</h3>
@@ -162,7 +162,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 col-sm-3">
                                 <div class="card">
                                     <a class="card-header"
                                        href="{{route('allCommunitySubscribers',['community'=>$community->short_address])}}"
@@ -178,7 +178,7 @@
                                                             <img src="{{asset($subscriber->user->photo)}}" alt="">
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-8">
+                                                    <div class="col-lg-8 com">
                                                         <div class="wall-post-author">
                                                             <h6>
                                                                 <a href="{{route('profile',['id'=>$subscriber->user->id])}}">{{$subscriber->user}}</a>

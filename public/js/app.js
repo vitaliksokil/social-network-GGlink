@@ -2023,6 +2023,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2098,6 +2100,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2605,6 +2612,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -2876,6 +2888,11 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -58252,188 +58269,203 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "card-header" }, [
-      _c("h3", [_vm._v("Messages")]),
-      _vm._v(" "),
-      _c(
-        "form",
-        {
-          staticClass: "form-inline my-2 my-lg-0 w-100",
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.search($event)
-            }
-          }
-        },
-        [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.q,
-                expression: "q"
-              }
-            ],
-            staticClass: "form-control mr-sm-2",
-            attrs: {
-              type: "search",
-              placeholder: "Search for conversation",
-              "aria-label": "Search"
-            },
-            domProps: { value: _vm.q },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.q = $event.target.value
-              }
-            }
-          }),
+  return _c("div", { staticClass: "row justify-content-sm-center" }, [
+    _c("div", { staticClass: "col-lg-10 col-sm-10 col-xxl-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _c("h3", [_vm._v("Messages")]),
           _vm._v(" "),
-          _vm._m(0)
-        ]
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-body" }, [
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-lg-12" },
-          _vm._l(_vm.sortedContacts, function(conversationWithUser) {
-            return _c(
-              "a",
-              {
-                key: conversationWithUser.id,
-                staticClass: "subscribe-item mb-4 p-3",
-                class: {
-                  "new-msg-bg": conversationWithUser.unreadMessagesCount > 0
-                },
-                staticStyle: {
-                  border: "1px solid rgba(0,0,0,0.9)",
-                  display: "block"
-                },
-                attrs: {
-                  href:
-                    "/conversation/" +
-                    conversationWithUser.nickname +
-                    "/" +
-                    conversationWithUser.id
+          _c(
+            "form",
+            {
+              staticClass: "form-inline my-2 my-lg-0 w-100",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.search($event)
                 }
-              },
-              [
-                _c("div", { staticClass: "row align-items-center" }, [
-                  _c("div", { staticClass: "col-lg-1 " }, [
-                    _c("div", { staticClass: "wall-post-img" }, [
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            href: "/profile/id/" + conversationWithUser.id
-                          }
-                        },
-                        [
-                          _c("img", {
-                            attrs: { src: conversationWithUser.photo, alt: "" }
-                          })
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-lg-11" }, [
-                    _c("div", { staticClass: "wall-post-author" }, [
-                      _c("h6", [
-                        _c("a", {
-                          attrs: {
-                            href: "/profile/id/" + conversationWithUser.id
-                          },
-                          domProps: {
-                            innerHTML: _vm._s(
-                              _vm.fullName(
-                                conversationWithUser.name,
-                                conversationWithUser.nickname,
-                                conversationWithUser.surname
-                              )
-                            )
-                          }
-                        }),
-                        _vm._v(" "),
-                        conversationWithUser.isOnline
-                          ? _c("span", { staticClass: "green" }, [
-                              _c("i", { staticClass: "fas fa-circle" }),
-                              _vm._v(" Online")
-                            ])
-                          : _c("span", { staticClass: "blocks" }, [
-                              _c("i", { staticClass: "fas fa-circle" }),
-                              _vm._v(" Offline")
-                            ]),
-                        _vm._v(" "),
-                        conversationWithUser.unreadMessagesCount > 0
-                          ? _c(
-                              "span",
-                              {
-                                staticClass: "green float-right",
-                                staticStyle: { "font-size": "20px" }
-                              },
-                              [
-                                _vm._v(
-                                  "+" +
-                                    _vm._s(
-                                      conversationWithUser.unreadMessagesCount
-                                    )
-                                )
-                              ]
-                            )
-                          : _vm._e()
+              }
+            },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.q,
+                    expression: "q"
+                  }
+                ],
+                staticClass: "form-control mr-sm-2",
+                attrs: {
+                  type: "search",
+                  placeholder: "Search for conversation",
+                  "aria-label": "Search"
+                },
+                domProps: { value: _vm.q },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.q = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm._m(0)
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              { staticClass: "col-lg-12" },
+              _vm._l(_vm.sortedContacts, function(conversationWithUser) {
+                return _c(
+                  "a",
+                  {
+                    key: conversationWithUser.id,
+                    staticClass: "subscribe-item mb-4 p-3",
+                    class: {
+                      "new-msg-bg": conversationWithUser.unreadMessagesCount > 0
+                    },
+                    staticStyle: {
+                      border: "1px solid rgba(0,0,0,0.9)",
+                      display: "block"
+                    },
+                    attrs: {
+                      href:
+                        "/conversation/" +
+                        conversationWithUser.nickname +
+                        "/" +
+                        conversationWithUser.id
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "row align-items-center" }, [
+                      _c("div", { staticClass: "col-lg-1 col-sm-2" }, [
+                        _c("div", { staticClass: "wall-post-img" }, [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: "/profile/id/" + conversationWithUser.id
+                              }
+                            },
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: conversationWithUser.photo,
+                                  alt: ""
+                                }
+                              })
+                            ]
+                          )
+                        ])
                       ]),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "row align-items-center mt-3" },
-                        [
-                          _c("div", { staticClass: "col-sm-1" }, [
-                            conversationWithUser.lastMessage.from ==
-                            _vm.authUser.id
-                              ? _c("img", {
-                                  staticStyle: { width: "60%" },
-                                  attrs: { src: _vm.authUser.photo, alt: "" }
-                                })
+                      _c("div", { staticClass: "col-lg-11 col-sm-10" }, [
+                        _c("div", { staticClass: "wall-post-author" }, [
+                          _c("h6", [
+                            _c("a", {
+                              attrs: {
+                                href: "/profile/id/" + conversationWithUser.id
+                              },
+                              domProps: {
+                                innerHTML: _vm._s(
+                                  _vm.fullName(
+                                    conversationWithUser.name,
+                                    conversationWithUser.nickname,
+                                    conversationWithUser.surname
+                                  )
+                                )
+                              }
+                            }),
+                            _vm._v(" "),
+                            conversationWithUser.isOnline
+                              ? _c("span", { staticClass: "green" }, [
+                                  _c("i", { staticClass: "fas fa-circle" }),
+                                  _vm._v(" Online")
+                                ])
+                              : _c("span", { staticClass: "blocks" }, [
+                                  _c("i", { staticClass: "fas fa-circle" }),
+                                  _vm._v(" Offline")
+                                ]),
+                            _vm._v(" "),
+                            conversationWithUser.unreadMessagesCount > 0
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass: "green float-right",
+                                    staticStyle: { "font-size": "20px" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "+" +
+                                        _vm._s(
+                                          conversationWithUser.unreadMessagesCount
+                                        )
+                                    )
+                                  ]
+                                )
                               : _vm._e()
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-11 p-0" }, [
-                            _c("p", { staticClass: "m-0" }, [
-                              _vm._v(
-                                "\n                                            " +
-                                  _vm._s(
-                                    conversationWithUser.lastMessage.text
-                                  ) +
-                                  "\n                                            "
-                              ),
-                              _c("small", { staticClass: "float-right mr-3" }, [
-                                _vm._v(
-                                  _vm._s(
-                                    conversationWithUser.lastMessage.created_at
+                          _c(
+                            "div",
+                            { staticClass: "row align-items-center mt-3" },
+                            [
+                              _c("div", { staticClass: "col-sm-2 col-xxl-1" }, [
+                                conversationWithUser.lastMessage.from ==
+                                _vm.authUser.id
+                                  ? _c("img", {
+                                      staticStyle: { width: "60%" },
+                                      attrs: {
+                                        src: _vm.authUser.photo,
+                                        alt: ""
+                                      }
+                                    })
+                                  : _vm._e()
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-sm-10 p-0" }, [
+                                _c("p", { staticClass: "m-0" }, [
+                                  _vm._v(
+                                    "\n                                                    " +
+                                      _vm._s(
+                                        conversationWithUser.lastMessage.text
+                                      ) +
+                                      "\n                                                    "
+                                  ),
+                                  _c(
+                                    "small",
+                                    { staticClass: "float-right mr-3" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          conversationWithUser.lastMessage
+                                            .created_at
+                                        )
+                                      )
+                                    ]
                                   )
-                                )
+                                ])
                               ])
-                            ])
-                          ])
-                        ]
-                      )
+                            ]
+                          )
+                        ])
+                      ])
                     ])
-                  ])
-                ])
-              ]
+                  ]
+                )
+              }),
+              0
             )
-          }),
-          0
-        )
+          ])
+        ])
       ])
     ])
   ])
@@ -58474,220 +58506,237 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card conversation-wrap" }, [
-    _c("div", { staticClass: "card-header" }, [
-      _c("div", { staticClass: "row align-items-center" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-lg-1" }, [
-          _c(
-            "a",
-            { attrs: { href: "/profile/id/" + _vm.userConversationWith.id } },
-            [
-              _c("img", {
-                attrs: { src: "/" + _vm.userConversationWith.photo, alt: "" }
-              })
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-lg-6" }, [
-          _c(
-            "a",
-            { attrs: { href: "/profile/id/" + _vm.userConversationWith.id } },
-            [
-              _c("h3", {
-                domProps: {
-                  innerHTML: _vm._s(
-                    _vm.fullName(
-                      _vm.userConversationWith.name,
-                      _vm.userConversationWith.nickname,
-                      _vm.userConversationWith.surname
-                    )
-                  )
-                }
-              })
-            ]
-          )
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        ref: "conversation",
-        staticClass: "card-body conversation",
-        attrs: { id: "conversation" }
-      },
-      [
-        _c("div", { staticClass: "row" }, [
-          _c(
-            "div",
-            { staticClass: "col-lg-12 " },
-            _vm._l(_vm.allMessages, function(message) {
-              return _c("div", { staticClass: "subscribe-item" }, [
-                _c("div", { staticClass: "row align-items-start" }, [
-                  _c("div", { staticClass: "col-lg-1 " }, [
-                    _c("div", { staticClass: "wall-post-img" }, [
-                      message.from == _vm.userConversationWith.id
-                        ? _c(
-                            "a",
-                            {
-                              attrs: {
-                                href:
-                                  "/profile/id/" + _vm.userConversationWith.id
-                              }
-                            },
-                            [
-                              _c("img", {
-                                attrs: {
-                                  src: "/" + _vm.userConversationWith.photo,
-                                  alt: ""
-                                }
-                              })
-                            ]
-                          )
-                        : _c(
-                            "a",
-                            {
-                              attrs: { href: "/profile/id/" + _vm.authUser.id }
-                            },
-                            [
-                              _c("img", {
-                                attrs: {
-                                  src: "/" + _vm.authUser.photo,
-                                  alt: ""
-                                }
-                              })
-                            ]
-                          )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col-lg-11" },
-                    [
-                      message.from == _vm.userConversationWith.id
-                        ? _c("div", [
-                            _c("a", {
-                              attrs: {
-                                href:
-                                  "/profile/id/" + _vm.userConversationWith.id
-                              },
-                              domProps: {
-                                innerHTML: _vm._s(
-                                  _vm.fullName(
-                                    _vm.userConversationWith.name,
-                                    _vm.userConversationWith.nickname,
-                                    _vm.userConversationWith.surname
-                                  )
-                                )
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("small", { staticClass: "float-right" }, [
-                              _vm._v(_vm._s(message.created_at))
-                            ])
-                          ])
-                        : _c("div", [
-                            _c("a", {
-                              attrs: { href: "/profile/id/" + _vm.authUser.id },
-                              domProps: {
-                                innerHTML: _vm._s(
-                                  _vm.fullName(
-                                    _vm.authUser.name,
-                                    _vm.authUser.nickname,
-                                    _vm.authUser.surname
-                                  )
-                                )
-                              }
-                            })
-                          ]),
-                      _vm._v(" "),
-                      _vm._l(message.messages, function(m) {
-                        return _c(
-                          "p",
-                          {
-                            staticClass: "ml-4 mt-2",
-                            class: { "new-msg-bg": !m.is_read },
-                            attrs: { "data-msg-from": message.from }
-                          },
-                          [
-                            _vm._v(
-                              "\n                                    " +
-                                _vm._s(m.text)
-                            ),
-                            _c("small", { staticClass: "float-right " }, [
-                              _vm._v(_vm._s(m.created_at))
-                            ])
-                          ]
+  return _c("div", { staticClass: "row justify-content-sm-center" }, [
+    _c("div", { staticClass: "col-lg-10 col-sm-10 col-xxl-12" }, [
+      _c("div", { staticClass: "card conversation-wrap" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _c("div", { staticClass: "row align-items-center" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-1 col-sm-2" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "/profile/id/" + _vm.userConversationWith.id }
+                },
+                [
+                  _c("img", {
+                    attrs: {
+                      src: "/" + _vm.userConversationWith.photo,
+                      alt: ""
+                    }
+                  })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-6 col-sm-8" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "/profile/id/" + _vm.userConversationWith.id }
+                },
+                [
+                  _c("h3", {
+                    domProps: {
+                      innerHTML: _vm._s(
+                        _vm.fullName(
+                          _vm.userConversationWith.name,
+                          _vm.userConversationWith.nickname,
+                          _vm.userConversationWith.surname
                         )
-                      })
-                    ],
-                    2
-                  )
-                ])
-              ])
-            }),
-            0
-          )
+                      )
+                    }
+                  })
+                ]
+              )
+            ])
+          ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row pt-2 position-relative" }, [
-          _c("div", { staticClass: "col-lg-12 position-absolute" }, [
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.isTyping,
-                    expression: "isTyping"
-                  }
-                ],
-                staticClass: "grey"
-              },
-              [
-                _c("span", {
-                  domProps: {
-                    innerHTML: _vm._s(
-                      _vm.fullName(
-                        _vm.userConversationWith.name,
-                        _vm.userConversationWith.nickname,
-                        _vm.userConversationWith.surname
+        _c(
+          "div",
+          {
+            ref: "conversation",
+            staticClass: "card-body conversation",
+            attrs: { id: "conversation" }
+          },
+          [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                { staticClass: "col-lg-12 " },
+                _vm._l(_vm.allMessages, function(message) {
+                  return _c("div", { staticClass: "subscribe-item" }, [
+                    _c("div", { staticClass: "row align-items-start" }, [
+                      _c("div", { staticClass: "col-lg-1 col-sm-2" }, [
+                        _c("div", { staticClass: "wall-post-img" }, [
+                          message.from == _vm.userConversationWith.id
+                            ? _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href:
+                                      "/profile/id/" +
+                                      _vm.userConversationWith.id
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      src: "/" + _vm.userConversationWith.photo,
+                                      alt: ""
+                                    }
+                                  })
+                                ]
+                              )
+                            : _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: "/profile/id/" + _vm.authUser.id
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      src: "/" + _vm.authUser.photo,
+                                      alt: ""
+                                    }
+                                  })
+                                ]
+                              )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-lg-11 col-sm-10" },
+                        [
+                          message.from == _vm.userConversationWith.id
+                            ? _c("div", [
+                                _c("a", {
+                                  attrs: {
+                                    href:
+                                      "/profile/id/" +
+                                      _vm.userConversationWith.id
+                                  },
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      _vm.fullName(
+                                        _vm.userConversationWith.name,
+                                        _vm.userConversationWith.nickname,
+                                        _vm.userConversationWith.surname
+                                      )
+                                    )
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("small", { staticClass: "float-right" }, [
+                                  _vm._v(_vm._s(message.created_at))
+                                ])
+                              ])
+                            : _c("div", [
+                                _c("a", {
+                                  attrs: {
+                                    href: "/profile/id/" + _vm.authUser.id
+                                  },
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      _vm.fullName(
+                                        _vm.authUser.name,
+                                        _vm.authUser.nickname,
+                                        _vm.authUser.surname
+                                      )
+                                    )
+                                  }
+                                })
+                              ]),
+                          _vm._v(" "),
+                          _vm._l(message.messages, function(m) {
+                            return _c(
+                              "p",
+                              {
+                                staticClass: "ml-4 mt-2",
+                                class: { "new-msg-bg": !m.is_read },
+                                attrs: { "data-msg-from": message.from }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(m.text)
+                                ),
+                                _c("small", { staticClass: "float-right " }, [
+                                  _vm._v(_vm._s(m.created_at))
+                                ])
+                              ]
+                            )
+                          })
+                        ],
+                        2
                       )
-                    )
-                  }
+                    ])
+                  ])
                 }),
-                _vm._v(" "),
-                _vm._m(1)
-              ]
-            )
-          ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "card-footer" },
-      [
-        _vm.canMessageSend
-          ? _c("message-composer", {
-              on: { send: _vm.sendMessage, typing: _vm.typing }
-            })
-          : _c("div", [
-              _vm._v(
-                "\n                The user blocked his DM\n                "
-              ),
-              _c("i", { staticClass: "fas fa-lock" })
+                0
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row pt-2 position-relative" }, [
+              _c("div", { staticClass: "col-lg-12 position-absolute" }, [
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.isTyping,
+                        expression: "isTyping"
+                      }
+                    ],
+                    staticClass: "grey"
+                  },
+                  [
+                    _c("span", {
+                      domProps: {
+                        innerHTML: _vm._s(
+                          _vm.fullName(
+                            _vm.userConversationWith.name,
+                            _vm.userConversationWith.nickname,
+                            _vm.userConversationWith.surname
+                          )
+                        )
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm._m(1)
+                  ]
+                )
+              ])
             ])
-      ],
-      1
-    )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-footer" },
+          [
+            _vm.canMessageSend
+              ? _c("message-composer", {
+                  on: { send: _vm.sendMessage, typing: _vm.typing }
+                })
+              : _c("div", [
+                  _vm._v(
+                    "\n                    The user blocked his DM\n                    "
+                  ),
+                  _c("i", { staticClass: "fas fa-lock" })
+                ])
+          ],
+          1
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -58698,7 +58747,7 @@ var staticRenderFns = [
     return _c(
       "div",
       {
-        staticClass: "col-lg-1",
+        staticClass: "col-lg-1 mb-sm-1",
         staticStyle: { "border-right": "1px solid rgba(0,0,0,0.9)" }
       },
       [
@@ -58711,7 +58760,9 @@ var staticRenderFns = [
           },
           [
             _c("i", { staticClass: "fas fa-long-arrow-alt-left" }),
-            _vm._v("\n                        Back\n                    ")
+            _vm._v(
+              "\n                            Back\n                        "
+            )
           ]
         )
       ]
@@ -58750,7 +58801,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "message-composer" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-lg-11" }, [
+      _c("div", { staticClass: "col-lg-10 col-sm-10 col-xxl-11" }, [
         _c("textarea", {
           directives: [
             {
@@ -58789,7 +58840,7 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-lg-1" }, [
+      _c("div", { staticClass: "col-lg-2 col-sm-2 col-xxl-1" }, [
         _c(
           "button",
           { staticClass: "btn btn-primary h-100 m-0", on: { click: _vm.send } },
@@ -58821,341 +58872,385 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "card-header pt-0" }, [
-      _c("div", { staticClass: "actions-panel mb-3" }, [
-        _c("ul", { staticClass: "nav d-flex justify-content-between" }, [
-          _c("li", [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link ",
-                attrs: { href: "/rooms/of/" + _vm.game_short_address }
-              },
-              [
-                _c("i", { staticClass: "fas fa-arrow-left blue" }),
-                _vm._v(
-                  "\n                        Go back\n                    "
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _vm.authUserID == _vm.room.creator_id
-            ? _c("li", { staticClass: "mr-auto" }, [
-                _c(
-                  "a",
-                  { staticClass: "nav-link", on: { click: _vm.lockTheRoom } },
-                  [
-                    _c("i", { staticClass: "fas fa-lock orange" }),
-                    _vm._v(
-                      "\n                        Lock/unlock the room\n                    "
-                    )
-                  ]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.authUserID == _vm.room.creator_id
-            ? _c("li", [
+  return _c("div", { staticClass: "row justify-content-sm-center" }, [
+    _c("div", { staticClass: "col-lg-10 col-sm-10 col-xxl-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header pt-0" }, [
+          _c("div", { staticClass: "actions-panel mb-3" }, [
+            _c("ul", { staticClass: "nav d-flex justify-content-between" }, [
+              _c("li", [
                 _c(
                   "a",
                   {
                     staticClass: "nav-link ",
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.deleteRoom(_vm.room.id)
-                      }
-                    }
+                    attrs: { href: "/rooms/of/" + _vm.game_short_address }
                   },
                   [
-                    _c("i", { staticClass: "fas fa-times red" }),
+                    _c("i", { staticClass: "fas fa-arrow-left blue" }),
                     _vm._v(
-                      "\n                        Delete room\n                    "
+                      "\n                                Go back\n                            "
                     )
                   ]
                 )
-              ])
-            : _vm._e()
-        ])
-      ]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("div", { staticClass: "d-flex justify-content-between" }, [
-        _c("div", [
-          _c("h3", [_vm._v(_vm._s(_vm.room.title))]),
-          _vm._v(" "),
-          _c("h5", [_vm._v("Room #" + _vm._s(_vm.room.id))]),
-          _vm._v(" "),
-          _vm.canJoin()
-            ? _c(
-                "a",
-                {
-                  staticClass: "btn btn-primary",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.joinToTheTeam($event)
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "fas fa-plus" }),
-                  _vm._v(
-                    "\n                    Click to join the team\n                "
-                  )
-                ]
-              )
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _vm.isLocked
-            ? _c("i", {
-                staticClass: "fas fa-lock red",
-                staticStyle: { "font-size": "60px" },
-                attrs: { title: "Room is locked" }
-              })
-            : _c("i", {
-                staticClass: "fas fa-lock-open green",
-                staticStyle: { "font-size": "60px" },
-                attrs: { title: "Room is unlocked" }
-              })
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-body" }, [
-      _c(
-        "div",
-        { staticClass: "row" },
-        [
-          _vm._l(_vm.teamMembers, function(member) {
-            return _c("div", { staticClass: "col-lg-2 mb-3" }, [
-              _c("div", { staticClass: "card text-center h-100" }, [
-                _c(
-                  "a",
-                  {
-                    attrs: {
-                      href: "/profile/id/" + member.member_id,
-                      target: "_blank"
-                    }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "card-img-top members-size",
-                      attrs: { src: "/" + member.photo, alt: "" }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-body d-flex flex-column" }, [
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        href: "/profile/id/" + member.member_id,
-                        target: "_blank"
-                      }
-                    },
-                    [
-                      _c("small", { staticClass: "card-text" }, [
-                        _c("span", { staticClass: "pink" }, [
-                          _vm._v(_vm._s(member.nickname))
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  member.member_id == _vm.room.creator_id
-                    ? _c("h4", { staticClass: "green mt-auto" }, [
-                        _vm._v("CREATOR")
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.room.creator_id == _vm.authUserID &&
-                  member.member_id != _vm.room.creator_id
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger mt-auto",
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.kickUser(member.member_id)
-                            }
-                          }
-                        },
-                        [_vm._v("Kick\n                        ")]
-                      )
-                    : _vm._e()
-                ])
-              ])
-            ])
-          }),
-          _vm._v(" "),
-          _vm._l(_vm.room.count_of_members - _vm.teamMembers.length, function(
-            i
-          ) {
-            return _c("div", { staticClass: "col-lg-2  mb-3" }, [
-              _vm._m(0, true)
-            ])
-          })
-        ],
-        2
-      )
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "card-footer" },
-      [
-        _c(
-          "div",
-          {
-            ref: "chat",
-            staticClass: "conversation",
-            staticStyle: { height: "300px" }
-          },
-          [
-            _c("div", { staticClass: "row w-100" }, [
-              _c(
-                "div",
-                { staticClass: "col-lg-12 " },
-                _vm._l(_vm.allMessages, function(message_item) {
-                  return _c("div", { staticClass: "subscribe-item" }, [
-                    _c("div", { staticClass: "row align-items-start" }, [
-                      _c("div", { staticClass: "col-lg-1 " }, [
-                        _c("div", { staticClass: "wall-post-img" }, [
-                          _c(
-                            "a",
-                            {
-                              attrs: {
-                                href: "/profile/id/" + message_item.sender_id,
-                                target: "_blank"
-                              }
-                            },
-                            [
-                              _c("img", {
-                                attrs: {
-                                  src: "/" + message_item.photo,
-                                  alt: ""
-                                }
-                              })
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-lg-11" }, [
-                        _c("div", [
-                          _c("a", {
-                            attrs: {
-                              href: "/profile/id/" + message_item.sender_id,
-                              target: "_blank"
-                            },
-                            domProps: {
-                              innerHTML: _vm._s(
-                                _vm.fullName(
-                                  message_item.name,
-                                  message_item.nickname,
-                                  message_item.surname
-                                )
-                              )
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "ml-4 mt-2" }, [
-                          _vm._v(
-                            "\n                                    " +
-                              _vm._s(message_item.message) +
-                              "\n                                    "
-                          ),
-                          _c("small", { staticClass: "float-right " }, [
-                            _vm._v(_vm._s(message_item.created_at))
-                          ])
-                        ])
-                      ])
-                    ])
-                  ])
-                }),
-                0
-              )
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c("message-composer", { on: { send: _vm.sendMessage } })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "list-of-joined-users card" }, [
-      _c("h4", { staticClass: "text-center" }, [_vm._v("Joined users")]),
-      _vm._v(" "),
-      _c(
-        "ul",
-        { staticClass: "nav d-flex flex-column" },
-        _vm._l(_vm.members, function(member) {
-          return _c("li", { staticClass: "nav-link " }, [
-            _c("div", { staticClass: "row align-items-center" }, [
-              _c("div", { staticClass: "col-lg-3" }, [
-                _c(
-                  "a",
-                  {
-                    attrs: {
-                      href: "/profile/id/" + member.member_id,
-                      target: "_blank"
-                    }
-                  },
-                  [_c("img", { attrs: { src: "/" + member.photo, alt: "" } })]
-                )
               ]),
               _vm._v(" "),
-              _c("a", {
-                staticClass: "col-lg-7",
-                staticStyle: { "font-size": "13px" },
-                attrs: {
-                  href: "/profile/id/" + member.member_id,
-                  target: "_blank"
-                },
-                domProps: {
-                  innerHTML: _vm._s(
-                    _vm.fullName(member.name, member.nickname, member.surname)
-                  )
-                }
-              }),
+              _vm.authUserID == _vm.room.creator_id
+                ? _c("li", { staticClass: "mr-auto" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link",
+                        on: { click: _vm.lockTheRoom }
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-lock orange" }),
+                        _vm._v(
+                          "\n                                Lock/unlock the room\n                            "
+                        )
+                      ]
+                    )
+                  ])
+                : _vm._e(),
               _vm._v(" "),
-              _vm.room.creator_id == _vm.authUserID &&
-              member.member_id != _vm.authUserID
+              _vm.authUserID == _vm.room.creator_id
+                ? _c("li", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link ",
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.deleteRoom(_vm.room.id)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-times red" }),
+                        _vm._v(
+                          "\n                                Delete room\n                            "
+                        )
+                      ]
+                    )
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-flex justify-content-between" }, [
+            _c("div", [
+              _c("h3", [_vm._v(_vm._s(_vm.room.title))]),
+              _vm._v(" "),
+              _c("h5", [_vm._v("Room #" + _vm._s(_vm.room.id))]),
+              _vm._v(" "),
+              _vm.canJoin()
                 ? _c(
-                    "div",
+                    "a",
                     {
-                      staticClass: "col-lg-1",
+                      staticClass: "btn btn-primary",
                       on: {
                         click: function($event) {
                           $event.preventDefault()
-                          return _vm.kickUser(member.member_id)
+                          return _vm.joinToTheTeam($event)
                         }
                       }
                     },
                     [
-                      _c("i", {
-                        staticClass: "fas fa-user-minus red",
-                        staticStyle: { cursor: "pointer" },
-                        attrs: { title: "Kick user from room" }
-                      })
+                      _c("i", { staticClass: "fas fa-plus" }),
+                      _vm._v(
+                        "\n                            Click to join the team\n                        "
+                      )
                     ]
                   )
                 : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _vm.isLocked
+                ? _c("i", {
+                    staticClass: "fas fa-lock red",
+                    staticStyle: { "font-size": "60px" },
+                    attrs: { title: "Room is locked" }
+                  })
+                : _c("i", {
+                    staticClass: "fas fa-lock-open green",
+                    staticStyle: { "font-size": "60px" },
+                    attrs: { title: "Room is unlocked" }
+                  })
             ])
           ])
-        }),
-        0
-      )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "div",
+            { staticClass: "row" },
+            [
+              _vm._l(_vm.teamMembers, function(member) {
+                return _c("div", { staticClass: "col-lg-2 col-sm-2 mb-3" }, [
+                  _c("div", { staticClass: "card text-center h-100" }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          href: "/profile/id/" + member.member_id,
+                          target: "_blank"
+                        }
+                      },
+                      [
+                        _c("img", {
+                          staticClass: "card-img-top members-size",
+                          attrs: { src: "/" + member.photo, alt: "" }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "card-body d-flex flex-column p-sm-0 p-xxl-3 "
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href: "/profile/id/" + member.member_id,
+                              target: "_blank"
+                            }
+                          },
+                          [
+                            _c("small", { staticClass: "card-text" }, [
+                              _c("span", { staticClass: "pink" }, [
+                                _vm._v(_vm._s(member.nickname))
+                              ])
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        member.member_id == _vm.room.creator_id
+                          ? _c("h4", { staticClass: "green mt-auto" }, [
+                              _vm._v("CREATOR")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.room.creator_id == _vm.authUserID &&
+                        member.member_id != _vm.room.creator_id
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger mt-auto",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.kickUser(member.member_id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Kick\n                                ")]
+                            )
+                          : _vm._e()
+                      ]
+                    )
+                  ])
+                ])
+              }),
+              _vm._v(" "),
+              _vm._l(
+                _vm.room.count_of_members - _vm.teamMembers.length,
+                function(i) {
+                  return _c("div", { staticClass: "col-lg-2 col-sm-2  mb-3" }, [
+                    _vm._m(0, true)
+                  ])
+                }
+              )
+            ],
+            2
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-footer" },
+          [
+            _c(
+              "div",
+              {
+                ref: "chat",
+                staticClass: "conversation",
+                staticStyle: { height: "300px" }
+              },
+              [
+                _c("div", { staticClass: "row w-100" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-lg-12 col-sm-12 " },
+                    _vm._l(_vm.allMessages, function(message_item) {
+                      return _c("div", { staticClass: "subscribe-item" }, [
+                        _c("div", { staticClass: "row align-items-start" }, [
+                          _c(
+                            "div",
+                            { staticClass: "col-lg-2 col-sm-2 col-xxl-1" },
+                            [
+                              _c("div", { staticClass: "wall-post-img" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href:
+                                        "/profile/id/" + message_item.sender_id,
+                                      target: "_blank"
+                                    }
+                                  },
+                                  [
+                                    _c("img", {
+                                      attrs: {
+                                        src: "/" + message_item.photo,
+                                        alt: ""
+                                      }
+                                    })
+                                  ]
+                                )
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "col-lg-10 col-sm-10 col-xxl-10" },
+                            [
+                              _c("div", [
+                                _c("a", {
+                                  attrs: {
+                                    href:
+                                      "/profile/id/" + message_item.sender_id,
+                                    target: "_blank"
+                                  },
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      _vm.fullName(
+                                        message_item.name,
+                                        message_item.nickname,
+                                        message_item.surname
+                                      )
+                                    )
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "ml-4 mt-2" }, [
+                                _vm._v(
+                                  "\n                                            " +
+                                    _vm._s(message_item.message) +
+                                    "\n                                            "
+                                ),
+                                _c("small", { staticClass: "float-right " }, [
+                                  _vm._v(_vm._s(message_item.created_at))
+                                ])
+                              ])
+                            ]
+                          )
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("message-composer", { on: { send: _vm.sendMessage } })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "list-of-joined-users card" }, [
+          _c("h4", { staticClass: "text-center" }, [_vm._v("Joined users")]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            { staticClass: "nav d-flex flex-column" },
+            _vm._l(_vm.members, function(member) {
+              return _c("li", { staticClass: "nav-link p-sm-1" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "row align-items-center flex-sm-column flex-xxl-row"
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-12 col-sm-12 col-xxl-3" },
+                      [
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href: "/profile/id/" + member.member_id,
+                              target: "_blank"
+                            }
+                          },
+                          [
+                            _c("img", {
+                              attrs: { src: "/" + member.photo, alt: "" }
+                            })
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("a", {
+                      staticClass:
+                        "col-lg-7 col-sm-12 col-xxl-7 room-member-name",
+                      attrs: {
+                        href: "/profile/id/" + member.member_id,
+                        target: "_blank"
+                      },
+                      domProps: {
+                        innerHTML: _vm._s(
+                          _vm.fullName(
+                            member.name,
+                            member.nickname,
+                            member.surname
+                          )
+                        )
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.room.creator_id == _vm.authUserID &&
+                    member.member_id != _vm.authUserID
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "col-lg-1 col-sm-2 col-xxl-2",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.kickUser(member.member_id)
+                              }
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fas fa-user-minus red",
+                              staticStyle: { cursor: "pointer" },
+                              attrs: { title: "Kick user from room" }
+                            })
+                          ]
+                        )
+                      : _vm._e()
+                  ]
+                )
+              ])
+            }),
+            0
+          )
+        ])
+      ])
     ])
   ])
 }
@@ -59194,293 +59289,304 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "card-header pt-0" }, [
-      _c("div", { staticClass: "actions-panel mb-3" }, [
-        _c("ul", { staticClass: "nav d-flex" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _vm.myRoom
-            ? _c("li", { staticClass: "ml-auto" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "nav-link",
-                    attrs: {
-                      href:
-                        "/room/" +
-                        _vm.myRoom_GameShortAddress +
-                        "/" +
-                        _vm.myRoom.id
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "fas fa-door-closed cyan" }),
-                    _vm._v(
-                      "\n                        My room\n                    "
+  return _c("div", { staticClass: "row justify-content-sm-center" }, [
+    _c("div", { staticClass: "col-lg-10 col-sm-10 col-xxl-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header pt-0" }, [
+          _c("div", { staticClass: "actions-panel mb-3" }, [
+            _c("ul", { staticClass: "nav d-flex" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _vm.myRoom
+                ? _c("li", { staticClass: "ml-auto" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link",
+                        attrs: {
+                          href:
+                            "/room/" +
+                            _vm.myRoom_GameShortAddress +
+                            "/" +
+                            _vm.myRoom.id
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-door-closed cyan" }),
+                        _vm._v(
+                          "\n                                My room\n                            "
+                        )
+                      ]
                     )
-                  ]
-                )
-              ])
-            : _vm._e()
-        ])
-      ]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("h3", [_vm._v(_vm._s(_vm.game.title + "'s rooms"))]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "modal fade",
-          attrs: {
-            id: "addRoom",
-            tabindex: "-1",
-            role: "dialog",
-            "aria-hidden": "true"
-          }
-        },
-        [
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("h3", [_vm._v(_vm._s(_vm.game.title + "'s rooms"))]),
+          _vm._v(" "),
           _c(
             "div",
             {
-              staticClass: "modal-dialog modal-dialog-centered",
-              attrs: { role: "document" }
+              staticClass: "modal fade",
+              attrs: {
+                id: "addRoom",
+                tabindex: "-1",
+                role: "dialog",
+                "aria-hidden": "true"
+              }
             },
             [
-              _c("div", { staticClass: "modal-content" }, [
-                _vm._m(2),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-body" }, [
-                  _c(
-                    "form",
-                    {
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          return _vm.submitNewRoom($event)
-                        }
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "form-group row" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass:
-                              "col-md-4 col-form-label text-md-right",
-                            attrs: { for: "title" }
-                          },
-                          [_vm._v("Title of a room ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-md-6" },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.newRoom.title,
-                                  expression: "newRoom.title"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              class: { "is-invalid": _vm.errors.title },
-                              attrs: {
-                                id: "title",
-                                type: "text",
-                                required: ""
+              _c(
+                "div",
+                {
+                  staticClass: "modal-dialog modal-dialog-centered",
+                  attrs: { role: "document" }
+                },
+                [
+                  _c("div", { staticClass: "modal-content" }, [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-body" }, [
+                      _c(
+                        "form",
+                        {
+                          on: {
+                            submit: function($event) {
+                              $event.preventDefault()
+                              return _vm.submitNewRoom($event)
+                            }
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "form-group row" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "col-md-4 col-form-label text-md-right",
+                                attrs: { for: "title" }
                               },
-                              domProps: { value: _vm.newRoom.title },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.newRoom,
-                                    "title",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
+                              [_vm._v("Title of a room ")]
+                            ),
                             _vm._v(" "),
-                            _vm._l(_vm.errors.title, function(errorMessage) {
-                              return _vm.errors.title
-                                ? _c("small", { staticClass: "red" }, [
-                                    _vm._v(_vm._s(errorMessage))
-                                  ])
-                                : _vm._e()
-                            })
-                          ],
-                          2
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group row" }, [
-                        _vm._m(3),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-md-6" },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.newRoom.count_of_members,
-                                  expression: "newRoom.count_of_members"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              class: {
-                                "is-invalid": _vm.errors.count_of_members
-                              },
-                              attrs: {
-                                id: "countOfMembers",
-                                type: "number",
-                                min: "2",
-                                max: "10",
-                                required: ""
-                              },
-                              domProps: { value: _vm.newRoom.count_of_members },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                            _c(
+                              "div",
+                              { staticClass: "col-md-6" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.newRoom.title,
+                                      expression: "newRoom.title"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  class: { "is-invalid": _vm.errors.title },
+                                  attrs: {
+                                    id: "title",
+                                    type: "text",
+                                    required: ""
+                                  },
+                                  domProps: { value: _vm.newRoom.title },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.newRoom,
+                                        "title",
+                                        $event.target.value
+                                      )
+                                    }
                                   }
-                                  _vm.$set(
-                                    _vm.newRoom,
-                                    "count_of_members",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
+                                }),
+                                _vm._v(" "),
+                                _vm._l(_vm.errors.title, function(
+                                  errorMessage
+                                ) {
+                                  return _vm.errors.title
+                                    ? _c("small", { staticClass: "red" }, [
+                                        _vm._v(_vm._s(errorMessage))
+                                      ])
+                                    : _vm._e()
+                                })
+                              ],
+                              2
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group row" }, [
+                            _vm._m(3),
                             _vm._v(" "),
-                            _vm._l(_vm.errors.count_of_members, function(
-                              errorMessage
-                            ) {
-                              return _vm.errors.count_of_members
-                                ? _c("small", { staticClass: "red" }, [
-                                    _vm._v(_vm._s(errorMessage))
-                                  ])
-                                : _vm._e()
-                            })
-                          ],
-                          2
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(4)
-                    ]
-                  )
-                ])
-              ])
+                            _c(
+                              "div",
+                              { staticClass: "col-md-6" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.newRoom.count_of_members,
+                                      expression: "newRoom.count_of_members"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  class: {
+                                    "is-invalid": _vm.errors.count_of_members
+                                  },
+                                  attrs: {
+                                    id: "countOfMembers",
+                                    type: "number",
+                                    min: "2",
+                                    max: "10",
+                                    required: ""
+                                  },
+                                  domProps: {
+                                    value: _vm.newRoom.count_of_members
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.newRoom,
+                                        "count_of_members",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm._l(_vm.errors.count_of_members, function(
+                                  errorMessage
+                                ) {
+                                  return _vm.errors.count_of_members
+                                    ? _c("small", { staticClass: "red" }, [
+                                        _vm._v(_vm._s(errorMessage))
+                                      ])
+                                    : _vm._e()
+                                })
+                              ],
+                              2
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(4)
+                        ]
+                      )
+                    ])
+                  ])
+                ]
+              )
             ]
           )
-        ]
-      )
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "card-body" },
-      [
-        _vm._l(_vm.allRooms, function(room) {
-          return _c("div", { staticClass: "card mb-3" }, [
-            _vm.authUserId == room.creator_id
-              ? _c("div", { staticClass: "p-2" }, [
-                  _c("span", { staticClass: "blue" }, [_vm._v("Your room")]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.deleteRoom(room.id)
-                        }
-                      }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-times red float-right",
-                        attrs: { title: "Delete my room" }
-                      })
-                    ]
-                  )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass:
-                  "card-header d-flex align-items-center justify-content-between",
-                attrs: {
-                  href: "/room/" + _vm.game.short_address + "/" + room.id
-                }
-              },
-              [
-                _c("span", { staticClass: "col-lg-1" }, [
-                  _c("img", {
-                    attrs: { src: "/" + room.creator.photo, alt: "" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("span", { staticClass: "col-lg-8" }, [
-                  _vm._v(
-                    "\n                            " +
-                      _vm._s(room.title) +
-                      "\n                    "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("span", { staticClass: "col-lg-3" }, [
-                  _vm._v("\n                                Members: "),
-                  _c("span", { staticClass: "pink" }, [
-                    _vm._v(_vm._s(room.members_count))
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v("\n                                Max members: "),
-                  _c("span", { staticClass: "pink" }, [
-                    _vm._v(_vm._s(room.count_of_members))
-                  ])
-                ])
-              ]
-            )
-          ])
-        }),
+        ]),
         _vm._v(" "),
         _c(
           "div",
-          {
-            directives: [
+          { staticClass: "card-body" },
+          [
+            _vm._l(_vm.allRooms, function(room) {
+              return _c("div", { staticClass: "card mb-3" }, [
+                _vm.authUserId == room.creator_id
+                  ? _c("div", { staticClass: "p-2" }, [
+                      _c("span", { staticClass: "blue" }, [
+                        _vm._v("Your room")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.deleteRoom(room.id)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fas fa-times red float-right",
+                            attrs: { title: "Delete my room" }
+                          })
+                        ]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "card-header d-flex align-items-center justify-content-between",
+                    attrs: {
+                      href: "/room/" + _vm.game.short_address + "/" + room.id
+                    }
+                  },
+                  [
+                    _c("span", { staticClass: "col-lg-1 col-sm-3" }, [
+                      _c("img", {
+                        attrs: { src: "/" + room.creator.photo, alt: "" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "col-lg-8 col-sm-6" }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(room.title) +
+                          "\n                    "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "col-lg-3 col-sm-3" }, [
+                      _vm._v("\n                                Members: "),
+                      _c("span", { staticClass: "pink" }, [
+                        _vm._v(_vm._s(room.members_count))
+                      ]),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v("\n                                Max members: "),
+                      _c("span", { staticClass: "pink" }, [
+                        _vm._v(_vm._s(room.count_of_members))
+                      ])
+                    ])
+                  ]
+                )
+              ])
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
               {
-                name: "show",
-                rawName: "v-show",
-                value: !(
-                  Array.isArray(_vm.allRooms) && _vm.allRooms.length > 0
-                ),
-                expression: "!(Array.isArray(allRooms) && allRooms.length > 0)"
-              }
-            ]
-          },
-          [_c("h4", [_vm._v("No rooms found")])]
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: !(
+                      Array.isArray(_vm.allRooms) && _vm.allRooms.length > 0
+                    ),
+                    expression:
+                      "!(Array.isArray(allRooms) && allRooms.length > 0)"
+                  }
+                ]
+              },
+              [_c("h4", [_vm._v("No rooms found")])]
+            )
+          ],
+          2
         )
-      ],
-      2
-    )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -59491,7 +59597,9 @@ var staticRenderFns = [
     return _c("li", [
       _c("a", { staticClass: "nav-link ", attrs: { href: "/rooms/all" } }, [
         _c("i", { staticClass: "fas fa-arrow-left blue" }),
-        _vm._v("\n                        Go back\n                    ")
+        _vm._v(
+          "\n                                Go back\n                            "
+        )
       ])
     ])
   },
@@ -59508,7 +59616,9 @@ var staticRenderFns = [
         },
         [
           _c("i", { staticClass: "fas fa-plus green" }),
-          _vm._v("\n                        Add new room\n                    ")
+          _vm._v(
+            "\n                                Add new room\n                            "
+          )
         ]
       )
     ])
@@ -59520,7 +59630,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "modal-header" }, [
       _c("h5", { staticClass: "modal-title text-center" }, [
         _vm._v(
-          "\n                            Add new room\n                        "
+          "\n                                    Add new room\n                                "
         )
       ]),
       _vm._v(" "),
@@ -59550,7 +59660,7 @@ var staticRenderFns = [
       },
       [
         _vm._v(
-          "\n                                    Count of members\n                                    "
+          "\n                                            Count of members\n                                            "
         ),
         _c("i", {
           staticClass: "fas fa-info-circle orange",
@@ -59572,7 +59682,7 @@ var staticRenderFns = [
         },
         [
           _vm._v(
-            "\n                                    Close\n                                "
+            "\n                                            Close\n                                        "
           )
         ]
       ),

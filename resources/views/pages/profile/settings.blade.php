@@ -2,17 +2,25 @@
 @section('title', 'Settings')
 @section('content')
     @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
+        <div class="row justify-content-sm-center">
+            <div class="col-lg-12 col-sm-10 ">
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            </div>
         </div>
     @endif
     @if (session('error'))
-        <div class="alert alert-success">
-            {{ session('error') }}
+        <div class="row justify-content-sm-center">
+            <div class="col-lg-12 col-sm-10 ">
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            </div>
         </div>
     @endif
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="row justify-content-sm-center">
+        <div class="col-lg-10 col-sm-10 col-xxl-12">
             <div class="card">
                 <div class="card-header">
                     <h3>Settings</h3>

@@ -1,12 +1,12 @@
 @extends('layouts.main')
 @section('title', strip_tags($user))
 @section('content')
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card p-3">
-                <div class="row no-gutters">
-                    <div class="col-md-2">
-                        <img src="{{asset($user->photo)}}" class="card-img"
+    <div class="row justify-content-sm-center justify-content-lg-center ">
+        <div class="col-lg-10 col-sm-10 col-xxl-12">
+            <div class="card p-3 p-sm-1">
+                <div class="row no-gutters text-sm-center justify-content-sm-center">
+                    <div class="col-lg-2 ">
+                        <img src="{{asset($user->photo)}}" class="card-img col-sm-4 col-md-4 col-lg-12"
                              alt="...">
                         @if($authUser->id == $user->id)
                             <a href="{{route('edit')}}" class="btn btn-grey w-100">Edit</a>
@@ -133,8 +133,8 @@
             </div>
         </div>
     </div>
-    <div class="row mt-3">
-        <div class="col-lg-4">
+    <div class="row mt-3 justify-content-sm-center justify-content-lg-center">
+        <div class="col-lg-3 col-xxl-4  col-sm-10">
             <div class="card">
                 <div class="card-header">
                     @if($user->isOnline())
@@ -144,8 +144,8 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <div class="row ">
-                        <div class="col-lg-12">
+                    <div class="row justify-content-sm-center">
+                        <div class="col-lg-12 col-sm-8">
                             <div class="card">
                                 <a class="card-header"
                                    href="{{$user->id == Auth::user()->id ? route('friendsAll') : route('friendsById',['id'=>$user->id])}}">
@@ -156,12 +156,12 @@
                                         <div class="subscribe-item">
                                             <div class="row align-items-center">
 
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-5 col-sm-5">
                                                     <div class="wall-post-img">
                                                         <img src="{{asset($friend->photo)}}" alt="">
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-8">
+                                                <div class="col-lg-7">
                                                     <div class="wall-post-author">
                                                         <h6>
                                                             <a href="{{route('profile',['id'=>$friend->id])}}">{{$friend}}</a>
@@ -185,8 +185,8 @@
 
                     </div>
 
-                    <div class="row mt-5">
-                        <div class="col-lg-12">
+                    <div class="row mt-5 justify-content-sm-center">
+                        <div class="col-lg-12 col-sm-8">
                             <div class="card">
                                 <div class="card-header">
                                     <a href="{{route('communitiesSubscriptionsById',['id'=>$user->id])}}">
@@ -200,7 +200,7 @@
                                     @forelse($communities as $item)
                                         <div class="subscribe-item">
                                             <div class="row align-items-center">
-                                                <div class="col-lg-3 ">
+                                                <div class="col-lg-5 col-sm-5">
                                                     <div class="wall-post-img">
                                                         <a href="{{route('community.show',['community'=>$item->community->short_address])}}">
                                                             <img src="{{asset($item->community->logo)}}" alt="">
@@ -208,7 +208,7 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-9">
+                                                <div class="col-lg-7 ">
                                                     <div class="wall-post-author">
                                                         <h6>
                                                             <a href="{{route('community.show',['community'=>$item->community->short_address])}}">
@@ -236,7 +236,7 @@
             </div>
 
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-7 col-xxl-8 col-sm-10 mt-sm-2">
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -276,12 +276,12 @@
                             <div class="card mt-3 p-3">
                                 <div class="wall-post">
                                     <div class="row align-items-center">
-                                        <div class="col-lg-1">
+                                        <div class="col-lg-2 col-sm-3">
                                             <div class="wall-post-img">
                                                 <img src="{{asset($comment->writer->photo)}}" alt="">
                                             </div>
                                         </div>
-                                        <div class="col-lg-11">
+                                        <div class="col-lg-10">
                                             <div class="wall-post-author">
                                                 @can('delete',$comment)
                                                     <i class="fas fa-times blocks postDelete"

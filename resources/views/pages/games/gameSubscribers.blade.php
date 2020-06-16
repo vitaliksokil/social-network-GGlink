@@ -15,14 +15,14 @@
     @forelse($subscribers as $subscriber)
         <div class="subscribe-item">
             <div class="row align-items-center">
-                <div class="col-lg-1 ">
+                <div class="col-lg-1 col-sm-2">
                     <div class="wall-post-img">
                         <a href="{{route('profile',['id'=>$subscriber->user->id])}}">
                             <img src="{{asset($subscriber->user->photo)}}" alt="">
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-lg-9 col-sm-7">
                     <div class="wall-post-author">
                         <h6>
                             <a href="{{route('profile',['id'=>$subscriber->user->id])}}">{{$subscriber->user}}</a> <br>
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 @can('isSuperAdmin')
-                    <div class="col-lg-2">
+                    <div class="col-lg-2 col-sm-2">
                         @if($subscriber->is_moderator)
                             <button class="btn btn-success" disabled>Moderator</button>
                             <form action="{{route('game.removeModerator',['gameSubscriber'=>$subscriber])}}" method="POST">

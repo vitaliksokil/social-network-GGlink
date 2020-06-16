@@ -1,18 +1,18 @@
 @extends('layouts.main')
 @section('title', $game->title)
 @section('content')
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="row justify-content-sm-center">
+        <div class="col-lg-10 col-sm-10 col-xxl-12">
             <div class="card">
                 <div class="row no-gutters align-items-center justify-content-between poster" style="
                     background:url({{asset($game->poster)}})  center center;
                     ">
                 </div>
                 <div class="row">
-                    <div class="card-body p-5">
+                    <div class="card-body p-5 p-sm-4">
                         <div class="row">
                             @include('includes.message')
-                            <div class="col-lg-9">
+                            <div class="col-lg-9 col-sm-9">
                                 <div class="card h-100">
                                     <div class="card-header">
                                         <h1 class="card-title">{{$game->title}}</h1>
@@ -22,7 +22,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 col-sm-3">
                                 <img src="{{$game->logo?asset($game->logo):asset('img/no_photo.png')}}" class="card-img"
                                      alt="...">
                                 @can('subscribe',[\App\manyToManyModels\GameSubscriber::class,$game])
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="row mt-5">
-                            <div class="col-lg-9">
+                            <div class="col-lg-9 col-sm-9">
                                 <div class="card">
                                     <div class="card-header">
                                         <h3>News</h3>
@@ -144,7 +144,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 col-sm-3">
                                 <div class="card">
                                     <a class="card-header"
                                        href="{{route('allGameSubscribers',['game'=>$game->short_address])}}">

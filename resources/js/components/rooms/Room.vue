@@ -1,135 +1,140 @@
 <template>
-    <div class="card">
-        <div class="card-header pt-0">
-            <div class="actions-panel mb-3">
-                <ul class="nav d-flex justify-content-between">
-                    <li>
-                        <a :href='`/rooms/of/${game_short_address}`' class="nav-link ">
-                            <i class="fas fa-arrow-left blue"></i>
-                            Go back
-                        </a>
-                    </li>
-                    <li class="mr-auto" v-if="authUserID == room.creator_id">
-                        <a class="nav-link" @click="lockTheRoom">
-                            <i class="fas fa-lock orange"></i>
-                            Lock/unlock the room
-                        </a>
-                    </li>
+    <div class="row justify-content-sm-center">
+        <div class="col-lg-10 col-sm-10 col-xxl-12">
+            <div class="card">
+                <div class="card-header pt-0">
+                    <div class="actions-panel mb-3">
+                        <ul class="nav d-flex justify-content-between">
+                            <li>
+                                <a :href='`/rooms/of/${game_short_address}`' class="nav-link ">
+                                    <i class="fas fa-arrow-left blue"></i>
+                                    Go back
+                                </a>
+                            </li>
+                            <li class="mr-auto" v-if="authUserID == room.creator_id">
+                                <a class="nav-link" @click="lockTheRoom">
+                                    <i class="fas fa-lock orange"></i>
+                                    Lock/unlock the room
+                                </a>
+                            </li>
 
-                    <li v-if="authUserID == room.creator_id">
-                        <a class="nav-link " @click.prevent="deleteRoom(room.id)">
-                            <i class="fas fa-times red"></i>
-                            Delete room
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <hr>
-            <div class="d-flex justify-content-between">
-                <div>
-                    <h3>{{room.title}}</h3>
-                    <h5>Room #{{room.id}}</h5>
+                            <li v-if="authUserID == room.creator_id">
+                                <a class="nav-link " @click.prevent="deleteRoom(room.id)">
+                                    <i class="fas fa-times red"></i>
+                                    Delete room
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h3>{{room.title}}</h3>
+                            <h5>Room #{{room.id}}</h5>
 
 
-                    <a class="btn btn-primary" @click.prevent="joinToTheTeam" v-if="canJoin()">
-                        <i class="fas fa-plus"></i>
-                        Click to join the team
-                    </a>
-                </div>
-                <div>
-                    <i class="fas fa-lock red" style="font-size: 60px" v-if="isLocked" title="Room is locked"></i>
-                    <i class="fas fa-lock-open green" style="font-size: 60px" v-else title="Room is unlocked"></i>
-                </div>
-            </div>
-
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-2 mb-3" v-for="member in teamMembers">
-                    <div class="card text-center h-100">
-                        <a :href="`/profile/id/${member.member_id}`" target="_blank">
-                            <img :src="`/${member.photo}`" class="card-img-top members-size" alt="">
-                        </a>
-                        <div class="card-body d-flex flex-column">
-                            <a :href="`/profile/id/${member.member_id}`" target="_blank">
-                                <small class="card-text"> <span class="pink">{{member.nickname}}</span></small>
+                            <a class="btn btn-primary" @click.prevent="joinToTheTeam" v-if="canJoin()">
+                                <i class="fas fa-plus"></i>
+                                Click to join the team
                             </a>
-                            <h4 class="green mt-auto" v-if="member.member_id == room.creator_id">CREATOR</h4>
-                            <button class="btn btn-danger mt-auto"
-                                    v-if="room.creator_id == authUserID && member.member_id != room.creator_id"
-                                    @click.prevent="kickUser(member.member_id)">Kick
-                            </button>
+                        </div>
+                        <div>
+                            <i class="fas fa-lock red" style="font-size: 60px" v-if="isLocked" title="Room is locked"></i>
+                            <i class="fas fa-lock-open green" style="font-size: 60px" v-else title="Room is unlocked"></i>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-2  mb-3" v-for="i in room.count_of_members - teamMembers.length">
-                    <div class="card text-center h-100">
-                        <i class="fas fa-plus card-img-top room-member-plus members-size h-100"
-                           title="Join to the team"></i>
-                    </div>
-                </div>
 
-            </div>
-
-        </div>
-        <div class="card-footer">
-            <div class="conversation" style="height: 300px" ref="chat">
-                <div class="row w-100">
-                    <div class="col-lg-12 ">
-                        <div v-for="message_item in allMessages" class="subscribe-item">
-                            <div class="row align-items-start">
-                                <div class="col-lg-1 ">
-                                    <div class="wall-post-img">
-                                        <a :href="`/profile/id/${message_item.sender_id}`" target="_blank">
-                                            <img :src="`/${message_item.photo}`" alt="">
-                                        </a>
-                                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-2 col-sm-2 mb-3" v-for="member in teamMembers">
+                            <div class="card text-center h-100">
+                                <a :href="`/profile/id/${member.member_id}`" target="_blank">
+                                    <img :src="`/${member.photo}`" class="card-img-top members-size" alt="">
+                                </a>
+                                <div class="card-body d-flex flex-column p-sm-0 p-xxl-3 ">
+                                    <a :href="`/profile/id/${member.member_id}`" target="_blank">
+                                        <small class="card-text"> <span class="pink">{{member.nickname}}</span></small>
+                                    </a>
+                                    <h4 class="green mt-auto" v-if="member.member_id == room.creator_id">CREATOR</h4>
+                                    <button class="btn btn-danger mt-auto"
+                                            v-if="room.creator_id == authUserID && member.member_id != room.creator_id"
+                                            @click.prevent="kickUser(member.member_id)">Kick
+                                    </button>
                                 </div>
-                                <div class="col-lg-11">
-                                    <div>
-                                        <a :href="`/profile/id/${message_item.sender_id}`"
-                                           v-html="fullName(message_item.name,message_item.nickname,message_item.surname)"
-                                           target="_blank">
-                                        </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-2  mb-3" v-for="i in room.count_of_members - teamMembers.length">
+                            <div class="card text-center h-100">
+                                <i class="fas fa-plus card-img-top room-member-plus members-size h-100"
+                                   title="Join to the team"></i>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <div class="conversation" style="height: 300px" ref="chat">
+                        <div class="row w-100">
+                            <div class="col-lg-12 col-sm-12 ">
+                                <div v-for="message_item in allMessages" class="subscribe-item">
+                                    <div class="row align-items-start">
+                                        <div class="col-lg-2 col-sm-2 col-xxl-1">
+                                            <div class="wall-post-img">
+                                                <a :href="`/profile/id/${message_item.sender_id}`" target="_blank">
+                                                    <img :src="`/${message_item.photo}`" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-10 col-sm-10 col-xxl-10">
+                                            <div>
+                                                <a :href="`/profile/id/${message_item.sender_id}`"
+                                                   v-html="fullName(message_item.name,message_item.nickname,message_item.surname)"
+                                                   target="_blank">
+                                                </a>
+                                            </div>
+                                            <p class="ml-4 mt-2">
+                                                {{message_item.message}}
+                                                <small class="float-right ">{{ message_item.created_at}}</small>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <p class="ml-4 mt-2">
-                                        {{message_item.message}}
-                                        <small class="float-right ">{{ message_item.created_at}}</small>
-                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <message-composer @send="sendMessage"></message-composer>
+                </div>
+                <div class="list-of-joined-users card">
+                    <h4 class="text-center">Joined users</h4>
+                    <ul class="nav d-flex flex-column">
+                        <li class="nav-link p-sm-1" v-for="member in members">
+                            <div class="row align-items-center flex-sm-column flex-xxl-row">
+                                <div class="col-lg-12 col-sm-12 col-xxl-3">
+                                    <a :href="`/profile/id/${member.member_id}`" target="_blank">
+                                        <img :src="`/${member.photo}`" alt="">
+                                    </a>
+                                </div>
+                                <a :href="`/profile/id/${member.member_id}`" target="_blank" class="col-lg-7 col-sm-12 col-xxl-7 room-member-name"
+                                   v-html="fullName(member.name, member.nickname, member.surname)"
+                                >
+
+                                </a>
+                                <div class="col-lg-1 col-sm-2 col-xxl-2" v-if="room.creator_id == authUserID && member.member_id != authUserID"
+                                     @click.prevent="kickUser(member.member_id)">
+                                    <i class="fas fa-user-minus red" style="cursor:pointer" title="Kick user from room"></i>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
-            <message-composer @send="sendMessage"></message-composer>
-        </div>
-        <div class="list-of-joined-users card">
-            <h4 class="text-center">Joined users</h4>
-            <ul class="nav d-flex flex-column">
-                <li class="nav-link " v-for="member in members">
-                    <div class="row align-items-center">
-                        <div class="col-lg-3">
-                            <a :href="`/profile/id/${member.member_id}`" target="_blank">
-                                <img :src="`/${member.photo}`" alt="">
-                            </a>
-                        </div>
-                        <a :href="`/profile/id/${member.member_id}`" target="_blank" class="col-lg-7"
-                           v-html="fullName(member.name, member.nickname, member.surname)"
-                           style="font-size: 13px"
-                        >
-
-                        </a>
-                        <div class="col-lg-1" v-if="room.creator_id == authUserID && member.member_id != authUserID"
-                             @click.prevent="kickUser(member.member_id)">
-                            <i class="fas fa-user-minus red" style="cursor:pointer" title="Kick user from room"></i>
-                        </div>
-                    </div>
-                </li>
-            </ul>
 
         </div>
     </div>
+
 </template>
 
 <script>
